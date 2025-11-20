@@ -13,10 +13,12 @@ class SportsDataController extends Controller
     public function getSportsData()
     {
         try {
-            $apiKey = env('SCORESWIFT_API_KEY');
+            $apiKey = $_SERVER['SCORESWIFT_API_KEY'] ?? $_ENV['SCORESWIFT_API_KEY'] ?? getenv('SCORESWIFT_API_KEY') ?? env('SCORESWIFT_API_KEY');
             
             if (!$apiKey) {
-                return response()->json(['error' => 'API key not configured'], 500);
+                return response()->json([
+                    'error' => 'API key not found. Please ensure SCORESWIFT_API_KEY is properly configured in the workflow environment.'
+                ], 500);
             }
             
             $cacheKey = 'sports_data';
