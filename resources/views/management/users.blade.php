@@ -319,8 +319,8 @@
                                                                     href="/users/{{ $user->id }}/edit">
                                                                     <i class="fas fa-pencil-alt"></i>
                                                                 </a>
-                                                                <a class="btn btn-info" href="#"
-                                                                    onclick="return false;">
+                                                                <a class="btn btn-info" href="javascript:void(0);"
+                                                                    onclick="window.open('/users/{{ $user->id }}/ledger', 'LedgerWindow', 'fullscreen=yes,scrollbars=yes,resizable=yes'); return false;">
                                                                     <strong>L</strong>
                                                                 </a>
                                                                 @if($user->is_active)

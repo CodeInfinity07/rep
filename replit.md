@@ -32,6 +32,19 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: Account Ledger System
+  - Created ledger_entries table to track all financial transactions
+  - Implemented LedgerController with date range filtering
+  - Created ledger view with date pickers and DataTables integration
+  - All cash/credit transactions automatically logged to ledger
+  - L button in users table opens ledger in fullscreen window
+  - Ledger displays:
+    * Opening Balance (first entry)
+    * All transactions with date, description, amount, and running balance
+    * Print, Excel, and PDF export buttons
+    * Date range filter (default: today)
+  - Transaction types tracked: cash_deposit, cash_withdraw, credit_given, credit_taken_back
+
 - **2025-11-20**: Cash/Credit Management System
   - Added financial database fields: credit_received, credit_remaining, balance, cash
   - Created cash-credit.blade.php with two tabs (Cash and Credit) for deposit/withdraw operations

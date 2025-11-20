@@ -1,0 +1,1878 @@
+<body class="app">
+    <div>
+        <main class="main">
+            <div class="container-fluid" style="padding:0px 15px;">
+                <div class="animated fadeIn">
+                    
+<style>
+    .datee {
+        background-color: white;
+    }
+    @media screen and (max-width: 635px) {
+        .editsbmtbtn {
+            margin: auto;
+            margin-right: 15px;
+        }
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+                Report Filter
+            </div>
+            <div class="card-body">
+                <form id="ReportFilterForm" class="form-inline" method="get">
+                    <div class="row" style="text-align-last:justify;">
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <div class="input-group date" id="ReportFrom" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom">
+                                    <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <span class="market-time d-none">8/1/2025 12:00 AM</span>
+                                <span class="d-none utctime" data-nofirst="0" data-format="M/D/YYYY h:mm A">
+                                    2025-07-31T19:00:00.0000000Z
+                                </span>
+                                <input type="hidden" name="From" id="From" value="2025-07-31T19:00:00.0000000Z">
+                            </div>
+                        </div>
+
+                        <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo">
+                                    <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <span class="market-time d-none">11/20/2025 11:59 PM</span>
+                                <span class="d-none utctime" data-nofirst="0" data-format="M/D/YYYY h:mm A">
+                                    2025-11-20T18:59:00.0000000Z
+                                </span>
+                                <input type="hidden" name="To" id="To" value="2025-11-20T18:59:00.0000000Z">
+                            </div>
+                        </div>
+
+                        <div class="form-group editsbmtbtn">
+                            <label class="mx-1"> </label>
+                            <button class="btn btn-primary" type="submit" onclick="return updateDates();">
+                                <strong>Submit</strong>
+                            </button>
+                        </div>
+                        <input type="hidden" data-val="true" data-val-required="The ClientId field is required." id="ClientId" name="ClientId" value="5865901">
+                        <input type="hidden" data-val="true" data-val-required="The EventTypeId field is required." id="EventTypeId" name="EventTypeId" value="0">
+                        <input type="hidden" data-val="true" data-val-required="The IsFirstVisit field is required." id="IsFirstVisit" name="IsFirstVisit" value="False">
+                    </div>
+                    <div class="row col-12">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="/css/all.css">
+<link rel="stylesheet" type="text/css" href="/lib/datatables/datatables.min.css">
+<link rel="stylesheet" type="text/css" href="/css/ledger.css">
+<style>
+    button.dt-button, div.dt-button, a.dt-button {
+        padding:5px;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                    <strong>Imrantt8585</strong>
+                - Account Ledger
+            </div>
+            <div class="card-body">
+                <div id="tableLedger_wrapper" class="dt-container dt-bootstrap4 dt-empty-footer"><div id="" class="row"><div id="" class="col-sm-2"><div class="dt-length"><select aria-controls="tableLedger" class="custom-select custom-select-sm form-control form-control-sm" id="dt-length-0"><option value="100">100</option><option value="250">250</option><option value="500">500</option><option value="1000">1,000</option></select><label for="dt-length-0"> entries per page</label></div></div><div id="" class="col-sm-5"><div class="dt-buttons btn-group flex-wrap">   <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="tableLedger" type="button" title="Copy"><span><i class=""> Print</i></span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="tableLedger" type="button" title="Excel"><span><i class=""> Excel</i></span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="tableLedger" type="button" title="PDF"><span><i class=""> PDF</i></span></button> </div></div><div id="" class="col-sm-5"><div class="dt-search"><label for="dt-search-0">Search:</label><input type="search" class="form-control form-control-sm" id="dt-search-0" placeholder="" aria-controls="tableLedger"></div></div></div><div id="" class="row"><div id="" class="col-sm-12"><table id="tableLedger" class="table table-striped table-bordered dataTable" aria-describedby="tableLedger_info" style="width: 100%;"><colgroup><col data-dt-column="0" style="width: 83.2812px;"><col data-dt-column="1" style="width: 273.105px;"><col data-dt-column="2" style="width: 944.941px;"><col data-dt-column="3" style="width: 155.527px;"><col data-dt-column="4" style="width: 156.895px;"></colgroup>
+                    <thead>
+                        <tr><th data-dt-column="0" rowspan="1" colspan="1" class="dt-type-numeric dt-orderable-asc dt-orderable-desc dt-ordering-asc" aria-sort="ascending" aria-label="#: Activate to invert sorting"><span class="dt-column-title">#</span><span class="dt-column-order" role="button" tabindex="0"></span></th><th data-dt-column="1" rowspan="1" colspan="1" class="dt-type-date dt-orderable-asc dt-orderable-desc" aria-label="Date: Activate to sort"><span class="dt-column-title">Date</span><span class="dt-column-order" role="button" tabindex="0"></span></th><th data-dt-column="2" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Description: Activate to sort"><span class="dt-column-title">Description</span><span class="dt-column-order" role="button" tabindex="0"></span></th><th data-dt-column="3" rowspan="1" colspan="1" class="dt-type-numeric dt-orderable-asc dt-orderable-desc" aria-label="Amount: Activate to sort"><span class="dt-column-title">Amount</span><span class="dt-column-order" role="button" tabindex="0"></span></th><th data-dt-column="4" rowspan="1" colspan="1" class="dt-type-numeric dt-orderable-asc dt-orderable-desc" aria-label="Balance: Activate to sort"><span class="dt-column-title">Balance</span><span class="dt-column-order" role="button" tabindex="0"></span></th></tr>
+                    </thead>
+                    <tbody><tr>
+                                    <td class="dt-type-numeric sorting_1">1</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/1/2025 12:00:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-07-31T19:00:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(0, 5865901);">
+                                            Opening Balance
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">239,443</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">2</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:09:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:09:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349214089, 5865901);">
+                                            Pakistan Legends v South Africa Legends 20 Over Run PAKL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">239,243</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">3</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:09:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:09:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349214102, 5865901);">
+                                            Pakistan Legends v South Africa Legends Pakistan Legends 20 Over Total Last Figure
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">239,443</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">4</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:17:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:17:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349217440, 5865901);">
+                                            England v India 5 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">239,643</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">5</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:30:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:30:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349223476, 5865901);">
+                                            England v India 8 Over Run Only ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">239,843</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">6</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:32:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:32:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349224071, 5865901);">
+                                            Pakistan Legends v South Africa Legends 1 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">239,643</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">7</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:37:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:37:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349226049, 5865901);">
+                                            Pakistan Legends v South Africa Legends 2 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-400</td>
+                                    <td class="dt-type-numeric">239,243</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">8</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:40:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:40:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349227132, 5865901);">
+                                            England v India 10 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">239,043</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">9</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:42:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:42:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349227648, 5865901);">
+                                            Pakistan Legends v South Africa Legends 3 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-600</td>
+                                    <td class="dt-type-numeric">238,443</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">10</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:47:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:47:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349229284, 5865901);">
+                                            Pakistan Legends v South Africa Legends 4 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-400</td>
+                                    <td class="dt-type-numeric">238,043</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">11</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 10:53:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T17:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349231538, 5865901);">
+                                            Pakistan Legends v South Africa Legends 5 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">400</td>
+                                    <td class="dt-type-numeric">238,443</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">12</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:03:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:03:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349234883, 5865901);">
+                                            Pakistan Legends v South Africa Legends 6 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">400</td>
+                                    <td class="dt-type-numeric">238,843</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">13</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:15:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:15:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349238832, 5865901);">
+                                            Pakistan Legends v South Africa Legends 9 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">239,043</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">14</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:19:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:19:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349240370, 5865901);">
+                                            Pakistan Legends v South Africa Legends 10 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">800</td>
+                                    <td class="dt-type-numeric">239,843</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">15</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:19:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:19:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349240406, 5865901);">
+                                            Pakistan Legends v South Africa Legends 8 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">239,843</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">16</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:24:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:24:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349243343, 5865901);">
+                                            Motherwell v Rangers Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">450</td>
+                                    <td class="dt-type-numeric">240,293</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">17</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:34:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:34:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349246074, 5865901);">
+                                            Pakistan Legends v South Africa Legends 13 Over Run Only SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">400</td>
+                                    <td class="dt-type-numeric">240,693</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">18</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:41:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:41:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349248385, 5865901);">
+                                            Pakistan Legends v South Africa Legends 15 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-250</td>
+                                    <td class="dt-type-numeric">240,443</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">19</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:42:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:42:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349248721, 5865901);">
+                                            Pakistan Legends v South Africa Legends South Africa Legends 15 Over Total Last Figure
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">240,643</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">20</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:46:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:46:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349250366, 5865901);">
+                                            Pakistan Legends v South Africa Legends 16 Over Run SAL
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">400</td>
+                                    <td class="dt-type-numeric">241,043</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">21</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/2/2025 11:57:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T18:57:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349255474, 5865901);">
+                                            Pakistan Legends v South Africa Legends Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">1,580</td>
+                                    <td class="dt-type-numeric">242,623</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">22</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 12:32:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T19:32:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349268927, 5865901);">
+                                            McCartn Kessler v M Kostyuk Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-242</td>
+                                    <td class="dt-type-numeric">242,382</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">23</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 12:57:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T19:57:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349274430, 5865901);">
+                                            Khachanov v Ruud Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">447</td>
+                                    <td class="dt-type-numeric">242,830</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">24</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 01:53:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T20:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349286813, 5865901);">
+                                            Osijek v Dinamo Zagreb Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">520</td>
+                                    <td class="dt-type-numeric">243,350</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">25</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 03:25:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-02T22:25:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349301989, 5865901);">
+                                            E Rybakina v D Yastremska Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-363</td>
+                                    <td class="dt-type-numeric">242,988</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">26</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 05:28:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T00:28:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349317369, 5865901);">
+                                            West Indies v Pakistan 5 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">100</td>
+                                    <td class="dt-type-numeric">243,088</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">27</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 05:33:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T00:33:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349318103, 5865901);">
+                                            West Indies v Pakistan 6 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">242,888</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">28</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 05:41:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T00:41:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349319445, 5865901);">
+                                            West Indies v Pakistan 8 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">242,688</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">29</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 05:46:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T00:46:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349320115, 5865901);">
+                                            West Indies v Pakistan 9 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">242,888</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">30</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 05:53:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T00:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349321022, 5865901);">
+                                            West Indies v Pakistan 10 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-300</td>
+                                    <td class="dt-type-numeric">242,588</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">31</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 06:01:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T01:01:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349321979, 5865901);">
+                                            West Indies v Pakistan 12 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">100</td>
+                                    <td class="dt-type-numeric">242,688</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">32</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 06:44:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T01:44:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349326306, 5865901);">
+                                            West Indies v Pakistan 20 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-202</td>
+                                    <td class="dt-type-numeric">242,486</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">33</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 06:53:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T01:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349327507, 5865901);">
+                                            West Indies v Pakistan 1st Innings 20 Overs Line
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-198</td>
+                                    <td class="dt-type-numeric">242,288</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">34</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 06:57:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T01:57:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349328237, 5865901);">
+                                            Fluminense v Gremio Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">68</td>
+                                    <td class="dt-type-numeric">242,356</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">35</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:11:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T02:11:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349329732, 5865901);">
+                                            West Indies v Pakistan 3 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">123</td>
+                                    <td class="dt-type-numeric">242,479</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">36</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:17:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T02:17:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349330382, 5865901);">
+                                            West Indies v Pakistan 4 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">242,279</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">37</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:26:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T02:26:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349331289, 5865901);">
+                                            West Indies v Pakistan 6 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">242,479</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">38</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:30:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T02:30:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349331744, 5865901);">
+                                            West Indies v Pakistan 7 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">242,479</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">39</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 08:12:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T03:12:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349336601, 5865901);">
+                                            West Indies v Pakistan 16 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">242,279</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">40</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 08:35:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T03:35:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349338893, 5865901);">
+                                            West Indies v Pakistan 19 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">242,079</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">41</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 08:41:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T03:41:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349339455, 5865901);">
+                                            West Indies v Pakistan Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">162</td>
+                                    <td class="dt-type-numeric">242,241</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">42</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 03:30:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T10:30:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349408438, 5865901);">
+                                            England v India 20 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-185</td>
+                                    <td class="dt-type-numeric">242,057</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">43</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 03:49:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T10:49:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349413505, 5865901);">
+                                            England v India Ben Duckett Runs 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">242,257</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">44</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 03:57:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T10:57:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349415684, 5865901);">
+                                            England v India 25 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-267</td>
+                                    <td class="dt-type-numeric">241,990</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">45</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 04:26:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T11:26:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349424203, 5865901);">
+                                            England v India 30 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">333</td>
+                                    <td class="dt-type-numeric">242,323</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">46</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:11:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T14:11:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349466957, 5865901);">
+                                            England v India 57 Over Run Only ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-100</td>
+                                    <td class="dt-type-numeric">242,223</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">47</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:20:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T14:20:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349469029, 5865901);">
+                                            England v India 59 Over Run Only ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-100</td>
+                                    <td class="dt-type-numeric">242,123</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">48</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:23:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T14:23:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349469906, 5865901);">
+                                            England v India 60 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-100</td>
+                                    <td class="dt-type-numeric">242,023</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">49</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 07:53:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T14:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349477548, 5865901);">
+                                            England v India 65 Over Run ENG 2
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">241,823</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">50</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/3/2025 10:29:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T17:29:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349520971, 5865901);">
+                                            Celtic v St Mirren Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-494</td>
+                                    <td class="dt-type-numeric">241,329</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">51</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 12:01:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-03T19:01:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349545999, 5865901);">
+                                            Keys v Muchova Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-394</td>
+                                    <td class="dt-type-numeric">240,936</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">52</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 05:28:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T00:28:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349592882, 5865901);">
+                                            West Indies v Pakistan 1st Innings 6 Overs Line
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">240,936</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">53</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 05:44:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T00:44:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349594566, 5865901);">
+                                            West Indies v Pakistan 10 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-1,800</td>
+                                    <td class="dt-type-numeric">239,136</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">54</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 05:45:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T00:45:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349594688, 5865901);">
+                                            West Indies v Pakistan Pakistan 10 Over Total Last Figure
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">239,336</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">55</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 05:53:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T00:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349595579, 5865901);">
+                                            West Indies v Pakistan 1st Innings 10 Overs Line
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">1,000</td>
+                                    <td class="dt-type-numeric">240,336</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">56</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 05:53:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T00:53:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349595643, 5865901);">
+                                            West Indies v Pakistan 11 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">240,536</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">57</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 05:59:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T00:59:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349596167, 5865901);">
+                                            West Indies v Pakistan 12 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">240,736</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">58</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:08:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:08:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349597142, 5865901);">
+                                            West Indies v Pakistan 14 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">240,736</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">59</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:13:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:13:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349597632, 5865901);">
+                                            West Indies v Pakistan 15 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">240,936</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">60</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:13:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:13:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349597679, 5865901);">
+                                            West Indies v Pakistan Pakistan 15 Over Total Last Figure
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">241,136</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">61</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:16:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:16:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349597968, 5865901);">
+                                            West Indies v Pakistan 1st Innings 15 Overs Line
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">241,136</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">62</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:27:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:27:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349598967, 5865901);">
+                                            West Indies v Pakistan 17 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">140</td>
+                                    <td class="dt-type-numeric">241,276</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">63</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:45:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:45:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349600621, 5865901);">
+                                            West Indies v Pakistan 20 Over Run PAK
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">600</td>
+                                    <td class="dt-type-numeric">241,876</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">64</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:46:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:46:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349600752, 5865901);">
+                                            West Indies v Pakistan 1st Innings 20 Overs Line
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">5,247</td>
+                                    <td class="dt-type-numeric">247,123</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">65</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 06:50:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T01:50:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349601781, 5865901);">
+                                            A Anisimova v Svitolina Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">60</td>
+                                    <td class="dt-type-numeric">247,183</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">66</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 07:00:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T02:00:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349602889, 5865901);">
+                                            West Indies v Pakistan 1 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">247,383</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">67</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 07:04:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T02:04:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349603432, 5865901);">
+                                            West Indies v Pakistan 2 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">140</td>
+                                    <td class="dt-type-numeric">247,523</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">68</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 07:15:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T02:15:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349604655, 5865901);">
+                                            West Indies v Pakistan 4 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">247,723</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">69</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 07:21:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T02:21:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349605350, 5865901);">
+                                            West Indies v Pakistan 5 Over Run WI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">247,923</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">70</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 08:40:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T03:40:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349615090, 5865901);">
+                                            West Indies v Pakistan Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">13,882</td>
+                                    <td class="dt-type-numeric">261,805</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">71</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/4/2025 04:09:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-04T11:09:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(349702160, 5865901);">
+                                            England v India Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-579</td>
+                                    <td class="dt-type-numeric">261,227</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">72</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 08:30:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T15:30:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350052561, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 20 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-117</td>
+                                    <td class="dt-type-numeric">261,111</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">73</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 08:33:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T15:33:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350053748, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 25 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">261,111</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">74</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 08:37:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T15:37:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350055257, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 30 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-533</td>
+                                    <td class="dt-type-numeric">260,579</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">75</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 08:43:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T15:43:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350057666, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 40 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">260,379</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">76</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 08:52:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T15:52:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350060877, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 55 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">260,179</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">77</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 08:59:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T15:59:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350062979, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 60 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">259,979</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">78</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 09:04:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T16:04:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350064879, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 70 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">184</td>
+                                    <td class="dt-type-numeric">260,163</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">79</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 09:10:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T16:10:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350066538, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 75 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">100</td>
+                                    <td class="dt-type-numeric">260,263</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">80</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 09:28:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T16:28:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350072220, 5865901);">
+                                            London Spirit W v Oval Invincibles W 1 To 100 Ball Run OI-W
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">340</td>
+                                    <td class="dt-type-numeric">260,603</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">81</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 09:31:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T16:31:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350073770, 5865901);">
+                                            London Spirit W v Oval Invincibles W Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">22</td>
+                                    <td class="dt-type-numeric">260,625</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">82</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 09:31:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T16:31:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350074385, 5865901);">
+                                            Andres Martin v Draxl Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">350</td>
+                                    <td class="dt-type-numeric">260,975</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">83</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 10:34:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T17:34:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350099525, 5865901);">
+                                            London Spirit v Oval Invincibles Only 1-5 Ball Run LS
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">260,775</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">84</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 10:45:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T17:45:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350104503, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 20 Ball Run LS
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">260,975</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">85</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 10:47:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T17:47:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350106102, 5865901);">
+                                            Ar Fery v Svajda Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-38</td>
+                                    <td class="dt-type-numeric">260,938</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">86</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 10:49:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T17:49:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350106092, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 25 Balls Run LS
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-200</td>
+                                    <td class="dt-type-numeric">260,738</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">87</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 10:49:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T17:49:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350107156, 5865901);">
+                                            Leverkusen v Pisa Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">240</td>
+                                    <td class="dt-type-numeric">260,978</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">88</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 11:04:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T18:04:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350112405, 5865901);">
+                                            London Spirit v Oval Invincibles Wayne Madsen Runs
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">261,178</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">89</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 11:04:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T18:04:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350112591, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 45 Ball Run LS
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">45</td>
+                                    <td class="dt-type-numeric">261,223</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">90</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 11:11:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T18:11:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350115465, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 55 Ball Run LS
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">200</td>
+                                    <td class="dt-type-numeric">261,423</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">91</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 11:39:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T18:39:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350124727, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 100 Balls Run LS
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-100</td>
+                                    <td class="dt-type-numeric">261,323</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">92</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/5/2025 11:45:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T18:45:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350126823, 5865901);">
+                                            London Spirit v Oval Invincibles 1st Innings 100 Balls Runs Line
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">0</td>
+                                    <td class="dt-type-numeric">261,323</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">93</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:02:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:02:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350132666, 5865901);">
+                                            Hamrun Spartans FC v Maccabi Tel Aviv Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-351</td>
+                                    <td class="dt-type-numeric">260,973</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">94</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:08:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:08:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350133519, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 15 Ball Run OI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">330</td>
+                                    <td class="dt-type-numeric">261,303</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">95</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:10:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:10:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350134111, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 20 Ball Run OI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">400</td>
+                                    <td class="dt-type-numeric">261,703</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">96</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:14:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:14:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350135020, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 25 Balls  Run OI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-121</td>
+                                    <td class="dt-type-numeric">261,582</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">97</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:18:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:18:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350136106, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 30 Ball Run OI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">-142</td>
+                                    <td class="dt-type-numeric">261,440</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">98</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:23:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:23:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350137311, 5865901);">
+                                            London Spirit v Oval Invincibles 1 To 35 Ball Run OI
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">103</td>
+                                    <td class="dt-type-numeric">261,543</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">99</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 12:57:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T19:57:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350146125, 5865901);">
+                                            Shkendija v Qarabag FK Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">500</td>
+                                    <td class="dt-type-numeric">262,043</td>
+                                </tr><tr>
+                                    <td class="dt-type-numeric sorting_1">100</td>
+                                    <td class="dt-type-date">
+                                        
+<span class="market-time">8/6/2025 01:00:00 am</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-08-05T20:00:00.0000000Z
+</span>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="return popup_report(350146832, 5865901);">
+                                            Dynamo Kiev v Paphos FC Match Odds
+                                        </a>
+                                    </td>
+                                    <td class="dt-type-numeric">100</td>
+                                    <td class="dt-type-numeric">262,143</td>
+                                </tr></tbody>
+                <tfoot></tfoot></table></div></div><div id="" class="row"><div id="" class="col-sm-5"><div class="dt-info" aria-live="polite" id="tableLedger_info" role="status">Showing 1 to 100 of 1,724 entries</div></div><div id="" class="col-sm-7"><div class="dt-paging"><nav aria-label="pagination"><ul class="pagination"><li class="dt-paging-button page-item disabled"><a class="page-link first" aria-controls="tableLedger" aria-disabled="true" aria-label="First" data-dt-idx="first" tabindex="-1">«</a></li><li class="dt-paging-button page-item disabled"><a class="page-link previous" aria-controls="tableLedger" aria-disabled="true" aria-label="Previous" data-dt-idx="previous" tabindex="-1">‹</a></li><li class="dt-paging-button page-item active"><a href="#" class="page-link" aria-controls="tableLedger" aria-current="page" data-dt-idx="0">1</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link" aria-controls="tableLedger" data-dt-idx="1">2</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link" aria-controls="tableLedger" data-dt-idx="2">3</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link" aria-controls="tableLedger" data-dt-idx="3">4</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link" aria-controls="tableLedger" data-dt-idx="4">5</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link ellipsis" aria-controls="tableLedger" data-dt-idx="ellipsis">…</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link" aria-controls="tableLedger" data-dt-idx="17">18</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link next" aria-controls="tableLedger" aria-label="Next" data-dt-idx="next">›</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link last" aria-controls="tableLedger" aria-label="Last" data-dt-idx="last">»</a></li></ul></nav></div></div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function popup_report(vid, aid) {
+        var url = "/Accounts/Statements?VID=" + vid + "&AID=" + aid;
+        newwindow = window.open(url, "Market Statements", 'height=500,width=700,titlebar=0,menubar=0');
+        if (window.focus) { newwindow.focus() }
+        return false;
+    }
+</script>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/vue.min.js"></script>
+    <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+    <script src="/js/site.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/js/src/client-locales.js"></script>
+    
+    <script src="/lib/datatables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var tblLed = $("#tableLedger").DataTable({
+                "order": [[0, "asc"]],
+                "lengthMenu": [100, 250, 500, 1000],
+                dom: "<'row'<'col-sm-2'l><'col-sm-5'B><'col-sm-5'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+
+                columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: 2 },
+                { "type": "date", "targets": [1] }
+                ],
+                        buttons: [
+                            {
+                                extend: 'print',
+                                text: '<i class=""> Print</i>',
+                                title: 'Imrantt8585&#x27;s  Account Ledger',
+                                titleAttr: 'Copy'
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: '<i class=""> Excel</i>',
+                                title: 'Imrantt8585&#x27;s  Account Ledger',
+                                titleAttr: 'Excel'
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: '<i class=""> PDF</i>',
+                                title: 'Imrantt8585&#x27;s  Account Ledger',
+                                titleAttr: 'PDF'
+                            }
+                        ]
+
+            });
+
+            if (IsMobile()) {
+            new $.fn.dataTable.Responsive( tblLed, {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate
+                }
+            });
+        }
+        });
+    </script>
+
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9a1818a68d1cf9ec&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}" crossorigin="anonymous"></script>
+
+</body>

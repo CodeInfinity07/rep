@@ -81,6 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users/{id}/cash/withdraw', [App\Http\Controllers\CashCreditController::class, 'withdrawCash']);
     Route::post('/users/{id}/credit/deposit', [App\Http\Controllers\CashCreditController::class, 'depositCredit']);
     Route::post('/users/{id}/credit/withdraw', [App\Http\Controllers\CashCreditController::class, 'withdrawCredit']);
+    
+    Route::get('/users/{id}/ledger', [App\Http\Controllers\LedgerController::class, 'show']);
 });
 
 Route::get('/result', function () {

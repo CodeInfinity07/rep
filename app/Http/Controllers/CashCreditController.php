@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\LedgerEntry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -70,10 +71,18 @@ class CashCreditController extends Controller
 
         $amount = $request->input('amount');
 
-        DB::transaction(function () use ($user, $amount) {
+        DB::transaction(function () use ($user, $amount, $request) {
             $user->cash += $amount;
             $user->balance += $amount;
             $user->save();
+            
+            LedgerEntry::create([
+                'user_id' => $user->id,
+                'description' => $request->input('description'),
+                'amount' => $amount,
+                'balance' => $user->balance,
+                'type' => 'cash_deposit',
+            ]);
         });
 
         return redirect('/users/' . $user->id . '/cash-credit?tab=cash')
@@ -117,10 +126,18 @@ class CashCreditController extends Controller
             return back()->with('error', 'Insufficient cash balance. Available: ' . number_format($user->cash, 2) . ' ' . $user->currency);
         }
 
-        DB::transaction(function () use ($user, $amount) {
+        DB::transaction(function () use ($user, $amount, $request) {
             $user->cash -= $amount;
             $user->balance -= $amount;
             $user->save();
+            
+            LedgerEntry::create([
+                'user_id' => $user->id,
+                'description' => $request->input('description'),
+                'amount' => -$amount,
+                'balance' => $user->balance,
+                'type' => 'cash_withdraw',
+            ]);
         });
 
         return redirect('/users/' . $user->id . '/cash-credit?tab=cash')
@@ -166,7 +183,7 @@ class CashCreditController extends Controller
             }
         }
 
-        DB::transaction(function () use ($user, $amount, $currentUser) {
+        DB::transaction(function () use ($user, $amount, $currentUser, $request) {
             $user->credit_received += $amount;
             $user->credit_remaining += $amount;
             $user->save();
@@ -175,6 +192,14 @@ class CashCreditController extends Controller
                 $currentUser->credit_remaining -= $amount;
                 $currentUser->save();
             }
+            
+            LedgerEntry::create([
+                'user_id' => $user->id,
+                'description' => $request->input('description'),
+                'amount' => $amount,
+                'balance' => $user->balance,
+                'type' => 'credit_given',
+            ]);
         });
 
         return redirect('/users/' . $user->id . '/cash-credit?tab=credit')
@@ -218,7 +243,7 @@ class CashCreditController extends Controller
             return back()->with('error', 'Cannot take back more credit than available. Available: ' . number_format($user->credit_remaining, 2) . ' ' . $user->currency);
         }
 
-        DB::transaction(function () use ($user, $amount, $currentUser) {
+        DB::transaction(function () use ($user, $amount, $currentUser, $request) {
             $user->credit_received -= $amount;
             $user->credit_remaining -= $amount;
             $user->save();
@@ -227,6 +252,14 @@ class CashCreditController extends Controller
                 $currentUser->credit_remaining += $amount;
                 $currentUser->save();
             }
+            
+            LedgerEntry::create([
+                'user_id' => $user->id,
+                'description' => $request->input('description'),
+                'amount' => -$amount,
+                'balance' => $user->balance,
+                'type' => 'credit_taken_back',
+            ]);
         });
 
         return redirect('/users/' . $user->id . '/cash-credit?tab=credit')
