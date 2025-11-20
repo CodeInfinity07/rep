@@ -57,20 +57,25 @@
 
                         <div class="col-5 col-md-8 price">
                             <div class="row">
+                                {{-- Back prices: B3 = [2], B2 = [1], B1 = [0] (right to left display) --}}
                                 @for($i = 2; $i >= 0; $i--)
                                     @if($i > 0)
                                         <div class="col-md-2 d-none d-md-block cta-back">
                                     @else
                                         <div class="col-6 col-md-2 cta-back">
                                     @endif
-                                        @if(isset($backPrices[$i]))
-                                            <div id="b{{ 3-$i }}-{{ $selectionId }}" class="col-12 price" style="{{ $i === 0 ? 'background-color: rgb(227, 248, 255);' : '' }}" data-position="{{ 3-$i }}" data-type="back">
-                                                {{ $backPrices[$i]['price'] ?? '' }}
+                                        @php
+                                            $position = $i + 1; // B3=3, B2=2, B1=1
+                                            $priceIndex = $i; // B3 uses [2], B2 uses [1], B1 uses [0]
+                                        @endphp
+                                        @if(isset($backPrices[$priceIndex]))
+                                            <div id="b{{ $position }}-{{ $selectionId }}" class="col-12 price" style="{{ $position === 1 ? 'background-color: rgb(227, 248, 255);' : '' }}" data-position="{{ $position }}" data-type="back">
+                                                {{ $backPrices[$priceIndex]['price'] ?? '' }}
                                             </div>
-                                            <div id="bs{{ 3-$i }}-{{ $selectionId }}" class="col-12 size" style="{{ $i === 0 ? 'background-color: rgb(227, 248, 255);' : '' }}">
-                                                @if(isset($backPrices[$i]['size']))
+                                            <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size" style="{{ $position === 1 ? 'background-color: rgb(227, 248, 255);' : '' }}">
+                                                @if(isset($backPrices[$priceIndex]['size']))
                                                     @php
-                                                        $size = $backPrices[$i]['size'];
+                                                        $size = $backPrices[$priceIndex]['size'];
                                                         if ($size >= 1000000) {
                                                             echo number_format($size / 1000000, 1) . 'M';
                                                         } elseif ($size >= 1000) {
@@ -82,8 +87,8 @@
                                                 @endif
                                             </div>
                                         @else
-                                            <div id="b{{ 3-$i }}-{{ $selectionId }}" class="col-12 price" data-position="{{ 3-$i }}" data-type="back"></div>
-                                            <div id="bs{{ 3-$i }}-{{ $selectionId }}" class="col-12 size"></div>
+                                            <div id="b{{ $position }}-{{ $selectionId }}" class="col-12 price" data-position="{{ $position }}" data-type="back"></div>
+                                            <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size"></div>
                                         @endif
                                     </div>
                                 @endfor
@@ -224,15 +229,17 @@ function updateOdds() {
                 const backPrices = runner.ex?.availableToBack || [];
                 const layPrices = runner.ex?.availableToLay || [];
 
-                // Update back prices
-                for (let i = 0; i < 3; i++) {
-                    const priceEl = document.getElementById('b' + (i+1) + '-' + selectionId);
-                    const sizeEl = document.getElementById('bs' + (i+1) + '-' + selectionId);
+                // Update back prices: B3=[2], B2=[1], B1=[0]
+                for (let i = 2; i >= 0; i--) {
+                    const position = i + 1; // B3=3, B2=2, B1=1
+                    const priceIndex = i; // B3 uses [2], B2 uses [1], B1 uses [0]
+                    const priceEl = document.getElementById('b' + position + '-' + selectionId);
+                    const sizeEl = document.getElementById('bs' + position + '-' + selectionId);
                     
-                    if (backPrices[2-i]) {
-                        if (priceEl) priceEl.textContent = backPrices[2-i].price || '';
+                    if (backPrices[priceIndex]) {
+                        if (priceEl) priceEl.textContent = backPrices[priceIndex].price || '';
                         if (sizeEl) {
-                            const size = backPrices[2-i].size || 0;
+                            const size = backPrices[priceIndex].size || 0;
                             let sizeText = '';
                             if (size >= 1000000) {
                                 sizeText = (size / 1000000).toFixed(1) + 'M';
