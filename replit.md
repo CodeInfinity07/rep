@@ -5,26 +5,44 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 
 ## Project Structure
 - **Framework**: Laravel 12.x (PHP 8.2)
-- **Views**: Blade templates in `/resources/views` for all sports pages
+- **Views**: 
+  - `/resources/views/layouts/management.blade.php` - Shared layout for management section
+  - `/resources/views/management/` - Management dashboard and admin pages
+  - `/resources/views/bettor/` - Bettor-facing pages
+  - `/resources/views/` - Other sport and feature pages
 - **Public Assets**: CSS, JavaScript, images, and fonts in `/public` directory
 - **Routes**: Web routes defined in `/routes/web.php`
 - **Database**: SQLite (development)
 
 ### Available Pages
-- Dashboard (index)
+**Management Section** (uses shared layout):
+- Dashboard (/) - Management index with user search and sport highlights
+- Users, Reports, Position, Lock
+- Star Casino, World Casino, BetFair Games
+
+**Bettor Section**:
+- Bettor Dashboard (/bettor) - User betting interface
+
+**Sports Pages**:
 - Cricket, Soccer, Tennis (sports betting pages)
 - Horse Racing, Greyhound Racing
-- User Management, Reports, History
-- Ledger, Position, Match details
+- Match details, History, Ledger, Results
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: View restructuring and layout implementation
+  - Created shared layout (`layouts/management.blade.php`) for management section
+  - Organized views into `/bettor` and `/management` folders
+  - Management index now extends layout (clean separation of concerns)
+  - Updated routing: `/` serves management dashboard, `/bettor` serves bettor interface
+  - Removed duplicate HTML structure across management pages
+
 - **2025-11-20**: Converted to Laravel project
   - Installed PHP 8.2 with Composer
   - Created Laravel 12 project structure
   - Migrated static HTML files to Blade templates
   - Moved CSS, JS, images to `/public` directory
-  - Set up routes for all 19 pages
+  - Set up routes for all pages
   - Configured Laravel to run on 0.0.0.0:5000
   - Enabled proxy trust for Replit environment
   - Configured deployment for autoscale
@@ -37,7 +55,15 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - **Server**: Laravel Artisan development server
 
 ## Architecture
-Laravel MVC application serving blade templates with static assets. The application connects to external APIs for live betting/trading functionality. Each route returns a blade view with all necessary assets served from the public directory.
+Laravel MVC application serving blade templates with static assets. The application connects to external APIs for live betting/trading functionality.
+
+**Layout Structure**:
+- Management section uses a shared Blade layout (`layouts/management.blade.php`)
+- Layout includes header with navigation, sidebar with sports menu, and main content area
+- Views extend the layout using `@extends` and populate content with `@section`
+- Bettor section currently standalone, can be migrated to use layouts in future
+
+Each route returns a blade view with all necessary assets served from the public directory.
 
 ## Development
 - Server runs on port 5000 via Laravel Artisan
