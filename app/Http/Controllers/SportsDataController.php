@@ -22,7 +22,7 @@ class SportsDataController extends Controller
             }
             
             $cacheKey = 'sports_data';
-            $cacheDuration = 30;
+            $cacheDuration = now()->addSeconds(30);
             
             $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey) {
                 $response = Http::withHeaders([

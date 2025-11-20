@@ -30,6 +30,13 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: MySQL Database Migration
+  - Migrated from SQLite to MySQL (bguru69 on remote server 94.72.106.77)
+  - Configured database credentials via Replit Secrets (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD)
+  - Updated start-server.sh to inject database configuration from environment variables
+  - Ran Laravel migrations to create necessary tables (users, cache, jobs, migrations)
+  - Switched cache driver to file-based storage for improved performance
+
 - **2025-11-20**: Live Sports Data Integration
   - Integrated ScoreSwift API (http://89.116.20.218:8085/api/home) for live match data
   - Created SportsDataController with automatic sport categorization (Cricket, Soccer, Tennis)
@@ -61,7 +68,7 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 ## Tech Stack
 - **Backend**: Laravel 12.x, PHP 8.2
 - **Frontend**: HTML, CSS, JavaScript, Vue.js
-- **Database**: SQLite (development)
+- **Database**: MySQL (bguru69 on remote server 94.72.106.77)
 - **External APIs**: 
   - Live sports data from ScoreSwift API (http://89.116.20.218:8085/api/home)
   - Prices and orders from mgs11.com

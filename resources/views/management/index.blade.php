@@ -268,16 +268,6 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/signalr/dist/browser/signalr.js"></script>
-    <script src="/js/vue.min.js"></script>
-    <script src="/js/site.min.js"></script>
-    <script src="/js/bof.js"></script>
-    <script src="/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="/js/src/client-locales.js"></script>
-    <script src="/js/site.min.js"></script>
-    <script src="/js/ReportViewer.js"></script>
-    <script src="/js/bof.js"></script>
-    
     <script>
         function formatNumber(num) {
             return new Intl.NumberFormat('en-US').format(num);
@@ -291,12 +281,17 @@
                     const tennisTbody = document.getElementById('tennis-data');
                     const cricketTbody = document.getElementById('cricket-data');
                     
+                    if (!soccerTbody || !tennisTbody || !cricketTbody) {
+                        console.error('Missing table elements!');
+                        return;
+                    }
+                    
                     soccerTbody.innerHTML = '';
                     tennisTbody.innerHTML = '';
                     cricketTbody.innerHTML = '';
                     
                     if (data.soccer && data.soccer.length > 0) {
-                        data.soccer.forEach(match => {
+                        data.soccer.forEach((match, index) => {
                             const row = `
                                 <tr>
                                     <td>
@@ -360,10 +355,24 @@
                 });
         }
 
+        // Use try-catch to ensure errors from other scripts don't break this
+        try {
+            // Load data immediately when script runs
+            setTimeout(function() {
+                loadSportsData();
+                setInterval(loadSportsData, 30000);
+            }, 100);
+        } catch (e) {
+            console.error('Error initializing sports data loader:', e);
+        }
+        
+        // Also try on DOMContentLoaded as backup
         document.addEventListener('DOMContentLoaded', function() {
-            loadSportsData();
-            
-            setInterval(loadSportsData, 30000);
+            try {
+                loadSportsData();
+            } catch (e) {
+                console.error('Error on DOMContentLoaded:', e);
+            }
         });
     </script>
 @endsection
