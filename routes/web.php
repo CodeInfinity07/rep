@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SportsDataController;
+
+Route::get('/api/sports-data', [SportsDataController::class, 'getSportsData']);
 
 Route::get('/', function () {
     return view('management.index');

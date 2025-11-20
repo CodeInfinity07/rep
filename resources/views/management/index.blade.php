@@ -216,341 +216,10 @@
                                                     <th style="width: 20%">Amount</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="soccer-data">
                                                 <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248688268">Austria v San Marino /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        1,244,958
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248800415">Bangladesh v Hong Kong /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        15,744
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248582889">Belarus v Denmark / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        1,106,971
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248819043">Bochum v Alemannia Aachen /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        10,124
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248599237">Botswana v Uganda / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        25,713
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248598030">Burundi v Kenya / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        8,504
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248715308">Chernomorets Odesa v FC
-                                                                Viktoriya Sumy / Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        32,354
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248560965">Cyprus v Bosnia / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        155,812
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248562670">Czechia v Croatia / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        303,715
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248673100">England v Wales / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        321,508
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248561094">Faroe Islands v Montenegro
-                                                                / Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        99,815
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248568509">Ferroviaria v Chapecoense /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        10,730
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248562562">Finland v Lithuania / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        536,441
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248800523">Lebanon v Bhutan / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        55,207
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248598228">Liberia v Namibia / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        80,070
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248598353">Malawi v Equatorial Guinea
-                                                                / Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        14,678
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248669909">Malta v Netherlands / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        1,642,317
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248766085">Morocco v Bahrain / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        13,480
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248597154">Mozambique v Guinea / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        15,661
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248707219">Poland v New Zealand /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        19,643
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248707348">Romania v Moldova / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        11,397
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248794856">Scotland U21 v Gibraltar
-                                                                U21 / Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        21,265
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248562388">Scotland v Greece / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        271,424
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248805202">Singapore v India / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        18,382
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248771973">Somalia v Algeria / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        33,933
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248805100">Sri Lanka v Turkmenistan /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        60,380
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248718959">USA U20 v Italy U20 / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        20,212
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248800199">Vietnam v Nepal / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        13,323
+                                                    <td colspan="2" class="text-center">
+                                                        <img src="/img/preloader.gif" style="height:20px;" alt="Loading..."/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -562,128 +231,10 @@
                                                     <th style="width: 20%">Amount</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="tennis-data">
                                                 <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248792238">Bencic v Iga Swiatek /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        151,864
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248772556">Hol Rune v Vacherot / Match
-                                                                Odds</a>
-                                                            <i class="fa fa-circle position-plus"></i>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        26,876,764
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248811890">L Noskova v E Rybakina /
-                                                                Match Odds</a>
-                                                            <i class="fa fa-circle position-plus"></i>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        5,353,345
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248813099">Mar Carle v Te Kostovic /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        0
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248814122">Medvedev v Alex de Minaur /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        101,126
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248771363">Ole Oliynykova v Lol
-                                                                Radivojevic / Match Odds</a>
-                                                            <i class="fa fa-circle position-plus"></i>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        127,869
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248808912">Rinderknech v F
-                                                                Auger-Aliassime / Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        16,023
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248799507">S Zhang v C Gauff / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        142,719
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248818357">So Sierra v Gorgodze /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        0
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248765821">Ziz Bergs v Djokovic /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        1,100,833
+                                                    <td colspan="2" class="text-center">
+                                                        <img src="/img/preloader.gif" style="height:20px;" alt="Loading..."/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -695,66 +246,10 @@
                                                     <th style="width: 20%">Amount</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="cricket-data">
                                                 <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248776739">England W v Sri Lanka W /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        25,006
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248622840">India v West Indies / Match
-                                                                Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        2,076,708
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248715085">India W v South Africa W /
-                                                                Match Odds</a>
-                                                            <i class="fa fa-circle position-plus"></i>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        2,158,295
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248776813">New Zealand W v Bangladesh
-                                                                W / Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        30,416
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <h5>
-                                                            <a href="/Markets/#!1.248474875">Pakistan v South Africa /
-                                                                Match Odds</a>
-                                                        </h5>
-                                                    </td>
-                                                    <td class="position-plus">
-                                                        330,973
+                                                    <td colspan="2" class="text-center">
+                                                        <img src="/img/preloader.gif" style="height:20px;" alt="Loading..."/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -764,139 +259,111 @@
                             </div>
                         </div>
                     </div>
-
-
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div class="modal fade" id="modalMarketRules" tabindex="-1" role="dialog" aria-labelledby="modalMarketRules"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Market Rules</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div id="market-rules-text" class="modal-body">
                 </div>
             </div>
         </div>
     </div>
-
-    <footer class="app-footer">
-        <ul id="news-ticker-foot">
-            <li data-update="item1">Welcome to BetPro</li>
-        </ul>
-    </footer>
-    <!-- CoreUI and necessary plugins-->
-
-    <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
-    <script src="/js/signalr/dist/browser/signalr.js"></script>
-
-
-    <script src="js/vue.min.js"></script>
-    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.min.js"></script>
-    <script src="js/site.min.js?10900"></script>
-    <script src="js/bof.js?10900"></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C1WVLP1K0K"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('set', { 'user_id': 'Rana19470' });
-        gtag('config', 'G-C1WVLP1K0K');
-    </script>
-
-
-    <script type="text/javascript" src="/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="/js/src/client-locales.js?10900"></script>
-
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-
-            showNewsFlash();
-
-            myFunction2();
-            setInterval(myFunction2, 60000);
-        });
-
-        function myFunction2() {
-            $.ajax({
-                type: "GET",
-                url: "/Index?handler=Markets",
-                success: function (result) {
-                    document.getElementById("Bookmarkets").innerHTML = result;
-                    convertAllToClientTime();
-                },
-                error: function (jqXhr, textStatus, errorThrown) {
-                    if (errorThrown == "Unauthorized") {
-                        document.location.href = "/Users/Login";
-                    }
-                }
-            });
-        };
-
-        function AcceptPassword() {
-            var newpass = document.getElementById("Newpasswordmodal").value;
-            $.ajax({
-                type: "GET",
-                url: "/Common/Profile?handler=UpdatePassword&NewPassword=" + newpass,
-                success: function (result) {
-                    if (result == 'PCS') {
-                        $('#modalPasswordChange').modal('hide');;
-                        $('#modalRedirectToLogout').modal('show');;
-                    } else {
-                        $('#alertmodaltitle').html(result);
-                    }
-                },
-                error: function (exception) {
-                    location.reload();
-                }
-            });
-        }
-
-        function ReLogin() {
-            location.href = "/Common/Logout";
-        }
-
-        $(function () {
-            $("#myInput")
-                .on("keydown", function (event) {
-                    if (event.keyCode != 13 && event.keyCode != 8) {
-                        // document.getElementById('smloading').style.display = 'block';
-                        if (event.keyCode === $.ui.keyCode.TAB &&
-                            $(this).autocomplete("instance").menu.active) {
-                            event.preventDefault();
-                        }
-                    } else {
-                        // document.getElementById('smloading').style.display = 'none';
-                    }
+</div>
 
 @endsection
 
 @section('scripts')
+    <script src="/js/signalr/dist/browser/signalr.js"></script>
     <script src="/js/vue.min.js"></script>
     <script src="/js/site.min.js"></script>
-    <script src="/js/ReportViewer.js"></script>
-    <script src="/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="/js/bof.js"></script>
+    <script src="/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/js/src/client-locales.js"></script>
+    <script src="/js/site.min.js"></script>
+    <script src="/js/ReportViewer.js"></script>
+    <script src="/js/bof.js"></script>
+    
     <script>
-        const token = getCookie('wexscktoken');
-        const sess = getCookie('wex3authtoken');
-        const reft = getCookie('wex3reftoken');
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-US').format(num);
+        }
 
-        $(document).ready(function () {
-            pollUserData();
-            pollRefreshToken();
+        function loadSportsData() {
+            fetch('/api/sports-data')
+                .then(response => response.json())
+                .then(data => {
+                    const soccerTbody = document.getElementById('soccer-data');
+                    const tennisTbody = document.getElementById('tennis-data');
+                    const cricketTbody = document.getElementById('cricket-data');
+                    
+                    soccerTbody.innerHTML = '';
+                    tennisTbody.innerHTML = '';
+                    cricketTbody.innerHTML = '';
+                    
+                    if (data.soccer && data.soccer.length > 0) {
+                        data.soccer.forEach(match => {
+                            const row = `
+                                <tr>
+                                    <td>
+                                        <h5>
+                                            <a href="/Markets/#!${match.marketId}">${match.marketName} / Match Odds</a>
+                                            ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
+                                        </h5>
+                                    </td>
+                                    <td class="position-plus">${formatNumber(match.totalMatched)}</td>
+                                </tr>
+                            `;
+                            soccerTbody.innerHTML += row;
+                        });
+                    } else {
+                        soccerTbody.innerHTML = '<tr><td colspan="2" class="text-center">No live soccer matches available</td></tr>';
+                    }
+                    
+                    if (data.tennis && data.tennis.length > 0) {
+                        data.tennis.forEach(match => {
+                            const row = `
+                                <tr>
+                                    <td>
+                                        <h5>
+                                            <a href="/Markets/#!${match.marketId}">${match.marketName} / Match Odds</a>
+                                            ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
+                                        </h5>
+                                    </td>
+                                    <td class="position-plus">${formatNumber(match.totalMatched)}</td>
+                                </tr>
+                            `;
+                            tennisTbody.innerHTML += row;
+                        });
+                    } else {
+                        tennisTbody.innerHTML = '<tr><td colspan="2" class="text-center">No live tennis matches available</td></tr>';
+                    }
+                    
+                    if (data.cricket && data.cricket.length > 0) {
+                        data.cricket.forEach(match => {
+                            const row = `
+                                <tr>
+                                    <td>
+                                        <h5>
+                                            <a href="/Markets/#!${match.marketId}">${match.marketName} / Match Odds</a>
+                                            ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
+                                        </h5>
+                                    </td>
+                                    <td class="position-plus">${formatNumber(match.totalMatched)}</td>
+                                </tr>
+                            `;
+                            cricketTbody.innerHTML += row;
+                        });
+                    } else {
+                        cricketTbody.innerHTML = '<tr><td colspan="2" class="text-center">No live cricket matches available</td></tr>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading sports data:', error);
+                    document.getElementById('soccer-data').innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading data</td></tr>';
+                    document.getElementById('tennis-data').innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading data</td></tr>';
+                    document.getElementById('cricket-data').innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading data</td></tr>';
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSportsData();
+            
+            setInterval(loadSportsData, 30000);
         });
     </script>
 @endsection
