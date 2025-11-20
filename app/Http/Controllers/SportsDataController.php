@@ -60,12 +60,12 @@ class SportsDataController extends Controller
                 continue;
             }
             
+            $sportName = strtolower($sportCategory['name'] ?? '');
+            
             foreach ($sportCategory['markets'] as $market) {
-                $marketName = $market['marketName'] ?? '';
-                
                 $processedMarket = [
                     'marketId' => $market['marketId'] ?? '',
-                    'marketName' => $marketName,
+                    'marketName' => $market['marketName'] ?? '',
                     'status' => $market['status'] ?? 'UNKNOWN',
                     'inplay' => $market['inplay'] ?? false,
                     'startTime' => $market['marketStartTime'] ?? null,
@@ -73,11 +73,11 @@ class SportsDataController extends Controller
                     'totalMatched' => $this->calculateTotalMatched($market['runners'] ?? [])
                 ];
                 
-                if ($this->isCricket($marketName)) {
+                if ($sportName === 'cricket') {
                     $cricket[] = $processedMarket;
-                } elseif ($this->isSoccer($marketName)) {
+                } elseif ($sportName === 'soccer') {
                     $soccer[] = $processedMarket;
-                } elseif ($this->isTennis($marketName)) {
+                } elseif ($sportName === 'tennis') {
                     $tennis[] = $processedMarket;
                 }
             }
@@ -114,39 +114,4 @@ class SportsDataController extends Controller
         return $total;
     }
     
-    private function isCricket($marketName)
-    {
-        $cricketKeywords = ['Lions', 'Rhinos', 'Bulls', 'Riders', 'Zimbabwe', 'Pakistan', 'India', 'England', 'Australia'];
-        foreach ($cricketKeywords as $keyword) {
-            if (stripos($marketName, $keyword) !== false) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    private function isSoccer($marketName)
-    {
-        $soccerKeywords = ['FK', 'FC', 'United', 'City', 'Bordeaux', 'Pau', 'Milan', 'Madrid'];
-        foreach ($soccerKeywords as $keyword) {
-            if (stripos($marketName, $keyword) !== false) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    private function isTennis($marketName)
-    {
-        $tennisPatterns = ['/\w+\sv\s\w+$/', '/Robertson/', '/Kellovsky/'];
-        foreach ($tennisPatterns as $pattern) {
-            if (preg_match($pattern, $marketName)) {
-                $isCricketOrSoccer = $this->isCricket($marketName) || $this->isSoccer($marketName);
-                if (!$isCricketOrSoccer) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }

@@ -39,12 +39,14 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 
 - **2025-11-20**: Live Sports Data Integration
   - Integrated ScoreSwift API (http://89.116.20.218:8085/api/home) for live match data
-  - Created SportsDataController with automatic sport categorization (Cricket, Soccer, Tennis)
+  - Created SportsDataController using API's sport category names for accurate categorization
+  - Fixed categorization logic to use API's 'name' field instead of unreliable keyword matching
   - Implemented 30-second caching to optimize API calls
   - Added /api/sports-data endpoint serving categorized live data
   - Updated management dashboard to display live match data with auto-refresh every 30 seconds
   - Shows match names, in-play status indicators, and total matched amounts
   - Configured start-server.sh wrapper to inject SCORESWIFT_API_KEY from Replit secrets
+  - Correctly categorizes Cricket, Soccer, Tennis (plus Rugby Union and Boxing available in API)
 
 - **2025-11-20**: Complete management section conversion
   - Created shared layout (`layouts/management.blade.php`) for all management pages
