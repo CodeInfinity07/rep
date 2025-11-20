@@ -3,7 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('management.index');
+});
+
+Route::prefix('bettor')->group(function () {
+    Route::get('/', function () {
+        return view('bettor.index');
+    });
 });
 
 Route::get('/bet-cricket', function () {
@@ -12,10 +18,6 @@ Route::get('/bet-cricket', function () {
 
 Route::get('/cricket', function () {
     return view('cricket');
-});
-
-Route::get('/ex-index', function () {
-    return view('ex-index');
 });
 
 Route::get('/history', function () {
