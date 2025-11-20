@@ -44,7 +44,7 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
   - Owner has unlimited credit (no validation on available credit when giving)
   - Non-owner users can only give credit up to their credit_remaining amount
   - Updated users table to display credit_received and balance values
-  - C button in users table opens cash/credit page in a popup window (900x700px)
+  - C button in users table opens cash/credit page in a popup window (750x700px)
   - All transactions wrapped in database transactions for data integrity
   - Security: Blocks self-targeted cash/credit operations to prevent unlimited balance exploit
   - Owner account initialized with 1,000,000 credit for testing
