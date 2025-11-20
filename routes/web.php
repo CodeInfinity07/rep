@@ -5,8 +5,10 @@ use App\Http\Controllers\SportsDataController;
 
 Route::get('/api/sports-data', [SportsDataController::class, 'getSportsData']);
 
-Route::get('/', function () {
-    return view('management.index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('management.index');
+    });
 });
 
 Route::prefix('bettor')->group(function () {
@@ -40,36 +42,35 @@ Route::get('/ledger', function () {
 });
 
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
 
 Route::get('/match', function () {
     return view('match');
 });
 
-Route::get('/position', function () {
-    return view('management.position');
-});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/position', function () {
+        return view('management.position');
+    });
 
-Route::get('/report', function () {
-    return view('management.report');
-});
+    Route::get('/report', function () {
+        return view('management.report');
+    });
 
-Route::get('/lock', function () {
-    return view('management.lock');
-});
+    Route::get('/lock', function () {
+        return view('management.lock');
+    });
 
-Route::get('/star', function () {
-    return view('management.star');
-});
+    Route::get('/star', function () {
+        return view('management.star');
+    });
 
-Route::get('/users', function () {
-    return view('management.users');
-});
+    Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
 
-Route::get('/users/create', function () {
-    return view('management.create-user');
+    Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create']);
+    Route::post('/users/create', [App\Http\Controllers\UserController::class, 'store']);
 });
 
 Route::get('/result', function () {

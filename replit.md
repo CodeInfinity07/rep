@@ -12,7 +12,9 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
   - `/resources/views/` - Other sport and feature pages
 - **Public Assets**: CSS, JavaScript, images, and fonts in `/public` directory
 - **Routes**: Web routes defined in `/routes/web.php`
-- **Database**: SQLite (development)
+- **Database**: MySQL (bguru69 on remote server 94.72.106.77)
+- **Authentication**: Custom Laravel session-based auth with role hierarchy
+- **Middleware**: RoleMiddleware for access control, auth middleware for protected routes
 
 ### Available Pages
 **Management Section** (uses shared layout):
@@ -30,13 +32,28 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
-- **2025-11-20**: User Management Frontend
-  - Created create-user page (`/users/create`) with comprehensive form fields
-  - Form includes: Username, Password, Type (SuperMaster/Bettor), Downline Share, IsActive, Phone, Reference, Notes
-  - Added JavaScript validation for password strength (min 8 chars, alphanumeric)
-  - Dynamic Downline Share field visibility based on user type selection
-  - Updated "New User" button in users page to link to new create-user page
-  - Frontend-only implementation (no backend processing yet)
+- **2025-11-20**: Authentication System Implementation
+  - Implemented custom Laravel authentication with session-based login/logout
+  - Created AuthController with username OR email login support plus remember me functionality
+  - Built RoleMiddleware for hierarchical access control
+  - Protected all management routes with auth middleware (/, /users, /position, /report, /lock, /star)
+  - Updated login page (resources/views/login.blade.php) with CSRF protection and error/success display
+  - Login credentials: owner@betguru.com / password123 (or username: owner)
+  - Session management with CSRF tokens and remember me cookies
+  - Redirects unauthenticated users to /login with flash messages
+
+- **2025-11-20**: Role-Based User Management System
+  - Created comprehensive User model with role hierarchy support
+  - User fields: username, email, password, type, parent_id, downline_share, is_active, phone, reference, notes
+  - Implemented UserController with user creation logic and hierarchy validation
+  - Role hierarchy: Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor
+  - Created owner account seeder (owner@betguru.com / password123)
+  - Dynamic create-user form that shows only allowed child types based on logged-in user's role
+  - Form includes email field, password security (type="password"), and dynamic Downline Share visibility
+  - JavaScript validation ensures password has min 8 chars with letters and numbers
+  - Backend validation enforces: unique username/email, role hierarchy, downline share limits (max 85%, 0 for bettor/master)
+  - Form integrates with backend via POST /users/create with CSRF protection
+  - Success/error messages with form repopulation on validation failures
 
 - **2025-11-20**: MySQL Database Migration
   - Migrated from SQLite to MySQL (bguru69 on remote server 94.72.106.77)
@@ -100,6 +117,14 @@ Each route returns a blade view with all necessary assets served from the public
 - Host: 0.0.0.0 (configured for Replit's proxy environment)
 - Proxy trust: Enabled for all proxies (Replit requirement)
 - Workflow: `php artisan serve --host=0.0.0.0 --port=5000`
+- Login: owner@betguru.com / password123 (owner account with full permissions)
+
+## User Management
+- **Role Hierarchy**: Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor only
+- **User Creation**: Each role can only create their permitted child types
+- **Downline Share**: Max 85% for non-bettor/master types, automatically 0 for bettor/master
+- **Password Requirements**: Minimum 8 characters with both letters and numbers
+- **Owner Account**: username: owner, email: owner@betguru.com, password: password123
 
 ## Deployment
 - Target: Autoscale
