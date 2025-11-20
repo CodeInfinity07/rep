@@ -85,9 +85,11 @@
                     @php
                         $selectionId = $runner['selectionId'] ?? 0;
                         $runnerStatus = $runner['status'] ?? 'ACTIVE';
-                        $backPrices = $runner['ex']['availableToBack'] ?? [];
-                        $layPrices = $runner['ex']['availableToLay'] ?? [];
-                        $runnerName = $runnerNames[$selectionId] ?? 'Runner ' . $selectionId;
+                        // Handle both response formats: ex.availableToBack and back
+                        $backPrices = $runner['ex']['availableToBack'] ?? $runner['back'] ?? [];
+                        $layPrices = $runner['ex']['availableToLay'] ?? $runner['lay'] ?? [];
+                        // Use runnerName from response, or fallback to lookup
+                        $runnerName = $runner['runnerName'] ?? $runnerNames[$selectionId] ?? 'Runner ' . $selectionId;
                         $isLastItem = ($index === count($mainMarket['runners']) - 1);
                     @endphp
 
@@ -196,9 +198,10 @@
                         @foreach($market['runners'] ?? [] as $runner)
                             @php
                                 $selectionId = $runner['selectionId'] ?? 0;
-                                $runnerName = $runnerNames[$selectionId] ?? ($runner['runnerName'] ?? 'Runner ' . $selectionId);
-                                $backPrices = $runner['ex']['availableToBack'] ?? [];
-                                $layPrices = $runner['ex']['availableToLay'] ?? [];
+                                $runnerName = $runner['runnerName'] ?? $runnerNames[$selectionId] ?? 'Runner ' . $selectionId;
+                                // Handle both response formats: ex.availableToBack and back
+                                $backPrices = $runner['ex']['availableToBack'] ?? $runner['back'] ?? [];
+                                $layPrices = $runner['ex']['availableToLay'] ?? $runner['lay'] ?? [];
                                 $runnerStatus = $runner['status'] ?? 'ACTIVE';
                             @endphp
 

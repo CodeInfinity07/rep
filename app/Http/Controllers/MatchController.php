@@ -26,7 +26,8 @@ class MatchController extends Controller
                 return view('management.cricket.match')->with('error', 'Failed to fetch market details');
             }
             
-            $eventId = $marketDetails['eventId'] ?? null;
+            // Extract event ID from nested event object
+            $eventId = $marketDetails['event']['id'] ?? null;
             
             if (!$eventId) {
                 return view('management.cricket.match')->with('error', 'Event ID not found');

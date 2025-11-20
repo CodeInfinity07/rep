@@ -39,6 +39,9 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
     * `getMarketOdds()` - Fetches odds for individual markets from /api/GetMarketOdds?market_id={marketId}
     * Orchestrates three API calls: GetMarketDetails → GetMarketIdsV1 → GetMarketOdds (for each market)
     * Handles multiple response structures from GetMarketIdsV1 (arrays of strings, objects, or nested structures)
+    * Extracts event ID from nested event object: `$marketDetails['event']['id']`
+    * Uses runner names directly from API response
+    * Handles both price formats: `ex.availableToBack/availableToLay` and legacy `back/lay`
     * No caching for real-time updates
   - **Cricket match page features**:
     * Displays main Match Odds market with proper runner names from GetMarketDetails
