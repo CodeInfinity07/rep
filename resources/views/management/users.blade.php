@@ -311,7 +311,7 @@
                                                             <td>
                                                                 <a class="btn btn-warning"
                                                                     href="javascript:void(0);"
-                                                                    onclick="window.open('/users/{{ $user->id }}/cash-credit?tab=cash', 'CashCreditPopup', 'width=750,height=700,scrollbars=yes,resizable=yes'); return false;">
+                                                                    onclick="window.open('/users/{{ $user->id }}/cash-credit?tab=cash', 'CashCreditPopup', 'width=600,height=700,scrollbars=yes,resizable=yes'); return false;">
                                                                     <strong>C</strong>
                                                                 </a>
 
