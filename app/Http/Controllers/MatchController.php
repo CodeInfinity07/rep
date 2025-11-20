@@ -89,9 +89,48 @@ class MatchController extends Controller
             
             if ($response->successful()) {
                 $data = $response->json();
-                // Extract market IDs from the response
-                if (is_array($data)) {
+                
+                // Handle different response structures
+                // Case 1: Array of market ID strings ["1.250716982", "9.20529268", ...]
+                if (is_array($data) && isset($data[0]) && is_string($data[0])) {
                     return $data;
+                }
+                
+                // Case 2: Array of objects [{"marketId": "1.250716982"}, ...]
+                if (is_array($data) && isset($data[0]) && is_array($data[0])) {
+                    $marketIds = [];
+                    foreach ($data as $item) {
+                        if (isset($item['marketId'])) {
+                            $marketIds[] = $item['marketId'];
+                        } elseif (isset($item['id'])) {
+                            $marketIds[] = $item['id'];
+                        }
+                    }
+                    if (!empty($marketIds)) {
+                        return $marketIds;
+                    }
+                }
+                
+                // Case 3: Object with marketIds key {"marketIds": [...]}
+                if (isset($data['marketIds']) && is_array($data['marketIds'])) {
+                    return $data['marketIds'];
+                }
+                
+                // Case 4: Object with markets key {"markets": [...]}
+                if (isset($data['markets']) && is_array($data['markets'])) {
+                    $marketIds = [];
+                    foreach ($data['markets'] as $market) {
+                        if (is_string($market)) {
+                            $marketIds[] = $market;
+                        } elseif (is_array($market) && isset($market['marketId'])) {
+                            $marketIds[] = $market['marketId'];
+                        } elseif (is_array($market) && isset($market['id'])) {
+                            $marketIds[] = $market['id'];
+                        }
+                    }
+                    if (!empty($marketIds)) {
+                        return $marketIds;
+                    }
                 }
             }
         } catch (\Exception $e) {

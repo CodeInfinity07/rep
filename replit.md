@@ -32,23 +32,30 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
-- **2025-11-20**: Complete Cricket Match Page with Live Odds
-  - **MatchController enhancements**:
-    * Fetches runner names from /api/home endpoint (selectionId → runnerName mapping)
-    * Merges data from two API sources (/api/home + GetMarketOdds)
-    * Removed caching for real-time updates
-    * Normalized getOddsApi to return first array element
+- **2025-11-20**: Complete Cricket Match Page with Multiple Markets
+  - **MatchController - Complete Rewrite**:
+    * `getMarketDetails()` - Fetches from /api/GetMarketDetails?market_id={marketId} to get event ID and runner names
+    * `getMarketIdsForEvent()` - Fetches all market IDs from /api/GetMarketIdsV1?eventid={eventId}
+    * `getMarketOdds()` - Fetches odds for individual markets from /api/GetMarketOdds?market_id={marketId}
+    * Orchestrates three API calls: GetMarketDetails → GetMarketIdsV1 → GetMarketOdds (for each market)
+    * Handles multiple response structures from GetMarketIdsV1 (arrays of strings, objects, or nested structures)
+    * No caching for real-time updates
   - **Cricket match page features**:
-    * Exact HTML structure from reference with all sections: Bet Lock, User Book, TV, Scorecard
+    * Displays main Match Odds market with proper runner names from GetMarketDetails
+    * Shows ALL markets for the event (Bookmaker, BetFair Fancy, Fancy 2, Tied Match, etc.)
+    * Color-coded market cards: primary (Match Odds), success (Bookmaker), danger (Fancy markets)
     * Proper runner names (e.g., "Sri Lanka" instead of "runner 7337")
     * Correct back/lay odds display in 6 columns (B3, B2, B1 | L1, L2, L3)
     * B1 shows best back price (highlighted blue), B2/B3 show lower prices
     * L1 shows best lay price (highlighted pink), L2/L3 show higher prices
+    * SUSPENDED status display for inactive runners
+    * Full Book button for fancy markets
+    * Right sidebar with Bet Lock dropdown, User Book button, TV/ScoreCard tabs, Open Bets, Matched Bets
     * AJAX polling refreshes odds every 1 second (NO full page reload)
     * Live status updates and in-play indicators
     * Bet sizes formatted as K/M (thousands/millions)
   - **Routes**:
-    * Public API: /api/cricket-matches, /api/match-odds/{marketId}
+    * Public API: /api/cricket-matches, /api/match-odds/{marketId}, /api/market-details/{marketId}
     * Protected view: /cricket/{marketId} (requires authentication)
 
 - **2025-11-20**: Account Ledger System
