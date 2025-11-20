@@ -32,26 +32,39 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: Username-Only Authentication & Share Distribution System
+  - Removed email field entirely - authentication now uses username-only login
+  - Implemented hierarchical share distribution:
+    * Owner starts with 100% share
+    * Bettor accounts automatically inherit parent's full share (no manual input needed)
+    * Non-bettor accounts (Admin/SuperMaster/Master) must have share LESS than parent's share
+  - Created hierarchical users page with drill-down navigation
+    * Shows downline users in table format
+    * Non-bettor usernames are clickable to view their downlines
+    * Bettor usernames are non-clickable (end of hierarchy)
+    * Back button to navigate up the hierarchy
+  - Login credentials: username=owner, password=password123 (100% share)
+  - User fields: username, password, type, parent_id, downline_share, is_active, phone, reference, notes
+  - Credit balance and financial data set to 0 (to be implemented later)
+
 - **2025-11-20**: Authentication System Implementation
   - Implemented custom Laravel authentication with session-based login/logout
-  - Created AuthController with username OR email login support plus remember me functionality
+  - Created AuthController with username-only login and remember me functionality
   - Built RoleMiddleware for hierarchical access control
   - Protected all management routes with auth middleware (/, /users, /position, /report, /lock, /star)
   - Updated login page (resources/views/login.blade.php) with CSRF protection and error/success display
-  - Login credentials: owner@betguru.com / password123 (or username: owner)
   - Session management with CSRF tokens and remember me cookies
   - Redirects unauthenticated users to /login with flash messages
 
 - **2025-11-20**: Role-Based User Management System
   - Created comprehensive User model with role hierarchy support
-  - User fields: username, email, password, type, parent_id, downline_share, is_active, phone, reference, notes
   - Implemented UserController with user creation logic and hierarchy validation
   - Role hierarchy: Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor
-  - Created owner account seeder (owner@betguru.com / password123)
+  - Created owner account seeder (username=owner, 100% share)
   - Dynamic create-user form that shows only allowed child types based on logged-in user's role
-  - Form includes email field, password security (type="password"), and dynamic Downline Share visibility
+  - Password security (type="password"), and dynamic Downline Share visibility (hidden for bettor)
   - JavaScript validation ensures password has min 8 chars with letters and numbers
-  - Backend validation enforces: unique username/email, role hierarchy, downline share limits (max 85%, 0 for bettor/master)
+  - Backend validation enforces: unique username, role hierarchy, downline share rules
   - Form integrates with backend via POST /users/create with CSRF protection
   - Success/error messages with form repopulation on validation failures
 
@@ -117,14 +130,21 @@ Each route returns a blade view with all necessary assets served from the public
 - Host: 0.0.0.0 (configured for Replit's proxy environment)
 - Proxy trust: Enabled for all proxies (Replit requirement)
 - Workflow: `php artisan serve --host=0.0.0.0 --port=5000`
-- Login: owner@betguru.com / password123 (owner account with full permissions)
+- Login: username=owner, password=password123 (owner account with 100% share)
 
 ## User Management
 - **Role Hierarchy**: Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor only
 - **User Creation**: Each role can only create their permitted child types
-- **Downline Share**: Max 85% for non-bettor/master types, automatically 0 for bettor/master
+- **Share Distribution**:
+  * Owner has 100% share to start
+  * Bettor accounts automatically inherit parent's full share (no input required)
+  * Non-bettor accounts must have share LESS than parent's share
+- **Hierarchical View**: 
+  * Click non-bettor usernames to drill down into their downlines
+  * Bettor accounts are non-clickable (end nodes)
+  * Navigate back up hierarchy with back button
 - **Password Requirements**: Minimum 8 characters with both letters and numbers
-- **Owner Account**: username: owner, email: owner@betguru.com, password: password123
+- **Owner Account**: username=owner, password=password123, share=100%
 
 ## Deployment
 - Target: Autoscale

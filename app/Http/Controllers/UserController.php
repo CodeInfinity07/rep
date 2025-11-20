@@ -28,10 +28,9 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|min:6|max:30|unique:users,username|alpha_dash',
-            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|max:30',
             'type' => 'required|in:admin,supermaster,master,bettor',
-            'downline_share' => 'nullable|numeric|min:0|max:85',
+            'downline_share' => 'nullable|numeric|min:0',
             'is_active' => 'boolean',
             'phone' => 'nullable|string|max:20',
             'reference' => 'nullable|string|max:255',
@@ -54,13 +53,13 @@ class UserController extends Controller
 
         $downlineShare = $request->input('downline_share', 0);
         
-        if ($type === 'bettor' || $type === 'master') {
-            $downlineShare = 0;
+        if ($type === 'bettor') {
+            $downlineShare = $currentUser->downline_share;
         } else {
-            $maxShare = $currentUser->getMaxDownlineShare();
-            if ($downlineShare > $maxShare) {
+            $parentShare = $currentUser->downline_share;
+            if ($downlineShare >= $parentShare) {
                 return back()
-                    ->withErrors(['downline_share' => "Downline share cannot exceed {$maxShare}%."])
+                    ->withErrors(['downline_share' => "Downline share must be less than your share ({$parentShare}%)."])
                     ->withInput();
             }
         }
@@ -73,7 +72,6 @@ class UserController extends Controller
 
         $user = User::create([
             'username' => $request->input('username'),
-            'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'type' => $type,
             'parent_id' => $currentUser->id,
@@ -87,7 +85,7 @@ class UserController extends Controller
         return redirect('/users')->with('success', "User {$user->username} created successfully!");
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $currentUser = Auth::user();
         
@@ -95,10 +93,50 @@ class UserController extends Controller
             return redirect('/login');
         }
 
-        $users = User::where('parent_id', $currentUser->id)
+        $viewingUserId = $request->query('user_id');
+        $viewingUser = null;
+        
+        if ($viewingUserId) {
+            $viewingUser = User::find($viewingUserId);
+            
+            if (!$viewingUser || !$this->isInDownline($currentUser, $viewingUser)) {
+                return redirect('/users')->with('error', 'You do not have permission to view this user\'s downline.');
+            }
+        } else {
+            $viewingUser = $currentUser;
+        }
+
+        $users = User::where('parent_id', $viewingUser->id)
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('management.users', compact('users'));
+        $parentUser = null;
+        if ($viewingUser->parent_id) {
+            $parentUser = User::find($viewingUser->parent_id);
+        }
+
+        return view('management.users', compact('users', 'viewingUser', 'currentUser', 'parentUser'));
+    }
+
+    private function isInDownline($parent, $user)
+    {
+        if ($parent->id === $user->id) {
+            return true;
+        }
+        
+        if ($user->parent_id === null) {
+            return false;
+        }
+        
+        if ($user->parent_id === $parent->id) {
+            return true;
+        }
+        
+        $userParent = User::find($user->parent_id);
+        if (!$userParent) {
+            return false;
+        }
+        
+        return $this->isInDownline($parent, $userParent);
     }
 }
