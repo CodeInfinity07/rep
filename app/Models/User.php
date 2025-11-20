@@ -27,6 +27,18 @@ class User extends Authenticatable
         'phone',
         'reference',
         'notes',
+        'commission',
+        'can_bet',
+        'can_settle_pl',
+        'currency',
+        'max_bet_soccer',
+        'max_bet_tennis',
+        'max_bet_cricket',
+        'max_bet_fancy',
+        'max_bet_race',
+        'max_bet_casino',
+        'max_bet_greyhound',
+        'max_bet_bookmaker',
     ];
 
     /**
@@ -50,7 +62,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_active' => 'boolean',
+            'can_bet' => 'boolean',
+            'can_settle_pl' => 'boolean',
             'downline_share' => 'decimal:2',
+            'commission' => 'decimal:2',
+            'max_bet_soccer' => 'decimal:2',
+            'max_bet_tennis' => 'decimal:2',
+            'max_bet_cricket' => 'decimal:2',
+            'max_bet_fancy' => 'decimal:2',
+            'max_bet_race' => 'decimal:2',
+            'max_bet_casino' => 'decimal:2',
+            'max_bet_greyhound' => 'decimal:2',
+            'max_bet_bookmaker' => 'decimal:2',
         ];
     }
 

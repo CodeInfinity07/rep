@@ -1,0 +1,1127 @@
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show menu-collapsed">
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="logo-bar">
+            <a href="/index">
+                <span class="green-logo-text d-sm-down-none">
+                    BetPro
+                </span>
+            </a>
+        </div>
+
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+
+<ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/index">Dashboard</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Accounts/Chart">Users</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Reports/BookDetail">Reports</a>
+        </li>
+</ul>
+
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item px-2">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Imrantt8585 (Admin) <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/Common/Profile">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" id="btn-logout" href="/Common/Logout">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+                    <strong>B:</strong> <span class="wallet-balance">0</span>
+                    <strong>Exp:</strong> <span class="wallet-exposure">0</span>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                
+
+<ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">
+                <i class="nav-icon fas fa-tachometer-alt fa-inverse"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Accounts/Chart">
+                <i class="nav-icon fas fa-users fa-inverse"></i> Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Liables">
+                <i class="nav-icon fas fa-funnel-dollar fa-inverse"></i> Current Position
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Reports/BookDetail">
+                <i class="nav-icon fas fa-money-check fa-inverse"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/BetLocker">
+                <i class="nav-icon fas fa-unlock-alt fa-inverse"></i> Bet Lock
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Games">
+                <i class="nav-icon fas fa-star fa-inverse"></i> Star Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/WorldCasino">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> World Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/ExGames">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> BetFair Games
+            </a>
+        </li>
+
+
+
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/soccer.svg" alt="C">
+            Soccer
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/tennis.svg" alt="C">
+            Tennis
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250728204">
+Laur Samson v Sorribes Tormo                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250737216">
+P Udvardy v Hercog                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250742867">
+Mar Carle v Fe Labrana                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761434">
+Pigossi v Leol Jeanjean                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/cricket.svg" alt="C">
+            Cricket
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.249449817">
+Australia v England                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250542387">
+Bangladesh v Ireland                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250636959">
+India v South Africa                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250716982">
+Sri Lanka v Zimbabwe                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250754045">
+Brisbane Heat W v Sydney Thunder W                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757955">
+Royal Champs v Deccan Gladiators                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250758008">
+Delhi Bulls v Vista Riders                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761088">
+Aspin Stallions v Ajman Titans                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/horse.svg" alt="C">
+            Horse Race
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713324">
+                                <span class="slidedate market-time">5:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713325">
+                                <span class="slidedate market-time">5:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757034">
+                                <span class="slidedate market-time">5:05 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:05:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713446">
+                                <span class="slidedate market-time">5:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713447">
+                                <span class="slidedate market-time">5:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714690">
+                                <span class="slidedate market-time">5:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714691">
+                                <span class="slidedate market-time">5:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713509">
+                                <span class="slidedate market-time">5:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713510">
+                                <span class="slidedate market-time">5:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713331">
+                                <span class="slidedate market-time">5:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713332">
+                                <span class="slidedate market-time">5:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757036">
+                                <span class="slidedate market-time">5:40 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:40:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713440">
+                                <span class="slidedate market-time">5:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713441">
+                                <span class="slidedate market-time">5:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714695">
+                                <span class="slidedate market-time">5:50 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:50:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714696">
+                                <span class="slidedate market-time">5:50 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:50:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713515">
+                                <span class="slidedate market-time">6:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713516">
+                                <span class="slidedate market-time">6:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713337">
+                                <span class="slidedate market-time">6:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713338">
+                                <span class="slidedate market-time">6:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757038">
+                                <span class="slidedate market-time">6:15 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:15:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713452">
+                                <span class="slidedate market-time">6:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713454">
+                                <span class="slidedate market-time">6:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714700">
+                                <span class="slidedate market-time">6:25 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:25:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714701">
+                                <span class="slidedate market-time">6:25 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:25:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/greyhound-racing.svg" alt="C">
+            Greyhound
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749690">
+                                <span class="slidedate market-time">4:58 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:58:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Shepparton (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761174">
+                                <span class="slidedate market-time">5:01 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:01:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748057">
+                                <span class="slidedate market-time">5:04 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:04:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250751425">
+                                <span class="slidedate market-time">5:07 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:07:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Q2 Parklands (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760396">
+                                <span class="slidedate market-time">5:09 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:09:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761176">
+                                <span class="slidedate market-time">5:18 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:18:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748062">
+                                <span class="slidedate market-time">5:22 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:22:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760398">
+                                <span class="slidedate market-time">5:26 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:26:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761178">
+                                <span class="slidedate market-time">5:34 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:34:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748067">
+                                <span class="slidedate market-time">5:37 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:37:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760400">
+                                <span class="slidedate market-time">5:42 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:42:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761180">
+                                <span class="slidedate market-time">5:51 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:51:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748072">
+                                <span class="slidedate market-time">5:58 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:58:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760402">
+                                <span class="slidedate market-time">5:59 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:59:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761182">
+                                <span class="slidedate market-time">6:08 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:08:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760404">
+                                <span class="slidedate market-time">6:17 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:17:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761184">
+                                <span class="slidedate market-time">6:26 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:26:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760406">
+                                <span class="slidedate market-time">6:33 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:33:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761186">
+                                <span class="slidedate market-time">6:42 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:42:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760408">
+                                <span class="slidedate market-time">6:51 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:51:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+</ul>
+            </nav>
+
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <style>
+    @media screen and (max-width: 635px) {
+    .editsbmtbtn {
+    margin: auto;
+    margin-top: 5px;
+    margin-right: 15px;
+    background:transparent;
+    border:none;
+    }
+    .editsbmtbtnin{
+    margin-top:-60px;
+    }
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a id="EditBtn" class="btn btn-primary" onclick="showhide()">
+                    Edit User
+                </a>
+
+                <a id="LedgerBtn" class="btn btn-primary" href="/Accounts/Ledger?accountId=5960620" target="checkiframe">
+                    Ledger
+                </a>
+
+                <a id="BetsBtn" class="btn btn-primary" href="/Customer/Bets?ClientId=5408869" target="checkiframe">
+                    Bets
+                </a>
+
+                <a id="ProfitlossBtn" class="btn btn-primary" href="/Customer/ProfitLoss?ClientId=5408869" target="checkiframe">
+                    Profit Loss
+                </a>
+
+                <a id="CPBtn" class="btn btn-primary" href="/Markets/MarketsListN?id=5408869" target="checkiframe">
+                    Current Position
+                </a>
+
+                <strong style="float:right; font-size:20px">ARIFBHI6565</strong>
+
+            </div>
+        </div>
+    </div>
+    <div id="iframesection" class="col-md-12 col-12 iframesection" style="display: none;">
+
+    </div>
+    <div class="col-12 col-md-6" id="editsection1" style="display: block;">
+        <form method="post" onsubmit="return validateForm()">
+            <div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+            <input type="hidden" data-val="true" data-val-required="The ID field is required." id="user_ID" name="user.ID" value="5408869">
+            <div class="card">
+                <div class="card-header">
+                    Edit Client - <strong>ARIFBHI6565</strong>
+                </div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">ID</label>
+                            <div class="col-8 col-md-6">
+                                <p class="form-control-static">5408869</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Username</label>
+                            <div class="col-8 col-md-6">
+                                <p class="form-control-static">ARIFBHI6565</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Type</label>
+                            <div class="col-8 col-md-6">
+                                <p class="form-control-static">SuperMaster</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Currency</label>
+                            <div class="col-8 col-md-6">
+                                <p class="form-control-static">Rs.</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Password</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" id="user_Password" name="user.Password" value="">
+                                <span class="field-validation-valid" data-valmsg-for="user.Password" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label" for="user_IsActive">IsActive</label>
+                            <div class="col-8 col-md-6 col-form-label">
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox" checked="checked" data-val="true" data-val-required="The IsActive field is required." id="user_IsActive" name="user.IsActive" value="true">
+                                    <span class="field-validation-valid" data-valmsg-for="user.IsActive" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label" for="user_CanBet">Betting Allowed</label>
+                            <div class="col-8 col-md-6 col-form-label">
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox" checked="checked" data-val="true" data-val-required="The CanBet field is required." id="user_CanBet" name="user.CanBet" value="true">
+                                    <span class="field-validation-valid" data-valmsg-for="user.CanBet" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-md-3 col-form-label" for="user_CanSettlePL">Can Settle PL</label>
+                                <div class="col-8 col-md-6 col-form-label">
+                                    <div class="form-check checkbox">
+                                        <input class="form-check-input" type="checkbox" data-val="true" data-val-required="The CanSettlePL field is required." id="user_CanSettlePL" name="user.CanSettlePL" value="true">
+                                        <label class="form-check-label" for="user_CanSettlePL">Enable S button</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label" for="user_Phone">Phone</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" id="user_Phone" name="user.Phone" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label" for="user_Reference">Reference</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" id="user_Reference" name="user.Reference" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label" for="user_Notes">Notes</label>
+                            <div class="col-8 col-md-6">
+                                <textarea class="form-control" id="user_Notes" name="user.Notes"></textarea>
+                            </div>
+                        </div>
+
+                            <div class="form-group row">
+                                <label class="col-4 col-md-3 col-form-label" for="user_Commission">Commission</label>
+                                <div class="col-8 col-md-6">
+                                    <input type="number" step="0.01" class="form-control" min="2.00" readonly="" data-val="true" data-val-number="The field Commission must be a number." data-val-required="The Commission field is required." id="user_Commission" name="user.Commission" value="2.00"><input name="__Invariant" type="hidden" value="user.Commission">
+                                    <span class="help-block">Min commission is 2.00 %</span>
+                                    <span class="field-validation-valid" data-valmsg-for="user.Commission" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">UserDomain</label>
+                            <div class="col-8 col-md-6">
+                                <input value="1  ( betproexch.com )" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer editsbmtbtn">
+                    <button class="btn btn-primary editsbmtbtnin" type="submit">
+                        <strong>Submit</strong>
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" id="DId" name="DId" value="R29vZ2xlIENocm9tZQ==">
+            <input type="hidden" value="1" data-val="true" data-val-required="The FormId field is required." id="FormId" name="FormId">
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BRJFc9Yun9Eh4XBqZSViiDtxEtrXrBNP8wr1gYwhYeWrdtJkTaUzshRUUPXMEwWmNjd5ap0MeFxvpFqxbSP3dvUhDF_ofL7rDOUI9HNnPJnrEKyKorY0uSU2Xhd5GKfuvIk7dT1Mbx7nwK2zlIck2H-mQDXb2uYzWE7UzzLfnkChaasSORzhVBpKP8H4uiomA"><input name="user.IsActive" type="hidden" value="false"><input name="user.CanBet" type="hidden" value="false"><input name="user.CanSettlePL" type="hidden" value="false"></form>
+    </div>
+    <div class="col-12 col-md-6" id="editsection2" style="display: block;">
+        <div>
+            <form method="post">
+                <div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+                <input type="hidden" data-val="true" data-val-required="The ID field is required." id="user_ID" name="user.ID" value="5408869">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Max Bet Sizes</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Soccer</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Soccer must be a number." data-val-required="The Soccer field is required." id="betSizes_Soccer" name="betSizes.Soccer" value="1000000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Soccer" data-valmsg-replace="false">Max: 1,000,000</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Tennis</label>
+                            <div class="col-8 col-ms-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Tennis must be a number." data-val-required="The Tennis field is required." id="betSizes_Tennis" name="betSizes.Tennis" value="250000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Tennis" data-valmsg-replace="false">Max: 250,000</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Cricket</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Cricket must be a number." data-val-required="The Cricket field is required." id="betSizes_Cricket" name="betSizes.Cricket" value="5000000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Cricket" data-valmsg-replace="false">Max: 200,000</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Fancy</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Fancy must be a number." data-val-required="The Fancy field is required." id="betSizes_Fancy" name="betSizes.Fancy" value="200000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Fancy" data-valmsg-replace="false">Max: 20,000</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Races</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Race must be a number." data-val-required="The Race field is required." id="betSizes_Race" name="betSizes.Race" value="200000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Race" data-valmsg-replace="false">Max: 200,000</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Casino</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Casino must be a number." data-val-required="The Casino field is required." id="betSizes_Casino" name="betSizes.Casino" value="50000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Casino" data-valmsg-replace="false">Max: 50,000</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">Greyhound</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field Greyhound must be a number." data-val-required="The Greyhound field is required." id="betSizes_Greyhound" name="betSizes.Greyhound" value="50000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.Greyhound" data-valmsg-replace="false">Max: 50,000</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">BookMaker</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field BookMaker must be a number." data-val-required="The BookMaker field is required." id="betSizes_BookMaker" name="betSizes.BookMaker" value="2000000.00">
+                                <span class="field-validation-valid" data-valmsg-for="betSizes.BookMaker" data-valmsg-replace="false">Max: 2,000,000</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-md-3 col-form-label">T-PIN</label>
+                            <div class="col-8 col-md-6">
+                                <input class="form-control" type="number" id="betSizes_Tpin" name="betSizes.Tpin" value=""><input name="__Invariant" type="hidden" value="betSizes.Tpin">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer editsbmtbtn">
+                        <button class="btn btn-primary editsbmtbtnin" type="submit">
+                            <strong>Submit</strong>
+                        </button>
+                    </div>
+                </div>
+                <input type="hidden" data-val="true" data-val-required="The pkid field is required." id="betSizes_pkid" name="betSizes.pkid" value="5408063">
+                <input type="hidden" value="2" data-val="true" data-val-required="The FormId field is required." id="FormId" name="FormId">
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BRJFc9Yun9Eh4XBqZSViiDtxEtrXrBNP8wr1gYwhYeWrdtJkTaUzshRUUPXMEwWmNjd5ap0MeFxvpFqxbSP3dvUhDF_ofL7rDOUI9HNnPJnrEKyKorY0uSU2Xhd5GKfuvIk7dT1Mbx7nwK2zlIck2H-mQDXb2uYzWE7UzzLfnkChaasSORzhVBpKP8H4uiomA"></form>
+        </div>
+
+    </div>
+</div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+     <div class="modal fade" id="modalMarketRules" tabindex="-1" role="dialog" aria-labelledby="modalMarketRules" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Market Rules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div id="market-rules-text" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+    <div class="tickercontainer" style="height: 25px; overflow: hidden;"><div class="mask"><ul id="news-ticker-foot" style="position: relative; overflow: hidden; float: left; font: bold 10px Verdana; list-style-type: none; margin: 0px; padding: 0px; width: 424.902px; transition-timing-function: linear; transition-duration: 1.9668s; left: -98.3398px;">
+        
+    <li class="ticker-spacer" style="float: left; width: 98.34px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;"></li><li data-update="item1" style="white-space: nowrap; float: left; padding: 0px 7px; line-height: 25px;"><b>Welcome to Exchange </b></li></ul><span class="tickeroverlay-left" style="display: none;">&nbsp;</span><span class="tickeroverlay-right" style="display: none;">&nbsp;</span></div></div>
+</footer>
+<!-- CoreUI and necessary plugins-->
+
+<script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+<script src="/js/signalr/dist/browser/signalr.js"></script>
+
+
+    <script src="/js/vue.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.min.js"></script>
+    <script src="/js/site.min.js?112000"></script>
+    <script src="/js/bof.js?112000"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C1WVLP1K0K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('set', { 'user_id': 'Imrantt8585' });
+        gtag('config', 'G-C1WVLP1K0K');
+    </script>
+
+
+<script type="text/javascript" src="/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/js/src/client-locales.js?112000"></script>
+
+    
+    <script>
+        function validateForm() {
+            isValid = false;
+            pwd = $("#user_Password").val()
+
+            if (pwd === null || pwd === '') {
+                return true;
+            }
+
+            isValid = IsPasswordStrong(pwd);
+
+            if (!isValid) {
+                $("#user_Password").next().text('Min length is 8 characters and password must contain alphabets and numerics.');
+                $("#user_Password").next().addClass('text-danger');
+            }
+            return isValid;
+        }
+
+        $("#DId").val(GetDeviceIdentity());
+        $(document).ready(function () {
+            document.getElementById("iframesection").style.display = 'none';
+            document.getElementById("editsection1").style.display = 'block';
+            document.getElementById("editsection2").style.display = 'block';
+
+
+            $('#LedgerBtn').on("click", function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                $("#iframesection").html('<object data="' + href + '"style="width:100%; height: 90vh;"/>');
+
+                document.getElementById("iframesection").style.display = 'block';
+                document.getElementById("editsection1").style.display = 'none';
+                document.getElementById("editsection2").style.display = 'none';
+            });
+
+
+            $('#BetsBtn').on("click", function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                $("#iframesection").html('<object data="' + href + '"style="width:100%; height: 90vh;"/>');
+
+                document.getElementById("iframesection").style.display = 'block';
+                document.getElementById("editsection1").style.display = 'none';
+                document.getElementById("editsection2").style.display = 'none';
+            });
+
+
+            $('#ProfitlossBtn').on("click", function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                $("#iframesection").html('<object data="' + href + '"style="width:100%; height: 90vh;"/>');
+
+                document.getElementById("iframesection").style.display = 'block';
+                document.getElementById("editsection1").style.display = 'none';
+                document.getElementById("editsection2").style.display = 'none';
+            });
+
+            $('#CPBtn').on("click", function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                $("#iframesection").html('<object data="' + href + '"style="width:100%; height: 90vh;"/>');
+
+                document.getElementById("iframesection").style.display = 'block';
+                document.getElementById("editsection1").style.display = 'none';
+                document.getElementById("editsection2").style.display = 'none';
+            });
+
+            $('#EditBtn').on("click", function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                $("#iframesection").html('<object data="' + href + '"style="width:100%; height: 90vh;"/>');
+                document.getElementById("iframesection").style.display = 'none';
+                document.getElementById("editsection1").style.display = 'block';
+                document.getElementById("editsection2").style.display = 'block';
+            });
+
+
+
+        });
+
+        function popup_ChDomain(Url, ClientId) {
+            var url = Url + "?ID=" + ClientId;
+            newwindow = window.open(url, "Change Domain", 'height=400,width=650,titlebar=0,menubar=0');
+            if (window.focus) { newwindow.focus() }
+            return false;
+        }
+
+        function popup_report(vid) {
+            // var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
+            newwindow = window.open(vid, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
+            if (window.focus) { newwindow.focus() }
+            return false;
+        }
+
+        function Getotp(){
+            var secode = document.getElementById('otpuserue').value;
+            $.ajax({
+                type: "GET",
+                url: "/Users/Edit/?handler=OtpCode&otp=" + secode,
+                success: function (result) {
+                    alert("Use this OTP to login = " + result.status);
+                },
+                error: function (exception) {
+
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        const token = getCookie('wexscktoken');
+        const sess = getCookie('wex3authtoken');
+        const reft = getCookie('wex3reftoken');
+
+        $(document).ready(function () {
+            pollUserData();
+
+            pollRefreshToken();
+        });
+    </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9a17c9b789c2f9cb&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}" crossorigin="anonymous"></script>
+
+</body>
