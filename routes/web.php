@@ -85,9 +85,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{id}/ledger', [App\Http\Controllers\LedgerController::class, 'show']);
     
     Route::get('/cricket/{marketId}', [App\Http\Controllers\MatchController::class, 'show']);
-    Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::class, 'getOddsApi']);
-    Route::get('/api/cricket-matches', [App\Http\Controllers\SportsDataController::class, 'getCricketMatches']);
 });
+
+// Public API routes (accessible without authentication)
+Route::get('/api/cricket-matches', [App\Http\Controllers\SportsDataController::class, 'getCricketMatches']);
+Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::class, 'getOddsApi']);
 
 Route::get('/result', function () {
     return view('result');
