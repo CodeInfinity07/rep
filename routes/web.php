@@ -83,6 +83,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users/{id}/credit/withdraw', [App\Http\Controllers\CashCreditController::class, 'withdrawCredit']);
     
     Route::get('/users/{id}/ledger', [App\Http\Controllers\LedgerController::class, 'show']);
+    
+    Route::get('/cricket/{marketId}', [App\Http\Controllers\MatchController::class, 'show']);
+    Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::class, 'getOddsApi']);
 });
 
 Route::get('/result', function () {

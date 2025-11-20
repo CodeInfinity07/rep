@@ -1,0 +1,641 @@
+<div class="sidebar">
+            <nav class="sidebar-nav">
+                
+
+<ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">
+                <i class="nav-icon fas fa-tachometer-alt fa-inverse"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item open">
+            <a class="nav-link active" href="/Accounts/Chart">
+                <i class="nav-icon fas fa-users fa-inverse"></i> Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Liables">
+                <i class="nav-icon fas fa-funnel-dollar fa-inverse"></i> Current Position
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Reports/BookDetail">
+                <i class="nav-icon fas fa-money-check fa-inverse"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/BetLocker">
+                <i class="nav-icon fas fa-unlock-alt fa-inverse"></i> Bet Lock
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Games">
+                <i class="nav-icon fas fa-star fa-inverse"></i> Star Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/WorldCasino">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> World Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/ExGames">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> BetFair Games
+            </a>
+        </li>
+
+
+
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/soccer.svg" alt="C">
+            Soccer
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown open">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/tennis.svg" alt="C">
+            Tennis
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250728204">
+Laur Samson v Sorribes Tormo                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250737216">
+P Udvardy v Hercog                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250742867">
+Mar Carle v Fe Labrana                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761434">
+Pigossi v Leol Jeanjean                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/cricket.svg" alt="C">
+            Cricket
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.249449817">
+Australia v England                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250542387">
+Bangladesh v Ireland                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250636959">
+India v South Africa                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250716982">
+Sri Lanka v Zimbabwe                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250754045">
+Brisbane Heat W v Sydney Thunder W                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757955">
+Royal Champs v Deccan Gladiators                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250758008">
+Delhi Bulls v Vista Riders                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761088">
+Aspin Stallions v Ajman Titans                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/horse.svg" alt="C">
+            Horse Race
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714685">
+                                <span class="slidedate market-time">4:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714686">
+                                <span class="slidedate market-time">4:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713324">
+                                <span class="slidedate market-time">5:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713325">
+                                <span class="slidedate market-time">5:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757034">
+                                <span class="slidedate market-time">5:05 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:05:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713446">
+                                <span class="slidedate market-time">5:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713447">
+                                <span class="slidedate market-time">5:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714690">
+                                <span class="slidedate market-time">5:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714691">
+                                <span class="slidedate market-time">5:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713509">
+                                <span class="slidedate market-time">5:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713510">
+                                <span class="slidedate market-time">5:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713331">
+                                <span class="slidedate market-time">5:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713332">
+                                <span class="slidedate market-time">5:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757036">
+                                <span class="slidedate market-time">5:40 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:40:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713440">
+                                <span class="slidedate market-time">5:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713441">
+                                <span class="slidedate market-time">5:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714695">
+                                <span class="slidedate market-time">5:50 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:50:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714696">
+                                <span class="slidedate market-time">5:50 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:50:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713515">
+                                <span class="slidedate market-time">6:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713516">
+                                <span class="slidedate market-time">6:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713337">
+                                <span class="slidedate market-time">6:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713338">
+                                <span class="slidedate market-time">6:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757038">
+                                <span class="slidedate market-time">6:15 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:15:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713452">
+                                <span class="slidedate market-time">6:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713454">
+                                <span class="slidedate market-time">6:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/greyhound-racing.svg" alt="C">
+            Greyhound
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250751420">
+                                <span class="slidedate market-time">4:49 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:49:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Q2 Parklands (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748017">
+                                <span class="slidedate market-time">4:52 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:52:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Angle Park (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760394">
+                                <span class="slidedate market-time">4:52 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:52:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250747765">
+                                <span class="slidedate market-time">4:55 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:55:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Casino (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749690">
+                                <span class="slidedate market-time">4:58 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:58:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Shepparton (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761174">
+                                <span class="slidedate market-time">5:01 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:01:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748057">
+                                <span class="slidedate market-time">5:04 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:04:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250751425">
+                                <span class="slidedate market-time">5:07 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:07:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Q2 Parklands (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760396">
+                                <span class="slidedate market-time">5:09 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:09:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761176">
+                                <span class="slidedate market-time">5:18 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:18:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748062">
+                                <span class="slidedate market-time">5:22 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:22:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760398">
+                                <span class="slidedate market-time">5:26 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:26:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761178">
+                                <span class="slidedate market-time">5:34 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:34:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748067">
+                                <span class="slidedate market-time">5:37 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:37:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760400">
+                                <span class="slidedate market-time">5:42 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:42:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761180">
+                                <span class="slidedate market-time">5:51 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:51:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748072">
+                                <span class="slidedate market-time">5:58 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:58:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760402">
+                                <span class="slidedate market-time">5:59 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:59:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761182">
+                                <span class="slidedate market-time">6:08 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:08:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760404">
+                                <span class="slidedate market-time">6:17 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:17:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+</ul>
+            </nav>
+
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
