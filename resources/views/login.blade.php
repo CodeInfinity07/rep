@@ -49,9 +49,9 @@
                         </div>
                     @endif
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter username or email">
-                        <input class="input100" type="text" required="" placeholder="Username or Email" id="login"
-                            name="login" value="{{ old('login') }}">
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" required="" placeholder="Username" id="username"
+                            name="username" value="{{ old('username') }}">
                         <span class="focus-input100" data-placeholder=""></span>
                     </div>
 

@@ -16,11 +16,10 @@ class OwnerSeeder extends Seeder
     {
         User::create([
             'username' => 'owner',
-            'email' => 'owner@betguru.com',
             'password' => Hash::make('password123'),
             'type' => 'owner',
             'parent_id' => null,
-            'downline_share' => 85,
+            'downline_share' => 100,
             'is_active' => true,
             'phone' => null,
             'reference' => 'System Generated',

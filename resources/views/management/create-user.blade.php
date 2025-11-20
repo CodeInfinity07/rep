@@ -37,13 +37,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label" for="email">Email</label>
-                            <div class="col-md-9">
-                                <input class="form-control" required="" type="email" id="email" name="email" value="{{ old('email') }}">
-                                <span class="field-validation-valid text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="password">Password</label>
                             <div class="col-md-9">
                                 <input class="form-control" minlength="8" maxlength="30" required="" type="password" id="password" name="password">
@@ -67,10 +60,10 @@
                             </div>
                         </div>
                         <div class="form-group row" id="down-share" style="display:none;">
-                            <label class="col-md-3 col-form-label">Downline Share</label>
+                            <label class="col-md-3 col-form-label">Downline Share (%)</label>
                             <div class="col-md-9">
-                                <input class="form-control col-4 col-md-4" type="number" min="0" step="1" max="85.00" id="downline_share" name="downline_share" value="{{ old('downline_share', 0) }}">
-                                <span class="help-block">Max allowed downline share is 0 - 85</span>
+                                <input class="form-control col-4 col-md-4" type="number" min="0" step="0.01" max="{{ auth()->user()->downline_share }}" id="downline_share" name="downline_share" value="{{ old('downline_share', 0) }}">
+                                <span class="help-block">Max allowed: {{ auth()->user()->downline_share }}%. Must be less than your share for non-bettor accounts.</span>
                                 <span class="field-validation-valid text-danger"></span>
                             </div>
                         </div>
@@ -127,15 +120,9 @@
 
         for (i = 0; i < types.length; i++) {
             if (types[i].checked) {
-                if (document.getElementById("IsPointsSystem").value == "True") {
+                if (types[i].value == 'bettor') {
                     downShare.style.display = 'none';
-                    downLine.value = 0;
-                    downLine.max = 0;
-                } else if (types[i].value == 'bettor' || types[i].value == 'master') {
-                    downShare.style.display = 'none';
-                    downLine.max = 100;
                 } else {
-                    downLine.max = 85.00;
                     downShare.style.display = '';
                 }
             }

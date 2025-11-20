@@ -19,20 +19,18 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'login' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
-                ->withInput($request->only('login'));
+                ->withInput($request->only('username'));
         }
 
-        $loginField = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        
         $credentials = [
-            $loginField => $request->input('login'),
+            'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
 
@@ -45,8 +43,8 @@ class AuthController extends Controller
         }
 
         return back()
-            ->withErrors(['login' => 'Invalid credentials. Please check your username/email and password.'])
-            ->withInput($request->only('login'));
+            ->withErrors(['username' => 'Invalid credentials. Please check your username and password.'])
+            ->withInput($request->only('username'));
     }
 
     public function logout(Request $request)
