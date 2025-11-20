@@ -160,17 +160,16 @@
                             <div class="card-body" style="padding-bottom:0px; margin:0px;">
                                 <div class="row" id="searchUsers">
                                     <div class="col-md-6 col-12">
-                                        <form class="form-horizontal" v-on:submit.prevent="search" autocomplete="off">
+                                        <form class="form-horizontal" autocomplete="off">
                                             <div class="form-group row">
                                                 <div class="col-12 autocomplete">
                                                     <div class="input-group">
                                                         <div class="inputWithIcon" style="width:30vw;">
                                                             <input class="form-control" type="search"
-                                                                placeholder="Username" v-model="query" id="myInput">
+                                                                placeholder="Username" id="myInput">
                                                         </div>
                                                         <span class="input-group-prepend">
-                                                            <button id="myBtn" class="btn btn-primary" type="button"
-                                                                v-on:click="search">
+                                                            <button id="myBtn" class="btn btn-primary" type="button">
                                                                 <i class="fa fa-search"></i> Search
                                                             </button>
                                                         </span>
@@ -181,39 +180,19 @@
                                     </div>
 
                                     <div class="col-md-6 col-12" style="padding: 0px; height: 65px;">
-                                        <img src="/img/preloader.gif" v-show="isLoading" style="height:20px;" />
-                                        <nav aria-label="breadcrumb" class="col-12 bccustom2" id="breadcrumbcustom"
-                                            v-show="!isLoading && users.length > 0">
+                                        <nav aria-label="breadcrumb" class="col-12 bccustom2" id="breadcrumbcustom">
                                             <ol class="breadcrumb" style="max-height:40px;">
-                                                <li class="breadcrumb-item bcicustom" v-for="(user, index) in users">
-
-                                                    <a target="_blank" :href="'/Accounts?MID=' + user.id"
-                                                        v-if="user.type !== 4">{{ user.username }}</a>
-                                                    <a target="_blank" :href="'/Users/Edit?id=' + user.id"
-                                                        v-if="user.type === 4">{{ user.username }}</a>
-
-
-                                                    <div class="btn-group"
-                                                        v-if="index == Object.keys(users).length - 1">
-                                                        <a onclick="POPUPWINDOW('/Accounts/Cash?id=' ,user.id)"
-                                                            v-on:click="POPUPWINDOW('/Accounts/Cash?id=' ,user.id)"
-                                                            v-if="index == Object.keys(users).length - 1"
-                                                            class="btn btn-warning"><strong>C</strong></a>
-                                                        <a v-if="index == Object.keys(users).length - 1" target="_blank"
-                                                            :href="'/Users/Edit?id='+user.id" class="btn btn-primary"><i
-                                                                class="fas fa-pencil-alt"></i></a>
-                                                        <a onclick="POPUPWINDOW('/accounts/L2?id=' ,user.id)"
-                                                            v-on:click="POPUPWINDOW('/accounts/L2?id=' ,user.id)"
-                                                            v-if="index == Object.keys(users).length - 1"
-                                                            class="btn btn-info"> <strong>L</strong></a>
+                                                <li class="breadcrumb-item bcicustom">
+                                                    <a target="_blank" href="/Accounts?MID=123">SuperMaster</a>
+                                                    <div class="btn-group">
+                                                        <a href="#" class="btn btn-warning"><strong>C</strong></a>
+                                                        <a target="_blank" href="/Users/Edit?id=123" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                        <a href="#" class="btn btn-info"><strong>L</strong></a>
                                                     </div>
                                                 </li>
-
                                             </ol>
                                         </nav>
                                     </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
