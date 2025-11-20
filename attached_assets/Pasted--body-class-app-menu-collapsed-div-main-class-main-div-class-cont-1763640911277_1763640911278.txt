@@ -1,0 +1,158 @@
+<body class="app menu-collapsed">
+    <div>
+        <main class="main">
+            <div class="container-fluid" style="padding:0px 15px;">
+                <div class="animated fadeIn">
+                    <style>
+    @media screen and (max-width: 635px) {
+        .editsbmtbtn {
+            margin: auto;
+            margin-top: -30px;
+            margin-right: 15px;
+            background: transparent;
+            border: none;
+        }
+    }
+</style>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Accounts/Cash?id=5408869"><b>Cash</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Accounts/Credit?id=5408869"><b>Credit</b></a>
+                        </li>
+                    </ul>
+                    <hr>
+
+                    <h5><strong>ARIFBHI6565</strong></h5>
+                        <table class="table table-sm table-bordered">
+                            <tbody><tr>
+                                <td>Credit</td>
+                                <td>Balance</td>
+                                <td>Max Widthdraw</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    1,500,000 Rs.
+                                </th>
+                                <th>
+                                    0 Rs.
+                                </th>
+                                <th>
+                                    475,561 Rs.
+                                </th>
+                            </tr>
+                        </tbody></table>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-9">
+            <form method="post" onsubmit="$('.btn-submit').attr('disabled', '')">
+                <div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+                <div class="card">
+                    <div class="card-header text-white bg-primary">
+                        <strong>Deposit</strong> Cash in <strong>ARIFBHI6565</strong> Account
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <input value="Cash payment to Imrantt8585 from ARIFBHI6565" class="form-control" type="text" id="IssueDescription" name="IssueDescription">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="text-input">Amount</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            Rs.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" data-val="true" data-val-number="The field CreditAmount must be a number." data-val-required="The CreditAmount field is required." id="CreditAmount" name="CreditAmount" value="0">
+                                </div>
+                                <span class="help-block field-validation-valid" data-valmsg-for="CreditAmount" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer editsbmtbtn">
+                        <input type="hidden" name="DId" class="bindDId" value="R29vZ2xlIENocm9tZQ==">
+                        <button class="btn btn-primary btn-submit" type="submit">
+                            <strong>Submit</strong>
+                        </button>
+                    </div>
+                </div>
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BRJFc9Yun9Eh4XBqZSViiAIlD71keEuUylz5WZzPh9YG4IXOHhf1Yuridy7WCanSAuFZdeQSLhWvCeHE8tAIR2nuDPeI8PH9bL23vN9tJXqFlMeKcRxVdDlosv56F7dTSfSXiSJaZ4cNS0fht0IJWTa0YhBUsBXDZ0k6SuXGSrPi9l2n9mGHxqGwdU3yxzCgw"></form>
+        </div>
+        <div class="col-md-9">
+            <form method="post" onsubmit="$('.btn-submit').attr('disabled', '')">
+                <div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+                <div class="card">
+                    <div class="card-header text-white bg-danger">
+                        <strong>Withdraw</strong> Cash from <strong>ARIFBHI6565</strong> Account
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <input value="Cash payment to ARIFBHI6565 from Imrantt8585" class="form-control" type="text" id="IssueDescription" name="IssueDescription">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="text-input">Amount</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            Rs.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" data-val="true" data-val-number="The field DebitAmount must be a number." data-val-required="The DebitAmount field is required." id="DebitAmount" name="DebitAmount" value="0">
+                                </div>
+                                <span class="help-block field-validation-valid" data-valmsg-for="DebitAmount" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer editsbmtbtn">
+                        <input type="hidden" name="DId" class="bindDId" value="R29vZ2xlIENocm9tZQ==">
+                        <button class="btn btn-danger btn-submit" type="submit">
+                            <strong>Submit</strong>
+                        </button>
+                    </div>
+                </div>
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BRJFc9Yun9Eh4XBqZSViiAIlD71keEuUylz5WZzPh9YG4IXOHhf1Yuridy7WCanSAuFZdeQSLhWvCeHE8tAIR2nuDPeI8PH9bL23vN9tJXqFlMeKcRxVdDlosv56F7dTSfSXiSJaZ4cNS0fht0IJWTa0YhBUsBXDZ0k6SuXGSrPi9l2n9mGHxqGwdU3yxzCgw"></form>
+        </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/vue.min.js"></script>
+    <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+    <script src="/js/site.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/js/src/client-locales.js"></script>
+    
+    <script>
+        $(".bindDId").val(GetDeviceIdentity());
+    </script>
+
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9a17dd6caba6f9cb&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}" crossorigin="anonymous"></script>
+
+</body>

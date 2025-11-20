@@ -302,16 +302,15 @@
                                                                 @endif
                                                             </td>
                                                             <td>{{ $user->type === 'supermaster' ? 'SuperMaster' : ucfirst($user->type) }}</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
+                                                            <td>{{ number_format($user->credit_received, 0) }}</td>
+                                                            <td>{{ number_format($user->balance, 0) }}</td>
                                                             <td>-</td>
                                                             <td>{{ number_format($user->downline_share, 0) }}</td>
                                                             <td>-</td>
                                                             <td>-</td>
                                                             <td>
                                                                 <a class="btn btn-warning"
-                                                                    href="#"
-                                                                    onclick="return false;">
+                                                                    href="/users/{{ $user->id }}/cash-credit?tab=cash">
                                                                     <strong>C</strong>
                                                                 </a>
 

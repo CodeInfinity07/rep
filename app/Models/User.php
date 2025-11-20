@@ -39,6 +39,10 @@ class User extends Authenticatable
         'max_bet_casino',
         'max_bet_greyhound',
         'max_bet_bookmaker',
+        'credit_received',
+        'credit_remaining',
+        'balance',
+        'cash',
     ];
 
     /**
@@ -74,6 +78,10 @@ class User extends Authenticatable
             'max_bet_casino' => 'decimal:2',
             'max_bet_greyhound' => 'decimal:2',
             'max_bet_bookmaker' => 'decimal:2',
+            'credit_received' => 'decimal:2',
+            'credit_remaining' => 'decimal:2',
+            'balance' => 'decimal:2',
+            'cash' => 'decimal:2',
         ];
     }
 

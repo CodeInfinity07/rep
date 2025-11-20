@@ -75,6 +75,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class, 'edit']);
     Route::post('/users/{id}/update', [App\Http\Controllers\UserController::class, 'update']);
     Route::post('/users/{id}/update-bet-sizes', [App\Http\Controllers\UserController::class, 'updateBetSizes']);
+    
+    Route::get('/users/{id}/cash-credit', [App\Http\Controllers\CashCreditController::class, 'show']);
+    Route::post('/users/{id}/cash/deposit', [App\Http\Controllers\CashCreditController::class, 'depositCash']);
+    Route::post('/users/{id}/cash/withdraw', [App\Http\Controllers\CashCreditController::class, 'withdrawCash']);
+    Route::post('/users/{id}/credit/deposit', [App\Http\Controllers\CashCreditController::class, 'depositCredit']);
+    Route::post('/users/{id}/credit/withdraw', [App\Http\Controllers\CashCreditController::class, 'withdrawCredit']);
 });
 
 Route::get('/result', function () {
