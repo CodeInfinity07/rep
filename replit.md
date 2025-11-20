@@ -32,21 +32,24 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
-- **2025-11-20**: Cricket Sidebar Navigation with Live Matches
-  - Created MatchController to fetch match odds from GetMarketOdds API endpoint
-  - Built cricket match details page displaying back/lay prices with real-time odds
-  - Updated SportsDataController with getCricketMatches() method for sidebar
-  - Implemented dynamic sidebar loading cricket matches from ScoreSwift API
-  - Added collapsible dropdown functionality for sports menu navigation
-  - Auto-refresh cricket matches every 30 seconds in sidebar
-  - Live match indicator badges for in-play matches
-  - Match details page shows:
-    * Market status (OPEN/CLOSED) and in-play indicators
-    * Runner names with back/lay prices (3 levels each)
-    * Bet sizes and total matched amounts
-    * Auto-refreshes odds every 5 seconds
-  - Public API routes: /api/cricket-matches, /api/match-odds/{marketId}
-  - Protected route: /cricket/{marketId} (requires authentication)
+- **2025-11-20**: Complete Cricket Match Page with Live Odds
+  - **MatchController enhancements**:
+    * Fetches runner names from /api/home endpoint (selectionId → runnerName mapping)
+    * Merges data from two API sources (/api/home + GetMarketOdds)
+    * Removed caching for real-time updates
+    * Normalized getOddsApi to return first array element
+  - **Cricket match page features**:
+    * Exact HTML structure from reference with all sections: Bet Lock, User Book, TV, Scorecard
+    * Proper runner names (e.g., "Sri Lanka" instead of "runner 7337")
+    * Correct back/lay odds display in 6 columns (B3, B2, B1 | L1, L2, L3)
+    * B1 shows best back price (highlighted blue), B2/B3 show lower prices
+    * L1 shows best lay price (highlighted pink), L2/L3 show higher prices
+    * AJAX polling refreshes odds every 1 second (NO full page reload)
+    * Live status updates and in-play indicators
+    * Bet sizes formatted as K/M (thousands/millions)
+  - **Routes**:
+    * Public API: /api/cricket-matches, /api/match-odds/{marketId}
+    * Protected view: /cricket/{marketId} (requires authentication)
 
 - **2025-11-20**: Account Ledger System
   - Created ledger_entries table to track all financial transactions
