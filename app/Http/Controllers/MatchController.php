@@ -19,22 +19,18 @@ class MatchController extends Controller
         }
         
         try {
-            $cacheKey = 'match_odds_' . $marketId;
-            $cacheDuration = now()->addSeconds(5);
+            // Fetch match odds data (no cache for real-time updates)
+            $response = Http::withHeaders([
+                'X-ScoreSwift-Key' => $apiKey
+            ])->timeout(10)->get($this->apiUrl, [
+                'market_id' => $marketId
+            ]);
             
-            $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey, $marketId) {
-                $response = Http::withHeaders([
-                    'X-ScoreSwift-Key' => $apiKey
-                ])->timeout(10)->get($this->apiUrl, [
-                    'market_id' => $marketId
-                ]);
-                
-                if ($response->successful()) {
-                    return $response->json();
-                }
-                
-                return null;
-            });
+            if (!$response->successful()) {
+                return view('management.cricket.match')->with('error', 'Failed to fetch match data');
+            }
+            
+            $data = $response->json();
             
             if (!$data || !is_array($data) || empty($data)) {
                 return view('management.cricket.match')->with('error', 'Failed to fetch match data');
@@ -47,13 +43,14 @@ class MatchController extends Controller
                 return view('management.cricket.match')->with('error', 'No match data available');
             }
             
-            // Get match name from cricket matches list
-            $matchName = $this->getMatchName($apiKey, $marketId);
+            // Get match metadata and runner names from /api/home
+            $matchInfo = $this->getMatchInfo($apiKey, $marketId);
             
             return view('management.cricket.match', [
                 'matchData' => $matchData,
                 'marketId' => $marketId,
-                'matchName' => $matchName
+                'matchName' => $matchInfo['matchName'],
+                'runnerNames' => $matchInfo['runnerNames']
             ]);
             
         } catch (\Exception $e) {
@@ -61,8 +58,13 @@ class MatchController extends Controller
         }
     }
     
-    private function getMatchName($apiKey, $marketId)
+    private function getMatchInfo($apiKey, $marketId)
     {
+        $defaultInfo = [
+            'matchName' => 'Match Odds',
+            'runnerNames' => []
+        ];
+        
         try {
             $homeUrl = 'http://89.116.20.218:8085/api/home';
             $response = Http::withHeaders([
@@ -75,7 +77,23 @@ class MatchController extends Controller
                     if (isset($sportCategory['markets']) && strtolower($sportCategory['name'] ?? '') === 'cricket') {
                         foreach ($sportCategory['markets'] as $market) {
                             if (($market['marketId'] ?? '') === $marketId) {
-                                return $market['marketName'] ?? 'Match Odds';
+                                $runnerNames = [];
+                                
+                                // Build runner lookup map: selectionId => runnerName
+                                if (isset($market['runners']) && is_array($market['runners'])) {
+                                    foreach ($market['runners'] as $runner) {
+                                        $selectionId = $runner['selectionId'] ?? null;
+                                        $runnerName = $runner['runnerName'] ?? null;
+                                        if ($selectionId && $runnerName) {
+                                            $runnerNames[$selectionId] = $runnerName;
+                                        }
+                                    }
+                                }
+                                
+                                return [
+                                    'matchName' => $market['marketName'] ?? 'Match Odds',
+                                    'runnerNames' => $runnerNames
+                                ];
                             }
                         }
                     }
@@ -85,7 +103,7 @@ class MatchController extends Controller
             // Ignore errors, just return default
         }
         
-        return 'Match Odds';
+        return $defaultInfo;
     }
     
     public function getOddsApi($marketId)
@@ -104,7 +122,14 @@ class MatchController extends Controller
             ]);
             
             if ($response->successful()) {
-                return response()->json($response->json());
+                $data = $response->json();
+                
+                // API returns an array, extract first element
+                if (is_array($data) && !empty($data)) {
+                    return response()->json($data[0]);
+                }
+                
+                return response()->json(['error' => 'No data available'], 404);
             }
             return response()->json(['error' => 'Failed to fetch odds'], 500);
             
