@@ -33,3 +33,19 @@ Key Observations:
 - Market IDs structure: data['competition']['event']['markets']
 - Price format: ex.availableToBack/availableToLay
 - Runner names: Available in GetMarketDetails and embedded in GetMarketIdsV1
+
+6. api_GetMarketIdsV2_1.250761088.json
+   - Endpoint: /api/GetMarketIdsV2?market_id=1.250761088
+   - Contains: All market IDs for the event (cleaner structure than V1)
+   - Markets found: 13 markets including innings lines, runs, etc.
+   - Structure: Array of {marketId, marketName, isInplay}
+
+GetMarketIdsV2 vs GetMarketIdsV1:
+---------------------------------
+V1: Returns nested structure with full market details
+    Path: competition.event.markets[]
+    Markets: 3 (Match Odds, Match Odds Including Tie, Tied Match)
+
+V2: Returns simple array with market metadata
+    Structure: [{marketId, marketName, isInplay}, ...]
+    Markets: 13 (includes innings lines, runs, completed match, etc.)
