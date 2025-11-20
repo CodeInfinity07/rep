@@ -90,6 +90,63 @@ class SportsDataController extends Controller
         ];
     }
     
+    public function getCricketMatches()
+    {
+        try {
+            $apiKey = $_SERVER['SCORESWIFT_API_KEY'] ?? $_ENV['SCORESWIFT_API_KEY'] ?? getenv('SCORESWIFT_API_KEY') ?? env('SCORESWIFT_API_KEY');
+            
+            if (!$apiKey) {
+                return response()->json(['error' => 'API key not configured'], 500);
+            }
+            
+            $cacheKey = 'cricket_matches';
+            $cacheDuration = now()->addSeconds(30);
+            
+            $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey) {
+                $response = Http::withHeaders([
+                    'X-ScoreSwift-Key' => $apiKey
+                ])->timeout(10)->get($this->apiUrl);
+                
+                if ($response->successful()) {
+                    return $response->json();
+                }
+                
+                return null;
+            });
+            
+            if (!$data) {
+                return response()->json(['error' => 'Failed to fetch cricket matches'], 500);
+            }
+            
+            $cricket = [];
+            
+            foreach ($data as $sportCategory) {
+                if (!isset($sportCategory['markets']) || empty($sportCategory['markets'])) {
+                    continue;
+                }
+                
+                $sportName = strtolower($sportCategory['name'] ?? '');
+                
+                if ($sportName === 'cricket') {
+                    foreach ($sportCategory['markets'] as $market) {
+                        $cricket[] = [
+                            'marketId' => $market['marketId'] ?? '',
+                            'marketName' => $market['marketName'] ?? '',
+                            'status' => $market['status'] ?? 'UNKNOWN',
+                            'inplay' => $market['inplay'] ?? false,
+                            'startTime' => $market['marketStartTime'] ?? null,
+                        ];
+                    }
+                }
+            }
+            
+            return response()->json($cricket);
+            
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
     private function processRunners($runners)
     {
         $processed = [];

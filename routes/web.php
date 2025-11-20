@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/cricket/{marketId}', [App\Http\Controllers\MatchController::class, 'show']);
     Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::class, 'getOddsApi']);
+    Route::get('/api/cricket-matches', [App\Http\Controllers\SportsDataController::class, 'getCricketMatches']);
 });
 
 Route::get('/result', function () {

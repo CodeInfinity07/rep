@@ -160,19 +160,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item nav-dropdown">
+                    <li class="nav-item nav-dropdown" id="cricket-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <img src="/img/v2/cricket.svg" alt="C">
                             Cricket
                         </a>
-                        <ul class="nav-dropdown-items" href="#">
+                        <ul class="nav-dropdown-items" id="cricket-matches-list">
                             <li class="nav-item">
-                                <a class="nav-link" href="/cricket">
-                                    Pakistan v South Africa </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/cricket">
-                                    India v West Indies </a>
+                                <a class="nav-link" href="#">
+                                    Loading cricket matches...
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -223,6 +220,51 @@
     </div>
 
     @yield('scripts')
+    
+    <script>
+        // Load cricket matches dynamically
+        function loadCricketMatches() {
+            fetch('/api/cricket-matches')
+                .then(response => response.json())
+                .then(data => {
+                    const matchesList = document.getElementById('cricket-matches-list');
+                    if (data && Array.isArray(data) && data.length > 0) {
+                        matchesList.innerHTML = '';
+                        data.forEach(match => {
+                            const li = document.createElement('li');
+                            li.className = 'nav-item';
+                            const a = document.createElement('a');
+                            a.className = 'nav-link';
+                            a.href = '/cricket/' + match.marketId;
+                            a.textContent = match.marketName;
+                            if (match.inplay) {
+                                const badge = document.createElement('span');
+                                badge.className = 'badge badge-success ml-2';
+                                badge.textContent = 'LIVE';
+                                badge.style.fontSize = '10px';
+                                a.appendChild(badge);
+                            }
+                            li.appendChild(a);
+                            matchesList.appendChild(li);
+                        });
+                    } else {
+                        matchesList.innerHTML = '<li class="nav-item"><a class="nav-link" href="#">No matches available</a></li>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading cricket matches:', error);
+                    const matchesList = document.getElementById('cricket-matches-list');
+                    matchesList.innerHTML = '<li class="nav-item"><a class="nav-link" href="#">Error loading matches</a></li>';
+                });
+        }
+        
+        // Load matches on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCricketMatches();
+            // Refresh every 30 seconds
+            setInterval(loadCricketMatches, 30000);
+        });
+    </script>
 </body>
 
 </html>
