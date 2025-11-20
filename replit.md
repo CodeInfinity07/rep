@@ -32,6 +32,22 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: Cricket Sidebar Navigation with Live Matches
+  - Created MatchController to fetch match odds from GetMarketOdds API endpoint
+  - Built cricket match details page displaying back/lay prices with real-time odds
+  - Updated SportsDataController with getCricketMatches() method for sidebar
+  - Implemented dynamic sidebar loading cricket matches from ScoreSwift API
+  - Added collapsible dropdown functionality for sports menu navigation
+  - Auto-refresh cricket matches every 30 seconds in sidebar
+  - Live match indicator badges for in-play matches
+  - Match details page shows:
+    * Market status (OPEN/CLOSED) and in-play indicators
+    * Runner names with back/lay prices (3 levels each)
+    * Bet sizes and total matched amounts
+    * Auto-refreshes odds every 5 seconds
+  - Public API routes: /api/cricket-matches, /api/match-odds/{marketId}
+  - Protected route: /cricket/{marketId} (requires authentication)
+
 - **2025-11-20**: Account Ledger System
   - Created ledger_entries table to track all financial transactions
   - Implemented LedgerController with date range filtering
