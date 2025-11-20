@@ -20,7 +20,15 @@ class CashCreditController extends Controller
 
         $user = User::find($id);
         
-        if (!$user || !$this->isInDownline($currentUser, $user)) {
+        if (!$user) {
+            return redirect('/users')->with('error', 'User not found.');
+        }
+        
+        if ($currentUser->id === $user->id) {
+            return redirect('/users')->with('error', 'You cannot manage your own cash/credit.');
+        }
+        
+        if (!$this->isInDownline($currentUser, $user)) {
             return redirect('/users')->with('error', 'You do not have permission to manage this user.');
         }
 
@@ -39,7 +47,15 @@ class CashCreditController extends Controller
 
         $user = User::find($id);
         
-        if (!$user || !$this->isInDownline($currentUser, $user)) {
+        if (!$user) {
+            return redirect('/users')->with('error', 'User not found.');
+        }
+        
+        if ($currentUser->id === $user->id) {
+            return redirect('/users')->with('error', 'You cannot manage your own cash/credit.');
+        }
+        
+        if (!$this->isInDownline($currentUser, $user)) {
             return redirect('/users')->with('error', 'You do not have permission to manage this user.');
         }
 
@@ -74,7 +90,15 @@ class CashCreditController extends Controller
 
         $user = User::find($id);
         
-        if (!$user || !$this->isInDownline($currentUser, $user)) {
+        if (!$user) {
+            return redirect('/users')->with('error', 'User not found.');
+        }
+        
+        if ($currentUser->id === $user->id) {
+            return redirect('/users')->with('error', 'You cannot manage your own cash/credit.');
+        }
+        
+        if (!$this->isInDownline($currentUser, $user)) {
             return redirect('/users')->with('error', 'You do not have permission to manage this user.');
         }
 
@@ -113,7 +137,15 @@ class CashCreditController extends Controller
 
         $user = User::find($id);
         
-        if (!$user || !$this->isInDownline($currentUser, $user)) {
+        if (!$user) {
+            return redirect('/users')->with('error', 'User not found.');
+        }
+        
+        if ($currentUser->id === $user->id) {
+            return redirect('/users')->with('error', 'You cannot manage your own cash/credit.');
+        }
+        
+        if (!$this->isInDownline($currentUser, $user)) {
             return redirect('/users')->with('error', 'You do not have permission to manage this user.');
         }
 
@@ -160,7 +192,15 @@ class CashCreditController extends Controller
 
         $user = User::find($id);
         
-        if (!$user || !$this->isInDownline($currentUser, $user)) {
+        if (!$user) {
+            return redirect('/users')->with('error', 'User not found.');
+        }
+        
+        if ($currentUser->id === $user->id) {
+            return redirect('/users')->with('error', 'You cannot manage your own cash/credit.');
+        }
+        
+        if (!$this->isInDownline($currentUser, $user)) {
             return redirect('/users')->with('error', 'You do not have permission to manage this user.');
         }
 

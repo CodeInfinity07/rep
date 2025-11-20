@@ -32,6 +32,21 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: Cash/Credit Management System
+  - Added financial database fields: credit_received, credit_remaining, balance, cash
+  - Created cash-credit.blade.php with two tabs (Cash and Credit) for deposit/withdraw operations
+  - Implemented CashCreditController with transaction processing:
+    * Cash deposit: adds to cash and balance
+    * Cash withdraw: subtracts from cash and balance (validates available cash)
+    * Credit give: adds to user's credit_received/credit_remaining/balance, subtracts from parent's credit_remaining
+    * Credit take back: reverses credit allocation back to parent
+  - Owner has unlimited credit (no validation on available credit when giving)
+  - Non-owner users can only give credit up to their credit_remaining amount
+  - Updated users table to display credit_received and balance values
+  - C button in users table now links to /users/{id}/cash-credit?tab=cash
+  - All transactions wrapped in database transactions for data integrity
+  - Owner account initialized with 1,000,000 credit for testing
+
 - **2025-11-20**: Username-Only Authentication & Share Distribution System
   - Removed email field entirely - authentication now uses username-only login
   - Implemented hierarchical share distribution:
