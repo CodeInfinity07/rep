@@ -315,8 +315,8 @@
                                                                     <strong>C</strong>
                                                                 </a>
 
-                                                                <a class="btn btn-primary" target="_blank"
-                                                                    href="#">
+                                                                <a class="btn btn-primary"
+                                                                    href="/users/{{ $user->id }}/edit">
                                                                     <i class="fas fa-pencil-alt"></i>
                                                                 </a>
                                                                 <a class="btn btn-info" href="#"

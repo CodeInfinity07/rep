@@ -71,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create']);
     Route::post('/users/create', [App\Http\Controllers\UserController::class, 'store']);
+    
+    Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class, 'edit']);
+    Route::post('/users/{id}/update', [App\Http\Controllers\UserController::class, 'update']);
+    Route::post('/users/{id}/update-bet-sizes', [App\Http\Controllers\UserController::class, 'updateBetSizes']);
 });
 
 Route::get('/result', function () {

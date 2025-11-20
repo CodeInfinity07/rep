@@ -12,12 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->decimal('commission', 5, 2)->default(2.00)->after('downline_share');
-            $table->boolean('can_bet')->default(true)->after('commission');
-            $table->boolean('can_settle_pl')->default(false)->after('can_bet');
-            $table->string('currency', 10)->default('Rs.')->after('can_settle_pl');
-            $table->text('notes')->nullable()->after('reference');
-            
             $table->decimal('max_bet_soccer', 15, 2)->nullable()->after('notes');
             $table->decimal('max_bet_tennis', 15, 2)->nullable()->after('max_bet_soccer');
             $table->decimal('max_bet_cricket', 15, 2)->nullable()->after('max_bet_tennis');
@@ -36,11 +30,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([
-                'commission',
-                'can_bet',
-                'can_settle_pl',
-                'currency',
-                'notes',
                 'max_bet_soccer',
                 'max_bet_tennis',
                 'max_bet_cricket',
