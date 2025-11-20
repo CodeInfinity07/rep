@@ -169,7 +169,6 @@ class CashCreditController extends Controller
         DB::transaction(function () use ($user, $amount, $currentUser) {
             $user->credit_received += $amount;
             $user->credit_remaining += $amount;
-            $user->balance += $amount;
             $user->save();
 
             if ($currentUser->type !== 'owner') {
@@ -222,7 +221,6 @@ class CashCreditController extends Controller
         DB::transaction(function () use ($user, $amount, $currentUser) {
             $user->credit_received -= $amount;
             $user->credit_remaining -= $amount;
-            $user->balance -= $amount;
             $user->save();
 
             if ($currentUser->type !== 'owner') {

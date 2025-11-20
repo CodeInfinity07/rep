@@ -38,8 +38,9 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
   - Implemented CashCreditController with transaction processing:
     * Cash deposit: adds to cash and balance
     * Cash withdraw: subtracts from cash and balance (validates available cash)
-    * Credit give: adds to user's credit_received/credit_remaining/balance, subtracts from parent's credit_remaining
+    * Credit give: adds to user's credit_received/credit_remaining, subtracts from parent's credit_remaining
     * Credit take back: reverses credit allocation back to parent
+  - Balance field only reflects cash, not credit
   - Owner has unlimited credit (no validation on available credit when giving)
   - Non-owner users can only give credit up to their credit_remaining amount
   - Updated users table to display credit_received and balance values
