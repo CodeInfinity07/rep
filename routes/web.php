@@ -9,7 +9,7 @@ Route::get('/api/sports-data', [SportsDataController::class, 'getSportsData']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         $user = Auth::user();
-        if ($user->type === 'Bettor') {
+        if (strtolower($user->type) === 'bettor') {
             return view('bettor.index');
         }
         return view('management.index');
