@@ -45,6 +45,7 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
   - Updated users table to display credit_received and balance values
   - C button in users table now links to /users/{id}/cash-credit?tab=cash
   - All transactions wrapped in database transactions for data integrity
+  - Security: Blocks self-targeted cash/credit operations to prevent unlimited balance exploit
   - Owner account initialized with 1,000,000 credit for testing
 
 - **2025-11-20**: Username-Only Authentication & Share Distribution System
