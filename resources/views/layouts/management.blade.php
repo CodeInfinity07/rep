@@ -222,6 +222,21 @@
     @yield('scripts')
     
     <script>
+        // Collapsible dropdown functionality for sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+            
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const parent = this.closest('.nav-dropdown');
+                    if (parent) {
+                        parent.classList.toggle('open');
+                    }
+                });
+            });
+        });
+        
         // Load cricket matches dynamically
         function loadCricketMatches() {
             fetch('/api/cricket-matches')
