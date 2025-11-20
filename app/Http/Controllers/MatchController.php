@@ -36,18 +36,56 @@ class MatchController extends Controller
                 return null;
             });
             
-            if (!$data) {
+            if (!$data || !is_array($data) || empty($data)) {
                 return view('management.cricket.match')->with('error', 'Failed to fetch match data');
             }
             
+            // API returns an array, get the first element
+            $matchData = $data[0] ?? null;
+            
+            if (!$matchData) {
+                return view('management.cricket.match')->with('error', 'No match data available');
+            }
+            
+            // Get match name from cricket matches list
+            $matchName = $this->getMatchName($apiKey, $marketId);
+            
             return view('management.cricket.match', [
-                'matchData' => $data,
-                'marketId' => $marketId
+                'matchData' => $matchData,
+                'marketId' => $marketId,
+                'matchName' => $matchName
             ]);
             
         } catch (\Exception $e) {
             return view('management.cricket.match')->with('error', 'Error: ' . $e->getMessage());
         }
+    }
+    
+    private function getMatchName($apiKey, $marketId)
+    {
+        try {
+            $homeUrl = 'http://89.116.20.218:8085/api/home';
+            $response = Http::withHeaders([
+                'X-ScoreSwift-Key' => $apiKey
+            ])->timeout(10)->get($homeUrl);
+            
+            if ($response->successful()) {
+                $data = $response->json();
+                foreach ($data as $sportCategory) {
+                    if (isset($sportCategory['markets']) && strtolower($sportCategory['name'] ?? '') === 'cricket') {
+                        foreach ($sportCategory['markets'] as $market) {
+                            if (($market['marketId'] ?? '') === $marketId) {
+                                return $market['marketName'] ?? 'Match Odds';
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            // Ignore errors, just return default
+        }
+        
+        return 'Match Odds';
     }
     
     public function getOddsApi($marketId)

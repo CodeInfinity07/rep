@@ -1,0 +1,1182 @@
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="logo-bar">
+            <a href="/index">
+                <span class="green-logo-text d-sm-down-none">
+                    BetPro
+                </span>
+            </a>
+        </div>
+
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+
+<ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/index">Dashboard</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Accounts/Chart">Users</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Reports/BookDetail">Reports</a>
+        </li>
+</ul>
+
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item px-2">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Imrantt8585 (Admin) <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/Common/Profile">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" id="btn-logout" href="/Common/Logout">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+                    <strong>B:</strong> <span class="wallet-balance">0</span>
+                    <strong>Exp:</strong> <span class="wallet-exposure">0</span>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                
+
+<ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">
+                <i class="nav-icon fas fa-tachometer-alt fa-inverse"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Accounts/Chart">
+                <i class="nav-icon fas fa-users fa-inverse"></i> Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Liables">
+                <i class="nav-icon fas fa-funnel-dollar fa-inverse"></i> Current Position
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Reports/BookDetail">
+                <i class="nav-icon fas fa-money-check fa-inverse"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/BetLocker">
+                <i class="nav-icon fas fa-unlock-alt fa-inverse"></i> Bet Lock
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Games">
+                <i class="nav-icon fas fa-star fa-inverse"></i> Star Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/WorldCasino">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> World Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/ExGames">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> BetFair Games
+            </a>
+        </li>
+
+
+
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/soccer.svg" alt="C">
+            Soccer
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/tennis.svg" alt="C">
+            Tennis
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250737216">
+P Udvardy v Hercog                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250742867">
+Mar Carle v Fe Labrana                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown open">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/cricket.svg" alt="C">
+            Cricket
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item open">
+                        <a class="nav-link active" href="/Markets/#!1.249449817">
+Australia v England                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250542387">
+Bangladesh v Ireland                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250636959">
+India v South Africa                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250716982">
+Sri Lanka v Zimbabwe                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250754045">
+Brisbane Heat W v Sydney Thunder W                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250758008">
+Delhi Bulls v Vista Riders                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761088">
+Aspin Stallions v Ajman Titans                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/horse.svg" alt="C">
+            Horse Race
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757038">
+                                <span class="slidedate market-time">6:15 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:15:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713522">
+                                <span class="slidedate market-time">6:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713524">
+                                <span class="slidedate market-time">6:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757040">
+                                <span class="slidedate market-time">6:50 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T13:50:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714705">
+                                <span class="slidedate market-time">7:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714706">
+                                <span class="slidedate market-time">7:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713529">
+                                <span class="slidedate market-time">7:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713531">
+                                <span class="slidedate market-time">7:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713349">
+                                <span class="slidedate market-time">7:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713350">
+                                <span class="slidedate market-time">7:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757042">
+                                <span class="slidedate market-time">7:25 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:25:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713472">
+                                <span class="slidedate market-time">7:30 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:30:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713473">
+                                <span class="slidedate market-time">7:30 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:30:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714710">
+                                <span class="slidedate market-time">7:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714711">
+                                <span class="slidedate market-time">7:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713536">
+                                <span class="slidedate market-time">7:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713538">
+                                <span class="slidedate market-time">7:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713356">
+                                <span class="slidedate market-time">7:55 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:55:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713358">
+                                <span class="slidedate market-time">7:55 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:55:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757044">
+                                <span class="slidedate market-time">8:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713465">
+                                <span class="slidedate market-time">8:05 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:05:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713466">
+                                <span class="slidedate market-time">8:05 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:05:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714715">
+                                <span class="slidedate market-time">8:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714716">
+                                <span class="slidedate market-time">8:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713543">
+                                <span class="slidedate market-time">8:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713545">
+                                <span class="slidedate market-time">8:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/greyhound-racing.svg" alt="C">
+            Greyhound
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760410">
+                                <span class="slidedate market-time">7:07 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:07:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761190">
+                                <span class="slidedate market-time">7:14 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:14:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760799">
+                                <span class="slidedate market-time">7:16 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:16:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Valley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760721">
+                                <span class="slidedate market-time">7:23 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:23:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Central Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760754">
+                                <span class="slidedate market-time">7:29 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:29:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760801">
+                                <span class="slidedate market-time">7:33 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:33:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Valley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760858">
+                                <span class="slidedate market-time">7:36 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:36:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Kinsley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760723">
+                                <span class="slidedate market-time">7:41 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:41:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Central Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760756">
+                                <span class="slidedate market-time">7:48 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:48:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760803">
+                                <span class="slidedate market-time">7:52 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:52:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Valley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760860">
+                                <span class="slidedate market-time">7:54 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T14:54:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Kinsley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760725">
+                                <span class="slidedate market-time">8:01 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:01:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Central Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760758">
+                                <span class="slidedate market-time">8:07 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:07:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760805">
+                                <span class="slidedate market-time">8:11 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:11:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Valley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760862">
+                                <span class="slidedate market-time">8:13 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:13:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Kinsley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760727">
+                                <span class="slidedate market-time">8:19 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:19:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Central Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760760">
+                                <span class="slidedate market-time">8:26 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:26:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760807">
+                                <span class="slidedate market-time">8:29 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:29:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Valley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760864">
+                                <span class="slidedate market-time">8:32 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:32:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Kinsley (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760729">
+                                <span class="slidedate market-time">8:38 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T15:38:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Central Park (GB)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+</ul>
+            </nav>
+
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <style>
+    .checknow {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ and Edge */
+        user-select: none; /* Standard syntax */
+    }
+
+    .controls {
+        overflow: hidden;
+        background: #2b2f35;
+        /* height: 35px; */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .scores {
+        background-color: white;
+        border: 1px solid black;
+        padding: 0.25rem;
+    }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: black;
+            font-size: 18px;
+        }
+
+        .scores .runner-score {
+            color: black;
+            font-size: 18px;
+            margin-top: 2px;
+            padding: 0px;
+        }
+
+        .scores .active {
+            color: #009069
+        }
+
+        .scores .col-divider {
+            border-left: 1px solid black;
+        }
+
+    .tablefoter {
+        font-size: 14px;
+        border: 1px solid black;
+        color: black;
+    }
+
+    .socindivs {
+        padding: 0px;
+    }
+
+    .timeshow {
+        color: black;
+        font-size: 18px;
+    }
+
+    .scoresocer {
+        color: black;
+        font-size: 18px
+    }
+
+    .tablefotercs {
+        font-size: 12px;
+        color: black;
+    }
+
+    .colwidthset {
+        width: 1vw;
+    }
+
+    .lasttrgt {
+        float: right;
+    }
+    #TVDIVIFRAME iframe {
+            height:330px;
+            width:100%;
+            border:none;
+            overflow:hidden;
+        }
+    @media screen and (max-width: 480px) {
+         #TVDIVIFRAME iframe {
+            height:230px;
+            width:100%;
+            border:none;
+            overflow:hidden;
+        }
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: black;
+            font-size: 10px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: black;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: black;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: black;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: black;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: black;
+            font-size: 11px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .MBoxNopadding {
+            padding: 0px;
+        }
+
+        .firstspn {
+            float: right;
+        }
+
+        .secondspn {
+            margin-left: auto;
+            float: right;
+        }
+
+        .lasttrgt {
+            float: left;
+        }
+
+        .trgtspn {
+            margin-left: 45vw;
+        }
+
+        #MarketData {
+            padding-right: 16px;
+        }
+    }
+
+.fa-basketball-ball{
+    color:black;
+}
+@media only screen and (max-width: 600px) {
+    #MarketData .card-header {
+        padding: 0.3rem 0.5rem;
+    }
+    #MarketData .card-header h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.1rem;
+    }
+}
+.timelineNS {
+    background: white;
+    height: 32px;
+    position: relative;
+}
+</style>
+<script>
+    const score_url = "https://bpexch.xyz/Common/LiveScoreCard?id=";
+    const video_url = "https://www.bpexch.xyz/Common/TvIframe?id=";
+</script>
+<script src="/js/unreal_html5_player_script_v2.js?0001"></script>
+<div class="row" id="loadedmarkettoshow">
+    <div id="MarketData" role="tablist" aria-multiselectable="true" class="content panel-group col-md-8"><div class="card card-accent-primary"><div class="card-header" id="1.250542387" style=""><h4><strong>Bangladesh v Ireland - Match Odds</strong> <span style="color: rgb(232, 62, 140);"><strong>OPEN</strong></span> <i class="fa fa-address-book"></i></h4></div> <!----> <!----> <div class="card-body market-box MBoxNopadding" style=""><!----> <div class="row bg-gray-100 market-head"><div class="col"><strong>21 Nov 8:30</strong></div> <div class="col text-right"><strong>Remaining: 13:05:48</strong></div></div> <div id="runner-7659" class="row runners"><div class="col-7 col-md-4 runner-name"><!----> <strong>Bangladesh</strong> <br> <span><span class="position-plus"><strong></strong></span> <!----></span> <!----></div> <div class="col-5 col-md-8 price"><div class="row"><div class="col-md-2 d-none d-md-block cta-back"><div id="b3-7659" class="col-12 price">
+                    
+                </div> <div id="bs3-7659" class="col-12 size">
+                    
+                </div></div> <div class="col-md-2 d-none d-md-block cta-back"><div id="b2-7659" class="col-md-12 col-sm-12 price">
+                    
+                </div> <div id="bs2-7659" class="col-md-12 col-sm-12 size">
+                    
+                </div></div> <div class="col-6 col-md-2 cta-back"><div id="b1-7659" class="col-12 price" style="background-color: rgb(227, 248, 255);">
+                    1.01
+                </div> <div id="bs1-7659" class="col-12 size" style="background-color: rgb(227, 248, 255);">
+                    43.2M
+                </div></div> <div class="col-6 col-md-2 cta-lay"><div id="l1-7659" class="col-md-12 col-sm-12 price" style="background-color: rgb(255, 205, 204);">
+                    1.02
+                </div> <div id="ls1-7659" class="col-md-12 col-sm-12 size" style="background-color: rgb(255, 205, 204);">
+                    4.5M
+                </div></div> <div class="col-md-2 d-none d-md-block cta-lay"><div id="l2-7659" class="col-md-12 col-sm-12 price">
+                    1.03
+                </div> <div id="ls2-7659" class="col-md-12 col-sm-12 size">
+                    11.4M
+                </div></div> <div class="col-md-2 d-none d-md-block cta-lay"><div id="l3-7659" class="col-md-12 col-sm-12 price">
+                    1.04
+                </div> <div id="ls3-7659" class="col-md-12 col-sm-12 size">
+                    2.0M
+                </div></div></div></div></div><div id="runner-152530" class="row runners"><div class="col-7 col-md-4 runner-name"><!----> <strong>Ireland</strong> <br> <span><span class="position-plus"><strong></strong></span> <!----></span> <!----></div> <div class="col-5 col-md-8 price"><div class="row"><div class="col-md-2 d-none d-md-block cta-back"><div id="b3-152530" class="col-12 price">
+                    160
+                </div> <div id="bs3-152530" class="col-12 size">
+                    18.4K
+                </div></div> <div class="col-md-2 d-none d-md-block cta-back"><div id="b2-152530" class="col-md-12 col-sm-12 price">
+                    170
+                </div> <div id="bs2-152530" class="col-md-12 col-sm-12 size">
+                    6.7K
+                </div></div> <div class="col-6 col-md-2 cta-back"><div id="b1-152530" class="col-12 price" style="background-color: rgb(227, 248, 255);">
+                    180
+                </div> <div id="bs1-152530" class="col-12 size" style="background-color: rgb(227, 248, 255);">
+                    2.5K
+                </div></div> <div class="col-6 col-md-2 cta-lay"><div id="l1-152530" class="col-md-12 col-sm-12 price" style="background-color: rgb(255, 205, 204);">
+                    210
+                </div> <div id="ls1-152530" class="col-md-12 col-sm-12 size" style="background-color: rgb(255, 205, 204);">
+                    56.5K
+                </div></div> <div class="col-md-2 d-none d-md-block cta-lay"><div id="l2-152530" class="col-md-12 col-sm-12 price">
+                    220
+                </div> <div id="ls2-152530" class="col-md-12 col-sm-12 size">
+                    3.6K
+                </div></div> <div class="col-md-2 d-none d-md-block cta-lay"><div id="l3-152530" class="col-md-12 col-sm-12 price">
+                    230
+                </div> <div id="ls3-152530" class="col-md-12 col-sm-12 size">
+                    53.1K
+                </div></div></div></div></div><div id="runner-60443" class="row runners lastItemBorder"><div class="col-7 col-md-4 runner-name"><!----> <strong>The Draw</strong> <br> <span><span class="position-plus"><strong></strong></span> <!----></span> <!----></div> <div class="col-5 col-md-8 price"><div class="row"><div class="col-md-2 d-none d-md-block cta-back"><div id="b3-60443" class="col-12 price">
+                    60
+                </div> <div id="bs3-60443" class="col-12 size">
+                    7.4K
+                </div></div> <div class="col-md-2 d-none d-md-block cta-back"><div id="b2-60443" class="col-md-12 col-sm-12 price">
+                    65
+                </div> <div id="bs2-60443" class="col-md-12 col-sm-12 size">
+                    93.7K
+                </div></div> <div class="col-6 col-md-2 cta-back"><div id="b1-60443" class="col-12 price" style="background-color: rgb(227, 248, 255);">
+                    70
+                </div> <div id="bs1-60443" class="col-12 size" style="background-color: rgb(227, 248, 255);">
+                    674
+                </div></div> <div class="col-6 col-md-2 cta-lay"><div id="l1-60443" class="col-md-12 col-sm-12 price" style="background-color: rgb(255, 205, 204);">
+                    75
+                </div> <div id="ls1-60443" class="col-md-12 col-sm-12 size" style="background-color: rgb(255, 205, 204);">
+                    101.8K
+                </div></div> <div class="col-md-2 d-none d-md-block cta-lay"><div id="l2-60443" class="col-md-12 col-sm-12 price">
+                    80
+                </div> <div id="ls2-60443" class="col-md-12 col-sm-12 size">
+                    30.2K
+                </div></div> <div class="col-md-2 d-none d-md-block cta-lay"><div id="l3-60443" class="col-md-12 col-sm-12 price">
+                    85
+                </div> <div id="ls3-60443" class="col-md-12 col-sm-12 size">
+                    2.9K
+                </div></div></div></div></div></div> <div><div style="border-top: 1px solid lightgray; margin: 0px 5px; border-bottom: 1px solid lightgray; padding: 5px;"><p style="text-align: left; margin: 0px; padding: 0px; font-size: 16px; font-weight: inherit; color: red;"><b>Day2 Stumps Betting Closed</b></p></div></div></div> <!----> <div class="card card-accent-success"><div id="market-9.20528364"><div class="row bg-gray-100 market-head"><div class="col-12"><strong>Bookmaker</strong>
+                        &nbsp;
+                        <i class="fa fa-address-book"></i></div></div> <div id="runner-989523" class="row runners"><div class="col-7 col-md-4 runner-name"><!----> <strong>Bangladesh</strong> <br> <span><span class="position-plus"><strong></strong></span> <!----></span> <!----></div> <div class="col-5 col-md-8 price"><div class="" style="width: 102%; line-height: 45px; color: red; text-align: center; background: rgb(236, 236, 237); text-transform: uppercase;">
+                SUSPENDED
+            </div></div></div><div id="runner-839387" class="row runners"><div class="col-7 col-md-4 runner-name"><!----> <strong>Ireland</strong> <br> <span><span class="position-plus"><strong></strong></span> <!----></span> <!----></div> <div class="col-5 col-md-8 price"><div class="" style="width: 102%; line-height: 45px; color: red; text-align: center; background: rgb(236, 236, 237); text-transform: uppercase;">
+                SUSPENDED
+            </div></div></div><div id="runner-147882" class="row runners"><div class="col-7 col-md-4 runner-name"><!----> <strong>The Draw</strong> <br> <span><span class="position-plus"><strong></strong></span> <!----></span> <!----></div> <div class="col-5 col-md-8 price"><div class="" style="width: 102%; line-height: 45px; color: red; text-align: center; background: rgb(236, 236, 237); text-transform: uppercase;">
+                SUSPENDED
+            </div></div></div></div></div> <!----> <!----> <div class="card card-accent-success"><!----></div> <!----> <!----></div>
+
+    <div id="Pnl-Orders" class="col-md-4"><div class="card card-accent-primary right-content"><div class="card-body pt-1 pb-1"><div class="d-flex"><div class="dropdown mr-2"><a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary dropdown-toggle">Bet Lock</a> <div aria-labelledby="dropdownMenuLink" x-placement="bottom-start" class="dropdown-menu" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);"><a href="#" class="dropdown-item">Match Odds</a> <a href="#" class="dropdown-item">Other Markets</a></div> <div id="modalLocker" tabindex="-1" role="dialog" aria-labelledby="betSlipMobile" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content"><div class="modal-body"><img src="/img/preloader.gif"></div></div></div></div></div> <button type="button" class="btn btn-primary">
+                        User Book
+                    </button></div></div></div> <div class="card card-accent-primary right-content"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button id="tvbackbtn" onclick="SHOWTV()" class="btn btn-primary btn-xs col" style="border-right: solid;">Tv</button> <button id="livebackbtn" onclick="SHOWLIVE()" class="btn btn-primary btn-xs col">Score Card</button></div> <div id="TVDIV" style="display: none;"><div class="card-body video-container"><div class="bets"><div id="VBox1" style="display: none;"><unrealhtml5videoplayer id="UnrealPlayer1"></unrealhtml5videoplayer> <video id="streamVideo1" width="465" autoplay="autoplay" playsinline="" controls="controls" onloadedmetadata="OnMetadata()"></video></div></div></div></div> <div id="TVDIVIFRAME"></div> <div id="LIVEDIV" style="display: none;"><iframe id="livesc" src="https://bpexch.xyz/Common/LiveScoreCard?id=1.250542387" style="width: 100%;"></iframe></div></div> <div class="card card-accent-primary"><div class="card-header"><strong>Open Bets (0)</strong> <img src="/img/reconnecting.gif" alt="dc" class="rounded disconnected" style="display: none;"> <!----></div> <div class="card-body  Orders-Widget"><div class="row"><div class="col-4 no-pad"><strong>Runner</strong></div> <div class="col-2 no-pad"><strong>Price</strong></div> <div class="col-2 no-pad"><strong>Size</strong></div> <div class="col-2 no-pad"><strong>Better</strong></div> <div class="col-2 no-pad"><strong>Master</strong></div></div> </div></div> <div class="card card-accent-primary"><div class="card-header"><strong>Matched Bets (0)</strong> <button class="btn btn-sm btn-primary">Full Bet List</button></div> <div class="card-body Orders-Widget"><div class="row"><div class="col-4 no-pad"><strong>Runner</strong></div> <div class="col-2 no-pad"><strong>Price</strong></div> <div class="col-2 no-pad"><strong>Size</strong></div> <div class="col-2 no-pad"><strong>Better</strong></div> <div class="col-2 no-pad"><strong>Master</strong></div></div> </div></div></div>
+</div>
+
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+     <div class="modal fade" id="modalMarketRules" tabindex="-1" role="dialog" aria-labelledby="modalMarketRules" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Market Rules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div id="market-rules-text" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+    <div class="tickercontainer" style="height: 25px; overflow: hidden;"><div class="mask"><ul id="news-ticker-foot" style="position: relative; overflow: hidden; float: left; font: bold 10px Verdana; list-style-type: none; margin: 0px; padding: 0px; width: 453.105px; transition-timing-function: linear; transition-duration: 2.53124s; left: -126.562px;">
+        
+    <li data-update="item1" style="white-space: nowrap; float: left; padding: 0px 7px; line-height: 25px;"><b>Welcome to Exchange </b></li><li class="ticker-spacer" style="float: left; width: 126.543px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;"></li></ul><span class="tickeroverlay-left" style="display: none;">&nbsp;</span><span class="tickeroverlay-right" style="display: none;">&nbsp;</span></div></div>
+</footer>
+<!-- CoreUI and necessary plugins-->
+
+<script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+<script src="/js/signalr/dist/browser/signalr.js"></script>
+
+
+    <script src="/js/vue.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.min.js"></script>
+    <script src="/js/site.min.js?112000"></script>
+    <script src="/js/bof.js?112000"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C1WVLP1K0K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('set', { 'user_id': 'Imrantt8585' });
+        gtag('config', 'G-C1WVLP1K0K');
+    </script>
+
+
+<script type="text/javascript" src="/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/js/src/client-locales.js?112000"></script>
+
+    
+
+    <script>
+        var show_tv_tab = false;
+
+        $(document).ready(function () {
+             marketStore.state.userId = 5320796;
+            if (show_tv_tab) {
+                SHOWTV();
+            } else {
+                SHOWLIVE(MarketId)
+            }
+            $("#LIVEDIV").show();
+            });
+
+        function show(v) {
+
+            if (show_tv_tab) {
+                return;
+            }
+
+            if (v != 0) {
+                $("#LIVEDIV").show();
+            } else {
+                $("#LIVEDIV").hide();
+            }
+        }
+
+        var lastheight = 0;
+
+        function setIframeHeight(h) {
+
+            if (Math.abs(lastheight - h) < 10) {
+                return;
+            }
+
+            lastheight = h + 45;
+
+
+            var obj = document.getElementById("LIVEDIV");
+            obj.style.height = lastheight + "px";
+
+            var obj = document.getElementById("livesc");
+            obj.style.height = lastheight + "px";
+        }
+
+        function onMessage(event) {
+            setIframeHeight(event.data['h']);
+            show(event.data['show']);
+        }
+
+        if (window.addEventListener) {
+            window.addEventListener("message", onMessage, false);
+        }
+        else if (window.attachEvent) {
+            window.attachEvent("onmessage", onMessage, false);
+        }
+
+        function SHOWTV() {
+            show_tv_tab = true;
+            if ($("#TVDIV").is(":visible")) {
+                $("#TVDIV").hide();
+                $("#LIVEDIV").hide();
+                $("#sr-widget").hide();
+                var element = document.getElementById("UnrealPlayer1_Video");
+                if (element != null) {
+                    element.parentNode.removeChild(element);
+                    streams.forEach(function (str) {
+                        if (str.player !== null) {
+                            str.player.Stop();
+                        }
+                        document.querySelector(str.container).style.display = 'none';
+                        document.querySelector(str.el).style.display = 'none';
+                        document.querySelector(str.unreal).style.display = 'none';
+                        document.querySelector(str.unreal).player = null;
+                    });
+                }
+            } else {
+                GetChannelData(MarketEVID);
+                $("#LIVEDIV").hide();
+                $("#sr-widget").hide();
+            }
+        }
+
+        function SHOWLIVE() {
+            show_tv_tab = false;
+            if ($("#LIVEDIV").is(":visible")) {
+                $("#TVDIV").hide();
+                $("#LIVEDIV").hide();
+                $("#sr-widget").hide();
+                var element = document.getElementById("UnrealPlayer1_Video");
+                if (element != null) {
+                    element.parentNode.removeChild(element);
+                    streams.forEach(function (str) {
+                        if (str.player !== null) {
+                            str.player.Stop();
+                        }
+                        document.querySelector(str.container).style.display = 'none';
+                        document.querySelector(str.el).style.display = 'none';
+                        document.querySelector(str.unreal).style.display = 'none';
+                        document.querySelector(str.unreal).player = null;
+                    });
+                }
+            } else {
+                var element = document.getElementById("UnrealPlayer1_Video");
+                if (element != null) {
+                    element.parentNode.removeChild(element);
+                    streams.forEach(function (str) {
+                        if (str.player !== null) {
+                            str.player.Stop();
+                        }
+                        document.querySelector(str.container).style.display = 'none';
+                        document.querySelector(str.el).style.display = 'none';
+                        document.querySelector(str.unreal).style.display = 'none';
+                        document.querySelector(str.unreal).player = null;
+                    });
+                }
+
+                $("#TVDIV").hide();
+                $("#LIVEDIV").show();
+                $("#sr-widget").show();
+            }
+        }
+
+
+
+    </script>
+
+
+    <script>
+        const token = getCookie('wexscktoken');
+        const sess = getCookie('wex3authtoken');
+        const reft = getCookie('wex3reftoken');
+
+        $(document).ready(function () {
+            pollUserData();
+
+            pollRefreshToken();
+        });
+    </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9a18821b3ceffa02&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}" crossorigin="anonymous"></script>
+
+</body>
