@@ -293,7 +293,7 @@
                                         </table>
                                     </div>
 
-                                    <a href="/Users/Create" type="button" class="btn btn-sm btn-primary">
+                                    <a href="/users/create" type="button" class="btn btn-sm btn-primary">
                                         <i class="fa fa-user-o"></i>
                                         <strong>New User</strong>
                                     </a>

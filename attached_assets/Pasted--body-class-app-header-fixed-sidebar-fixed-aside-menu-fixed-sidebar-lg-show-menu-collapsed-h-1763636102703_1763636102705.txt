@@ -1,0 +1,908 @@
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show menu-collapsed">
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="logo-bar">
+            <a href="/index">
+                <span class="green-logo-text d-sm-down-none">
+                    BetPro
+                </span>
+            </a>
+        </div>
+
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+
+<ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/index">Dashboard</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Accounts/Chart">Users</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Reports/BookDetail">Reports</a>
+        </li>
+</ul>
+
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item px-2">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Imrantt8585 (Admin) <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/Common/Profile">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" id="btn-logout" href="/Common/Logout">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+                    <strong>B:</strong> <span class="wallet-balance">0</span>
+                    <strong>Exp:</strong> <span class="wallet-exposure">0</span>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                
+
+<ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">
+                <i class="nav-icon fas fa-tachometer-alt fa-inverse"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Accounts/Chart">
+                <i class="nav-icon fas fa-users fa-inverse"></i> Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Liables">
+                <i class="nav-icon fas fa-funnel-dollar fa-inverse"></i> Current Position
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Reports/BookDetail">
+                <i class="nav-icon fas fa-money-check fa-inverse"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/BetLocker">
+                <i class="nav-icon fas fa-unlock-alt fa-inverse"></i> Bet Lock
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Games">
+                <i class="nav-icon fas fa-star fa-inverse"></i> Star Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/WorldCasino">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> World Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/ExGames">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> BetFair Games
+            </a>
+        </li>
+
+
+
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/soccer.svg" alt="C">
+            Soccer
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/tennis.svg" alt="C">
+            Tennis
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250728204">
+Laur Samson v Sorribes Tormo                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250737216">
+P Udvardy v Hercog                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250742867">
+Mar Carle v Fe Labrana                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761434">
+Pigossi v Leol Jeanjean                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/cricket.svg" alt="C">
+            Cricket
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.249449817">
+Australia v England                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250542387">
+Bangladesh v Ireland                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250636959">
+India v South Africa                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250661251">
+Sydney Sixers W v Melbourne Stars W                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250716982">
+Sri Lanka v Zimbabwe                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250754045">
+Brisbane Heat W v Sydney Thunder W                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757955">
+Royal Champs v Deccan Gladiators                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250758008">
+Delhi Bulls v Vista Riders                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761088">
+Aspin Stallions v Ajman Titans                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/horse.svg" alt="C">
+            Horse Race
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749573">
+                                <span class="slidedate market-time">3:47 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T10:47:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Ballarat (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757030">
+                                <span class="slidedate market-time">3:55 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T10:55:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250747910">
+                                <span class="slidedate market-time">3:56 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T10:56:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Penrith (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713427">
+                                <span class="slidedate market-time">4:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713428">
+                                <span class="slidedate market-time">4:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749575">
+                                <span class="slidedate market-time">4:15 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:15:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Ballarat (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757032">
+                                <span class="slidedate market-time">4:30 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:30:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713433">
+                                <span class="slidedate market-time">4:40 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:40:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713434">
+                                <span class="slidedate market-time">4:40 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:40:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749577">
+                                <span class="slidedate market-time">4:41 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:41:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Ballarat (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714685">
+                                <span class="slidedate market-time">4:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714686">
+                                <span class="slidedate market-time">4:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713324">
+                                <span class="slidedate market-time">5:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713325">
+                                <span class="slidedate market-time">5:00 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:00:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757034">
+                                <span class="slidedate market-time">5:05 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:05:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713446">
+                                <span class="slidedate market-time">5:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713447">
+                                <span class="slidedate market-time">5:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714690">
+                                <span class="slidedate market-time">5:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250714691">
+                                <span class="slidedate market-time">5:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Thurles (IE) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713509">
+                                <span class="slidedate market-time">5:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713510">
+                                <span class="slidedate market-time">5:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wincanton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713331">
+                                <span class="slidedate market-time">5:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713332">
+                                <span class="slidedate market-time">5:35 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:35:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Warwick (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250757036">
+                                <span class="slidedate market-time">5:40 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:40:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Vaal (ZA)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713440">
+                                <span class="slidedate market-time">5:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250713441">
+                                <span class="slidedate market-time">5:45 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T12:45:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Lingfield (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/greyhound-racing.svg" alt="C">
+            Greyhound
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250751405">
+                                <span class="slidedate market-time">3:51 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T10:51:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Q2 Parklands (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748002">
+                                <span class="slidedate market-time">3:54 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T10:54:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Angle Park (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250747750">
+                                <span class="slidedate market-time">3:59 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T10:59:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Casino (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749675">
+                                <span class="slidedate market-time">4:01 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:01:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Shepparton (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760388">
+                                <span class="slidedate market-time">4:01 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:01:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250747952">
+                                <span class="slidedate market-time">4:04 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:04:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Hobart (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748042">
+                                <span class="slidedate market-time">4:05 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:05:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749807">
+                                <span class="slidedate market-time">4:07 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:07:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Wentworth Park (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761168">
+                                <span class="slidedate market-time">4:09 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:09:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250751410">
+                                <span class="slidedate market-time">4:10 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:10:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Q2 Parklands (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748007">
+                                <span class="slidedate market-time">4:13 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:13:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Angle Park (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760390">
+                                <span class="slidedate market-time">4:18 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:18:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250747755">
+                                <span class="slidedate market-time">4:19 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:19:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Casino (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250749680">
+                                <span class="slidedate market-time">4:20 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:20:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Shepparton (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250747957">
+                                <span class="slidedate market-time">4:23 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:23:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Hobart (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748047">
+                                <span class="slidedate market-time">4:26 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:26:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250761170">
+                                <span class="slidedate market-time">4:27 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:27:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Nottingham (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250751415">
+                                <span class="slidedate market-time">4:29 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:29:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Q2 Parklands (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250748012">
+                                <span class="slidedate market-time">4:32 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:32:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Angle Park (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.250760392">
+                                <span class="slidedate market-time">4:34 PM</span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2025-11-20T11:34:00.0000000Z
+                                </span>
+                                <span class="slidename">
+                                    Sheffield (GB)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+</ul>
+            </nav>
+
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <form class="form-horizontal" method="post" onsubmit="return validateForm()">
+    <div class="card">
+        <div class="card-header">
+            <strong>Create New User under <i>Imrantt8585</i></strong>
+        </div>
+        <div class="card-body">
+            <div class="text-danger validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="user_Username">Username</label>
+                        <div class=" col-md-9">
+                            <input minlength="6" maxlength="30" class="form-control" required="" type="text" id="user_Username" name="user.Username" value="">
+                            <span class="field-validation-valid" data-valmsg-for="user.Username" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class=" col-md-3 col-form-label" for="user_Password">Password</label>
+                        <div class="col-md-9">
+                            <input class="form-control" minlength="8" maxlength="30" required="" type="text" id="user_Password" name="user.Password" value="">
+                            <span class="field-validation-valid" data-valmsg-for="user.Password" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="user_Type">Type</label>
+                        <div class="col-md-9">
+                                <div class="form-check form-check-inline mr-1">
+                                    <input onclick="ToggleDownline()" class="form-check-input accountType" id="SuperMaster" type="radio" value="3" required="" data-val="true" data-val-required="The Type field is required." name="user.Type">
+                                    <label class="form-check-label" for="SuperMaster">SuperMaster</label>
+                                </div>
+                                <div class="form-check form-check-inline mr-1">
+                                    <input onclick="ToggleDownline()" class="form-check-input accountType" id="Bettor" type="radio" value="4" required="" name="user.Type">
+                                    <label class="form-check-label" for="Bettor">Bettor</label>
+                                </div>
+                            <span class="field-validation-valid" data-valmsg-for="user.Type" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="down-share" style="display:none;">
+                        <label class="col-md-3 col-form-label">Downline Share</label>
+                        <div class="col-md-9">
+                            <input class="form-control col-4 col-md-4" type="number" min="0" step="1" max="85.00" data-val="true" data-val-number="The field Downline must be a number." data-val-required="The Downline field is required." id="Downline" name="Downline" value="0"><input name="__Invariant" type="hidden" value="Downline">
+                            <span class="help-block">Max allowed downline share is 0 - 85</span>
+                            <span class="field-validation-valid" data-valmsg-for="Downline" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="user_IsActive">IsActive</label>
+                        <div class="col-md-9 col-form-label">
+                            <div class="form-check checkbox">
+                                <input class="form-check-input" type="checkbox" data-val="true" data-val-required="The IsActive field is required." id="user_IsActive" name="user.IsActive" value="true">
+                                <span class="field-validation-valid" data-valmsg-for="user.IsActive" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="user_Phone">Phone</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="user_Phone" name="user.Phone" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="user_Reference">Reference</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="user_Reference" name="user.Reference" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="user_Notes">Notes</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="user_Notes" name="user.Notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input type="hidden" id="IsPointsSystem" value="False">
+            <button class="btn btn-sm btn-primary" type="submit">
+                <i class="fa fa-dot-circle-o"></i> Submit
+            </button>
+        </div>
+    </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8BRJFc9Yun9Eh4XBqZSViiDUJBIsTrDzGLt_otdFxpl-RBHMRAcu6eLmDD0wZXlXOveQR4Le1-mcJis7vFpIjx8ry4J2jq_1uy_DGKKKEIdH_qxSGZPzvnnXtdhn3Y5VIpeJX3sGtmilWKCRdtRZ-qMPWhk3K2spVgWTMuFCxac1bMIYdJzd4zCe3Z0HBzLPeA"><input name="user.IsActive" type="hidden" value="false"></form>
+<script type="text/javascript">
+    function ToggleDownline() {
+        var types = document.getElementsByClassName("accountType");
+
+        var downShare = document.getElementById("down-share");
+        var downLine = document.getElementById("Downline");
+
+        for (i = 0; i < types.length; i++) {
+            if (types[i].checked) {
+
+                if (document.getElementById("IsPointsSystem").value == "True") {
+                    downShare.style.display = 'none';
+                    downLine.value = 0;
+                    downLine.max = 0;
+                }
+                else if (types[i].value == 4 || types[i].value == 7) {
+                    downShare.style.display = 'none';
+                    //downLine.value = 100;
+                    downLine.max = 100;
+                } else {
+                    //downLine.value = 0;
+                    downLine.max = 85.00;
+                    downShare.style.display = '';
+                }
+            }
+        }
+    }
+
+    ToggleDownline();
+</script>
+                </div>
+            </div>
+        </main>
+    </div>
+
+     <div class="modal fade" id="modalMarketRules" tabindex="-1" role="dialog" aria-labelledby="modalMarketRules" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Market Rules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div id="market-rules-text" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+    <div class="tickercontainer" style="height: 25px; overflow: hidden;"><div class="mask"><ul id="news-ticker-foot" style="position: relative; overflow: hidden; float: left; font: bold 10px Verdana; list-style-type: none; margin: 0px; padding: 0px; width: 453.105px; transition-timing-function: linear; transition-duration: 2.53086s; left: -126.543px;">
+        
+    <li class="ticker-spacer" style="float: left; width: 126.562px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;"></li><li data-update="item1" style="white-space: nowrap; float: left; padding: 0px 7px; line-height: 25px;"><b>Welcome to Exchange </b></li></ul><span class="tickeroverlay-left" style="display: none;">&nbsp;</span><span class="tickeroverlay-right" style="display: none;">&nbsp;</span></div></div>
+</footer>
+<!-- CoreUI and necessary plugins-->
+
+<script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+<script src="/js/signalr/dist/browser/signalr.js"></script>
+
+
+    <script src="/js/vue.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.min.js"></script>
+    <script src="/js/site.min.js?112000"></script>
+    <script src="/js/bof.js?112000"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C1WVLP1K0K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('set', { 'user_id': 'Imrantt8585' });
+        gtag('config', 'G-C1WVLP1K0K');
+    </script>
+
+
+<script type="text/javascript" src="/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/js/src/client-locales.js?112000"></script>
+
+    
+    <script type="text/javascript">
+        function validateForm() {
+            isValid = false;
+            pwd = $("#user_Password").val()
+            isValid = IsPasswordStrong(pwd);
+
+            if (!isValid) {
+                $("#user_Password").next().text('Min length is 8 characters and password must contain alphabets and numerics.');
+                $("#user_Password").next().addClass('text-danger');
+            }
+            return isValid;
+        }
+    </script>
+
+
+    <script>
+        const token = getCookie('wexscktoken');
+        const sess = getCookie('wex3authtoken');
+        const reft = getCookie('wex3reftoken');
+
+        $(document).ready(function () {
+            pollUserData();
+
+            pollRefreshToken();
+        });
+    </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9a17688d7d5df9d3&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}" crossorigin="anonymous"></script>
+
+</body>

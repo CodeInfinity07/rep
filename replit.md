@@ -30,6 +30,14 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
+- **2025-11-20**: User Management Frontend
+  - Created create-user page (`/users/create`) with comprehensive form fields
+  - Form includes: Username, Password, Type (SuperMaster/Bettor), Downline Share, IsActive, Phone, Reference, Notes
+  - Added JavaScript validation for password strength (min 8 chars, alphanumeric)
+  - Dynamic Downline Share field visibility based on user type selection
+  - Updated "New User" button in users page to link to new create-user page
+  - Frontend-only implementation (no backend processing yet)
+
 - **2025-11-20**: MySQL Database Migration
   - Migrated from SQLite to MySQL (bguru69 on remote server 94.72.106.77)
   - Configured database credentials via Replit Secrets (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD)

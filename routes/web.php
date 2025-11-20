@@ -68,6 +68,10 @@ Route::get('/users', function () {
     return view('management.users');
 });
 
+Route::get('/users/create', function () {
+    return view('management.create-user');
+});
+
 Route::get('/result', function () {
     return view('result');
 });
