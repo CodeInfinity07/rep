@@ -310,7 +310,8 @@
                                                             <td>-</td>
                                                             <td>
                                                                 <a class="btn btn-warning"
-                                                                    href="/users/{{ $user->id }}/cash-credit?tab=cash">
+                                                                    href="javascript:void(0);"
+                                                                    onclick="window.open('/users/{{ $user->id }}/cash-credit?tab=cash', 'CashCreditPopup', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;">
                                                                     <strong>C</strong>
                                                                 </a>
 
