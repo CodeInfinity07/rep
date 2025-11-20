@@ -125,8 +125,12 @@
                 <div class="card-header" id="{{ $marketId }}">
                     <h4>
                         <strong>{{ $matchData['marketName'] ?? 'Match Odds' }}</strong>
-                        <span style="color: {{ $matchData['status'] === 'OPEN' ? 'rgb(232, 62, 140)' : 'rgb(0, 144, 105)' }};">
-                            <strong>{{ $matchData['status'] ?? 'UNKNOWN' }}</strong>
+                        @php
+                            $status = $matchData['status'] ?? 'UNKNOWN';
+                            $statusColor = ($status === 'OPEN') ? 'rgb(232, 62, 140)' : 'rgb(0, 144, 105)';
+                        @endphp
+                        <span style="color: {{ $statusColor }};">
+                            <strong>{{ $status }}</strong>
                         </span>
                         @if(isset($matchData['inplay']) && $matchData['inplay'])
                             <span class="badge badge-success">IN-PLAY</span>
