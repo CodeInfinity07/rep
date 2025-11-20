@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SportsDataController;
 
 Route::get('/api/sports-data', [SportsDataController::class, 'getSportsData']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
+        $user = Auth::user();
+        if ($user->type === 'Bettor') {
+            return view('bettor.index');
+        }
         return view('management.index');
     });
 });

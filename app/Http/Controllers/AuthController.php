@@ -11,8 +11,7 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (Auth::check()) {
-            $user = Auth::user();
-            return redirect($user->type === 'Bettor' ? '/bettor' : '/');
+            return redirect('/');
         }
         return view('login');
     }
@@ -40,10 +39,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             
-            $user = Auth::user();
-            $defaultUrl = $user->type === 'Bettor' ? '/bettor' : '/';
-            
-            return redirect()->intended($defaultUrl);
+            return redirect()->intended('/');
         }
 
         return back()

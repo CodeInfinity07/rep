@@ -32,10 +32,11 @@ BETGURU is a sports betting and trading platform that provides interfaces for va
 - Login and authentication pages
 
 ## Recent Changes
-- **2025-11-20**: Role-Based Dashboard Redirects
-  - Implemented role-based redirects in AuthController
-  - Bettor accounts now redirect to /bettor (bettor dashboard) after login
-  - Non-bettor accounts redirect to / (management dashboard) after login
+- **2025-11-20**: Role-Based Dashboard at Root Route
+  - Modified root route `/` to dynamically show different dashboards based on user type
+  - Bettor accounts see bettor dashboard (bettor.index) at `/`
+  - Non-bettor accounts see management dashboard (management.index) at `/`
+  - All users login and are redirected to `/` which shows appropriate dashboard
   - Fixed issue where bettor users were seeing management dashboard
 
 - **2025-11-20**: Complete Cricket Match Page with Multiple Markets
