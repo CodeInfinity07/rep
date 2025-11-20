@@ -91,13 +91,25 @@ class MatchController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 
-                // Handle different response structures
-                // Case 1: Array of market ID strings ["1.250716982", "9.20529268", ...]
+                // Case 1: Nested structure: competition.event.markets[]
+                if (isset($data['competition']['event']['markets']) && is_array($data['competition']['event']['markets'])) {
+                    $marketIds = [];
+                    foreach ($data['competition']['event']['markets'] as $market) {
+                        if (isset($market['marketId'])) {
+                            $marketIds[] = $market['marketId'];
+                        }
+                    }
+                    if (!empty($marketIds)) {
+                        return $marketIds;
+                    }
+                }
+                
+                // Case 2: Array of market ID strings ["1.250716982", "9.20529268", ...]
                 if (is_array($data) && isset($data[0]) && is_string($data[0])) {
                     return $data;
                 }
                 
-                // Case 2: Array of objects [{"marketId": "1.250716982"}, ...]
+                // Case 3: Array of objects [{"marketId": "1.250716982"}, ...]
                 if (is_array($data) && isset($data[0]) && is_array($data[0])) {
                     $marketIds = [];
                     foreach ($data as $item) {
@@ -112,12 +124,12 @@ class MatchController extends Controller
                     }
                 }
                 
-                // Case 3: Object with marketIds key {"marketIds": [...]}
+                // Case 4: Object with marketIds key {"marketIds": [...]}
                 if (isset($data['marketIds']) && is_array($data['marketIds'])) {
                     return $data['marketIds'];
                 }
                 
-                // Case 4: Object with markets key {"markets": [...]}
+                // Case 5: Object with markets key {"markets": [...]}
                 if (isset($data['markets']) && is_array($data['markets'])) {
                     $marketIds = [];
                     foreach ($data['markets'] as $market) {
