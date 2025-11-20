@@ -215,8 +215,8 @@
                                         <i class="fa fa-user-o"></i>
                                         <strong>New User</strong>
                                     </a>
-                                    <a href="/Accounts/Ledger" type="button" class="btn btn-sm btn-primary"
-                                        target="_blank">
+                                    <a href="javascript:void(0);" type="button" class="btn btn-sm btn-primary"
+                                        onclick="window.open('/users/{{ Auth::user()->id }}/ledger', 'MyLedgerWindow', 'fullscreen=yes,scrollbars=yes,resizable=yes'); return false;">
                                         <i class="fa fa-book"></i>
                                         <strong>Account Ledger</strong>
                                     </a>
