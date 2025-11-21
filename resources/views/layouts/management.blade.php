@@ -62,12 +62,15 @@
                     {{ Auth::user()->username }}({{ ucfirst(Auth::user()->type) }}) <i class="fas fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="/Common/Profile">
+                    <a class="dropdown-item" href="#">
                         <i class="fa fa-user"></i> Profile
                     </a>
-                    <a class="dropdown-item" id="btn-logout" href="/Common/Logout">
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out"></i> Logout
                     </a>
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </li>
             <li class="nav-item">
