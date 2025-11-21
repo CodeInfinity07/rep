@@ -4576,8 +4576,8 @@
             if (tables[0]) {
                 tables[0].innerHTML = cricketMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
-                    const r2 = match.runners && match.runners[1] || {};
-                    const r3 = match.runners && match.runners[2] || {};
+                    const r2 = match.runners && match.runners[2] || {};
+                    const r3 = match.runners && match.runners[1] || {};
                     const r1Back = formatOdds(r1.back);
                     const r1Lay = formatOdds(r1.lay);
                     const r2Back = formatOdds(r2.back);
