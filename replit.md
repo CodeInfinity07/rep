@@ -70,6 +70,20 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## Recent Updates (November 21, 2025)
 
+### Match Detail Page Fixed - Layout Inheritance Now Working (November 21, 2025)
+- **Layout Inheritance Fixed**: Match detail page now properly inherits layouts.bettor with header and sidebar fully visible
+  * Removed legacy layout wrappers (row, col-lg-8, col-lg-4) that were breaking the layout structure
+  * Replaced with single clean wrapper: `<div class="match-detail-content">`
+  * All match content preserved: market boxes, odds tables, scoreboard, TV/scorecard buttons, bet slip
+  * Div tags properly balanced (314 opening = 314 closing)
+  * Architect verified: layout inheritance works correctly
+- **Match Detail Structure**: 
+  * Properly extends layouts.bettor with @section('content')
+  * Uses marketId and eventId from controller (dynamic variables)
+  * Contains left-content (markets, odds, scoreboard) and right-content (TV, betslip) sections
+  * All styles and scripts preserved for functionality
+  * No row/column wrappers breaking parent layout structure
+
 ### Cricket Page Rewritten with Clean Structure (November 21, 2025)
 - **Bettor Cricket Listing Page**: Completely rewritten from scratch with clean, maintainable code
   * Removed all problematic code (broken slick carousel, static HTML)
