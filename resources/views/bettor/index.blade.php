@@ -4548,93 +4548,24 @@
             location.href = "/Common/Logout";
         }
 
-        function updateInplayMatches(data) {
-            const cricketMatches = data.cricket || [];
-            const soccerMatches = data.soccer || [];
-            const tennisMatches = data.tennis || [];
-            
-            const totalInplay = cricketMatches.length + soccerMatches.length + tennisMatches.length;
-            
-            document.querySelector('#owlitemactive1t i').textContent = totalInplay;
-            document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
-            document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
-            document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
-            
-            const cricketTable = document.querySelector('.tabcontent.active .high_lights:nth-child(1) table tbody');
-            const soccerTable = document.querySelector('.tabcontent.active .high_lights:nth-child(2) table tbody');
-            const tennisTable = document.querySelector('.tabcontent.active .high_lights:nth-child(3) table tbody');
-            
-            if (cricketTable) {
-                cricketTable.innerHTML = cricketMatches.map(match => `
-                    <tr>
-                        <td colspan="2">
-                            <a href="/cricket/${match.marketId}" class="text-white">
-                                ${match.marketName}
-                                ${match.inplay ? '<span class="badge badge-success ml-2" style="font-size:10px;">LIVE</span>' : ''}
-                            </a>
-                        </td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td></td>
-                    </tr>
-                `).join('');
-            }
-            
-            if (soccerTable) {
-                soccerTable.innerHTML = soccerMatches.map(match => `
-                    <tr>
-                        <td colspan="2">
-                            <a href="/cricket/${match.marketId}" class="text-white">
-                                ${match.marketName}
-                                ${match.inplay ? '<span class="badge badge-success ml-2" style="font-size:10px;">LIVE</span>' : ''}
-                            </a>
-                        </td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td></td>
-                    </tr>
-                `).join('');
-            }
-            
-            if (tennisTable) {
-                tennisTable.innerHTML = tennisMatches.map(match => `
-                    <tr>
-                        <td colspan="2">
-                            <a href="/cricket/${match.marketId}" class="text-white">
-                                ${match.marketName}
-                                ${match.inplay ? '<span class="badge badge-success ml-2" style="font-size:10px;">LIVE</span>' : ''}
-                            </a>
-                        </td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td></td>
-                    </tr>
-                `).join('');
-            }
-        }
-
         function fetchHighlights() {
             $.ajax({
                 type: "GET",
-                url: "/api/inplay",
+                url: "/api/cricket-matches",
                 timeout: 12000,
                 success: function (result) {
-                    updateInplayMatches(result);
+                    if (result && result.cricket) {
+                        const allMatches = result.cricket;
+                        const inplayMatches = allMatches.filter(m => m.inplay);
+                        const cricketInplay = inplayMatches.filter(m => m.sport === 'Cricket');
+                        const soccerInplay = inplayMatches.filter(m => m.sport === 'Soccer');
+                        const tennisInplay = inplayMatches.filter(m => m.sport === 'Tennis');
+                        
+                        document.querySelector('#owlitemactive1t div i').textContent = inplayMatches.length;
+                        document.querySelector('#owlitemactive2t div i').textContent = allMatches.filter(m => m.sport === 'Cricket').length;
+                        document.querySelector('#owlitemactive3t div i').textContent = allMatches.filter(m => m.sport === 'Tennis').length;
+                        document.querySelector('#owlitemactive4t div i').textContent = allMatches.filter(m => m.sport === 'Soccer').length;
+                    }
                     ActivateTab(LastTab);
                     convertAllToClientTime();
                     $(".center").slick({
