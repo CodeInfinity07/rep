@@ -160,11 +160,13 @@
             fetch('/api/cricket-matches')
                 .then(response => response.json())
                 .then(data => {
-                    populateSidebarMenus(
-                        data.matches.filter(m => m.sportType === 'cricket'),
-                        data.matches.filter(m => m.sportType === 'soccer'),
-                        data.matches.filter(m => m.sportType === 'tennis')
-                    );
+                    // API returns {result: {cricket: [], soccer: [], tennis: []}}
+                    const result = data.result || data;
+                    const cricketMatches = result.cricket || [];
+                    const soccerMatches = result.soccer || [];
+                    const tennisMatches = result.tennis || [];
+                    
+                    populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches);
                 })
                 .catch(error => console.error('Error loading sidebar menus:', error));
         });
