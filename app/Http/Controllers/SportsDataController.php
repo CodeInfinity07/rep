@@ -171,4 +171,77 @@ class SportsDataController extends Controller
         return $total;
     }
     
+    public function getInplayMatches()
+    {
+        try {
+            $apiKey = $_SERVER['SCORESWIFT_API_KEY'] ?? $_ENV['SCORESWIFT_API_KEY'] ?? getenv('SCORESWIFT_API_KEY') ?? env('SCORESWIFT_API_KEY');
+            
+            if (!$apiKey) {
+                return response()->json(['error' => 'API key not configured'], 500);
+            }
+            
+            $cacheKey = 'inplay_matches';
+            $cacheDuration = now()->addSeconds(30);
+            
+            $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey) {
+                $response = Http::withHeaders([
+                    'X-ScoreSwift-Key' => $apiKey
+                ])->timeout(10)->get('http://89.116.20.218:8085/api/inplay');
+                
+                if ($response->successful()) {
+                    return $response->json();
+                }
+                
+                return null;
+            });
+            
+            if (!$data) {
+                return response()->json(['error' => 'Failed to fetch inplay matches'], 500);
+            }
+            
+            $categorized = [
+                'cricket' => [],
+                'soccer' => [],
+                'tennis' => [],
+                'horse' => [],
+                'greyhound' => []
+            ];
+            
+            foreach ($data as $sportCategory) {
+                if (!isset($sportCategory['markets']) || empty($sportCategory['markets'])) {
+                    continue;
+                }
+                
+                $sportName = strtolower($sportCategory['name'] ?? '');
+                
+                foreach ($sportCategory['markets'] as $market) {
+                    $matchData = [
+                        'marketId' => $market['marketId'] ?? '',
+                        'marketName' => $market['marketName'] ?? '',
+                        'status' => $market['status'] ?? 'UNKNOWN',
+                        'inplay' => $market['inplay'] ?? false,
+                        'startTime' => $market['marketStartTime'] ?? null,
+                    ];
+                    
+                    if ($sportName === 'cricket') {
+                        $categorized['cricket'][] = $matchData;
+                    } elseif ($sportName === 'soccer') {
+                        $categorized['soccer'][] = $matchData;
+                    } elseif ($sportName === 'tennis') {
+                        $categorized['tennis'][] = $matchData;
+                    } elseif (str_contains($sportName, 'horse')) {
+                        $categorized['horse'][] = $matchData;
+                    } elseif (str_contains($sportName, 'greyhound')) {
+                        $categorized['greyhound'][] = $matchData;
+                    }
+                }
+            }
+            
+            return response()->json($categorized);
+            
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
 }

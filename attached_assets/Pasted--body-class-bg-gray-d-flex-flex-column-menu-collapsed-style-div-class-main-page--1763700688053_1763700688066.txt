@@ -1,0 +1,3842 @@
+<body class="bg-gray d-flex flex-column menu-collapsed" style="">
+    <div class="main-page">
+        <div class="row no-gutters">
+            <div class="col-md-3 col-lg-2" id="sidebar">
+                <div class="logo-bar">
+                    <a href="/Common/Dashboard">
+                        <span class="green-logo-text">BetPro</span>
+                    </a>
+                </div>
+                <div class="divider"></div>
+                <div class="sidebar-menu" style="height:100%;">
+                    <ul>
+                        
+
+<ul class="nav">
+
+
+
+<style>
+
+    @keyframes spin {
+        from {
+            transform: rotateY(0deg);
+            moz-transform: rotateY(0deg);
+            ms-transform: rotateY(0deg);
+        }
+
+        to {
+            transform: rotateY(360deg);
+            moz-transform: rotateY(360deg);
+            ms-transform: rotateY(360deg);
+        }
+    }
+
+    @-webkit-keyframes spin {
+        from {
+            -webkit-transform: rotateY(0deg);
+        }
+
+        to {
+            -webkit-transform: rotateY(360deg);
+        }
+    }
+
+    .imageSpin {
+        transition-delay: 5s;
+        animation-name: spin;
+        animation-iteration-count: infinite;
+        animation-duration: inherit;
+        -webkit-animation-name: spin;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: initial;
+        -webkit-animation-duration: 4s;
+        -webkit-animation-delay: 2s;
+    }
+
+    .imageSpin2 {
+        transition-delay: 3s;
+        animation-name: spin;
+        animation-iteration-count: infinite;
+        animation-duration: inherit;
+        -webkit-animation-name: spin;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: initial;
+        -webkit-animation-duration: 3s;
+        -webkit-animation-delay: 2s;
+    }
+   
+
+    /*for spin2*/
+    #spinning-circle {
+        animation-name: spinning-circle;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+
+    @-webkit-keyframes spinning-circle {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    #invertcolor {
+        filter: invert(100%);
+        -webkit-filter: invert(100%);
+        animation-name: spinning-circle;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+    #invertcolor2{
+         filter: invert(100%);
+        -webkit-filter: invert(100%);
+       animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        max-height:30px;
+    }
+
+    #invertcolor3 {
+        filter: invert(100%);
+        -webkit-filter: invert(100%);
+        animation-name: spin;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        max-height: 30px;
+    }
+
+
+ .exgameblinker{
+   animation: animate 8s linear infinite;
+ } 
+  
+ @keyframes animate{
+   0%{
+     background-color:red;
+   }
+   25%{
+     background-color:inherit;
+   }
+   50%{
+     background-color:inherit;
+   }
+   75%{
+     background-color:inherit;
+   }
+   100%{
+     background-color:red;
+   }
+ }
+
+    .Galaxyblinker {
+        position: relative;
+        z-index: 0;
+    }
+
+        .Galaxyblinker::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(90deg, #8a47ff 0%, #c36eff 100%);
+            opacity: 1;
+            animation: animateGradient 12s linear infinite;
+            transition: opacity 0.5s ease;
+        }
+
+    @keyframes animateGradient {
+        0%, 100%
+
+    {
+        opacity: 1;
+    }
+
+    25%, 50%, 75% {
+        opacity: 0;
+    }
+
+    }
+
+
+</style>
+
+        <li style="width:100%;">
+
+            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="svg-soccer svg-soccer-dims svg-span" role="img"></span>
+                <span>Soccer</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="nav">
+                <ul class="sub-menu" href="#">
+
+                    <li><a href="#"><strong>All Soccer</strong></a></li>
+                    <li class="divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250058856">
+Adelaide United v Melbourne City                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250353989">
+Bochum v Dynamo Dresden                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250790096">
+FK Makedonija v FK Sileks                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250353881">
+Hertha Berlin v Braunschweig                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250349024">
+Kfum Oslo v Bodo Glimt                                </a>
+                            </li>
+                </ul>
+            </div>
+        </li>
+        <li style="width:100%;">
+
+            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="svg-tennis svg-tennis-dims svg-span" role="img"></span>
+                <span>Tennis</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="nav">
+                <ul class="sub-menu" href="#">
+
+                    <li><a href="#"><strong>All Tennis</strong></a></li>
+                    <li class="divider"></li>
+                </ul>
+            </div>
+        </li>
+        <li style="width:100%;" class="">
+
+            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="svg-cricket svg-cricket-dims svg-span" role="img"></span>
+                <span>Cricket</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="nav" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 5px, 0px);">
+                <ul class="sub-menu" href="#">
+
+                    <li><a href="#"><strong>All Cricket</strong></a></li>
+                    <li class="divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.249449817">
+Australia v England                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250542387">
+Bangladesh v Ireland                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250754045">
+Brisbane Heat W v Sydney Thunder W                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250786640">
+Deccan Gladiators v Quetta Qavalry                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250791349">
+Delhi Bulls v Royal Champs                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250636959">
+India v South Africa                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250791443">
+Northern Warriors v Ajman Titans                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250777438">
+Pakistan v Sri Lanka                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776463">
+Perth Scorchers W v Adelaide Strikers W                                </a>
+                            </li>
+                </ul>
+            </div>
+        </li>
+        <li style="width:100%;">
+
+            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="svg-horse svg-horse-dims svg-span" role="img"></span>
+                <span>Horse Race</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="nav">
+                <ul class="sub-menu" href="#">
+
+                    <li><a href="#"><strong>All Horse Race</strong></a></li>
+                    <li class="divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744971">
+                                        <span class="market-time">9:45 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T04:45:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Orange (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250751495">
+                                        <span class="market-time">9:50 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T04:50:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Port Lincoln (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250772148">
+                                        <span class="market-time">9:53 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T04:53:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Newcastle (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744941">
+                                        <span class="market-time">10:00 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:00:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Grafton (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250770372">
+                                        <span class="market-time">10:03 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:03:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Mildura (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250745388">
+                                        <span class="market-time">10:10 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:10:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Mackay (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744976">
+                                        <span class="market-time">10:23 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:23:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Orange (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250751501">
+                                        <span class="market-time">10:30 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:30:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Port Lincoln (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250772151">
+                                        <span class="market-time">10:33 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:33:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Newcastle (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744946">
+                                        <span class="market-time">10:40 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:40:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Grafton (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250770374">
+                                        <span class="market-time">10:43 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:43:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Mildura (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250745393">
+                                        <span class="market-time">10:50 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:50:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Mackay (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744981">
+                                        <span class="market-time">11:03 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:03:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Orange (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250751507">
+                                        <span class="market-time">11:10 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:10:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Port Lincoln (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250772154">
+                                        <span class="market-time">11:13 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:13:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Newcastle (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773099">
+                                        <span class="market-time">11:14 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:14:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Hobart (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744951">
+                                        <span class="market-time">11:20 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:20:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Grafton (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250770376">
+                                        <span class="market-time">11:23 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:23:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Mildura (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250747835">
+                                        <span class="market-time">11:28 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:28:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Launceston (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250745398">
+                                        <span class="market-time">11:33 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:33:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Mackay (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250772158">
+                                        <span class="market-time">11:34 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:34:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Dubbo (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250744986">
+                                        <span class="market-time">11:43 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:43:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Orange (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773101">
+                                        <span class="market-time">11:44 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:44:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Hobart (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250751513">
+                                        <span class="market-time">11:50 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:50:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Port Lincoln (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250770340">
+                                        <span class="market-time">11:53 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:53:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Wagga (AU)</span>
+                                </a>
+                            </li>
+                </ul>
+            </div>
+        </li>
+        <li style="width:100%;">
+
+            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="svg-greyhound-racing svg-greyhound-racing-dims svg-span" role="img"></span>
+                <span>Greyhound</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="nav">
+                <ul class="sub-menu" href="#">
+
+                    <li><a href="#"><strong>All Greyhound</strong></a></li>
+                    <li class="divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776096">
+                                        <span class="market-time">9:42 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T04:42:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Warragul (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774553">
+                                        <span class="market-time">9:46 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T04:46:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Townsville (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773262">
+                                        <span class="market-time">9:57 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T04:57:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">The Gardens (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774797">
+                                        <span class="market-time">10:02 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:02:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Q1 Lakeside (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776101">
+                                        <span class="market-time">10:07 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:07:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Warragul (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774558">
+                                        <span class="market-time">10:14 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:14:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Townsville (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773267">
+                                        <span class="market-time">10:17 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:17:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">The Gardens (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774802">
+                                        <span class="market-time">10:20 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:20:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Q1 Lakeside (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776106">
+                                        <span class="market-time">10:27 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:27:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Warragul (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773272">
+                                        <span class="market-time">10:37 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:37:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">The Gardens (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774807">
+                                        <span class="market-time">10:42 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:42:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Q1 Lakeside (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776111">
+                                        <span class="market-time">10:47 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:47:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Warragul (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773277">
+                                        <span class="market-time">10:55 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:55:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">The Gardens (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774812">
+                                        <span class="market-time">10:59 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T05:59:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Q1 Lakeside (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776116">
+                                        <span class="market-time">11:07 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:07:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Warragul (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773282">
+                                        <span class="market-time">11:17 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:17:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">The Gardens (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774817">
+                                        <span class="market-time">11:24 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:24:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Q1 Lakeside (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250776121">
+                                        <span class="market-time">11:27 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:27:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Warragul (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250773287">
+                                        <span class="market-time">11:39 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:39:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">The Gardens (AU)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Common/market/?id=1.250774822">
+                                        <span class="market-time">11:42 AM</span>
+                                        <span class="d-none utctime" data-format="h:mm A">
+                                            2025-11-21T06:42:00.0000000Z
+                                        </span>
+                                        <span class="race-venue">Q1 Lakeside (AU)</span>
+                                </a>
+                            </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li class="nav-item" style="width:100%;">
+            <a href="/Common/sap" class="dropdown-toggle" role="button">
+                <span class="svg-Casino svg-Casino-dims imageSpin2" role="img"></span>
+                <span>Sports Book</span>
+            </a>
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a href="/Common/RSC" class="dropdown-toggle" role="button">
+                <i style="font-size:17px;" class="fas fa-star fa-2x fa-spin fa-lg"></i>
+                <span>RoyalStar Casino</span>
+            </a>
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a href="/Common/Games" class="dropdown-toggle" role="button">
+                <img id="spinning-circle" src="/img/v2/livegameing.png" onerror="this.onerror = null; this.src= null" alt="G">
+                <span>Star Casino</span>
+            </a>
+
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a class="dropdown-toggle" role="button" href="/Common/WorldCasino">
+                <img id="invertcolor" style="background:invert(100%)" src="/img/v2/worldcasinosvg.png" alt="WC">
+                <span>World Casino</span>
+            </a>
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a class="dropdown-toggle" role="button" href="/Common/Dream">
+                <span class="svg-Casino svg-Casino-dims imageSpin2" role="img"></span>
+                <span>Royal Casino</span>
+            </a>
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a class="dropdown-toggle" role="button" href="/Common/ExGames">
+                <img id="invertcolor2" src="/img/v2/BLogo.png">
+                <span>BetFairGames</span>
+            </a>
+         </li>
+        <li class="nav-item exgameblinker" style="width:100%;">
+            <a class="dropdown-toggle" role="button" href="/Common/BetProGames">
+                <img id="invertcolor3" src="/img/v2/TPS.png">
+                <span>TeenPatti Studio</span>
+            </a>
+        </li>
+        <li class="nav-item Galaxyblinker" style="width:100%;">
+            <a class="dropdown-toggle" role="button" href="/Common/Galaxy">
+                <img src="/img/v2/Glogo.png">
+                <span>Galaxy Casino</span>
+            </a>
+        </li>
+
+    <li class="divider"></li>
+        <li class="nav-item" style="width:100%;">
+            <a class="nav-link" href="/Customer/Liable">
+                <span class="svg-colossus svg-colossus-dims svg-span" role="img"></span> 
+                Current Position
+            </a>
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a class="nav-link" href="/Common/Dashboard">
+                <span class="svg-soccer svg-soccer-dims svg-span" role="img"></span> 
+                All Sports
+            </a>
+        </li>
+        <li class="nav-item" style="width:100%;">
+            <a class="nav-link" href="/Common/Result">
+                <span class="svg-clipboard svg-clipboard-dims svg-span" role="img"></span> 
+                Results
+            </a>
+        </li>
+    <li class="nav-item" style="width:100%;">
+        <a class="nav-link" href="#" onclick="ShowExchangeRules(); return false;">
+            <i class="fa fa-info-circle"></i>Market Rules
+        </a>
+    </li>
+    <li class="nav-item" style="width:100%;">
+        <a class="nav-link" href="#" onclick="ShowTos(); return false;">
+            <i class="fa fa-info-circle"></i>Terms &amp; Conditions
+        </a>
+    </li>
+</ul>
+<script>
+    function ShowExchangeRules() {
+        $("#modalMarketRules").modal('show');
+
+        $.get("/rules.html", function (data) {
+            $("#modalMarketRules .modal-body").html(data);
+        });
+    }
+
+    function ShowTos() {
+        $("#modalTos").modal('show');
+        $.get("/tos.html", function (data) {
+            $("#modalTos .modal-body").html(data);
+        });
+    }
+</script>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md" id="main-wrap">
+                <div class="header">
+                    <button class="burger-toggle active">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <ul class="top-nav">
+                        <li><a href="/Common/Dashboard">Dashboard</a></li>
+                    </ul>
+
+                    <div id="sticky-footer" style="width:50vw; padding:0px; margin:0px; float:left; " class="py-1 bg-black text-white">
+                        <div class="container text-center" style="padding:0px; margin:0px;">
+                            <div class="tickercontainer" style="height: 25px; overflow: hidden;"><div class="mask"><ul id="news-ticker-foot" style="padding: 0px; margin: 0px; position: relative; overflow: hidden; float: left; font: bold 10px Verdana; list-style-type: none; width: 697.481px; transition-timing-function: linear; transition-duration: 7.27852s; left: -363.926px;">
+                                
+                            <li class="ticker-spacer" style="float: left; width: 363.945px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;"></li><li data-update="item1" style="white-space: nowrap; float: left; padding: 0px 7px; line-height: 25px;"><b>Welcome to Exchange - </b></li></ul><span class="tickeroverlay-left" style="display: none;">&nbsp;</span><span class="tickeroverlay-right" style="display: none;">&nbsp;</span></div></div>
+                        </div>
+                    </div>
+
+
+                    <div class="dropdown-wrap">
+                        <div class="dropdown">
+
+                            <div class="designation">
+                                <span class="wallet-balance">B: Rs. 0</span>
+                                <span class="wallet-exposure"> | L: 0</span>
+                            </div>
+
+                            <button class="btn profile-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    HAFIZ6969
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/Customer/Ledger/">Statement</a>
+                                <a class="dropdown-item" href="/Common/Result/">Result</a>
+                                <a class="dropdown-item" href="/Customer/ProfitLoss/">Profit Loss</a>
+                                <a class="dropdown-item" href="/Customer/Bets">Bet History</a>
+                                <a class="dropdown-item" href="/Customer/Profile">Profile</a>
+                                <a class="dropdown-item" id="btn-logout" href="/Common/Logout">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-wrap body">
+                    <div id="Highlights" class="row">
+    <div class="modal fade modalCasinoToS" data-backdrop="static" data-keyboard="false" id="modalPasswordChange" tabindex="-10" role="dialog" aria-labelledby="modalPasswordChange" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Your Password</h5>
+                </div>
+                <div id="casino-tos-text" class="modal-body">
+                    <p>
+                        </p><center>
+                            <h3 class="text-danger blink_me">
+                                Change Your Password 
+                                <i class="fa fa-warning"></i>
+                            </h3>
+                        </center>
+                    <p></p>
+                    <p>Password Checkup Detected that your password is no longer <b>safe!</b>.</p>
+                    <p>You should change your password now to use the Exchange .</p>
+                </div>
+
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                        <input type="email" id="Newpasswordmodal" class="form-control validate">
+                        <label for="defaultForm-email">Enter Your New Password Here!</label>
+                    </div>
+                </div>
+                <h5 id="alertmodaltitle" style="color: red;background-color: black;" class="modal-title"></h5>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger ml-4" onclick="AcceptPassword();">
+                        <strong>Change Now</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade modalCasinoToS" data-backdrop="static" data-keyboard="false" id="modalRedirectToLogout" tabindex="-11" role="dialog" aria-labelledby="modalPasswordChange" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Password Changed Successfully</h5>
+                </div>
+                <div id="casino-tos-text" class="modal-body">
+                    <p>
+                        </p><center>
+                            <h3 class="text-danger blink_me">
+                                Password Changed Successfully
+                                <i class="fa fa-check" style="font-size:48px;color:forestgreen"></i>
+                            </h3>
+                        </center>
+                    <p></p>
+                    <p>Your password is changed successfully. <b>Kindly Login Again </b>.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger ml-4" onclick="ReLogin();">
+                        <strong>Login Again</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="modalCasinoToS" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding:0px 15px;">
+                    <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a href="/Common/BetProGames">
+                        <img class="img-responsive img-fluid" src="/img/favicon/BannerDefault.jpeg?112100">
+                    </a>
+                </div>
+                <div class="modal-footer" style="padding:5px 15px;">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="/lib/ckeditor/ckeditor5.css">
+<style>
+    #news-flash p {
+        color: black;
+    }
+    .ck-content p {
+        font-size: 16px;
+    }
+</style>
+<div class="modal fade bd-example-modal-lg" id="news-flash" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content ck-content">
+            <!--<div class="modal-header" style="padding:0px 15px;">
+                <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>-->
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer" style="padding:5px 15px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showNewsFlash()
+    {
+        let isFlash = localStorage.getItem('news-flash');
+
+        let hasContent = document.querySelector("#news-flash .modal-body").innerText.trim() !== '';
+
+        if (isFlash && hasContent) {
+            $('#news-flash').modal('show');
+        }
+
+        localStorage.removeItem('news-flash');
+    }
+</script>
+
+    <div class="col-lg-12 Bl_NT_DB_LITE">
+        <div class="left-content" id="cust-wallet">
+<div class="table-wrap">
+    <div class="table-box-header tb-top-text">
+        <span>Credit: 0</span>
+        <span class="runrate">Balance: 0</span>
+        <span class="runrate">Liable: 0</span>
+        <span class="runrate">Active Bets: 0</span>
+    </div>
+</div></div>
+        <div class="right-content">
+            <div class="table-wrap">
+                <div class="table-box-body">
+                    <div class="bets">
+                        <!--<strong>Sport Highlights</strong>-->
+                        <div class="text-center page_loader" style="display: none;">
+                            <img src="/img/loadinggif.gif" alt="Loading...">
+                        </div>
+                        <div id="horsenhound" class="">
+                            
+<div class="row games_slider_container">
+    <div class="games_slider slick-initialized slick-slider">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 7200px; transform: translate3d(-3825px, 0px, 0px);"><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="-4" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino8.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="-3" aria-hidden="true">
+            <a href="/Common/RSC?id=900001&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino9.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="-2" aria-hidden="true">
+            <a href="/Common/RSC?id=900014&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino10.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="-1" aria-hidden="true">
+            <a href="/Common/WorldCasino" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino11.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="0" aria-hidden="true">
+            <a href="/Common/BetProGames?GameId=9022" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/Aviator.png" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="1" aria-hidden="true">
+            <a href="/Common/Sap" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/sportsbook.png" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="2" aria-hidden="true">
+            <a href="/Common/BetProGames?GameId=9040" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/AviatorNew.png" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="3" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino1.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="4" aria-hidden="true">
+            <a href="/Common/RSC?id=900003&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino2.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="5" aria-hidden="true">
+            <a href="/Common/RSC?id=900003&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino3.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="6" aria-hidden="true">
+            <a href="/Common/RSC?id=900003&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino4.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="7" aria-hidden="true">
+            <a href="/Common/WorldCasino" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino5.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="8" aria-hidden="true">
+            <a href="/Common/WorldCasino" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino6.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="9" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino7.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="10" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino8.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="11" aria-hidden="true">
+            <a href="/Common/RSC?id=900001&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino9.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide" style="width: 221px;" tabindex="-1" data-slick-index="12" aria-hidden="true">
+            <a href="/Common/RSC?id=900014&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino10.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-current slick-active" style="width: 221px;" tabindex="0" data-slick-index="13" aria-hidden="false">
+            <a href="/Common/WorldCasino" tabindex="0">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino11.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned slick-active" style="width: 221px;" tabindex="-1" data-slick-index="14" aria-hidden="false">
+            <a href="/Common/BetProGames?GameId=9022" tabindex="0">
+                <img class="img-fluid img-thumbnail" src="/img/casino/Aviator.png" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned slick-active" style="width: 221px;" tabindex="-1" data-slick-index="15" aria-hidden="false">
+            <a href="/Common/Sap" tabindex="0">
+                <img class="img-fluid img-thumbnail" src="/img/casino/sportsbook.png" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned slick-active" style="width: 221px;" tabindex="-1" data-slick-index="16" aria-hidden="false">
+            <a href="/Common/BetProGames?GameId=9040" tabindex="0">
+                <img class="img-fluid img-thumbnail" src="/img/casino/AviatorNew.png" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="17" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino1.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="18" aria-hidden="true">
+            <a href="/Common/RSC?id=900003&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino2.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="19" aria-hidden="true">
+            <a href="/Common/RSC?id=900003&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino3.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="20" aria-hidden="true">
+            <a href="/Common/RSC?id=900003&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino4.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="21" aria-hidden="true">
+            <a href="/Common/WorldCasino" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino5.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="22" aria-hidden="true">
+            <a href="/Common/WorldCasino" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino6.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="23" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino7.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="24" aria-hidden="true">
+            <a href="/Common/RSC?id=900002&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino8.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="25" aria-hidden="true">
+            <a href="/Common/RSC?id=900001&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino9.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="26" aria-hidden="true">
+            <a href="/Common/RSC?id=900014&amp;d=d" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino10.jpeg" style="opacity: 1;">
+            </a>
+        </div><div class="image slick-slide slick-cloned" style="width: 221px;" tabindex="-1" data-slick-index="27" aria-hidden="true">
+            <a href="/Common/WorldCasino" tabindex="-1">
+                <img class="img-fluid img-thumbnail" src="/img/casino/casino11.jpeg" style="opacity: 1;">
+            </a>
+        </div></div></div></div>
+</div>
+                        </div>
+
+                        <div id="Dashboardmarkets">
+<div class="Bl_NT_DB_LITE">
+    <div class="RaceCards__main___1LtHz Bl_NT_DB" style="background-color:#43444A;">
+        <div class="RaceCards__header___M-uFV Bl_NT_DB_LITE">
+            <span class="svg-horse svg-horse-dims svg-racing" role="img" aria-label="horse icon"></span> 
+            <b class="imghorseb"> Horse Race</b>
+        </div>
+
+        <div class="row" id="raceslider">
+            <section class="center slick-initialized slick-slider" style="width:80vw;"><button class="slick-prev slick-arrow slick-disabled" aria-label="Previous" type="button" aria-disabled="true" style="">Previous</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4272px; transform: translate3d(0px, 0px, 0px);"><div class="chk11 slick-slide slick-current slick-active" style="text-align: center; margin: 2px; width: 263px;" tabindex="0" data-slick-index="0" aria-hidden="false">
+    <!-- /Common/EventId?id=34975764.0445 -->
+    <a href="/Common/Market?id=1.250744971" style="color:white; width:auto;" tabindex="0">
+        <b class="chkmobile">
+            <span class="slidedate market-time">9:45 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T04:45:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Orange (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide slick-active" style="text-align: center; margin: 2px; width: 263px;" tabindex="0" data-slick-index="1" aria-hidden="false">
+    <!-- /Common/EventId?id=34976067.0450 -->
+    <a href="/Common/Market?id=1.250751495" style="color:white; width:auto;" tabindex="0">
+        <b class="chkmobile">
+            <span class="slidedate market-time">9:50 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T04:50:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Port Lincoln (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide slick-active" style="text-align: center; margin: 2px; width: 263px;" tabindex="0" data-slick-index="2" aria-hidden="false">
+    <!-- /Common/EventId?id=34979330.0453 -->
+    <a href="/Common/Market?id=1.250772148" style="color:white; width:auto;" tabindex="0">
+        <b class="chkmobile">
+            <span class="slidedate market-time">9:53 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T04:53:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Newcastle (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="3" aria-hidden="true">
+    <!-- /Common/EventId?id=34975763.0500 -->
+    <a href="/Common/Market?id=1.250744941" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:00 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:00:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Grafton (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="4" aria-hidden="true">
+    <!-- /Common/EventId?id=34979167.0503 -->
+    <a href="/Common/Market?id=1.250770372" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:03 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:03:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Mildura (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="5" aria-hidden="true">
+    <!-- /Common/EventId?id=34975803.0510 -->
+    <a href="/Common/Market?id=1.250745388" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:10 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:10:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Mackay (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="6" aria-hidden="true">
+    <!-- /Common/EventId?id=34975764.0523 -->
+    <a href="/Common/Market?id=1.250744976" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:23 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:23:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Orange (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="7" aria-hidden="true">
+    <!-- /Common/EventId?id=34976067.0530 -->
+    <a href="/Common/Market?id=1.250751501" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:30 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:30:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Port Lincoln (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="8" aria-hidden="true">
+    <!-- /Common/EventId?id=34979330.0533 -->
+    <a href="/Common/Market?id=1.250772151" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:33 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:33:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Newcastle (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="9" aria-hidden="true">
+    <!-- /Common/EventId?id=34975763.0540 -->
+    <a href="/Common/Market?id=1.250744946" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:40 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:40:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Grafton (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="10" aria-hidden="true">
+    <!-- /Common/EventId?id=34979167.0543 -->
+    <a href="/Common/Market?id=1.250770374" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:43 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:43:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Mildura (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="11" aria-hidden="true">
+    <!-- /Common/EventId?id=34975803.0550 -->
+    <a href="/Common/Market?id=1.250745393" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:50 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:50:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Mackay (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="12" aria-hidden="true">
+    <!-- /Common/EventId?id=34975764.0603 -->
+    <a href="/Common/Market?id=1.250744981" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:03 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:03:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Orange (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="13" aria-hidden="true">
+    <!-- /Common/EventId?id=34976067.0610 -->
+    <a href="/Common/Market?id=1.250751507" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:10 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:10:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Port Lincoln (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="14" aria-hidden="true">
+    <!-- /Common/EventId?id=34979330.0613 -->
+    <a href="/Common/Market?id=1.250772154" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:13 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:13:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Newcastle (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="15" aria-hidden="true">
+    <!-- /Common/EventId?id=34979409.0614 -->
+    <a href="/Common/Market?id=1.250773099" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:14 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:14:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Hobart (AU)
+            </span>
+        </b>
+    </a>
+</div></div></div><button class="slick-next slick-arrow" aria-label="Next" type="button" aria-disabled="false" style="">Next</button></section>
+        </div>
+    </div>
+
+    <div class="RaceCards__main___1LtHz Bl_NT_DB" style="background-color:#43444A;">
+        <div class="RaceCards__header___M-uFV Bl_NT_DB_LITE">
+            <span class="svg-greyhound-racing svg-greyhound-racing-dims svg-racing" role="img" aria-label="greyhound icon"></span> 
+            <b class="imghorseb"> Grey Hound</b>
+        </div>
+
+        <div class="row" id="raceslider">
+            <section class="center slick-initialized slick-slider" style="width:80vw;"><button class="slick-prev slick-arrow slick-disabled" aria-label="Previous" type="button" aria-disabled="true" style="">Previous</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4272px; transform: translate3d(0px, 0px, 0px);"><div class="chk11 slick-slide slick-current slick-active" style="text-align: center; margin: 2px; width: 263px;" tabindex="0" data-slick-index="0" aria-hidden="false">
+    <!-- /Common/EventId?id=34979423.0457 -->
+    <a href="/Common/Market?id=1.250773262" style="color:white; width:auto;" tabindex="0">
+        <b class="chkmobile">
+            <span class="slidedate market-time">9:57 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T04:57:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                The Gardens (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide slick-active" style="text-align: center; margin: 2px; width: 263px;" tabindex="0" data-slick-index="1" aria-hidden="false">
+    <!-- /Common/EventId?id=34979446.0502 -->
+    <a href="/Common/Market?id=1.250774797" style="color:white; width:auto;" tabindex="0">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:02 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:02:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Q1 Lakeside (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide slick-active" style="text-align: center; margin: 2px; width: 263px;" tabindex="0" data-slick-index="2" aria-hidden="false">
+    <!-- /Common/EventId?id=34979602.0507 -->
+    <a href="/Common/Market?id=1.250776101" style="color:white; width:auto;" tabindex="0">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:07 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:07:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Warragul (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="3" aria-hidden="true">
+    <!-- /Common/EventId?id=34979445.0514 -->
+    <a href="/Common/Market?id=1.250774558" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:14 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:14:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Townsville (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="4" aria-hidden="true">
+    <!-- /Common/EventId?id=34979423.0515 -->
+    <a href="/Common/Market?id=1.250773267" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:17 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:17:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                The Gardens (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="5" aria-hidden="true">
+    <!-- /Common/EventId?id=34979446.0520 -->
+    <a href="/Common/Market?id=1.250774802" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:20 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:20:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Q1 Lakeside (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="6" aria-hidden="true">
+    <!-- /Common/EventId?id=34979602.0527 -->
+    <a href="/Common/Market?id=1.250776106" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:27 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:27:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Warragul (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="7" aria-hidden="true">
+    <!-- /Common/EventId?id=34979423.0537 -->
+    <a href="/Common/Market?id=1.250773272" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:37 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:37:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                The Gardens (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="8" aria-hidden="true">
+    <!-- /Common/EventId?id=34979446.0542 -->
+    <a href="/Common/Market?id=1.250774807" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:42 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:42:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Q1 Lakeside (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="9" aria-hidden="true">
+    <!-- /Common/EventId?id=34979602.0547 -->
+    <a href="/Common/Market?id=1.250776111" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:47 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:47:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Warragul (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="10" aria-hidden="true">
+    <!-- /Common/EventId?id=34979423.0555 -->
+    <a href="/Common/Market?id=1.250773277" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:55 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:55:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                The Gardens (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="11" aria-hidden="true">
+    <!-- /Common/EventId?id=34979446.0559 -->
+    <a href="/Common/Market?id=1.250774812" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">10:59 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T05:59:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Q1 Lakeside (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="12" aria-hidden="true">
+    <!-- /Common/EventId?id=34979602.0607 -->
+    <a href="/Common/Market?id=1.250776116" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:07 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:07:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Warragul (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="13" aria-hidden="true">
+    <!-- /Common/EventId?id=34979423.0617 -->
+    <a href="/Common/Market?id=1.250773282" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:17 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:17:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                The Gardens (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="14" aria-hidden="true">
+    <!-- /Common/EventId?id=34979446.0624 -->
+    <a href="/Common/Market?id=1.250774817" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:24 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:24:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Q1 Lakeside (AU)
+            </span>
+        </b>
+    </a>
+</div><div class="chk11 slick-slide" style="text-align: center; margin: 2px; width: 263px;" tabindex="-1" data-slick-index="15" aria-hidden="true">
+    <!-- /Common/EventId?id=34979602.0627 -->
+    <a href="/Common/Market?id=1.250776121" style="color:white; width:auto;" tabindex="-1">
+        <b class="chkmobile">
+            <span class="slidedate market-time">11:27 AM</span>
+            <span class="d-none utctime" data-format="h:mm A">
+                2025-11-21T06:27:00.0000000Z
+            </span>
+            <br>
+            <span class="slidename">
+                Warragul (AU)
+            </span>
+        </b>
+    </a>
+</div></div></div><button class="slick-next slick-arrow" aria-label="Next" type="button" aria-disabled="false" style="">Next</button></section>
+        </div>
+    </div>
+
+
+    <!--TABS SYSTEM FOR INPLAY AND OTHERS--->
+
+    <div class="row bbcustom" style="display: flex;flex-wrap: nowrap;overflow-x: scroll;overflow-y: hidden;">
+
+        <div class="tab-content active mobilewidth bg-primary" id="owlitemactive1" onclick="ActivateTab(0); highlightLink(this);">
+            <div style="min-width:80px; max-width:80px;">
+                <a href="javascript:void(0)" style="text-decoration : none; color:inherit;">
+                    <div id="owlitemactive1t">
+                        <div><i style="margin-left: 54px;">2</i></div>
+                        <i class="material-icons">timer</i>
+                        <div style="margin-top:-2px;">Inplay</div>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-content mobilewidth" id="owlitemactive2" onclick="ActivateTab(1); highlightLink(this);">
+            <div style="min-width:80px; max-width:80px;">
+                <a href="#" style="text-decoration : none; color:inherit;">
+                    <div class="img-block" id="owlitemactive2t">
+                        <div><i style="margin-left: 54px;">9</i></div>
+                        <div class="tabsvgdiv">
+                            <div class="svg-cricket svg-cricket-dims" role="img" aria-label="cricket icon"></div>
+                        </div>
+                        <span>Cricket</span>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+
+        <div class="tab-content mobilewidth" id="owlitemactive3" onclick="ActivateTab(2); highlightLink(this);">
+            <div style="min-width:80px; max-width:80px;">
+                <a href="#" style="text-decoration : none; color:inherit;">
+                    <div class="img-block" id="owlitemactive3t">
+                        <div><i style="margin-left: 54px;">0</i></div>
+                        <div class="tabsvgdiv">
+                            <div class="svg-tennis svg-tennis-dims" role="img" aria-label="tennis icon"></div>
+                        </div>
+                        <span>Tennis</span>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-content mobilewidth" id="owlitemactive4" onclick="ActivateTab(3); highlightLink(this);">
+            <div style="min-width:80px; max-width:80px;">
+                <a href="#" style="text-decoration : none; color:inherit;">
+                    <div class="img-block" id="owlitemactive4t">
+                        <div><i style="margin-left: 54px;">5</i></div>
+                        <div class="tabsvgdiv">
+                            <div class="svg-soccer svg-soccer-dims sprite-transform-15" role="img" aria-label="soccer icon"></div>
+                        </div>
+                        <span>Soccer</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-content mobilewidth" id="owlitemactive4">
+            <a href="/Common/sap" style="text-decoration: none;">
+                <div style="min-width:80px; max-width:80px;">
+                        <div class="img-block" id="owlitemactive4t">
+                        <div><i style="margin-left: 54px; color:white;">80</i></div>
+                            <div>
+                                <img src="/img/v2/SB_ico.png" alt="" style="max-width:60px; max-height:40px; margin-bottom:-4px;margin-top:-5px;">
+                            </div>
+                            <span style="color:white;">SportsBook</span>
+                        </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="tabcontent active" style="">
+        <div class="high_lights">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="sport">
+                            <div class="sport">
+                                <svg id="baseball" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.7 56.7" style="fill: #000;">
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: #fff;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <title>cricket</title>
+                                    <path class="cls-1" d="M47,8.9a.91.91,0,0,1,.7.3l.9.8a1.12,1.12,0,0,1,.1,1.6L39.8,21.9l1.7,1.4a2.09,2.09,0,0,1,.2,3L21,50.1a2,2,0,0,1-1.6.7,2.39,2.39,0,0,1-1.4-.5l-6-5.1a2.09,2.09,0,0,1-.2-3l2.1-2.4L23.2,29l9.3-10.6a2,2,0,0,1,1.6-.7,2.39,2.39,0,0,1,1.4.5l1.7,1.4L46.1,9.3a1.8,1.8,0,0,1,.9-.4"></path>
+                                    <circle class="cls-1" cx="40.7" cy="43.3" r="5.4"></circle>
+                                    <polygon class="cls-1" points="27.2 56.7 31.5 56.7 31.5 43 27.2 47.9 27.2 56.7"></polygon>
+                                    <path class="cls-1" d="M17.4,53.8v2.9h4.3V53.6a5,5,0,0,1-2.4.6A16.25,16.25,0,0,1,17.4,53.8Z"></path>
+                                    <path class="cls-1" d="M8.1,44a5.26,5.26,0,0,1,1.3-4L12,37V4.6a1.71,1.71,0,0,0-1.7-1.8h1.5a.43.43,0,0,1,.4.4v.5a.43.43,0,0,0,.4.4h4.1a.43.43,0,0,0,.4-.4V3.2a.43.43,0,0,1,.4-.4h1.7a1.77,1.77,0,0,0-1.7,1.8V30.7l4.3-4.9V4.6a1.71,1.71,0,0,0-1.7-1.8h1.7a.43.43,0,0,1,.4.4v.5a.43.43,0,0,0,.4.4h4.1a.43.43,0,0,0,.4-.4V3.2a.43.43,0,0,1,.4-.4H29a1.77,1.77,0,0,0-1.7,1.8V19.5l2.8-3.2a4.43,4.43,0,0,1,1.5-1.2V4.6a1.71,1.71,0,0,0-1.7-1.8h-.6a.43.43,0,0,0,.4-.4V1.6a.43.43,0,0,0-.4-.4H27.5a.43.43,0,0,1-.4-.4V.4c-.1-.2-.2-.4-.4-.4H22.6a.43.43,0,0,0-.4.4V.9a.43.43,0,0,1-.4.4H20a.43.43,0,0,0-.4.4.43.43,0,0,0-.4-.4H17.4A.43.43,0,0,1,17,.9V.4a.43.43,0,0,0-.4-.4H12.5a.43.43,0,0,0-.4.4V.9a.43.43,0,0,1-.4.4H9.9a.43.43,0,0,0-.4.4v.8a.43.43,0,0,0,.4.4H9.3A1.77,1.77,0,0,0,7.6,4.7V56.8H12V49.6L9.9,47.8A5.9,5.9,0,0,1,8.1,44ZM19.6,2.5a.43.43,0,0,0,.4.4h-.8C19.4,2.8,19.6,2.7,19.6,2.5Z"></path>
+                                    <style xmlns="http://www.w3.org/1999/xhtml" type="text/css"></style>
+                                </svg>
+                                Cricket
+                            </div>
+                        </th>
+                        <th>Matched</th>
+                        <th colspan="2">1</th>
+                        <th colspan="2">X</th>
+                        <th colspan="2">2</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_249449817" class="m_1_249449817 McomCustom">
+
+        <td class="sport-date bg-primary" style="color:rgb(255, 255, 255); ">
+            <div>
+                <span class="day">InPlay</span>
+                <span class="market-time">7:20</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T02:20:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.249449817">
+                    Australia v England
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DTV svg-DTV-dims svg-span" role="img" aria-label="tv"></span> 
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+                <span class="svg-DF svg-DF-dims svg-span" role="img" aria-label="fancy"></span>
+            <span class="TMFORDESK">55,724,096</span>
+        </div>
+        <span class="TMFORMOB">55,724,096</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.64</strong>
+            <span>20.96k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.65</strong>
+            <span>3,815</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 26 </strong>
+            <span>107.9k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 27 </strong>
+            <span>40.05k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 2.8 </strong>
+            <span>4,373</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.84 </strong>
+            <span>8,161</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250542387" class="m_1_250542387 McomCustom">
+
+        <td class="sport-date bg-primary" style="color:rgb(255, 255, 255); ">
+            <div>
+                <span class="day">InPlay</span>
+                <span class="market-time">8:30</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T03:30:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250542387">
+                    Bangladesh v Ireland
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DTV svg-DTV-dims svg-span" role="img" aria-label="tv"></span> 
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+                <span class="svg-DF svg-DF-dims svg-span" role="img" aria-label="fancy"></span>
+            <span class="TMFORDESK">29,752,863</span>
+        </div>
+        <span class="TMFORMOB">29,752,863</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.05</strong>
+            <span>145.8k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.06</strong>
+            <span>76.34k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 22 </strong>
+            <span>219.1k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 24 </strong>
+            <span>399</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 65 </strong>
+            <span>727</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>80 </strong>
+            <span>44</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="high_lights">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="sport">
+                            <div class="sport">
+                                <svg id="soccer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: #fff;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <title>soccer</title>
+                                    <path class="cls-1" d="M12.5.3A11.34,11.34,0,0,0,10,0,11.34,11.34,0,0,0,7.5.3l2.5.9Z"></path>
+                                    <path class="cls-1" d="M14.3,19.1a9.83,9.83,0,0,0,3.7-3l-2.4.9Z"></path>
+                                    <path class="cls-1" d="M19.3,6.3a7.19,7.19,0,0,0-1.2-2.1V6.8L20,8.9A7.71,7.71,0,0,0,19.3,6.3Z"></path>
+                                    <path class="cls-1" d="M2,16.1a9.83,9.83,0,0,0,3.7,3l-1.3-2Z"></path>
+                                    <path class="cls-1" d="M1.8,4.2A11.78,11.78,0,0,0,.7,6.1,12.76,12.76,0,0,0,0,8.9L1.8,6.7Z"></path>
+                                    <polygon class="cls-1" points="7 9.4 8.2 12.9 11.8 12.9 13 9.4 10 7.3 7 9.4"></polygon>
+                                    <path class="cls-1" d="M14.1,16.6l-2-2.1H7.9l-2,2.1,2,3.2A14.92,14.92,0,0,0,10,20a14.92,14.92,0,0,0,2.1-.2Z"></path>
+                                    <path class="cls-1" d="M19.2,14a.1.1,0,0,1,.1-.1,9,9,0,0,0,.7-2.7L17.3,8,14.5,9.6l-1.3,3.8,2,2.1Z"></path>
+                                    <path class="cls-1" d="M.8,14a.1.1,0,0,0-.1-.1A13.43,13.43,0,0,1,0,11.2L2.7,8,5.5,9.6l1.3,3.8-2,2.1Z"></path>
+                                    <path class="cls-1" d="M5.5,1.1A16.44,16.44,0,0,0,3.3,2.5V6.6L6,8.2,9.2,5.9V2.5Z"></path>
+                                    <path class="cls-1" d="M14.5,1.1,10.7,2.5V5.9l3.2,2.3,2.7-1.6V2.5A11,11,0,0,0,14.5,1.1Z"></path>
+                                </svg>
+                                Football
+                            </div>
+                        </th>
+                        <th>Matched</th>
+                        <th colspan="2">1</th>
+                        <th colspan="2">X</th>
+                        <th colspan="2">2</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="high_lights">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="sport">
+                            <div class="sport">
+                                <svg id="baseball" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.7 56.7">
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: #fff;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <title>tennis</title>
+                                    <path class="cls-1" d="M56.7,49.7,44.2,37.2h0l-4.1-4.1a4.76,4.76,0,0,1-1.2-4.7h0a18.66,18.66,0,0,0,.4-2.5,9.28,9.28,0,0,1-2.4.3,4.87,4.87,0,0,1-1.2-.1h0L20.4,10.8l4.4-4.4a20,20,0,0,1,3.7,2.8,9.92,9.92,0,0,1,2.6-2.4A24,24,0,0,0,15.1,0,15.1,15.1,0,0,0,4.3,4.2C-2.5,10.9-1,23.3,7.5,31.8c4.9,4.9,11.1,7.5,16.8,7.5a16.11,16.11,0,0,0,4.4-.6A4.76,4.76,0,0,1,33,39.9L49.4,56.3h0l.2.2,5.6-5.6,1.5-1.2ZM26.2,20.5l-5.4,5.4L13,18.2l5.4-5.4ZM15.1,3.5a16.33,16.33,0,0,1,7.1,1.6L18.5,8.8,13.4,3.7A7.93,7.93,0,0,1,15.1,3.5Zm-5,.9,6.3,6.3L11,16.2,4.7,9.8a11,11,0,0,1,2-3.1A11.34,11.34,0,0,1,10.1,4.4ZM3.6,16.9a14,14,0,0,1,.1-4.1L9,18.2l-4,4A19.78,19.78,0,0,1,3.6,16.9Zm2.8,7.9L11,20.2,18.8,28l-4.7,4.7A24.72,24.72,0,0,1,10,29.4,26,26,0,0,1,6.4,24.8Zm10.3,9.3L20.8,30l5.7,5.7a15,15,0,0,1-2.2.2A19.19,19.19,0,0,1,16.7,34.1Zm16-1.4a10.29,10.29,0,0,1-3.1,2l-6.8-6.8,5.4-5.4,6.7,6.7A9.88,9.88,0,0,1,32.7,32.7Z"></path>
+                                    <circle class="cls-1" cx="36.9" cy="15.6" r="7.1"></circle>
+                                </svg>
+                                Tennis
+                            </div>
+                        </th>
+                        <th>Matched</th>
+                        <th colspan="2">1</th>
+                        <th colspan="2">X</th>
+                        <th colspan="2">2</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   
+        <div class="tabcontent" style="display: none;">
+            <div class="high_lights">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="sport">
+                                <div class="sport">
+                                    <svg id="baseball" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.7 56.7" style="fill: #000;">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #fff;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <title>cricket</title>
+                                        <path class="cls-1" d="M47,8.9a.91.91,0,0,1,.7.3l.9.8a1.12,1.12,0,0,1,.1,1.6L39.8,21.9l1.7,1.4a2.09,2.09,0,0,1,.2,3L21,50.1a2,2,0,0,1-1.6.7,2.39,2.39,0,0,1-1.4-.5l-6-5.1a2.09,2.09,0,0,1-.2-3l2.1-2.4L23.2,29l9.3-10.6a2,2,0,0,1,1.6-.7,2.39,2.39,0,0,1,1.4.5l1.7,1.4L46.1,9.3a1.8,1.8,0,0,1,.9-.4"></path>
+                                        <circle class="cls-1" cx="40.7" cy="43.3" r="5.4"></circle>
+                                        <polygon class="cls-1" points="27.2 56.7 31.5 56.7 31.5 43 27.2 47.9 27.2 56.7"></polygon>
+                                        <path class="cls-1" d="M17.4,53.8v2.9h4.3V53.6a5,5,0,0,1-2.4.6A16.25,16.25,0,0,1,17.4,53.8Z"></path>
+                                        <path class="cls-1" d="M8.1,44a5.26,5.26,0,0,1,1.3-4L12,37V4.6a1.71,1.71,0,0,0-1.7-1.8h1.5a.43.43,0,0,1,.4.4v.5a.43.43,0,0,0,.4.4h4.1a.43.43,0,0,0,.4-.4V3.2a.43.43,0,0,1,.4-.4h1.7a1.77,1.77,0,0,0-1.7,1.8V30.7l4.3-4.9V4.6a1.71,1.71,0,0,0-1.7-1.8h1.7a.43.43,0,0,1,.4.4v.5a.43.43,0,0,0,.4.4h4.1a.43.43,0,0,0,.4-.4V3.2a.43.43,0,0,1,.4-.4H29a1.77,1.77,0,0,0-1.7,1.8V19.5l2.8-3.2a4.43,4.43,0,0,1,1.5-1.2V4.6a1.71,1.71,0,0,0-1.7-1.8h-.6a.43.43,0,0,0,.4-.4V1.6a.43.43,0,0,0-.4-.4H27.5a.43.43,0,0,1-.4-.4V.4c-.1-.2-.2-.4-.4-.4H22.6a.43.43,0,0,0-.4.4V.9a.43.43,0,0,1-.4.4H20a.43.43,0,0,0-.4.4.43.43,0,0,0-.4-.4H17.4A.43.43,0,0,1,17,.9V.4a.43.43,0,0,0-.4-.4H12.5a.43.43,0,0,0-.4.4V.9a.43.43,0,0,1-.4.4H9.9a.43.43,0,0,0-.4.4v.8a.43.43,0,0,0,.4.4H9.3A1.77,1.77,0,0,0,7.6,4.7V56.8H12V49.6L9.9,47.8A5.9,5.9,0,0,1,8.1,44ZM19.6,2.5a.43.43,0,0,0,.4.4h-.8C19.4,2.8,19.6,2.7,19.6,2.5Z"></path>
+                                        <style xmlns="http://www.w3.org/1999/xhtml" type="text/css"></style>
+                                    </svg>
+                                    Cricket
+                                </div>
+                            </th>
+                            <th>Matched</th>
+                            <th colspan="2">1</th>
+                            <th colspan="2">X</th>
+                            <th colspan="2">2</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_249449817" class="m_1_249449817 McomCustom">
+
+        <td class="sport-date bg-primary" style="color:rgb(255, 255, 255); ">
+            <div>
+                <span class="day">InPlay</span>
+                <span class="market-time">7:20</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T02:20:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.249449817">
+                    Australia v England
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DTV svg-DTV-dims svg-span" role="img" aria-label="tv"></span> 
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+                <span class="svg-DF svg-DF-dims svg-span" role="img" aria-label="fancy"></span>
+            <span class="TMFORDESK">55,724,096</span>
+        </div>
+        <span class="TMFORMOB">55,724,096</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.64</strong>
+            <span>20.96k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.65</strong>
+            <span>3,815</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 26 </strong>
+            <span>107.9k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 27 </strong>
+            <span>40.05k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 2.8 </strong>
+            <span>4,373</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.84 </strong>
+            <span>8,161</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250542387" class="m_1_250542387 McomCustom">
+
+        <td class="sport-date bg-primary" style="color:rgb(255, 255, 255); ">
+            <div>
+                <span class="day">InPlay</span>
+                <span class="market-time">8:30</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T03:30:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250542387">
+                    Bangladesh v Ireland
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DTV svg-DTV-dims svg-span" role="img" aria-label="tv"></span> 
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+                <span class="svg-DF svg-DF-dims svg-span" role="img" aria-label="fancy"></span>
+            <span class="TMFORDESK">29,752,863</span>
+        </div>
+        <span class="TMFORMOB">29,752,863</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.05</strong>
+            <span>145.8k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.06</strong>
+            <span>76.34k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 22 </strong>
+            <span>219.1k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 24 </strong>
+            <span>399</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 65 </strong>
+            <span>727</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>80 </strong>
+            <span>44</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250754045" class="m_1_250754045 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">14:10</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T09:10:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250754045">
+                    Brisbane Heat W v Sydney Thunder W
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">540,212</span>
+        </div>
+        <span class="TMFORMOB">540,212</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>2.62</strong>
+            <span>1,688</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.68</strong>
+            <span>361</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left -empty_blue">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right -empty_pink">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 1.6 </strong>
+            <span>433</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.61 </strong>
+            <span>2,313</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250786640" class="m_1_250786640 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">16:30</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T11:30:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250786640">
+                    Deccan Gladiators v Quetta Qavalry
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">4,634</span>
+        </div>
+        <span class="TMFORMOB">4,634</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.52</strong>
+            <span>1,982</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.63</strong>
+            <span>187</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left -empty_blue">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right -empty_pink">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 2.6 </strong>
+            <span>10</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.94 </strong>
+            <span>1,025</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250791443" class="m_1_250791443 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">18:45</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T13:45:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250791443">
+                    Northern Warriors v Ajman Titans
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">44,122</span>
+        </div>
+        <span class="TMFORMOB">44,122</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>2.74</strong>
+            <span>18.37k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.78</strong>
+            <span>206</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left -empty_blue">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right -empty_pink">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 1.56 </strong>
+            <span>810</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.57 </strong>
+            <span>31.88k</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250791349" class="m_1_250791349 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">21:00</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T16:00:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250791349">
+                    Delhi Bulls v Royal Champs
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">116,042</span>
+        </div>
+        <span class="TMFORMOB">116,042</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.45</strong>
+            <span>1,872</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.46</strong>
+            <span>7,328</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left -empty_blue">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right -empty_pink">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 3.15 </strong>
+            <span>3,463</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>3.2 </strong>
+            <span>147</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250636959" class="m_1_250636959 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Tomorrow</span>
+                <span class="market-time">8:30</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-22T03:30:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250636959">
+                    India v South Africa
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">297,267</span>
+        </div>
+        <span class="TMFORMOB">297,267</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.44</strong>
+            <span>83.38k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.45</strong>
+            <span>42.31k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 17.5 </strong>
+            <span>23.9k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 18 </strong>
+            <span>35.87k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 3.9 </strong>
+            <span>8,469</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>4 </strong>
+            <span>3,013</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250776463" class="m_1_250776463 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Tomorrow</span>
+                <span class="market-time">14:50</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-22T09:50:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250776463">
+                    Perth Scorchers W v Adelaide Strikers W
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">358</span>
+        </div>
+        <span class="TMFORMOB">358</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>2.32</strong>
+            <span>109</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.36</strong>
+            <span>277</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left -empty_blue">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right -empty_pink">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 1.74 </strong>
+            <span>375</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.76 </strong>
+            <span>143</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250777438" class="m_1_250777438 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Tomorrow</span>
+                <span class="market-time">18:00</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-22T13:00:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250777438">
+                    Pakistan v Sri Lanka
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+                <span class="svg-DBM svg-DBM-dims svg-span" role="img" aria-label="bm"></span> 
+            <span class="TMFORDESK">88,301</span>
+        </div>
+        <span class="TMFORMOB">88,301</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.58</strong>
+            <span>72.82k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.59</strong>
+            <span>17</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left -empty_blue">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right -empty_pink">
+            <strong>  </strong>
+            <span>-</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 2.68 </strong>
+            <span>192</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.7 </strong>
+            <span>16.59k</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+    
+
+    
+        <div class="tabcontent" style="display: none;">
+            <div class="high_lights">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="sport">
+                                <div class="sport">
+                                    <svg id="baseball" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.7 56.7">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #fff;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <title>tennis</title>
+                                        <path class="cls-1" d="M56.7,49.7,44.2,37.2h0l-4.1-4.1a4.76,4.76,0,0,1-1.2-4.7h0a18.66,18.66,0,0,0,.4-2.5,9.28,9.28,0,0,1-2.4.3,4.87,4.87,0,0,1-1.2-.1h0L20.4,10.8l4.4-4.4a20,20,0,0,1,3.7,2.8,9.92,9.92,0,0,1,2.6-2.4A24,24,0,0,0,15.1,0,15.1,15.1,0,0,0,4.3,4.2C-2.5,10.9-1,23.3,7.5,31.8c4.9,4.9,11.1,7.5,16.8,7.5a16.11,16.11,0,0,0,4.4-.6A4.76,4.76,0,0,1,33,39.9L49.4,56.3h0l.2.2,5.6-5.6,1.5-1.2ZM26.2,20.5l-5.4,5.4L13,18.2l5.4-5.4ZM15.1,3.5a16.33,16.33,0,0,1,7.1,1.6L18.5,8.8,13.4,3.7A7.93,7.93,0,0,1,15.1,3.5Zm-5,.9,6.3,6.3L11,16.2,4.7,9.8a11,11,0,0,1,2-3.1A11.34,11.34,0,0,1,10.1,4.4ZM3.6,16.9a14,14,0,0,1,.1-4.1L9,18.2l-4,4A19.78,19.78,0,0,1,3.6,16.9Zm2.8,7.9L11,20.2,18.8,28l-4.7,4.7A24.72,24.72,0,0,1,10,29.4,26,26,0,0,1,6.4,24.8Zm10.3,9.3L20.8,30l5.7,5.7a15,15,0,0,1-2.2.2A19.19,19.19,0,0,1,16.7,34.1Zm16-1.4a10.29,10.29,0,0,1-3.1,2l-6.8-6.8,5.4-5.4,6.7,6.7A9.88,9.88,0,0,1,32.7,32.7Z"></path>
+                                        <circle class="cls-1" cx="36.9" cy="15.6" r="7.1"></circle>
+                                    </svg>
+                                    Tennis
+                                </div>
+                            </th>
+                            <th>Matched</th>
+                            <th colspan="2">1</th>
+                            <th colspan="2">X</th>
+                            <th colspan="2">2</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+    
+      <div class="tabcontent" style="display: none;">
+            <div class="high_lights">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="sport">
+                                <div class="sport">
+                                    <svg id="soccer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #fff;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <title>soccer</title>
+                                        <path class="cls-1" d="M12.5.3A11.34,11.34,0,0,0,10,0,11.34,11.34,0,0,0,7.5.3l2.5.9Z"></path>
+                                        <path class="cls-1" d="M14.3,19.1a9.83,9.83,0,0,0,3.7-3l-2.4.9Z"></path>
+                                        <path class="cls-1" d="M19.3,6.3a7.19,7.19,0,0,0-1.2-2.1V6.8L20,8.9A7.71,7.71,0,0,0,19.3,6.3Z"></path>
+                                        <path class="cls-1" d="M2,16.1a9.83,9.83,0,0,0,3.7,3l-1.3-2Z"></path>
+                                        <path class="cls-1" d="M1.8,4.2A11.78,11.78,0,0,0,.7,6.1,12.76,12.76,0,0,0,0,8.9L1.8,6.7Z"></path>
+                                        <polygon class="cls-1" points="7 9.4 8.2 12.9 11.8 12.9 13 9.4 10 7.3 7 9.4"></polygon>
+                                        <path class="cls-1" d="M14.1,16.6l-2-2.1H7.9l-2,2.1,2,3.2A14.92,14.92,0,0,0,10,20a14.92,14.92,0,0,0,2.1-.2Z"></path>
+                                        <path class="cls-1" d="M19.2,14a.1.1,0,0,1,.1-.1,9,9,0,0,0,.7-2.7L17.3,8,14.5,9.6l-1.3,3.8,2,2.1Z"></path>
+                                        <path class="cls-1" d="M.8,14a.1.1,0,0,0-.1-.1A13.43,13.43,0,0,1,0,11.2L2.7,8,5.5,9.6l1.3,3.8-2,2.1Z"></path>
+                                        <path class="cls-1" d="M5.5,1.1A16.44,16.44,0,0,0,3.3,2.5V6.6L6,8.2,9.2,5.9V2.5Z"></path>
+                                        <path class="cls-1" d="M14.5,1.1,10.7,2.5V5.9l3.2,2.3,2.7-1.6V2.5A11,11,0,0,0,14.5,1.1Z"></path>
+                                    </svg>
+                                    Football
+                                </div>
+                            </th>
+                            <th>Matched</th>
+                            <th colspan="2">1</th>
+                            <th colspan="2">X</th>
+                            <th colspan="2">2</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250058856" class="m_1_250058856 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">13:35</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T08:35:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250058856">
+                    Adelaide United v Melbourne City
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+            <span class="TMFORDESK">30,833</span>
+        </div>
+        <span class="TMFORMOB">30,833</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>3.1</strong>
+            <span>1,111</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>3.15</strong>
+            <span>1,032</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 3.85 </strong>
+            <span>6,473</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 3.9 </strong>
+            <span>159.4k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 2.36 </strong>
+            <span>380</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.4 </strong>
+            <span>302</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250790096" class="m_1_250790096 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">17:00</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T12:00:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250790096">
+                    FK Makedonija v FK Sileks
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+            <span class="TMFORDESK">196,429</span>
+        </div>
+        <span class="TMFORMOB">196,429</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>12.5</strong>
+            <span>30</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>14</strong>
+            <span>18</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 6.8 </strong>
+            <span>2,179</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 7.4 </strong>
+            <span>629</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 1.26 </strong>
+            <span>7,412</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.28 </strong>
+            <span>550</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250353989" class="m_1_250353989 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">22:30</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T17:30:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250353989">
+                    Bochum v Dynamo Dresden
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+            <span class="TMFORDESK">82,761</span>
+        </div>
+        <span class="TMFORMOB">82,761</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>2</strong>
+            <span>153</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>2.02</strong>
+            <span>180</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 4 </strong>
+            <span>21.86k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 4.1 </strong>
+            <span>18.83k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 3.9 </strong>
+            <span>247</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>4 </strong>
+            <span>301</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250353881" class="m_1_250353881 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">22:30</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T17:30:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250353881">
+                    Hertha Berlin v Braunschweig
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+            <span class="TMFORDESK">48,531</span>
+        </div>
+        <span class="TMFORMOB">48,531</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>1.62</strong>
+            <span>3,220</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.64</strong>
+            <span>478</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 4.4 </strong>
+            <span>11.11k</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 4.5 </strong>
+            <span>61.93k</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 6 </strong>
+            <span>602</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>6.6 </strong>
+            <span>445</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+
+
+<style>
+    #containersccr {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between;
+  max-width:100%;
+  min-width: 63px;
+}
+#containersccr > div {
+  width:50%;
+}
+</style>
+
+<tr id="m_1_250349024" class="m_1_250349024 McomCustom">
+
+        <td class="sport-date">
+            <div>
+                <span class="day">Today</span>
+                <span class="market-time">23:00</span>
+                <span class="d-none utctime" data-format="H:mm" data-target="time">
+                    2025-11-21T18:00:00.0000000Z
+                </span>
+            </div>
+        </td>
+
+    <td>
+        <div class="teams">
+            <strong class="team-1">
+                <a href="/Common/Market?id=1.250349024">
+                    Kfum Oslo v Bodo Glimt
+                </a>
+            </strong>
+            <strong class="team-2"><a href=""></a></strong>
+        </div>
+    </td>
+    
+    <td>
+        <div class="matched">
+            <span class="TMFORDESK">19,686</span>
+        </div>
+        <span class="TMFORMOB">19,686</span>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong>7.6</strong>
+            <span>261</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>8</strong>
+            <span>41</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue m-left ">
+            <strong> 5.3 </strong>
+            <span>2,179</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink m-right ">
+            <strong> 5.5 </strong>
+            <span>5,869</span>
+        </div>
+    </td>
+
+    <td>
+        <div class="box -blue ">
+            <strong> 1.45 </strong>
+            <span>479</span>
+        </div>
+    </td>
+    <td>
+        <div class="box -pink ">
+            <strong>1.47 </strong>
+            <span>144</span>
+        </div>
+    </td>
+
+    <td class="action">
+        <a href="#"><i class="fa fa-info-circle"></i></a>
+    </td>
+</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+    
+</div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p id="mids" class="invisible invisible col-6"></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Rules -->
+    <div class="modal fade" id="modalMarketRules" tabindex="-1" role="dialog" aria-labelledby="modalMarketRules" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Market Rules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div id="market-rules-text" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ToS -->
+    <div class="modal fade" id="modalTos" tabindex="-1" role="dialog" aria-labelledby="modalTos" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terms and conditions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <b>Protection of minors</b>
+                    <br>
+                    <p> It is illegal for anybody under the age of 18 to gamble. </p>
+                    <br>
+                    <p>Our site has strict policies and verification measures to prevent access to minors.</p>
+                    <br>
+                    <p>We encourage parents consider the use of internet use protection tools. You may find the following links useful. </p>
+                    <br>
+                    <a href="https://www.cyberpatrol.com/" target="_blank" style="color:mediumspringgreen">  Cyberpatrol</a>
+                    <br>
+                    <a href="https://www.cybersitter.com/" target="_blank" style="color:mediumspringgreen">  Cybersitter </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
+        <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
+        </div>
+        <div class="container text-center">
+            <center>
+                    
+<style>
+    p{
+        font-size:12px;
+        color:white;
+    }
+    .caoimg{
+        max-width:60px;
+    }
+    .bffooter{
+                    width: 135px;
+                    height: 30px;
+            }
+            .curasaoLinks {
+               pointer-events: none;
+               cursor: default;
+               margin-top:10px;
+            }
+@media screen and (max-width: 635px) {
+            .caoimg {
+                max-width:40px;
+            }
+            .bffooter{
+                    width: 100px;
+                    height: 30px;
+            }
+        }
+</style>
+
+
+<div class="curasaoLinks row" style="display:inline-flex;" id="curacaodiv"><hr>
+                <div class="col-sm-12 col-md-4"></div>
+                <div class="col-md-4"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        document.querySelector('#curacaodiv').insertAdjacentHTML(
+            'afterbegin',
+            `<hr>
+                <div class="col-sm-12 col-md-4"></div>
+                <div class="col-md-4"></div>`);
+    });
+</script>
+
+            </center>
+           
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+    <script type="text/javascript" src="/dist/bundle0a.js?112100"></script>
+
+    <script>
+        const token = getCookie('wexscktoken');
+        const sess = getCookie('wex3authtoken');
+        const reft = getCookie('wex3reftoken');
+    </script>
+
+    
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () 
+        {
+            fetchWallet();
+            fetchHighlights();
+            setInterval(fetchHighlights, 60000);
+
+            isPWCRequired();
+            showWelcomeBanner();
+
+            $(".page_loader").hide();
+            document.getElementById("horsenhound").classList.remove("d-none");
+
+            $(".games_slider").slick({
+                arrows: false,
+                autoplay: true,
+                infinite: true,
+                slidesToShow: 8,
+                slidesToScroll: 1,
+                swipeToSlide: true,
+                touchThreshold: 100,
+                waitForAnimate: false,
+                responsive: [
+                    {
+                        breakpoint: 1800,
+                        settings: {
+                            slidesToShow: 6,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1500,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 700,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $("#modalCasinoToS").on('hidden.bs.modal', function (event) {
+                showNewsFlash();
+            });
+        });
+
+        function AcceptPassword()
+        {
+            var newpass = document.getElementById("Newpasswordmodal").value;
+            $.ajax({
+                type: "GET",
+                url: "/Customer/Profile?handler=UpdatePassword&NewPassword=" + newpass,
+                success: function (result) {
+                    if(result == 'PCS')
+                    {
+                        $('#modalPasswordChange').modal('hide');;
+                        $('#modalRedirectToLogout').modal('show');;
+                    }else{
+                        $('#alertmodaltitle').html(result);
+                    }
+                },
+                error: function (exception) {
+                   location.reload();
+                }
+            });
+        }
+        
+        function ReLogin() {
+            location.href = "/Common/Logout";
+        }
+        
+        function fetchHighlights() {
+            $.ajax({
+                type: "GET",
+                url: "/Common/MarketHighlights",
+                headers: {
+                },
+                timeout: 12000,
+                success: function (result) {
+                    document.getElementById("Dashboardmarkets").innerHTML = result;
+                    ActivateTab(LastTab);
+                    convertAllToClientTime();
+                    $(".center").slick({
+                        infinite: false,
+                        slidesToShow: 8,
+                        slidesToScroll: 3,
+                        responsive: [
+                            {
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 3
+                                }
+                            },
+                            {
+                                breakpoint: 600,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
+                                }
+                            },
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 2
+                                }
+                            }
+
+                        ]
+                    });
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    
+                }
+            });
+        };
+
+        function fetchWallet() {
+            $.ajax({
+                type: 'GET',
+                url: '/Customer/Wallet',
+                success: function (result) {
+                    $('#cust-wallet').html(result);
+                }
+            });
+        }
+
+        function convertAllToClientTime() {
+            $('.utctime').each(function (index, el) {
+                try
+                {
+                    convertToClientTime(el);
+                }
+                catch {}
+            });
+        }
+
+        function convertToClientTime(el) {
+            var reqFormat = $(el).data('format');
+            var isoDate = $(el).text().trim();
+
+            var clientDateTime = moment(isoDate).format(reqFormat);
+
+            $(el).prev('.market-time').text(clientDateTime);
+            let dateText = $(el).prev().prev('.day').text().toString();
+
+            if (dateText.toLocaleLowerCase() !== "inplay")
+            {
+                let currentDay = parseInt(moment(new Date()).format("DDDD"));
+                let marketDay = parseInt(moment(isoDate).format("DDDD"));
+                let daysDiff = marketDay - currentDay;
+
+                if (daysDiff == 0)
+                {
+                    dateText = "Today";
+                }
+                else if (daysDiff == 1)
+                {
+                    dateText = "Tomorrow";
+                }
+                else if (daysDiff == -1)
+                {
+                    dateText = "Yesterday";
+                }
+
+                $(el).prev().prev('.day').text(dateText);
+            }
+        }
+
+        var highlightLink = function () {
+            var active = null, colour = 'black';
+            if (this.attachEvent) this.attachEvent('onunload', function () {
+                active = null;
+            });
+            return function (element) {
+                if ((active != element) && element.style) {
+                    if (active) active.style.backgroundColor = '';
+                    element.style.backgroundColor = colour ;
+                    active = element;
+                }
+            };
+        }();
+
+        var LastTab = 0;
+
+        function ActivateTab(tab_index) {
+
+            tab_index = parseInt(tab_index);
+            LastTab = tab_index;
+
+            $(".tablinks").removeClass('active');
+            $(".tablinks:eq( " + tab_index + " )").addClass('active');
+
+            $(".tabcontent").hide();
+            $(".tabcontent:eq( " + tab_index + " )").show();
+        }
+
+        function showWelcomeBanner()
+        {
+            let isShowBanner = localStorage.getItem('welcome-banner');
+
+            if (isShowBanner) {
+                $('#modalCasinoToS').modal('show');
+
+                fetchProfile();
+            }
+
+            localStorage.removeItem('welcome-banner');
+        }
+
+        function isPWCRequired()
+        {
+            let isPWC = localStorage.getItem('pwc-req');
+
+            if (isPWC) {
+                $('#modalPasswordChange').modal('show');
+            }
+        }
+
+        function fetchProfile() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/users/profile',
+                success: function (result) {
+                    localStorage.setItem('symbol', result.currencySymbol);
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            pollRefreshToken();
+        });
+
+        if (genSck === 1) {
+            const signalRConnection = new UWS(uwsUrl, token, sess);
+            signalRConnection.connect();
+        }
+        else {
+            pollUserData();
+        }
+    </script>  
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9a1d87938f60f9ef&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}" crossorigin="anonymous"></script>
+
+</body>

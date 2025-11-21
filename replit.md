@@ -41,5 +41,50 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## External Dependencies
 - **Database:** MySQL (bguru69 on remote server 94.72.106.77)
-- **Live Sports Data API:** ScoreSwift API (http://89.116.20.218:8085/api/home) for live match data.
+- **Live Sports Data API:** ScoreSwift API (http://89.116.20.218:8085/api/home) for live match data, and /api/inplay for inplay matches.
 - **Betting Prices and Orders API:** mgs11.com for prices and order management.
+
+## Recent Updates (November 21, 2025)
+
+### Inplay Matches Display on Bettor Dashboard
+- Created `/api/inplay` endpoint in SportsDataController:
+  * Fetches live/inplay matches from ScoreSwift API using X-ScoreSwift-Key authentication
+  * Returns categorized matches: cricket, soccer, tennis, horse, greyhound
+  * 30-second caching to reduce API calls and improve performance
+- Updated bettor dashboard JavaScript:
+  * `updateInplayMatches()` function dynamically populates match tables
+  * Updates tab counts showing number of matches per sport (Inplay, Cricket, Tennis, Soccer)
+  * Displays matches with "LIVE" badge for inplay matches
+  * Refreshes every 60 seconds automatically
+- Match display features:
+  * Cricket, Soccer, Tennis tables with match listings
+  * Clickable links to view match details (/cricket/{marketId})
+  * Real-time count badges on sport tabs
+  * Total inplay count on main "Inplay" tab
+- Routes: GET /api/inplay (public, no auth required)
+
+### Bettor Dashboard with Real Values
+- Created bets table with comprehensive structure for tracking all betting activity:
+  * Fields: user_id, market_id, market_name, selection_name, bet_type (back/lay), odds, stake, liability, profit
+  * Status tracking: pending, matched, cancelled, settled
+  * Timestamps: placed_at, matched_at, settled_at
+- Implemented BettorController to calculate and display real-time values:
+  * Username display in header (replaces hardcoded username)
+  * Credit balance from user's credit_remaining field
+  * Account balance from user's balance field
+  * Liable amount calculated from active bets (SUM of liability for pending/matched bets)
+  * Active bets count (COUNT of pending/matched bets)
+- Updated bettor dashboard view:
+  * Header dropdown shows actual username in uppercase
+  * Balance and liable displayed in header: "B: Rs. X | L: Y"
+  * Dashboard info bar shows: Credit, Balance, Liable, Active Bets (all real values)
+  * Values formatted with number_format for proper display
+- Updated routes to use BettorController for dynamic data
+- Created Bet model with relationships and casts
+
+### Management Header with User Info
+- Updated management layout header to display "username(Role)" format
+- Dropdown menu with Profile and Logout options
+- Added jQuery 3.6.0 and Bootstrap 4.6.0 JavaScript for dropdown functionality
+- Logout form with CSRF protection (POST to /logout)
+- Profile link uses placeholder href="#" for now

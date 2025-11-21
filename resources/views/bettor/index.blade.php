@@ -4548,15 +4548,93 @@
             location.href = "/Common/Logout";
         }
 
+        function updateInplayMatches(data) {
+            const cricketMatches = data.cricket || [];
+            const soccerMatches = data.soccer || [];
+            const tennisMatches = data.tennis || [];
+            
+            const totalInplay = cricketMatches.length + soccerMatches.length + tennisMatches.length;
+            
+            document.querySelector('#owlitemactive1t i').textContent = totalInplay;
+            document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
+            document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
+            document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
+            
+            const cricketTable = document.querySelector('.tabcontent.active .high_lights:nth-child(1) table tbody');
+            const soccerTable = document.querySelector('.tabcontent.active .high_lights:nth-child(2) table tbody');
+            const tennisTable = document.querySelector('.tabcontent.active .high_lights:nth-child(3) table tbody');
+            
+            if (cricketTable) {
+                cricketTable.innerHTML = cricketMatches.map(match => `
+                    <tr>
+                        <td colspan="2">
+                            <a href="/cricket/${match.marketId}" class="text-white">
+                                ${match.marketName}
+                                ${match.inplay ? '<span class="badge badge-success ml-2" style="font-size:10px;">LIVE</span>' : ''}
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td></td>
+                    </tr>
+                `).join('');
+            }
+            
+            if (soccerTable) {
+                soccerTable.innerHTML = soccerMatches.map(match => `
+                    <tr>
+                        <td colspan="2">
+                            <a href="/cricket/${match.marketId}" class="text-white">
+                                ${match.marketName}
+                                ${match.inplay ? '<span class="badge badge-success ml-2" style="font-size:10px;">LIVE</span>' : ''}
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td></td>
+                    </tr>
+                `).join('');
+            }
+            
+            if (tennisTable) {
+                tennisTable.innerHTML = tennisMatches.map(match => `
+                    <tr>
+                        <td colspan="2">
+                            <a href="/cricket/${match.marketId}" class="text-white">
+                                ${match.marketName}
+                                ${match.inplay ? '<span class="badge badge-success ml-2" style="font-size:10px;">LIVE</span>' : ''}
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td></td>
+                    </tr>
+                `).join('');
+            }
+        }
+
         function fetchHighlights() {
             $.ajax({
                 type: "GET",
-                url: "/Common/MarketHighlights",
-                headers: {
-                },
+                url: "/api/inplay",
                 timeout: 12000,
                 success: function (result) {
-                    document.getElementById("Dashboardmarkets").innerHTML = result;
+                    updateInplayMatches(result);
                     ActivateTab(LastTab);
                     convertAllToClientTime();
                     $(".center").slick({
