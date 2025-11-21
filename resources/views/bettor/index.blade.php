@@ -913,13 +913,13 @@
                         <div class="dropdown">
 
                             <div class="designation">
-                                <span class="wallet-balance">B: Rs. 0</span>
-                                <span class="wallet-exposure"> | L: 0</span>
+                                <span class="wallet-balance">B: Rs. {{ number_format($balance, 2) }}</span>
+                                <span class="wallet-exposure"> | L: {{ number_format($liable, 2) }}</span>
                             </div>
 
                             <button class="btn profile-dropdown dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                HAFIZ6969
+                                {{ strtoupper($username) }}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/Customer/Ledger/">Statement</a>
@@ -1075,10 +1075,10 @@
                             <div class="left-content" id="cust-wallet">
                                 <div class="table-wrap">
                                     <div class="table-box-header tb-top-text">
-                                        <span>Credit: 0</span>
-                                        <span class="runrate">Balance: 0</span>
-                                        <span class="runrate">Liable: 0</span>
-                                        <span class="runrate">Active Bets: 0</span>
+                                        <span>Credit: {{ number_format($credit, 2) }}</span>
+                                        <span class="runrate">Balance: {{ number_format($balance, 2) }}</span>
+                                        <span class="runrate">Liable: {{ number_format($liable, 2) }}</span>
+                                        <span class="runrate">Active Bets: {{ $active_bets }}</span>
                                     </div>
                                 </div>
                             </div>

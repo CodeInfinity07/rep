@@ -10,16 +10,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         $user = Auth::user();
         if (strtolower($user->type) === 'bettor') {
-            return view('bettor.index');
+            return app(\App\Http\Controllers\BettorController::class)->index();
         }
         return view('management.index');
     });
 });
 
-Route::prefix('bettor')->group(function () {
-    Route::get('/', function () {
-        return view('bettor.index');
-    });
+Route::prefix('bettor')->middleware(['auth'])->group(function () {
+    Route::get('/', [App\Http\Controllers\BettorController::class, 'index']);
 });
 
 Route::get('/bet-cricket', function () {

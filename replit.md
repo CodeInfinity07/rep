@@ -1,218 +1,45 @@
 # BETGURU - Sports Trading Platform
 
 ## Overview
-BETGURU is a sports betting and trading platform that provides interfaces for various sports including cricket, soccer, tennis, horse racing, and greyhound racing. Originally a static HTML/CSS/JavaScript application, it has been converted to a Laravel-based project.
+BETGURU is a sports betting and trading platform that facilitates trading on various sports including cricket, soccer, tennis, horse racing, and greyhound racing. The platform provides a comprehensive interface for users to engage in sports betting, offering features like real-time odds, detailed match information, and financial management tools. Originally a static application, it has been re-engineered as a robust Laravel-based system. The business vision is to provide a reliable, feature-rich, and user-friendly platform for sports trading with a clear hierarchical user management system and real-time data integration.
 
-## Project Structure
-- **Framework**: Laravel 12.x (PHP 8.2)
-- **Views**: 
-  - `/resources/views/layouts/management.blade.php` - Shared layout for management section
-  - `/resources/views/management/` - Management dashboard and admin pages
-  - `/resources/views/bettor/` - Bettor-facing pages
-  - `/resources/views/` - Other sport and feature pages
-- **Public Assets**: CSS, JavaScript, images, and fonts in `/public` directory
-- **Routes**: Web routes defined in `/routes/web.php`
-- **Database**: MySQL (bguru69 on remote server 94.72.106.77)
-- **Authentication**: Custom Laravel session-based auth with role hierarchy
-- **Middleware**: RoleMiddleware for access control, auth middleware for protected routes
+## User Preferences
+I prefer simple language and detailed explanations when new concepts or changes are introduced. I want iterative development, with clear communication before major changes are implemented. Please do not make changes to the `public/assets` folder unless specifically instructed. Ensure all financial calculations are precise and thoroughly tested.
 
-### Available Pages
-**Management Section** (uses shared layout):
-- Dashboard (/) - Management index with user search and sport highlights
-- Users, Reports, Position, Lock
-- Star Casino, World Casino, BetFair Games
+## System Architecture
+BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
-**Bettor Section**:
-- Bettor Dashboard (/bettor) - User betting interface
+**UI/UX Decisions:**
+- **Consistent Layouts:** A shared Blade layout (`resources/views/layouts/management.blade.php`) ensures a consistent look and feel across all management pages, including a header with navigation and a sidebar for sports menus.
+- **Dynamic Content:** Dashboards and sports pages dynamically display real-time data, user-specific information (e.g., username, balance), and betting odds.
+- **Interactive Elements:** Features like AJAX polling for odds updates, date pickers for ledger filtering, and interactive user hierarchy views enhance user experience.
+- **Color Coding:** Market cards are color-coded (primary for Match Odds, success for Bookmaker, danger for Fancy markets) for easy identification.
 
-**Sports Pages**:
-- Cricket, Soccer, Tennis (sports betting pages)
-- Horse Racing, Greyhound Racing
-- Match details, History, Ledger, Results
-- Login and authentication pages
+**Technical Implementations:**
+- **Authentication:** Custom, session-based authentication using usernames only, with a `RoleMiddleware` for hierarchical access control.
+- **User Management:** A robust role-based user management system with a defined hierarchy (Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor). Share distribution is managed hierarchically.
+- **Financial Management:** `ledger_entries` table tracks all financial transactions (cash deposit/withdraw, credit given/taken back), with comprehensive ledger views, date range filtering, and export options.
+- **Betting System:** A `bets` table meticulously tracks all betting activities, including bet type, odds, stake, liability, profit, and status (pending, matched, cancelled, settled). Real-time calculation and display of user balances, liabilities, and active bets.
+- **Sports Data Integration:** A `MatchController` orchestrates multiple API calls to fetch detailed market information, odds, and event IDs, handling various API response structures.
+- **Odds Display:** Displays back/lay odds in a 6-column format (B3, B2, B1 | L1, L2, L3) with highlighting for best prices and status indicators for suspended runners.
+- **Backend Validation:** Extensive backend validation for user creation, share distribution, and financial transactions ensures data integrity and security.
+- **Database Transactions:** All critical financial operations are wrapped in database transactions to prevent data inconsistencies.
 
-## Recent Changes
-- **2025-11-20**: Role-Based Dashboard at Root Route
-  - Modified root route `/` to dynamically show different dashboards based on user type
-  - Bettor accounts see bettor dashboard (bettor.index) at `/`
-  - Non-bettor accounts see management dashboard (management.index) at `/`
-  - All users login and are redirected to `/` which shows appropriate dashboard
-  - Fixed issue where bettor users were seeing management dashboard
+**Feature Specifications:**
+- **Dynamic Dashboards:** Root route `/` dynamically serves either the bettor dashboard or management dashboard based on the user's role.
+- **Comprehensive Sports Pages:** Dedicated pages for various sports (Cricket, Soccer, Tennis, Horse Racing, Greyhound Racing) featuring real-time odds, match details, history, ledger, and results.
+- **Cash/Credit Management:** Dedicated interface for managing cash deposits/withdrawals and credit allocation/retrieval among hierarchical users.
+- **Account Ledger:** Detailed ledger system tracking all financial activities with filtering, printing, and export capabilities.
+- **Live Sports Data:** Integration with an external API to display live match data, including in-play status and matched amounts, with a 30-second caching mechanism.
 
-- **2025-11-20**: Complete Cricket Match Page with Multiple Markets
-  - **MatchController - Complete Rewrite**:
-    * `getMarketDetails()` - Fetches from /api/GetMarketDetails?market_id={marketId} to get event ID and runner names
-    * `getMarketIdsForEvent()` - Fetches all market IDs from /api/GetMarketIdsV1?eventid={eventId}
-    * `getMarketOdds()` - Fetches odds for individual markets from /api/GetMarketOdds?market_id={marketId}
-    * Orchestrates three API calls: GetMarketDetails → GetMarketIdsV1 → GetMarketOdds (for each market)
-    * Handles multiple response structures from GetMarketIdsV1 (arrays of strings, objects, or nested structures)
-    * Extracts event ID from nested event object: `$marketDetails['event']['id']`
-    * Uses runner names directly from API response
-    * Handles both price formats: `ex.availableToBack/availableToLay` and legacy `back/lay`
-    * No caching for real-time updates
-  - **Cricket match page features**:
-    * Displays main Match Odds market with proper runner names from GetMarketDetails
-    * Shows ALL markets for the event (Bookmaker, BetFair Fancy, Fancy 2, Tied Match, etc.)
-    * Color-coded market cards: primary (Match Odds), success (Bookmaker), danger (Fancy markets)
-    * Proper runner names (e.g., "Sri Lanka" instead of "runner 7337")
-    * Correct back/lay odds display in 6 columns (B3, B2, B1 | L1, L2, L3)
-    * B1 shows best back price (highlighted blue), B2/B3 show lower prices
-    * L1 shows best lay price (highlighted pink), L2/L3 show higher prices
-    * SUSPENDED status display for inactive runners
-    * Full Book button for fancy markets
-    * Right sidebar with Bet Lock dropdown, User Book button, TV/ScoreCard tabs, Open Bets, Matched Bets
-    * AJAX polling refreshes odds every 1 second (NO full page reload)
-    * Live status updates and in-play indicators
-    * Bet sizes formatted as K/M (thousands/millions)
-  - **Routes**:
-    * Public API: /api/cricket-matches, /api/match-odds/{marketId}, /api/market-details/{marketId}
-    * Protected view: /cricket/{marketId} (requires authentication)
+**System Design Choices:**
+- **Laravel MVC:** Follows the Model-View-Controller pattern for clear separation of concerns.
+- **Blade Templating:** Utilizes Blade for efficient and organized frontend templating.
+- **MySQL Database:** Primary database for robust data storage and retrieval.
+- **Environment Configuration:** Uses Replit Secrets for secure management of sensitive environment variables.
+- **Deployment:** Configured for autoscale deployment, running on Laravel Artisan development server for development and production-ready configuration for deployment.
 
-- **2025-11-20**: Account Ledger System
-  - Created ledger_entries table to track all financial transactions
-  - Implemented LedgerController with date range filtering
-  - Created ledger view with date pickers and DataTables integration
-  - All cash/credit transactions automatically logged to ledger
-  - L button in users table opens ledger in fullscreen window
-  - Ledger displays:
-    * Opening Balance (first entry)
-    * All transactions with date, description, amount, and running balance
-    * Print, Excel, and PDF export buttons
-    * Date range filter (default: today)
-  - Transaction types tracked: cash_deposit, cash_withdraw, credit_given, credit_taken_back
-
-- **2025-11-20**: Cash/Credit Management System
-  - Added financial database fields: credit_received, credit_remaining, balance, cash
-  - Created cash-credit.blade.php with two tabs (Cash and Credit) for deposit/withdraw operations
-  - Implemented CashCreditController with transaction processing:
-    * Cash deposit: adds to cash and balance
-    * Cash withdraw: subtracts from cash and balance (validates available cash)
-    * Credit give: adds to user's credit_received/credit_remaining, subtracts from parent's credit_remaining
-    * Credit take back: reverses credit allocation back to parent
-  - Balance field only reflects cash, not credit
-  - Owner has unlimited credit (no validation on available credit when giving)
-  - Non-owner users can only give credit up to their credit_remaining amount
-  - Updated users table to display credit_received and balance values
-  - C button in users table opens cash/credit page in a popup window (600x700px)
-  - All transactions wrapped in database transactions for data integrity
-  - Security: Blocks self-targeted cash/credit operations to prevent unlimited balance exploit
-  - Owner account initialized with 1,000,000 credit for testing
-
-- **2025-11-20**: Username-Only Authentication & Share Distribution System
-  - Removed email field entirely - authentication now uses username-only login
-  - Implemented hierarchical share distribution:
-    * Owner starts with 100% share
-    * Bettor accounts automatically inherit parent's full share (no manual input needed)
-    * Non-bettor accounts (Admin/SuperMaster/Master) must have share LESS than parent's share
-  - Created hierarchical users page with drill-down navigation
-    * Shows downline users in table format
-    * Non-bettor usernames are clickable to view their downlines
-    * Bettor usernames are non-clickable (end of hierarchy)
-    * Back button to navigate up the hierarchy
-  - Login credentials: username=owner, password=password123 (100% share)
-  - User fields: username, password, type, parent_id, downline_share, is_active, phone, reference, notes
-  - Credit balance and financial data set to 0 (to be implemented later)
-
-- **2025-11-20**: Authentication System Implementation
-  - Implemented custom Laravel authentication with session-based login/logout
-  - Created AuthController with username-only login and remember me functionality
-  - Built RoleMiddleware for hierarchical access control
-  - Protected all management routes with auth middleware (/, /users, /position, /report, /lock, /star)
-  - Updated login page (resources/views/login.blade.php) with CSRF protection and error/success display
-  - Session management with CSRF tokens and remember me cookies
-  - Redirects unauthenticated users to /login with flash messages
-
-- **2025-11-20**: Role-Based User Management System
-  - Created comprehensive User model with role hierarchy support
-  - Implemented UserController with user creation logic and hierarchy validation
-  - Role hierarchy: Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor
-  - Created owner account seeder (username=owner, 100% share)
-  - Dynamic create-user form that shows only allowed child types based on logged-in user's role
-  - Password security (type="password"), and dynamic Downline Share visibility (hidden for bettor)
-  - JavaScript validation ensures password has min 8 chars with letters and numbers
-  - Backend validation enforces: unique username, role hierarchy, downline share rules
-  - Form integrates with backend via POST /users/create with CSRF protection
-  - Success/error messages with form repopulation on validation failures
-
-- **2025-11-20**: MySQL Database Migration
-  - Migrated from SQLite to MySQL (bguru69 on remote server 94.72.106.77)
-  - Configured database credentials via Replit Secrets (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD)
-  - Updated start-server.sh to inject database configuration from environment variables
-  - Ran Laravel migrations to create necessary tables (users, cache, jobs, migrations)
-  - Switched cache driver to file-based storage for improved performance
-
-- **2025-11-20**: Live Sports Data Integration
-  - Integrated ScoreSwift API (http://89.116.20.218:8085/api/home) for live match data
-  - Created SportsDataController using API's sport category names for accurate categorization
-  - Fixed categorization logic to use API's 'name' field instead of unreliable keyword matching
-  - Implemented 30-second caching to optimize API calls
-  - Added /api/sports-data endpoint serving categorized live data
-  - Updated management dashboard to display live match data with auto-refresh every 30 seconds
-  - Shows match names, in-play status indicators, and total matched amounts
-  - Configured start-server.sh wrapper to inject SCORESWIFT_API_KEY from Replit secrets
-  - Correctly categorizes Cricket, Soccer, Tennis (plus Rugby Union and Boxing available in API)
-
-- **2025-11-20**: Complete management section conversion
-  - Created shared layout (`layouts/management.blade.php`) for all management pages
-  - Converted all 6 management pages to extend shared layout (index, users, report, position, lock, star)
-  - Organized views into `/bettor` and `/management` folders
-  - Replaced Vue.js variables (v-model, v-for, v-if, v-show) with static dummy data in management index
-  - Updated routes to point to `management.*` views
-  - Removed duplicate HTML structure and legacy blade files
-  - All management pages now use consistent layout pattern with `@extends` and `@section`
-
-- **2025-11-20**: Converted to Laravel project
-  - Installed PHP 8.2 with Composer
-  - Created Laravel 12 project structure
-  - Migrated static HTML files to Blade templates
-  - Moved CSS, JS, images to `/public` directory
-  - Set up routes for all pages
-  - Configured Laravel to run on 0.0.0.0:5000
-  - Enabled proxy trust for Replit environment
-  - Configured deployment for autoscale
-
-## Tech Stack
-- **Backend**: Laravel 12.x, PHP 8.2
-- **Frontend**: HTML, CSS, JavaScript, Vue.js
-- **Database**: MySQL (bguru69 on remote server 94.72.106.77)
-- **External APIs**: 
-  - Live sports data from ScoreSwift API (http://89.116.20.218:8085/api/home)
-  - Prices and orders from mgs11.com
-- **Server**: Laravel Artisan development server
-
-## Architecture
-Laravel MVC application serving blade templates with static assets. The application connects to external APIs for live betting/trading functionality.
-
-**Layout Structure**:
-- Management section uses a shared Blade layout (`layouts/management.blade.php`)
-- Layout includes header with navigation, sidebar with sports menu, and main content area
-- Views extend the layout using `@extends` and populate content with `@section`
-- Bettor section currently standalone, can be migrated to use layouts in future
-
-Each route returns a blade view with all necessary assets served from the public directory.
-
-## Development
-- Server runs on port 5000 via Laravel Artisan
-- Host: 0.0.0.0 (configured for Replit's proxy environment)
-- Proxy trust: Enabled for all proxies (Replit requirement)
-- Workflow: `php artisan serve --host=0.0.0.0 --port=5000`
-- Login: username=owner, password=password123 (owner account with 100% share)
-
-## User Management
-- **Role Hierarchy**: Owner → Admin/Bettor | Admin → SuperMaster/Bettor | SuperMaster → Master/Bettor | Master → Bettor only
-- **User Creation**: Each role can only create their permitted child types
-- **Share Distribution**:
-  * Owner has 100% share to start
-  * Bettor accounts automatically inherit parent's full share (no input required)
-  * Non-bettor accounts must have share LESS than parent's share
-- **Hierarchical View**: 
-  * Click non-bettor usernames to drill down into their downlines
-  * Bettor accounts are non-clickable (end nodes)
-  * Navigate back up hierarchy with back button
-- **Password Requirements**: Minimum 8 characters with both letters and numbers
-- **Owner Account**: username=owner, password=password123, share=100%
-
-## Deployment
-- Target: Autoscale
-- Command: `php artisan serve --host=0.0.0.0 --port=8080`
-- Environment: Production-ready Laravel configuration
+## External Dependencies
+- **Database:** MySQL (bguru69 on remote server 94.72.106.77)
+- **Live Sports Data API:** ScoreSwift API (http://89.116.20.218:8085/api/home) for live match data.
+- **Betting Prices and Orders API:** mgs11.com for prices and order management.
