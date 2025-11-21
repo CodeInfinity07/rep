@@ -173,6 +173,14 @@
                                         }
                                     }
                                     
+                                    // Helper function to format size
+                                    $formatSize = function($size) {
+                                        if (!$size || $size == 0) return '';
+                                        if ($size >= 1000000) return number_format($size / 1000000, 1) . 'M';
+                                        if ($size >= 1000) return number_format($size / 1000, 1) . 'K';
+                                        return number_format($size);
+                                    };
+                                    
                                     // Extract back prices
                                     $back1 = '-';
                                     $back2 = '-';
@@ -185,15 +193,15 @@
                                         $backs = $runnerOdds['ex']['availableToBack'];
                                         if (isset($backs[0])) {
                                             $back1 = $backs[0]['price'] ?? '-';
-                                            $backSize1 = isset($backs[0]['size']) ? formatSize($backs[0]['size']) : '';
+                                            $backSize1 = isset($backs[0]['size']) ? $formatSize($backs[0]['size']) : '';
                                         }
                                         if (isset($backs[1])) {
                                             $back2 = $backs[1]['price'] ?? '-';
-                                            $backSize2 = isset($backs[1]['size']) ? formatSize($backs[1]['size']) : '';
+                                            $backSize2 = isset($backs[1]['size']) ? $formatSize($backs[1]['size']) : '';
                                         }
                                         if (isset($backs[2])) {
                                             $back3 = $backs[2]['price'] ?? '-';
-                                            $backSize3 = isset($backs[2]['size']) ? formatSize($backs[2]['size']) : '';
+                                            $backSize3 = isset($backs[2]['size']) ? $formatSize($backs[2]['size']) : '';
                                         }
                                     }
                                     
@@ -209,23 +217,16 @@
                                         $lays = $runnerOdds['ex']['availableToLay'];
                                         if (isset($lays[0])) {
                                             $lay1 = $lays[0]['price'] ?? '-';
-                                            $laySize1 = isset($lays[0]['size']) ? formatSize($lays[0]['size']) : '';
+                                            $laySize1 = isset($lays[0]['size']) ? $formatSize($lays[0]['size']) : '';
                                         }
                                         if (isset($lays[1])) {
                                             $lay2 = $lays[1]['price'] ?? '-';
-                                            $laySize2 = isset($lays[1]['size']) ? formatSize($lays[1]['size']) : '';
+                                            $laySize2 = isset($lays[1]['size']) ? $formatSize($lays[1]['size']) : '';
                                         }
                                         if (isset($lays[2])) {
                                             $lay3 = $lays[2]['price'] ?? '-';
-                                            $laySize3 = isset($lays[2]['size']) ? formatSize($lays[2]['size']) : '';
+                                            $laySize3 = isset($lays[2]['size']) ? $formatSize($lays[2]['size']) : '';
                                         }
-                                    }
-                                    
-                                    function formatSize($size) {
-                                        if (!$size || $size == 0) return '';
-                                        if ($size >= 1000000) return number_format($size / 1000000, 1) . 'M';
-                                        if ($size >= 1000) return number_format($size / 1000, 1) . 'K';
-                                        return number_format($size);
                                     }
                                 @endphp
                                 
