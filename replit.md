@@ -46,6 +46,30 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## Recent Updates (November 21, 2025)
 
+### Role-Based Sport Pages and Access Control (November 21, 2025)
+- **Separate Bettor and Management Views**: Sport pages now serve different views based on user role
+  * Bettors see dedicated bettor sport pages (resources/views/bettor/cricket.blade.php, soccer.blade.php, tennis.blade.php)
+  * Management users see management sport pages (resources/views/sports/)
+  * SportsPageController checks user role and serves appropriate view
+- **Bettor Layout**: Created dedicated bettor layout (resources/views/layouts/bettor.blade.php)
+  * Includes sidebar with dynamic sports menus
+  * Header with user info and logout dropdown
+  * Consistent design across all bettor pages
+  * Auto-loads sidebar menus from API
+- **Access Control Middleware**: Created RestrictBettors middleware
+  * Prevents bettors from accessing management pages (/users, /position, /report, /lock, /star)
+  * Returns 403 Forbidden error if bettor attempts to access management routes
+  * Applied to all management routes via 'restrictBettors' middleware alias
+- **Bettor Sport Pages Features**:
+  * Display all matches for the sport (not just inplay)
+  * Auto-refresh every 60 seconds
+  * Show "LIVE" badge for inplay matches
+  * Display match cards with odds, sizes, and matched amounts
+  * Link to match detail pages via /Common/market/?id={marketId}
+  * Clean, card-based design matching bettor interface style
+
+## Recent Updates (November 21, 2025)
+
 ### Sidebar Navigation Updated with Real Match Data (November 21, 2025)
 - **Sidebar Menus**: Cricket, Soccer, and Tennis sidebar dropdowns now display real matches from API
   * Replaced all hardcoded dummy data (Al Najma Club, Australia v India, etc.)

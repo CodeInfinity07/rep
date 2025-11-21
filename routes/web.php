@@ -51,7 +51,7 @@ Route::get('/match', function () {
     return view('match');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'restrictBettors'])->group(function () {
     Route::get('/position', function () {
         return view('management.position');
     });
@@ -84,7 +84,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users/{id}/credit/withdraw', [App\Http\Controllers\CashCreditController::class, 'withdrawCredit']);
     
     Route::get('/users/{id}/ledger', [App\Http\Controllers\LedgerController::class, 'show']);
-    
+});
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/cricket/{marketId}', [App\Http\Controllers\MatchController::class, 'show']);
 });
 
