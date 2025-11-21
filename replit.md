@@ -70,6 +70,14 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## Recent Updates (November 21, 2025)
 
+### Bettor Pages Refactored to Extend Layout (November 21, 2025)
+- **All bettor pages now extend layouts.bettor**: Cricket, soccer, tennis, and match detail pages
+  * Sidebar and header are in the layout (not duplicated in each page)
+  * Each page only contains its specific content section using @section('content')
+  * Consistent structure across all bettor pages
+  * Match detail page (/cricket/{marketId}) uses dynamic marketId and eventId from controller
+  * All pages use the shared bettor layout with dynamic sidebar menus
+
 ### Sidebar Navigation Updated with Real Match Data (November 21, 2025)
 - **Sidebar Menus**: Cricket, Soccer, and Tennis sidebar dropdowns now display real matches from API
   * Replaced all hardcoded dummy data (Al Najma Club, Australia v India, etc.)
