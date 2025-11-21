@@ -130,26 +130,48 @@ class SportsDataController extends Controller
                 $sportName = strtolower($sportCategory['name'] ?? '');
                 
                 foreach ($sportCategory['markets'] as $market) {
-                    $runners = $market['runners'] ?? [];
-                    $processedRunners = [];
+                    $marketId = $market['marketId'] ?? '';
+                    $isInplay = $market['inplay'] ?? false;
                     
-                    foreach ($runners as $runner) {
-                        $processedRunners[] = [
-                            'name' => $runner['runnerName'] ?? '',
-                            'back' => $runner['ex']['availableToBack'][0]['price'] ?? 0,
-                            'lay' => $runner['ex']['availableToLay'][0]['price'] ?? 0,
-                        ];
+                    $runners = [];
+                    $totalMatched = 0;
+                    
+                    if ($isInplay && $marketId) {
+                        $marketDetails = $this->getMarketDetails($apiKey, $marketId);
+                        $oddsData = $this->getMarketOdds($apiKey, $marketId);
+                        
+                        $runnerNames = [];
+                        if ($marketDetails && isset($marketDetails['runners'])) {
+                            foreach ($marketDetails['runners'] as $runner) {
+                                $selId = $runner['selectionId'] ?? null;
+                                if ($selId) {
+                                    $runnerNames[$selId] = $runner['runnerName'] ?? '';
+                                }
+                            }
+                        }
+                        
+                        if ($oddsData) {
+                            foreach ($oddsData['runners'] ?? [] as $runner) {
+                                $selectionId = $runner['selectionId'] ?? null;
+                                $runners[] = [
+                                    'name' => $runnerNames[$selectionId] ?? '',
+                                    'back' => $runner['ex']['availableToBack'][0]['price'] ?? 0,
+                                    'lay' => $runner['ex']['availableToLay'][0]['price'] ?? 0,
+                                ];
+                            }
+                            $totalMatched = $oddsData['totalMatched'] ?? 0;
+                        }
                     }
                     
                     $matchData = [
-                        'marketId' => $market['marketId'] ?? '',
+                        'marketId' => $marketId,
                         'marketName' => $market['marketName'] ?? '',
                         'status' => $market['status'] ?? 'UNKNOWN',
-                        'inplay' => $market['inplay'] ?? false,
+                        'inplay' => $isInplay,
                         'startTime' => $market['marketStartTime'] ?? null,
                         'sport' => ucfirst($sportName),
-                        'runners' => $processedRunners,
-                        'totalMatched' => $this->calculateTotalMatched($runners)
+                        'runners' => $runners,
+                        'totalMatched' => $totalMatched
                     ];
                     
                     if ($sportName === 'cricket') {
@@ -195,6 +217,59 @@ class SportsDataController extends Controller
             $total += $runner['totalMatched'] ?? 0;
         }
         return $total;
+    }
+    
+    private function getMarketDetails($apiKey, $marketId)
+    {
+        try {
+            $cacheKey = 'market_details_' . $marketId;
+            $cacheDuration = now()->addSeconds(30);
+            
+            return Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey, $marketId) {
+                $url = 'http://89.116.20.218:8085/api/GetMarketDetails';
+                $response = Http::withHeaders([
+                    'X-ScoreSwift-Key' => $apiKey
+                ])->timeout(10)->get($url, [
+                    'market_id' => $marketId
+                ]);
+                
+                if ($response->successful()) {
+                    return $response->json();
+                }
+                
+                return null;
+            });
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+    
+    private function getMarketOdds($apiKey, $marketId)
+    {
+        try {
+            $cacheKey = 'market_odds_' . $marketId;
+            $cacheDuration = now()->addSeconds(5);
+            
+            return Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey, $marketId) {
+                $url = 'http://89.116.20.218:8085/api/GetMarketOdds';
+                $response = Http::withHeaders([
+                    'X-ScoreSwift-Key' => $apiKey
+                ])->timeout(10)->get($url, [
+                    'market_id' => $marketId
+                ]);
+                
+                if ($response->successful()) {
+                    $data = $response->json();
+                    if (is_array($data) && !empty($data)) {
+                        return $data[0];
+                    }
+                }
+                
+                return null;
+            });
+        } catch (\Exception $e) {
+            return null;
+        }
     }
     
 }

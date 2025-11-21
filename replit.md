@@ -47,24 +47,30 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 ## Recent Updates (November 21, 2025)
 
 ### Inplay Matches Display on Bettor Dashboard
-- Updated /api/cricket-matches endpoint to include full match data with odds:
-  * Returns cricket, soccer, tennis matches from ScoreSwift API
-  * Includes runners with back/lay odds for each match
-  * Includes totalMatched amount per match
-  * 30-second caching for performance
+- Updated /api/cricket-matches endpoint to fetch live odds for inplay matches:
+  * Returns cricket, soccer, tennis matches from ScoreSwift /api/home
+  * For inplay matches, fetches odds via /api/GetMarketOdds
+  * Fetches runner names via /api/GetMarketDetails
+  * Combines selectionId-based odds with runner names
+  * Includes back/lay prices and totalMatched for each match
+  * Multi-level caching: 30s for match list, 30s for details, 5s for odds
 - Updated bettor dashboard JavaScript:
   * Filters inplay matches client-side based on inplay === true
   * Updates tab counts (Inplay, Cricket, Tennis, Soccer)
-  * Populates tables with inplay matches showing match names and odds
+  * Populates tables with inplay matches showing match names and live odds
   * Displays back/lay odds for each runner in proper columns
   * formatOdds() function shows blank for zero values
   * Refreshes every 60 seconds automatically
 - Match display features:
-  * Cricket/Tennis: 2 runners with back/lay odds in columns 1-2
+  * Cricket/Tennis: 2 runners with back/lay odds
   * Soccer: 3 runners (home/draw/away) with back/lay odds
   * Total matched amount displayed per match
   * Clickable match names linking to /cricket/{marketId}
   * Original HTML table structure preserved
+- API Performance:
+  * 2 API calls per inplay match (GetMarketDetails + GetMarketOdds)
+  * Response time: ~3-4 seconds for 8-10 inplay matches
+  * Heavy caching to minimize API load
 
 ### Bettor Dashboard with Real Values
 - Created bets table with comprehensive structure for tracking all betting activity:
