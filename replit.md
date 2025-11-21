@@ -46,6 +46,15 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## Recent Updates (November 21, 2025)
 
+### Sidebar Navigation Updated with Real Match Data (November 21, 2025)
+- **Sidebar Menus**: Cricket, Soccer, and Tennis sidebar dropdowns now display real matches from API
+  * Replaced all hardcoded dummy data (Al Najma Club, Australia v India, etc.)
+  * Each sidebar shows up to 10 latest matches from the API
+  * Dynamically populated when dashboard loads
+  * Links to individual match detail pages
+  * Shows "Loading..." while fetching data
+  * Shows "No matches available" when sport has no matches
+
 ### All Tabs and Pages Now Show Real Data
 - **Bettor Dashboard Tabs**: All tabs (Inplay, Cricket, Tennis, Soccer) now display real data from API
   * Inplay tab shows only inplay matches from all sports

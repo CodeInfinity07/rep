@@ -260,22 +260,10 @@
                                     <span>Soccer</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="nav">
-                                    <ul class="sub-menu" href="#">
-
-                                        <li><a href="#"><strong>All Soccer</strong></a></li>
+                                    <ul class="sub-menu" id="sidebar-soccer-menu" href="#">
+                                        <li><a href="/soccer"><strong>All Soccer</strong></a></li>
                                         <li class="divider"></li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.249943426">
-                                                Al Najma Club v Al-Hilal </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.249952836">
-                                                Genclerbirligi v Basaksehir </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.249941813">
-                                                OB v Silkeborg </a>
-                                        </li>
+                                        <li class="text-center"><small>Loading...</small></li>
                                     </ul>
                                 </div>
                             </li>
@@ -287,42 +275,10 @@
                                     <span>Tennis</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="nav">
-                                    <ul class="sub-menu" href="#">
-
-                                        <li><a href="#"><strong>All Tennis</strong></a></li>
+                                    <ul class="sub-menu" id="sidebar-tennis-menu" href="#">
+                                        <li><a href="/tennis"><strong>All Tennis</strong></a></li>
                                         <li class="divider"></li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250235806">
-                                                A Sabalenka v A Anisimova </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250208314">
-                                                An Vergara Rivera v M Sherif </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250237184">
-                                                Djokovic v Hanfmann </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250235709">
-                                                J Pegula v E Rybakina </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250207856">
-                                                J Riera v Sim Waltert </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250236381">
-                                                Norrie v Sonego </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250228563">
-                                                P Kypson v Giustino </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250230109">
-                                                Se Korda v Musetti </a>
-                                        </li>
+                                        <li class="text-center"><small>Loading...</small></li>
                                     </ul>
                                 </div>
                             </li>
@@ -334,34 +290,10 @@
                                     <span>Cricket</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="nav">
-                                    <ul class="sub-menu" href="#">
-
-                                        <li><a href="#"><strong>All Cricket</strong></a></li>
+                                    <ul class="sub-menu" id="sidebar-cricket-menu" href="#">
+                                        <li><a href="/cricket"><strong>All Cricket</strong></a></li>
                                         <li class="divider"></li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.249449817">
-                                                Australia v England </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250221184">
-                                                Australia v India </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250068500">
-                                                Brisbane Heat W v Melbourne Renegades W </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250069549">
-                                                Melbourne Stars W v Adelaide Strikers W </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250069361">
-                                                Perth Scorchers W v Sydney Sixers W </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250068925">
-                                                Sydney Thunder W v Hobart Hurricanes W </a>
-                                        </li>
+                                        <li class="text-center"><small>Loading...</small></li>
                                     </ul>
                                 </div>
                             </li>
@@ -373,245 +305,35 @@
                                     <span>Horse Race</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="nav">
-                                    <ul class="sub-menu" href="#">
-
+                                    <ul class="sub-menu" id="sidebar-horserace-menu" href="#">
                                         <li><a href="#"><strong>All Horse Race</strong></a></li>
                                         <li class="divider"></li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250158572">
-                                                <span class="market-time">2:45 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T09:45:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Pakenham (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209995">
-                                                <span class="market-time">2:58 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T09:58:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Gloucester Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209559">
-                                                <span class="market-time">3:03 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:03:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Melton (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209312">
-                                                <span class="market-time">3:06 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:06:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Bunbury (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209054">
-                                                <span class="market-time">3:10 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:10:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Newcastle (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250158580">
-                                                <span class="market-time">3:15 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:15:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Pakenham (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209739">
-                                                <span class="market-time">3:21 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:21:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Albion Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209010">
-                                                <span class="market-time">3:24 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:24:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Dubbo (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209998">
-                                                <span class="market-time">3:28 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:28:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Gloucester Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209562">
-                                                <span class="market-time">3:33 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:33:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Melton (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209314">
-                                                <span class="market-time">3:35 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:35:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Bunbury (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250214346">
-                                                <span class="market-time">3:35 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:35:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Fairview (ZA)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209057">
-                                                <span class="market-time">3:40 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:40:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Newcastle (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250158588">
-                                                <span class="market-time">3:45 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:45:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Pakenham (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209742">
-                                                <span class="market-time">3:51 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:51:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Albion Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209012">
-                                                <span class="market-time">3:55 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T10:55:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Dubbo (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250210001">
-                                                <span class="market-time">4:00 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:00:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Gloucester Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209316">
-                                                <span class="market-time">4:07 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:07:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Bunbury (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250214348">
-                                                <span class="market-time">4:10 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:10:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Fairview (ZA)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209060">
-                                                <span class="market-time">4:18 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:18:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Newcastle (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209745">
-                                                <span class="market-time">4:25 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:25:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Albion Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250210004">
-                                                <span class="market-time">4:34 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:34:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Gloucester Park (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209318">
-                                                <span class="market-time">4:42 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:42:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Bunbury (AU)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250214350">
-                                                <span class="market-time">4:45 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:45:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Fairview (ZA)</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Common/market/?id=1.250209748">
-                                                <span class="market-time">4:50 PM</span>
-                                                <span class="d-none utctime" data-format="h:mm A">
-                                                    2025-11-07T11:50:00.0000000Z
-                                                </span>
-                                                <span class="race-venue">Albion Park (AU)</span>
-                                            </a>
-                                        </li>
+                                        <li class="text-center"><small>Coming Soon</small></li>
                                     </ul>
                                 </div>
                             </li>
-                            <li style="width:100%;">
+                            <li style="width:100%;display:none;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-greyhound svg-greyhound-dims svg-span" role="img"></span>
+                                    <span>Greyhound Race</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" id="sidebar-greyhound-menu" href="#">
+                                        <li><a href="#"><strong>All Greyhound</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="text-center"><small>Coming Soon</small></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li style="width:100%;display:none;">
 
                                 <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <span class="svg-greyhound-racing svg-greyhound-racing-dims svg-span"
                                         role="img"></span>
-                                    <span>Greyhound</span>
+                                    <span>Greyhound Legacy</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="nav">
                                     <ul class="sub-menu" href="#">
@@ -4840,6 +4562,66 @@
             }
         }
 
+        function populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches) {
+            const cricketMenu = document.getElementById('sidebar-cricket-menu');
+            const soccerMenu = document.getElementById('sidebar-soccer-menu');
+            const tennisMenu = document.getElementById('sidebar-tennis-menu');
+            
+            // Populate Cricket sidebar (limit to 10 matches)
+            if (cricketMenu && cricketMatches.length > 0) {
+                const cricketItems = cricketMatches.slice(0, 10).map(match => 
+                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                ).join('');
+                cricketMenu.innerHTML = `
+                    <li><a href="/cricket"><strong>All Cricket</strong></a></li>
+                    <li class="divider"></li>
+                    ${cricketItems}
+                `;
+            } else if (cricketMenu) {
+                cricketMenu.innerHTML = `
+                    <li><a href="/cricket"><strong>All Cricket</strong></a></li>
+                    <li class="divider"></li>
+                    <li class="text-center"><small>No matches available</small></li>
+                `;
+            }
+            
+            // Populate Soccer sidebar (limit to 10 matches)
+            if (soccerMenu && soccerMatches.length > 0) {
+                const soccerItems = soccerMatches.slice(0, 10).map(match => 
+                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                ).join('');
+                soccerMenu.innerHTML = `
+                    <li><a href="/soccer"><strong>All Soccer</strong></a></li>
+                    <li class="divider"></li>
+                    ${soccerItems}
+                `;
+            } else if (soccerMenu) {
+                soccerMenu.innerHTML = `
+                    <li><a href="/soccer"><strong>All Soccer</strong></a></li>
+                    <li class="divider"></li>
+                    <li class="text-center"><small>No matches available</small></li>
+                `;
+            }
+            
+            // Populate Tennis sidebar (limit to 10 matches)
+            if (tennisMenu && tennisMatches.length > 0) {
+                const tennisItems = tennisMatches.slice(0, 10).map(match => 
+                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                ).join('');
+                tennisMenu.innerHTML = `
+                    <li><a href="/tennis"><strong>All Tennis</strong></a></li>
+                    <li class="divider"></li>
+                    ${tennisItems}
+                `;
+            } else if (tennisMenu) {
+                tennisMenu.innerHTML = `
+                    <li><a href="/tennis"><strong>All Tennis</strong></a></li>
+                    <li class="divider"></li>
+                    <li class="text-center"><small>No matches available</small></li>
+                `;
+            }
+        }
+
         function fetchHighlights() {
             $.ajax({
                 type: "GET",
@@ -4863,6 +4645,7 @@
                         document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
                         
                         populateAllTables(cricketMatches, soccerMatches, tennisMatches, cricketInplay, soccerInplay, tennisInplay);
+                        populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches);
                         
                         const preloader = document.getElementById('page-preloader');
                         if (preloader) {
