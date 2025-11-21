@@ -12,10 +12,17 @@ class MatchController extends Controller
     
     public function show($marketId)
     {
+        if (!\Auth::check()) {
+            return redirect('/login');
+        }
+        
+        $user = \Auth::user();
         $apiKey = $_SERVER['SCORESWIFT_API_KEY'] ?? $_ENV['SCORESWIFT_API_KEY'] ?? getenv('SCORESWIFT_API_KEY') ?? env('SCORESWIFT_API_KEY');
         
+        $errorView = strtolower($user->type) === 'bettor' ? 'bettor.match' : 'management.cricket.match';
+        
         if (!$apiKey) {
-            return view('management.cricket.match')->with('error', 'API key not configured');
+            return view($errorView)->with('error', 'API key not configured');
         }
         
         try {
@@ -23,14 +30,14 @@ class MatchController extends Controller
             $marketDetails = $this->getMarketDetails($apiKey, $marketId);
             
             if (!$marketDetails) {
-                return view('management.cricket.match')->with('error', 'Failed to fetch market details');
+                return view($errorView)->with('error', 'Failed to fetch market details');
             }
             
             // Extract event ID from nested event object
             $eventId = $marketDetails['event']['id'] ?? null;
             
             if (!$eventId) {
-                return view('management.cricket.match')->with('error', 'Event ID not found');
+                return view($errorView)->with('error', 'Event ID not found');
             }
             
             // Step 2: Fetch all market IDs for this event
@@ -45,16 +52,23 @@ class MatchController extends Controller
                 }
             }
             
-            return view('management.cricket.match', [
+            $viewData = [
                 'marketId' => $marketId,
                 'eventId' => $eventId,
                 'marketDetails' => $marketDetails,
                 'allMarketIds' => $allMarketIds,
                 'marketsData' => $marketsData
-            ]);
+            ];
+            
+            // Serve bettor or management view based on user role
+            if (strtolower($user->type) === 'bettor') {
+                return view('bettor.match', $viewData);
+            }
+            
+            return view('management.cricket.match', $viewData);
             
         } catch (\Exception $e) {
-            return view('management.cricket.match')->with('error', 'Error: ' . $e->getMessage());
+            return view($errorView)->with('error', 'Error: ' . $e->getMessage());
         }
     }
     
