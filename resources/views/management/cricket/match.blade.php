@@ -64,6 +64,15 @@
     .scores .col-divider {
         border-left: 1px solid black;
     }
+    
+    /* Flash highlight animation */
+    @keyframes flashHighlight {
+        0% { background-color: yellow; }
+        100% { background-color: transparent; }
+    }
+    .flash-highlight {
+        animation: flashHighlight 0.5s ease-out;
+    }
 </style>
 
 <div class="row" id="loadedmarkettoshow">
@@ -119,7 +128,7 @@
                                                     echo ($price && $price != 0) ? $price : '';
                                                 @endphp
                                             </div>
-                                            <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size" style="{{ $position === 1 ? 'background-color: rgb(234, 246, 170);' : '' }}">
+                                            <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size">
                                                 @if(isset($backPrices[$priceIndex]['size']))
                                                     @php
                                                         $size = $backPrices[$priceIndex]['size'];
@@ -155,7 +164,7 @@
                                                     echo ($price && $price != 0) ? $price : '';
                                                 @endphp
                                             </div>
-                                            <div id="ls{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 size" style="{{ $i === 0 ? 'background-color: rgb(252, 220, 138);' : '' }}">
+                                            <div id="ls{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 size">
                                                 @if(isset($layPrices[$i]['size']))
                                                     @php
                                                         $size = $layPrices[$i]['size'];
@@ -249,7 +258,7 @@
                                                                 echo ($price && $price != 0) ? $price : '';
                                                             @endphp
                                                         </div>
-                                                        <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size" style="{{ $position === 1 ? 'background-color: rgb(227, 248, 255);' : '' }}">
+                                                        <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size">
                                                             @if(isset($backPrices[$priceIndex]['size']))
                                                                 @php
                                                                     $size = $backPrices[$priceIndex]['size'];
@@ -285,7 +294,7 @@
                                                                 echo ($price && $price != 0) ? $price : '';
                                                             @endphp
                                                         </div>
-                                                        <div id="ls{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 size" style="{{ $i === 0 ? 'background-color: rgb(255, 205, 204);' : '' }}">
+                                                        <div id="ls{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 size">
                                                             @if(isset($layPrices[$i]['size']))
                                                                 @php
                                                                     $size = $layPrices[$i]['size'];
@@ -390,6 +399,18 @@
         document.getElementById('LIVEDIV').style.display = 'block';
     }
 
+    // Store previous values to detect changes
+    const previousValues = {};
+    
+    // Helper function to trigger flash animation
+    function flashElement(element) {
+        if (!element) return;
+        element.classList.remove('flash-highlight');
+        void element.offsetWidth; // Force reflow
+        element.classList.add('flash-highlight');
+        setTimeout(() => element.classList.remove('flash-highlight'), 500);
+    }
+    
     // Auto-refresh odds every 1 second
     function updateOdds() {
         fetch('/api/match-odds/{{ $marketId }}')
@@ -410,7 +431,18 @@
                             
                             if (backPrices[priceIndex]) {
                                 const price = backPrices[priceIndex].price || 0;
-                                if (priceEl) priceEl.textContent = (price && price != 0) ? price : '';
+                                const priceText = (price && price != 0) ? price : '';
+                                const priceKey = 'b' + position + '-' + selectionId;
+                                
+                                // Check if price changed
+                                if (priceEl && previousValues[priceKey] !== priceText && previousValues[priceKey] !== undefined) {
+                                    flashElement(priceEl);
+                                }
+                                if (priceEl) {
+                                    priceEl.textContent = priceText;
+                                    previousValues[priceKey] = priceText;
+                                }
+                                
                                 if (sizeEl) {
                                     const size = backPrices[priceIndex].size || 0;
                                     let sizeText = '';
@@ -423,7 +455,14 @@
                                             sizeText = size.toString();
                                         }
                                     }
+                                    
+                                    const sizeKey = 'bs' + position + '-' + selectionId;
+                                    // Check if size changed
+                                    if (previousValues[sizeKey] !== sizeText && previousValues[sizeKey] !== undefined) {
+                                        flashElement(sizeEl);
+                                    }
                                     sizeEl.textContent = sizeText;
+                                    previousValues[sizeKey] = sizeText;
                                 }
                             } else {
                                 if (priceEl) priceEl.textContent = '';
@@ -438,7 +477,18 @@
                             
                             if (layPrices[i]) {
                                 const price = layPrices[i].price || 0;
-                                if (priceEl) priceEl.textContent = (price && price != 0) ? price : '';
+                                const priceText = (price && price != 0) ? price : '';
+                                const priceKey = 'l' + (i+1) + '-' + selectionId;
+                                
+                                // Check if price changed
+                                if (priceEl && previousValues[priceKey] !== priceText && previousValues[priceKey] !== undefined) {
+                                    flashElement(priceEl);
+                                }
+                                if (priceEl) {
+                                    priceEl.textContent = priceText;
+                                    previousValues[priceKey] = priceText;
+                                }
+                                
                                 if (sizeEl) {
                                     const size = layPrices[i].size || 0;
                                     let sizeText = '';
@@ -451,7 +501,14 @@
                                             sizeText = size.toString();
                                         }
                                     }
+                                    
+                                    const sizeKey = 'ls' + (i+1) + '-' + selectionId;
+                                    // Check if size changed
+                                    if (previousValues[sizeKey] !== sizeText && previousValues[sizeKey] !== undefined) {
+                                        flashElement(sizeEl);
+                                    }
                                     sizeEl.textContent = sizeText;
+                                    previousValues[sizeKey] = sizeText;
                                 }
                             } else {
                                 if (priceEl) priceEl.textContent = '';
