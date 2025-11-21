@@ -4554,17 +4554,21 @@
                 url: "/api/cricket-matches",
                 timeout: 12000,
                 success: function (result) {
-                    if (result && result.cricket) {
-                        const allMatches = result.cricket;
-                        const inplayMatches = allMatches.filter(m => m.inplay);
-                        const cricketInplay = inplayMatches.filter(m => m.sport === 'Cricket');
-                        const soccerInplay = inplayMatches.filter(m => m.sport === 'Soccer');
-                        const tennisInplay = inplayMatches.filter(m => m.sport === 'Tennis');
+                    if (result) {
+                        const cricketMatches = result.cricket || [];
+                        const soccerMatches = result.soccer || [];
+                        const tennisMatches = result.tennis || [];
                         
-                        document.querySelector('#owlitemactive1t div i').textContent = inplayMatches.length;
-                        document.querySelector('#owlitemactive2t div i').textContent = allMatches.filter(m => m.sport === 'Cricket').length;
-                        document.querySelector('#owlitemactive3t div i').textContent = allMatches.filter(m => m.sport === 'Tennis').length;
-                        document.querySelector('#owlitemactive4t div i').textContent = allMatches.filter(m => m.sport === 'Soccer').length;
+                        const cricketInplay = cricketMatches.filter(m => m.inplay === true);
+                        const soccerInplay = soccerMatches.filter(m => m.inplay === true);
+                        const tennisInplay = tennisMatches.filter(m => m.inplay === true);
+                        
+                        const totalInplay = cricketInplay.length + soccerInplay.length + tennisInplay.length;
+                        
+                        document.querySelector('#owlitemactive1t div i').textContent = totalInplay;
+                        document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
+                        document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
+                        document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
                     }
                     ActivateTab(LastTab);
                     convertAllToClientTime();

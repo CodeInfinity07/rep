@@ -99,7 +99,7 @@ class SportsDataController extends Controller
                 return response()->json(['error' => 'API key not configured'], 500);
             }
             
-            $cacheKey = 'cricket_matches';
+            $cacheKey = 'all_matches';
             $cacheDuration = now()->addSeconds(30);
             
             $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey) {
@@ -115,10 +115,12 @@ class SportsDataController extends Controller
             });
             
             if (!$data) {
-                return response()->json(['error' => 'Failed to fetch cricket matches'], 500);
+                return response()->json(['error' => 'Failed to fetch matches'], 500);
             }
             
             $cricket = [];
+            $soccer = [];
+            $tennis = [];
             
             foreach ($data as $sportCategory) {
                 if (!isset($sportCategory['markets']) || empty($sportCategory['markets'])) {
@@ -127,20 +129,31 @@ class SportsDataController extends Controller
                 
                 $sportName = strtolower($sportCategory['name'] ?? '');
                 
-                if ($sportName === 'cricket') {
-                    foreach ($sportCategory['markets'] as $market) {
-                        $cricket[] = [
-                            'marketId' => $market['marketId'] ?? '',
-                            'marketName' => $market['marketName'] ?? '',
-                            'status' => $market['status'] ?? 'UNKNOWN',
-                            'inplay' => $market['inplay'] ?? false,
-                            'startTime' => $market['marketStartTime'] ?? null,
-                        ];
+                foreach ($sportCategory['markets'] as $market) {
+                    $matchData = [
+                        'marketId' => $market['marketId'] ?? '',
+                        'marketName' => $market['marketName'] ?? '',
+                        'status' => $market['status'] ?? 'UNKNOWN',
+                        'inplay' => $market['inplay'] ?? false,
+                        'startTime' => $market['marketStartTime'] ?? null,
+                        'sport' => ucfirst($sportName)
+                    ];
+                    
+                    if ($sportName === 'cricket') {
+                        $cricket[] = $matchData;
+                    } elseif ($sportName === 'soccer') {
+                        $soccer[] = $matchData;
+                    } elseif ($sportName === 'tennis') {
+                        $tennis[] = $matchData;
                     }
                 }
             }
             
-            return response()->json($cricket);
+            return response()->json([
+                'cricket' => $cricket,
+                'soccer' => $soccer,
+                'tennis' => $tennis
+            ]);
             
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
