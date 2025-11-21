@@ -178,21 +178,6 @@
                                             </div>
                                         </form>
                                     </div>
-
-                                    <div class="col-md-6 col-12" style="padding: 0px; height: 65px;">
-                                        <nav aria-label="breadcrumb" class="col-12 bccustom2" id="breadcrumbcustom">
-                                            <ol class="breadcrumb" style="max-height:40px;">
-                                                <li class="breadcrumb-item bcicustom">
-                                                    <a target="_blank" href="/Accounts?MID=123">SuperMaster</a>
-                                                    <div class="btn-group">
-                                                        <a href="#" class="btn btn-warning"><strong>C</strong></a>
-                                                        <a target="_blank" href="/Users/Edit?id=123" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-info"><strong>L</strong></a>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </nav>
-                                    </div>
                         </div>
                     </div>
 
@@ -337,7 +322,7 @@
                                 <tr>
                                     <td>
                                         <h5>
-                                            <a href="/Markets/#!${match.marketId}">${match.marketName} / Match Odds</a>
+                                            <a href="/cricket/${match.marketId}">${match.marketName} / Match Odds</a>
                                             ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
                                         </h5>
                                     </td>

@@ -1,0 +1,348 @@
+{
+    "requestId": "c52669f2-acd7-4c74-a306-7f06bb912fda",
+    "marketBooks": [
+        {
+            "id": "1.250761088",
+            "winners": 1,
+            "betDelay": 5,
+            "totalMatched": 65131729.72,
+            "marketStatus": "InPlay",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "91406735",
+                    "price1": 2.58,
+                    "price2": 2.56,
+                    "price3": 2.54,
+                    "size1": 96381.13,
+                    "size2": 82928.17,
+                    "size3": 1379.41,
+                    "lay1": 2.6,
+                    "lay2": 2.62,
+                    "lay3": 2.64,
+                    "ls1": 12.4,
+                    "ls2": 8210.0,
+                    "ls3": 13992.85,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                },
+                {
+                    "id": "91363584",
+                    "price1": 1.62,
+                    "price2": 1.61,
+                    "price3": 1.6,
+                    "size1": 12012.76,
+                    "size2": 24237.81,
+                    "size3": 121229.77,
+                    "lay1": 1.63,
+                    "lay2": 1.64,
+                    "lay3": 1.65,
+                    "ls1": 152554.18,
+                    "ls2": 129412.3,
+                    "ls3": 149496.71,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "1.250761090",
+            "winners": 1,
+            "betDelay": 5,
+            "totalMatched": 894898.23,
+            "marketStatus": "InPlay",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "37302",
+                    "price1": 50.0,
+                    "price2": 40.0,
+                    "price3": 38.0,
+                    "size1": 664.47,
+                    "size2": 171.23,
+                    "size3": 234.34,
+                    "lay1": 55.0,
+                    "lay2": 75.0,
+                    "lay3": 85.0,
+                    "ls1": 3539.29,
+                    "ls2": 1626.64,
+                    "ls3": 128.79,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                },
+                {
+                    "id": "37303",
+                    "price1": 1.02,
+                    "price2": 1.01,
+                    "size1": 190844.12,
+                    "size2": 501938.63,
+                    "lay1": 1.03,
+                    "lay2": 1.04,
+                    "lay3": 1.05,
+                    "ls1": 217356.56,
+                    "ls2": 86209.9,
+                    "ls3": 97070.99,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529351",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": false,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "10",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "1",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "2",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "3",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "4",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "5",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "6",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "7",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "8",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                },
+                {
+                    "id": "9",
+                    "price1": 8.85,
+                    "size1": 100.0,
+                    "status": "ACTIVE"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529884",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": false,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "1",
+                    "price1": 1.98,
+                    "size1": 98.0,
+                    "lay1": 2.02,
+                    "ls1": 102.0,
+                    "status": "ACTIVE"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529695",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "767154",
+                    "name": "Aspin Stallions",
+                    "price1": 0.0,
+                    "size1": 100.0,
+                    "lay1": 0.0,
+                    "ls1": 100.0,
+                    "status": "SUSPENDED"
+                },
+                {
+                    "id": "273507",
+                    "name": "Ajman Titans",
+                    "price1": 0.0,
+                    "size1": 100.0,
+                    "lay1": 0.0,
+                    "ls1": 100.0,
+                    "status": "SUSPENDED"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529893",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "1",
+                    "name": "1 Over Run AT",
+                    "size1": 0.0,
+                    "ls1": 0.0,
+                    "status": "SUSPENDED"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529894",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "1",
+                    "name": "Fall of 1st Wkt AT",
+                    "size1": 0.0,
+                    "ls1": 0.0,
+                    "status": "SUSPENDED"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529895",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "1",
+                    "name": "Only 2 Over Run AT",
+                    "size1": 0.0,
+                    "ls1": 0.0,
+                    "status": "SUSPENDED"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20529896",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "1",
+                    "name": "4 Over Run AT",
+                    "size1": 0.0,
+                    "ls1": 0.0,
+                    "status": "SUSPENDED"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        }
+    ],
+    "news": "",
+    "scoreboard": {
+        "marketId": "1.250761088",
+        "team1": "AS",
+        "t1_runs": "119",
+        "t1_wickets": "6",
+        "t1_overs": "10",
+        "t1_crr": "11.90",
+        "team2": "AT",
+        "t2_runs": "0",
+        "t2_wickets": "0",
+        "t2_overs": "0",
+        "t2_crr": "0",
+        "rrr": "12",
+        "target": "120",
+        "commentry": "Innings Break",
+        "recent_string": "1   2   0   1   W   1   -   This Over : 5",
+        "lastOverLabel": "This Over",
+        "toWin": "120 of 60 balls",
+        "isSuspendSessions": true
+    },
+    "scores": {
+        "home": "Aspin Stallions",
+        "away": "Ajman Titans",
+        "currentSet": 0,
+        "runs": [],
+        "wickets": []
+    }
+}
