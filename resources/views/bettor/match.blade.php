@@ -311,8 +311,8 @@
 </style>
 
 <script>
-    const marketId = '1.249449817';
-    const eventId = '34872738';
+    const marketId = '{{ $marketId ?? "1.249449817" }}';
+    const eventId = '{{ $eventId ?? "34872738" }}';
     const timeCode = '';
 
     const CommentrySignalR = 1;
