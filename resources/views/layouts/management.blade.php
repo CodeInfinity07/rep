@@ -59,7 +59,7 @@
             <li class="nav-item px-2">
                 <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">
-                    Admin User <i class="fas fa-caret-down"></i>
+                    {{ Auth::user()->username }}({{ ucfirst(Auth::user()->type) }}) <i class="fas fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="/Common/Profile">
