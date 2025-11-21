@@ -292,6 +292,7 @@
                     
                     if (data.soccer && data.soccer.length > 0) {
                         data.soccer.forEach((match, index) => {
+                            const amount = match.totalMatched > 0 ? formatNumber(match.totalMatched) : '';
                             const row = `
                                 <tr>
                                     <td>
@@ -300,7 +301,7 @@
                                             ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
                                         </h5>
                                     </td>
-                                    <td class="position-plus">${formatNumber(match.totalMatched)}</td>
+                                    <td class="position-plus">${amount}</td>
                                 </tr>
                             `;
                             soccerTbody.innerHTML += row;
@@ -311,6 +312,7 @@
                     
                     if (data.tennis && data.tennis.length > 0) {
                         data.tennis.forEach(match => {
+                            const amount = match.totalMatched > 0 ? formatNumber(match.totalMatched) : '';
                             const row = `
                                 <tr>
                                     <td>
@@ -319,7 +321,7 @@
                                             ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
                                         </h5>
                                     </td>
-                                    <td class="position-plus">${formatNumber(match.totalMatched)}</td>
+                                    <td class="position-plus">${amount}</td>
                                 </tr>
                             `;
                             tennisTbody.innerHTML += row;
@@ -330,6 +332,7 @@
                     
                     if (data.cricket && data.cricket.length > 0) {
                         data.cricket.forEach(match => {
+                            const amount = match.totalMatched > 0 ? formatNumber(match.totalMatched) : '';
                             const row = `
                                 <tr>
                                     <td>
@@ -338,7 +341,7 @@
                                             ${match.inplay ? '<i class="fa fa-circle position-plus"></i>' : ''}
                                         </h5>
                                     </td>
-                                    <td class="position-plus">${formatNumber(match.totalMatched)}</td>
+                                    <td class="position-plus">${amount}</td>
                                 </tr>
                             `;
                             cricketTbody.innerHTML += row;
