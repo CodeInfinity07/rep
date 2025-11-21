@@ -4348,14 +4348,15 @@
                     tennisData = [];
                 }
                 
-                populateTables(tables, cricketData, soccerData, tennisData);
+                populateTables(tables, cricketData, soccerData, tennisData, index);
             });
         }
 
-        function populateTables(tables, cricketMatches, soccerMatches, tennisMatches) {
+        function populateTables(tables, cricketMatches, soccerMatches, tennisMatches, tabIndex) {
             
-            if (tables[0]) {
-                tables[0].innerHTML = cricketMatches.map(match => {
+            if (tabIndex === 0) {
+                if (tables[0]) {
+                    tables[0].innerHTML = cricketMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[2] || {};
                     const r3 = match.runners && match.runners[1] || {};
@@ -4422,10 +4423,10 @@
                         </tr>
                     `;
                 }).join('');
-            }
-            
-            if (tables[1]) {
-                tables[1].innerHTML = soccerMatches.map(match => {
+                }
+                
+                if (tables[1]) {
+                    tables[1].innerHTML = soccerMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[1] || {};
                     const r3 = match.runners && match.runners[2] || {};
@@ -4492,10 +4493,10 @@
                         </tr>
                     `;
                 }).join('');
-            }
-            
-            if (tables[2]) {
-                tables[2].innerHTML = tennisMatches.map(match => {
+                }
+                
+                if (tables[2]) {
+                    tables[2].innerHTML = tennisMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[1] || {};
                     const r1Back = formatOdds(r1.back);
@@ -4559,6 +4560,214 @@
                         </tr>
                     `;
                 }).join('');
+                }
+            } else if (tabIndex === 1) {
+                if (tables[0]) {
+                    tables[0].innerHTML = cricketMatches.map(match => {
+                        const r1 = match.runners && match.runners[0] || {};
+                        const r2 = match.runners && match.runners[2] || {};
+                        const r3 = match.runners && match.runners[1] || {};
+                        const r1Back = formatOdds(r1.back);
+                        const r1Lay = formatOdds(r1.lay);
+                        const r2Back = formatOdds(r2.back);
+                        const r2Lay = formatOdds(r2.lay);
+                        const r3Back = formatOdds(r3.back);
+                        const r3Lay = formatOdds(r3.lay);
+                        
+                        return `
+                            <tr class="McomCustom">
+                                <td colspan="2">
+                                    <div class="teams">
+                                        <strong class="team-1">
+                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="matched">
+                                        <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                        <strong>${r1Back || ' '}</strong>
+                                        <span>${formatSize(r1.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                        <strong>${r1Lay || ' '}</strong>
+                                        <span>${formatSize(r1.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                        <strong>${r2Back || ' '}</strong>
+                                        <span>${formatSize(r2.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                        <strong>${r2Lay || ' '}</strong>
+                                        <span>${formatSize(r2.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                        <strong>${r3Back || ' '}</strong>
+                                        <span>${formatSize(r3.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                        <strong>${r3Lay || ' '}</strong>
+                                        <span>${formatSize(r3.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a href="#"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } else if (tabIndex === 2) {
+                if (tables[0]) {
+                    tables[0].innerHTML = tennisMatches.map(match => {
+                        const r1 = match.runners && match.runners[0] || {};
+                        const r2 = match.runners && match.runners[1] || {};
+                        const r1Back = formatOdds(r1.back);
+                        const r1Lay = formatOdds(r1.lay);
+                        const r2Back = formatOdds(r2.back);
+                        const r2Lay = formatOdds(r2.lay);
+                        
+                        return `
+                            <tr class="McomCustom">
+                                <td colspan="2">
+                                    <div class="teams">
+                                        <strong class="team-1">
+                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="matched">
+                                        <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                        <strong>${r1Back || ' '}</strong>
+                                        <span>${formatSize(r1.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                        <strong>${r1Lay || ' '}</strong>
+                                        <span>${formatSize(r1.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue m-left -empty_blue">
+                                        <strong> </strong>
+                                        <span>-</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink m-right -empty_pink">
+                                        <strong> </strong>
+                                        <span>-</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                        <strong>${r2Back || ' '}</strong>
+                                        <span>${formatSize(r2.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                        <strong>${r2Lay || ' '}</strong>
+                                        <span>${formatSize(r2.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a href="#"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } else if (tabIndex === 3) {
+                if (tables[0]) {
+                    tables[0].innerHTML = soccerMatches.map(match => {
+                        const r1 = match.runners && match.runners[0] || {};
+                        const r2 = match.runners && match.runners[1] || {};
+                        const r3 = match.runners && match.runners[2] || {};
+                        const r1Back = formatOdds(r1.back);
+                        const r1Lay = formatOdds(r1.lay);
+                        const r2Back = formatOdds(r2.back);
+                        const r2Lay = formatOdds(r2.lay);
+                        const r3Back = formatOdds(r3.back);
+                        const r3Lay = formatOdds(r3.lay);
+                        
+                        return `
+                            <tr class="McomCustom">
+                                <td colspan="2">
+                                    <div class="teams">
+                                        <strong class="team-1">
+                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="matched">
+                                        <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                        <strong>${r1Back || ' '}</strong>
+                                        <span>${formatSize(r1.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                        <strong>${r1Lay || ' '}</strong>
+                                        <span>${formatSize(r1.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                        <strong>${r2Back || ' '}</strong>
+                                        <span>${formatSize(r2.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                        <strong>${r2Lay || ' '}</strong>
+                                        <span>${formatSize(r2.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                        <strong>${r3Back || ' '}</strong>
+                                        <span>${formatSize(r3.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                        <strong>${r3Lay || ' '}</strong>
+                                        <span>${formatSize(r3.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a href="#"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
             }
         }
 
