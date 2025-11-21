@@ -4552,6 +4552,13 @@
             return value && value > 0 ? value : '';
         }
 
+        function formatMatched(value) {
+            if (!value || value === 0) return '';
+            if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+            if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
+            return value.toLocaleString();
+        }
+
         function populateInplayTables(cricketMatches, soccerMatches, tennisMatches) {
             const tablesContainer = document.querySelector('.tabcontent.active');
             if (!tablesContainer) return;
@@ -4562,21 +4569,64 @@
                 tables[0].innerHTML = cricketMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[1] || {};
+                    const r1Back = formatOdds(r1.back);
+                    const r1Lay = formatOdds(r1.lay);
+                    const r2Back = formatOdds(r2.back);
+                    const r2Lay = formatOdds(r2.lay);
+                    
                     return `
-                        <tr>
+                        <tr class="McomCustom">
                             <td colspan="2">
-                                <a href="/cricket/${match.marketId}" style="color:white;">
-                                    ${match.marketName}
-                                </a>
+                                <div class="teams">
+                                    <strong class="team-1">
+                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                    </strong>
+                                </div>
                             </td>
-                            <td>${match.totalMatched || ''}</td>
-                            <td>${formatOdds(r1.back)}</td>
-                            <td>${formatOdds(r1.lay)}</td>
-                            <td></td>
-                            <td></td>
-                            <td>${formatOdds(r2.back)}</td>
-                            <td>${formatOdds(r2.lay)}</td>
-                            <td></td>
+                            <td>
+                                <div class="matched">
+                                    <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                    <strong>${r1Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                    <strong>${r1Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue m-left -empty_blue">
+                                    <strong> </strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink m-right -empty_pink">
+                                    <strong> </strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                    <strong>${r2Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                    <strong>${r2Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-info-circle"></i></a>
+                            </td>
                         </tr>
                     `;
                 }).join('');
@@ -4587,21 +4637,66 @@
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[1] || {};
                     const r3 = match.runners && match.runners[2] || {};
+                    const r1Back = formatOdds(r1.back);
+                    const r1Lay = formatOdds(r1.lay);
+                    const r2Back = formatOdds(r2.back);
+                    const r2Lay = formatOdds(r2.lay);
+                    const r3Back = formatOdds(r3.back);
+                    const r3Lay = formatOdds(r3.lay);
+                    
                     return `
-                        <tr>
+                        <tr class="McomCustom">
                             <td colspan="2">
-                                <a href="/cricket/${match.marketId}" style="color:white;">
-                                    ${match.marketName}
-                                </a>
+                                <div class="teams">
+                                    <strong class="team-1">
+                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                    </strong>
+                                </div>
                             </td>
-                            <td>${match.totalMatched || ''}</td>
-                            <td>${formatOdds(r1.back)}</td>
-                            <td>${formatOdds(r1.lay)}</td>
-                            <td>${formatOdds(r2.back)}</td>
-                            <td>${formatOdds(r2.lay)}</td>
-                            <td>${formatOdds(r3.back)}</td>
-                            <td>${formatOdds(r3.lay)}</td>
-                            <td></td>
+                            <td>
+                                <div class="matched">
+                                    <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                    <strong>${r1Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                    <strong>${r1Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                    <strong>${r2Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                    <strong>${r2Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                    <strong>${r3Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                    <strong>${r3Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-info-circle"></i></a>
+                            </td>
                         </tr>
                     `;
                 }).join('');
@@ -4611,21 +4706,64 @@
                 tables[2].innerHTML = tennisMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[1] || {};
+                    const r1Back = formatOdds(r1.back);
+                    const r1Lay = formatOdds(r1.lay);
+                    const r2Back = formatOdds(r2.back);
+                    const r2Lay = formatOdds(r2.lay);
+                    
                     return `
-                        <tr>
+                        <tr class="McomCustom">
                             <td colspan="2">
-                                <a href="/cricket/${match.marketId}" style="color:white;">
-                                    ${match.marketName}
-                                </a>
+                                <div class="teams">
+                                    <strong class="team-1">
+                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                    </strong>
+                                </div>
                             </td>
-                            <td>${match.totalMatched || ''}</td>
-                            <td>${formatOdds(r1.back)}</td>
-                            <td>${formatOdds(r1.lay)}</td>
-                            <td></td>
-                            <td></td>
-                            <td>${formatOdds(r2.back)}</td>
-                            <td>${formatOdds(r2.lay)}</td>
-                            <td></td>
+                            <td>
+                                <div class="matched">
+                                    <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                    <strong>${r1Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                    <strong>${r1Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue m-left -empty_blue">
+                                    <strong> </strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink m-right -empty_pink">
+                                    <strong> </strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                    <strong>${r2Back || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                    <strong>${r2Lay || ' '}</strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-info-circle"></i></a>
+                            </td>
                         </tr>
                     `;
                 }).join('');
