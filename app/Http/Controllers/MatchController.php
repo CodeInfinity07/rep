@@ -62,10 +62,18 @@ class MatchController extends Controller
             
             // Serve bettor or management view based on user role
             if (strtolower($user->type) === 'bettor') {
-                return view('bettor.match', $viewData);
+                return response()
+                    ->view('bettor.match', $viewData)
+                    ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                    ->header('Pragma', 'no-cache')
+                    ->header('Expires', '0');
             }
             
-            return view('management.cricket.match', $viewData);
+            return response()
+                ->view('management.cricket.match', $viewData)
+                ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', '0');
             
         } catch (\Exception $e) {
             return view($errorView)->with('error', 'Error: ' . $e->getMessage());
