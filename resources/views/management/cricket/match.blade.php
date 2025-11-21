@@ -409,16 +409,19 @@
                             const sizeEl = document.getElementById('bs' + position + '-' + selectionId);
                             
                             if (backPrices[priceIndex]) {
-                                if (priceEl) priceEl.textContent = backPrices[priceIndex].price || '';
+                                const price = backPrices[priceIndex].price || 0;
+                                if (priceEl) priceEl.textContent = (price && price != 0) ? price : '';
                                 if (sizeEl) {
                                     const size = backPrices[priceIndex].size || 0;
                                     let sizeText = '';
-                                    if (size >= 1000000) {
-                                        sizeText = (size / 1000000).toFixed(1) + 'M';
-                                    } else if (size >= 1000) {
-                                        sizeText = (size / 1000).toFixed(1) + 'K';
-                                    } else {
-                                        sizeText = size.toString();
+                                    if (size > 0) {
+                                        if (size >= 1000000) {
+                                            sizeText = (size / 1000000).toFixed(1) + 'M';
+                                        } else if (size >= 1000) {
+                                            sizeText = (size / 1000).toFixed(1) + 'K';
+                                        } else {
+                                            sizeText = size.toString();
+                                        }
                                     }
                                     sizeEl.textContent = sizeText;
                                 }
@@ -434,16 +437,19 @@
                             const sizeEl = document.getElementById('ls' + (i+1) + '-' + selectionId);
                             
                             if (layPrices[i]) {
-                                if (priceEl) priceEl.textContent = layPrices[i].price || '';
+                                const price = layPrices[i].price || 0;
+                                if (priceEl) priceEl.textContent = (price && price != 0) ? price : '';
                                 if (sizeEl) {
                                     const size = layPrices[i].size || 0;
                                     let sizeText = '';
-                                    if (size >= 1000000) {
-                                        sizeText = (size / 1000000).toFixed(1) + 'M';
-                                    } else if (size >= 1000) {
-                                        sizeText = (size / 1000).toFixed(1) + 'K';
-                                    } else {
-                                        sizeText = size.toString();
+                                    if (size > 0) {
+                                        if (size >= 1000000) {
+                                            sizeText = (size / 1000000).toFixed(1) + 'M';
+                                        } else if (size >= 1000) {
+                                            sizeText = (size / 1000).toFixed(1) + 'K';
+                                        } else {
+                                            sizeText = size.toString();
+                                        }
                                     }
                                     sizeEl.textContent = sizeText;
                                 }
