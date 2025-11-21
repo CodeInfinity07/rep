@@ -130,13 +130,26 @@ class SportsDataController extends Controller
                 $sportName = strtolower($sportCategory['name'] ?? '');
                 
                 foreach ($sportCategory['markets'] as $market) {
+                    $runners = $market['runners'] ?? [];
+                    $processedRunners = [];
+                    
+                    foreach ($runners as $runner) {
+                        $processedRunners[] = [
+                            'name' => $runner['runnerName'] ?? '',
+                            'back' => $runner['ex']['availableToBack'][0]['price'] ?? 0,
+                            'lay' => $runner['ex']['availableToLay'][0]['price'] ?? 0,
+                        ];
+                    }
+                    
                     $matchData = [
                         'marketId' => $market['marketId'] ?? '',
                         'marketName' => $market['marketName'] ?? '',
                         'status' => $market['status'] ?? 'UNKNOWN',
                         'inplay' => $market['inplay'] ?? false,
                         'startTime' => $market['marketStartTime'] ?? null,
-                        'sport' => ucfirst($sportName)
+                        'sport' => ucfirst($sportName),
+                        'runners' => $processedRunners,
+                        'totalMatched' => $this->calculateTotalMatched($runners)
                     ];
                     
                     if ($sportName === 'cricket') {

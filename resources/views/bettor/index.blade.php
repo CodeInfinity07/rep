@@ -4548,6 +4548,90 @@
             location.href = "/Common/Logout";
         }
 
+        function formatOdds(value) {
+            return value && value > 0 ? value : '';
+        }
+
+        function populateInplayTables(cricketMatches, soccerMatches, tennisMatches) {
+            const tablesContainer = document.querySelector('.tabcontent.active');
+            if (!tablesContainer) return;
+            
+            const tables = tablesContainer.querySelectorAll('.high_lights table tbody');
+            
+            if (tables[0]) {
+                tables[0].innerHTML = cricketMatches.map(match => {
+                    const r1 = match.runners && match.runners[0] || {};
+                    const r2 = match.runners && match.runners[1] || {};
+                    return `
+                        <tr>
+                            <td colspan="2">
+                                <a href="/cricket/${match.marketId}" style="color:white;">
+                                    ${match.marketName}
+                                </a>
+                            </td>
+                            <td>${match.totalMatched || ''}</td>
+                            <td>${formatOdds(r1.back)}</td>
+                            <td>${formatOdds(r1.lay)}</td>
+                            <td></td>
+                            <td></td>
+                            <td>${formatOdds(r2.back)}</td>
+                            <td>${formatOdds(r2.lay)}</td>
+                            <td></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+            
+            if (tables[1]) {
+                tables[1].innerHTML = soccerMatches.map(match => {
+                    const r1 = match.runners && match.runners[0] || {};
+                    const r2 = match.runners && match.runners[1] || {};
+                    const r3 = match.runners && match.runners[2] || {};
+                    return `
+                        <tr>
+                            <td colspan="2">
+                                <a href="/cricket/${match.marketId}" style="color:white;">
+                                    ${match.marketName}
+                                </a>
+                            </td>
+                            <td>${match.totalMatched || ''}</td>
+                            <td>${formatOdds(r1.back)}</td>
+                            <td>${formatOdds(r1.lay)}</td>
+                            <td>${formatOdds(r2.back)}</td>
+                            <td>${formatOdds(r2.lay)}</td>
+                            <td>${formatOdds(r3.back)}</td>
+                            <td>${formatOdds(r3.lay)}</td>
+                            <td></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+            
+            if (tables[2]) {
+                tables[2].innerHTML = tennisMatches.map(match => {
+                    const r1 = match.runners && match.runners[0] || {};
+                    const r2 = match.runners && match.runners[1] || {};
+                    return `
+                        <tr>
+                            <td colspan="2">
+                                <a href="/cricket/${match.marketId}" style="color:white;">
+                                    ${match.marketName}
+                                </a>
+                            </td>
+                            <td>${match.totalMatched || ''}</td>
+                            <td>${formatOdds(r1.back)}</td>
+                            <td>${formatOdds(r1.lay)}</td>
+                            <td></td>
+                            <td></td>
+                            <td>${formatOdds(r2.back)}</td>
+                            <td>${formatOdds(r2.lay)}</td>
+                            <td></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+        }
+
         function fetchHighlights() {
             $.ajax({
                 type: "GET",
@@ -4569,6 +4653,8 @@
                         document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
                         document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
                         document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
+                        
+                        populateInplayTables(cricketInplay, soccerInplay, tennisInplay);
                     }
                     ActivateTab(LastTab);
                     convertAllToClientTime();
