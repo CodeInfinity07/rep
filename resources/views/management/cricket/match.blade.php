@@ -114,18 +114,23 @@
                                         @endphp
                                         @if(isset($backPrices[$priceIndex]))
                                             <div id="b{{ $position }}-{{ $selectionId }}" class="col-12 price" style="{{ $position === 1 ? 'background-color: rgb(227, 248, 255);' : '' }}" data-position="{{ $position }}" data-type="back">
-                                                {{ $backPrices[$priceIndex]['price'] ?? '' }}
+                                                @php
+                                                    $price = $backPrices[$priceIndex]['price'] ?? '';
+                                                    echo ($price && $price != 0) ? $price : '';
+                                                @endphp
                                             </div>
                                             <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size" style="{{ $position === 1 ? 'background-color: rgb(234, 246, 170);' : '' }}">
                                                 @if(isset($backPrices[$priceIndex]['size']))
                                                     @php
                                                         $size = $backPrices[$priceIndex]['size'];
-                                                        if ($size >= 1000000) {
-                                                            echo number_format($size / 1000000, 1) . 'M';
-                                                        } elseif ($size >= 1000) {
-                                                            echo number_format($size / 1000, 1) . 'K';
-                                                        } else {
-                                                            echo number_format($size, 0);
+                                                        if ($size > 0) {
+                                                            if ($size >= 1000000) {
+                                                                echo number_format($size / 1000000, 1) . 'M';
+                                                            } elseif ($size >= 1000) {
+                                                                echo number_format($size / 1000, 1) . 'K';
+                                                            } else {
+                                                                echo number_format($size, 0);
+                                                            }
                                                         }
                                                     @endphp
                                                 @endif
@@ -145,18 +150,23 @@
                                     @endif
                                         @if(isset($layPrices[$i]))
                                             <div id="l{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 price" style="{{ $i === 0 ? 'background-color: rgb(255, 205, 204);' : '' }}">
-                                                {{ $layPrices[$i]['price'] ?? '' }}
+                                                @php
+                                                    $price = $layPrices[$i]['price'] ?? '';
+                                                    echo ($price && $price != 0) ? $price : '';
+                                                @endphp
                                             </div>
                                             <div id="ls{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 size" style="{{ $i === 0 ? 'background-color: rgb(252, 220, 138);' : '' }}">
                                                 @if(isset($layPrices[$i]['size']))
                                                     @php
                                                         $size = $layPrices[$i]['size'];
-                                                        if ($size >= 1000000) {
-                                                            echo number_format($size / 1000000, 1) . 'M';
-                                                        } elseif ($size >= 1000) {
-                                                            echo number_format($size / 1000, 1) . 'K';
-                                                        } else {
-                                                            echo number_format($size, 0);
+                                                        if ($size > 0) {
+                                                            if ($size >= 1000000) {
+                                                                echo number_format($size / 1000000, 1) . 'M';
+                                                            } elseif ($size >= 1000) {
+                                                                echo number_format($size / 1000, 1) . 'K';
+                                                            } else {
+                                                                echo number_format($size, 0);
+                                                            }
                                                         }
                                                     @endphp
                                                 @endif
@@ -234,18 +244,23 @@
                                                     @endphp
                                                     @if(isset($backPrices[$priceIndex]))
                                                         <div id="b{{ $position }}-{{ $selectionId }}" class="col-12 price" style="{{ $position === 1 ? 'background-color: rgb(227, 248, 255);' : '' }}">
-                                                            {{ $backPrices[$priceIndex]['price'] ?? '' }}
+                                                            @php
+                                                                $price = $backPrices[$priceIndex]['price'] ?? '';
+                                                                echo ($price && $price != 0) ? $price : '';
+                                                            @endphp
                                                         </div>
                                                         <div id="bs{{ $position }}-{{ $selectionId }}" class="col-12 size" style="{{ $position === 1 ? 'background-color: rgb(227, 248, 255);' : '' }}">
                                                             @if(isset($backPrices[$priceIndex]['size']))
                                                                 @php
                                                                     $size = $backPrices[$priceIndex]['size'];
-                                                                    if ($size >= 1000000) {
-                                                                        echo number_format($size / 1000000, 1) . 'M';
-                                                                    } elseif ($size >= 1000) {
-                                                                        echo number_format($size / 1000, 1) . 'K';
-                                                                    } else {
-                                                                        echo number_format($size, 0);
+                                                                    if ($size > 0) {
+                                                                        if ($size >= 1000000) {
+                                                                            echo number_format($size / 1000000, 1) . 'M';
+                                                                        } elseif ($size >= 1000) {
+                                                                            echo number_format($size / 1000, 1) . 'K';
+                                                                        } else {
+                                                                            echo number_format($size, 0);
+                                                                        }
                                                                     }
                                                                 @endphp
                                                             @endif
@@ -265,18 +280,23 @@
                                                 @endif
                                                     @if(isset($layPrices[$i]))
                                                         <div id="l{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 price" style="{{ $i === 0 ? 'background-color: rgb(255, 205, 204);' : '' }}">
-                                                            {{ $layPrices[$i]['price'] ?? '' }}
+                                                            @php
+                                                                $price = $layPrices[$i]['price'] ?? '';
+                                                                echo ($price && $price != 0) ? $price : '';
+                                                            @endphp
                                                         </div>
                                                         <div id="ls{{ $i+1 }}-{{ $selectionId }}" class="col-md-12 col-sm-12 size" style="{{ $i === 0 ? 'background-color: rgb(255, 205, 204);' : '' }}">
                                                             @if(isset($layPrices[$i]['size']))
                                                                 @php
                                                                     $size = $layPrices[$i]['size'];
-                                                                    if ($size >= 1000000) {
-                                                                        echo number_format($size / 1000000, 1) . 'M';
-                                                                    } elseif ($size >= 1000) {
-                                                                        echo number_format($size / 1000, 1) . 'K';
-                                                                    } else {
-                                                                        echo number_format($size, 0);
+                                                                    if ($size > 0) {
+                                                                        if ($size >= 1000000) {
+                                                                            echo number_format($size / 1000000, 1) . 'M';
+                                                                        } elseif ($size >= 1000) {
+                                                                            echo number_format($size / 1000, 1) . 'K';
+                                                                        } else {
+                                                                            echo number_format($size, 0);
+                                                                        }
                                                                     }
                                                                 @endphp
                                                             @endif
