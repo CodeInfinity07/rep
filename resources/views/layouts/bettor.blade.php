@@ -23,6 +23,8 @@
             min-height: 91.7vh;
         }
     </style>
+    
+    @stack('styles')
 </head>
 
 <body class="bg-gray d-flex flex-column menu-collapsed">
@@ -232,5 +234,7 @@
             });
         });
     </script>
+    
+    @stack('scripts')
 </body>
 </html>
