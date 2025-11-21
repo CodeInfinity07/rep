@@ -31,6 +31,34 @@
         center a {
             font-size: 13px;
         }
+
+        #page-preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 
     <script>
@@ -47,6 +75,9 @@
 </head>
 
 <body class="bg-gray d-flex flex-column">
+    <div id="page-preloader">
+        <div class="preloader-spinner"></div>
+    </div>
     <div class="main-page">
         <div class="row no-gutters">
             <div class="col-md-3 col-lg-2" id="sidebar">
@@ -4567,11 +4598,39 @@
             return value.toLocaleString();
         }
 
-        function populateInplayTables(cricketMatches, soccerMatches, tennisMatches) {
-            const tablesContainer = document.querySelector('.tabcontent.active');
-            if (!tablesContainer) return;
+        function populateAllTables(allCricket, allSoccer, allTennis, cricketInplay, soccerInplay, tennisInplay) {
+            const tabContents = document.querySelectorAll('.tabcontent');
             
-            const tables = tablesContainer.querySelectorAll('.high_lights table tbody');
+            tabContents.forEach((tabContent, index) => {
+                const tables = tabContent.querySelectorAll('.high_lights table tbody');
+                
+                let cricketData = [];
+                let soccerData = [];
+                let tennisData = [];
+                
+                if (index === 0) {
+                    cricketData = cricketInplay;
+                    soccerData = soccerInplay;
+                    tennisData = tennisInplay;
+                } else if (index === 1) {
+                    cricketData = allCricket;
+                    soccerData = [];
+                    tennisData = [];
+                } else if (index === 2) {
+                    cricketData = [];
+                    soccerData = [];
+                    tennisData = allTennis;
+                } else if (index === 3) {
+                    cricketData = [];
+                    soccerData = allSoccer;
+                    tennisData = [];
+                }
+                
+                populateTables(tables, cricketData, soccerData, tennisData);
+            });
+        }
+
+        function populateTables(tables, cricketMatches, soccerMatches, tennisMatches) {
             
             if (tables[0]) {
                 tables[0].innerHTML = cricketMatches.map(match => {
@@ -4803,7 +4862,13 @@
                         document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
                         document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
                         
-                        populateInplayTables(cricketInplay, soccerInplay, tennisInplay);
+                        populateAllTables(cricketMatches, soccerMatches, tennisMatches, cricketInplay, soccerInplay, tennisInplay);
+                        
+                        const preloader = document.getElementById('page-preloader');
+                        if (preloader) {
+                            preloader.style.opacity = '0';
+                            setTimeout(() => preloader.style.display = 'none', 300);
+                        }
                     }
                     ActivateTab(LastTab);
                     convertAllToClientTime();

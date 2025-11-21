@@ -24,9 +24,7 @@ Route::get('/bet-cricket', function () {
     return view('bet-cricket');
 });
 
-Route::get('/cricket', function () {
-    return view('cricket');
-});
+Route::get('/cricket', [App\Http\Controllers\SportsPageController::class, 'cricket'])->middleware(['auth']);
 
 Route::get('/history', function () {
     return view('history');
@@ -102,10 +100,6 @@ Route::get('/sample', function () {
     return view('sample');
 });
 
-Route::get('/soccer', function () {
-    return view('soccer');
-});
+Route::get('/soccer', [App\Http\Controllers\SportsPageController::class, 'soccer'])->middleware(['auth']);
 
-Route::get('/tennis', function () {
-    return view('tennis');
-});
+Route::get('/tennis', [App\Http\Controllers\SportsPageController::class, 'tennis'])->middleware(['auth']);

@@ -46,6 +46,26 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## Recent Updates (November 21, 2025)
 
+### All Tabs and Pages Now Show Real Data
+- **Bettor Dashboard Tabs**: All tabs (Inplay, Cricket, Tennis, Soccer) now display real data from API
+  * Inplay tab shows only inplay matches from all sports
+  * Cricket tab shows all cricket matches (inplay + upcoming)
+  * Tennis tab shows all tennis matches (inplay + upcoming)
+  * Soccer tab shows all soccer matches (inplay + upcoming)
+  * Tab counts update dynamically with real match counts
+- **Preloader Implementation**: Added loading spinner that shows until API data is fully loaded
+  * Page only displays when complete data is received
+  * Prevents showing empty/partial data during load
+  * Smooth fade-out transition when data is ready
+- **Sidebar Sport Pages**: Created dedicated pages for cricket, soccer, and tennis sports
+  * /cricket - Shows all cricket matches with live odds and data
+  * /soccer - Shows all soccer matches with live odds and data
+  * /tennis - Shows all tennis matches with live odds and data
+  * Each page auto-refreshes every 60 seconds
+  * Displays match cards with runner odds, sizes, and matched amounts
+  * "LIVE" badge for inplay matches
+  * All pages use real API data (no dummy data)
+
 ### Inplay Matches Display on Bettor Dashboard
 - Updated /api/cricket-matches endpoint to fetch live odds for inplay matches:
   * Returns cricket, soccer, tennis matches from ScoreSwift /api/home
