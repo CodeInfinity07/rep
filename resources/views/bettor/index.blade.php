@@ -4559,6 +4559,14 @@
             return value.toLocaleString();
         }
 
+        function formatSize(value) {
+            if (!value || value === 0) return '-';
+            if (value >= 1000) {
+                return (value / 1000).toFixed(2) + 'k';
+            }
+            return value.toLocaleString();
+        }
+
         function populateInplayTables(cricketMatches, soccerMatches, tennisMatches) {
             const tablesContainer = document.querySelector('.tabcontent.active');
             if (!tablesContainer) return;
@@ -4591,13 +4599,13 @@
                             <td>
                                 <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
                                     <strong>${r1Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r1.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
                                     <strong>${r1Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r1.laySize)}</span>
                                 </div>
                             </td>
                             <td>
@@ -4615,13 +4623,13 @@
                             <td>
                                 <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
                                     <strong>${r2Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r2.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
                                     <strong>${r2Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r2.laySize)}</span>
                                 </div>
                             </td>
                             <td class="action">
@@ -4661,37 +4669,37 @@
                             <td>
                                 <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
                                     <strong>${r1Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r1.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
                                     <strong>${r1Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r1.laySize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
                                     <strong>${r2Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r2.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
                                     <strong>${r2Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r2.laySize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
                                     <strong>${r3Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r3.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
                                     <strong>${r3Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r3.laySize)}</span>
                                 </div>
                             </td>
                             <td class="action">
@@ -4728,13 +4736,13 @@
                             <td>
                                 <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
                                     <strong>${r1Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r1.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
                                     <strong>${r1Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r1.laySize)}</span>
                                 </div>
                             </td>
                             <td>
@@ -4752,13 +4760,13 @@
                             <td>
                                 <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
                                     <strong>${r2Back || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r2.backSize)}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
                                     <strong>${r2Lay || ' '}</strong>
-                                    <span>-</span>
+                                    <span>${formatSize(r2.laySize)}</span>
                                 </div>
                             </td>
                             <td class="action">

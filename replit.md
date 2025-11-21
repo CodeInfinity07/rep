@@ -52,21 +52,26 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
   * For inplay matches, fetches odds via /api/GetMarketOdds
   * Fetches runner names via /api/GetMarketDetails
   * Combines selectionId-based odds with runner names
-  * Includes back/lay prices and totalMatched for each match
+  * Includes back/lay prices, sizes, and totalMatched for each match
   * Multi-level caching: 30s for match list, 30s for details, 5s for odds
 - Updated bettor dashboard JavaScript:
   * Filters inplay matches client-side based on inplay === true
   * Updates tab counts (Inplay, Cricket, Tennis, Soccer)
   * Populates tables with inplay matches showing match names and live odds
-  * Displays back/lay odds for each runner in proper columns
+  * Displays back/lay odds and sizes for each runner in styled boxes
+  * Blue boxes for back prices/sizes, pink boxes for lay prices/sizes
+  * Empty boxes (with -empty_blue/-empty_pink classes) when no odds available
   * formatOdds() function shows blank for zero values
+  * formatSize() function formats sizes (>1000 as "Xk", e.g., "20.43k", "4.68k")
+  * formatMatched() function formats total matched (M for millions, k for thousands)
   * Refreshes every 60 seconds automatically
 - Match display features:
-  * Cricket/Tennis: 2 runners with back/lay odds
-  * Soccer: 3 runners (home/draw/away) with back/lay odds
-  * Total matched amount displayed per match
+  * Cricket/Tennis: 2 runners with back/lay odds and sizes
+  * Soccer: 3 runners (home/draw/away) with back/lay odds and sizes
+  * Total matched amount displayed per match (formatted)
   * Clickable match names linking to /cricket/{marketId}
-  * Original HTML table structure preserved
+  * Original HTML table structure preserved with .box -blue and .box -pink styling
+  * Info icon in action column for each match
 - API Performance:
   * 2 API calls per inplay match (GetMarketDetails + GetMarketOdds)
   * Response time: ~3-4 seconds for 8-10 inplay matches

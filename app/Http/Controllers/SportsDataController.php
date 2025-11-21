@@ -156,7 +156,9 @@ class SportsDataController extends Controller
                                 $runners[] = [
                                     'name' => $runnerNames[$selectionId] ?? '',
                                     'back' => $runner['ex']['availableToBack'][0]['price'] ?? 0,
+                                    'backSize' => $runner['ex']['availableToBack'][0]['size'] ?? 0,
                                     'lay' => $runner['ex']['availableToLay'][0]['price'] ?? 0,
+                                    'laySize' => $runner['ex']['availableToLay'][0]['size'] ?? 0,
                                 ];
                             }
                             $totalMatched = $oddsData['totalMatched'] ?? 0;
