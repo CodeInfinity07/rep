@@ -6,6 +6,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
+            <div class="alert alert-success mb-3">
+                <strong>✓ BETTOR SOCCER PAGE</strong> - You are viewing the bettor interface
+            </div>
             <h4 class="text-white mb-3">Soccer</h4>
             
             <div id="soccer-matches-container">
