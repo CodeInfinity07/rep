@@ -70,6 +70,26 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## Recent Updates (November 21, 2025)
 
+### Cricket Page Rewritten with Clean Structure (November 21, 2025)
+- **Bettor Cricket Listing Page**: Completely rewritten from scratch with clean, maintainable code
+  * Removed all problematic code (broken slick carousel, static HTML)
+  * Dynamically loads all cricket matches from `/api/cricket-matches`
+  * Modern card-based UI with match cards showing:
+    - Match name (clickable to view details at `/cricket/{marketId}`)
+    - LIVE badge for inplay matches
+    - Odds table with runner names, back/lay prices, and sizes
+    - Matched amount display
+  * Features: Preloader, auto-refresh every 60 seconds, error handling
+  * Properly extends layouts.bettor with sidebar and header
+
+### Match Detail Page CSS Fix (November 21, 2025)
+- **Fixed Bootstrap CSS Conflict**: Resolved layout breaking issue in match detail page
+  * Changed generic `.container` class to `.match-iframe-container`
+  * Updated LIVEDIV element to use new class name
+  * Removed duplicate `.responsive-iframe` CSS
+  * Header and sidebar now display completely and correctly
+  * No CSS conflicts with Bootstrap layout classes
+
 ### Bettor Pages Refactored to Extend Layout (November 21, 2025)
 - **All bettor pages now extend layouts.bettor**: Cricket, soccer, tennis, and match detail pages
   * Sidebar and header are in the layout (not duplicated in each page)
