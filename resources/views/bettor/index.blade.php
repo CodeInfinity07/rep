@@ -4577,10 +4577,13 @@
                 tables[0].innerHTML = cricketMatches.map(match => {
                     const r1 = match.runners && match.runners[0] || {};
                     const r2 = match.runners && match.runners[1] || {};
+                    const r3 = match.runners && match.runners[2] || {};
                     const r1Back = formatOdds(r1.back);
                     const r1Lay = formatOdds(r1.lay);
                     const r2Back = formatOdds(r2.back);
                     const r2Lay = formatOdds(r2.lay);
+                    const r3Back = formatOdds(r3.back);
+                    const r3Lay = formatOdds(r3.lay);
                     
                     return `
                         <tr class="McomCustom">
@@ -4609,18 +4612,6 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="box -blue m-left -empty_blue">
-                                    <strong> </strong>
-                                    <span>-</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="box -pink m-right -empty_pink">
-                                    <strong> </strong>
-                                    <span>-</span>
-                                </div>
-                            </td>
-                            <td>
                                 <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
                                     <strong>${r2Back || ' '}</strong>
                                     <span>${formatSize(r2.backSize)}</span>
@@ -4630,6 +4621,18 @@
                                 <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
                                     <strong>${r2Lay || ' '}</strong>
                                     <span>${formatSize(r2.laySize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                    <strong>${r3Back || ' '}</strong>
+                                    <span>${formatSize(r3.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                    <strong>${r3Lay || ' '}</strong>
+                                    <span>${formatSize(r3.laySize)}</span>
                                 </div>
                             </td>
                             <td class="action">

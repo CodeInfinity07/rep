@@ -66,8 +66,9 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
   * formatMatched() function formats total matched (M for millions, k for thousands)
   * Refreshes every 60 seconds automatically
 - Match display features:
-  * Cricket/Tennis: 2 runners with back/lay odds and sizes
+  * Cricket: 3 runners (team 1/team 2/The Draw) with back/lay odds and sizes
   * Soccer: 3 runners (home/draw/away) with back/lay odds and sizes
+  * Tennis: 2 runners with back/lay odds and sizes
   * Total matched amount displayed per match (formatted)
   * Clickable match names linking to /cricket/{marketId}
   * Original HTML table structure preserved with .box -blue and .box -pink styling
