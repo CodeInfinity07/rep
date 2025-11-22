@@ -27,7 +27,7 @@
     @stack('styles')
 </head>
 
-<body class="bg-gray d-flex flex-column menu-collapsed">
+<body class="bg-gray d-flex flex-column">
     <div class="main-page">
         <div class="row no-gutters">
             <div class="col-md-3 col-lg-2" id="sidebar">
