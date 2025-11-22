@@ -680,7 +680,7 @@
                                 <a class="dropdown-item" href="/Customer/ProfitLoss/">Profit Loss</a>
                                 <a class="dropdown-item" href="/Customer/Bets">Bet History</a>
                                 <a class="dropdown-item" href="/Customer/Profile">Profile</a>
-                                <a class="dropdown-item" id="btn-logout" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <a class="dropdown-item" id="btn-logout" href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();">Logout</a>
                             </div>
                             <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
