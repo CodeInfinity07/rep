@@ -1300,7 +1300,19 @@
             showWelcomeBanner();
 
             $(".page_loader").hide();
-            document.getElementById("horsenhound").classList.remove("d-none");
+            
+            // Hide preloader
+            const preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.style.display = 'none', 300);
+            }
+            
+            // Only hide horsenhound if it exists (homepage only)
+            const horsenhound = document.getElementById("horsenhound");
+            if (horsenhound) {
+                horsenhound.classList.remove("d-none");
+            }
 
             $(".games_slider").slick({
                 arrows: false,
