@@ -680,8 +680,11 @@
                                 <a class="dropdown-item" href="/Customer/ProfitLoss/">Profit Loss</a>
                                 <a class="dropdown-item" href="/Customer/Bets">Bet History</a>
                                 <a class="dropdown-item" href="/Customer/Profile">Profile</a>
-                                <a class="dropdown-item" id="btn-logout" href="/Common/Logout">Logout</a>
+                                <a class="dropdown-item" id="btn-logout" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             </div>
+                            <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -1389,7 +1392,7 @@
         }
 
         function ReLogin() {
-            location.href = "/Common/Logout";
+            document.getElementById('logout-form').submit();
         }
 
         function formatOdds(value) {
