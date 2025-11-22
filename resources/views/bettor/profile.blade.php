@@ -690,6 +690,10 @@
                 </div>
 
 <div class="content-wrap body">
+                    <script>
+                        // Profile page - disable homepage-specific initializations
+                        window.isProfilePage = true;
+                    </script>
                     <style>
     .field-validation-error{
         display:inline-block;
@@ -1122,9 +1126,14 @@
             showWelcomeBanner();
 
             $(".page_loader").hide();
-            document.getElementById("horsenhound").classList.remove("d-none");
+            
+            const horseHound = document.getElementById("horsenhound");
+            if (horseHound) {
+                horseHound.classList.remove("d-none");
+            }
 
-            $(".games_slider").slick({
+            if (!window.isProfilePage && $(".games_slider").length) {
+                $(".games_slider").slick({
                 arrows: false,
                 autoplay: true,
                 infinite: true,
@@ -1170,7 +1179,8 @@
                         }
                     }
                 ]
-            });
+                });
+            }
 
             $("#modalCasinoToS").on('hidden.bs.modal', function (event) {
                 showNewsFlash();
@@ -1763,35 +1773,38 @@
                     }
                     ActivateTab(LastTab);
                     convertAllToClientTime();
-                    $(".center").slick({
-                        infinite: false,
-                        slidesToShow: 8,
-                        slidesToScroll: 3,
-                        responsive: [
-                            {
-                                breakpoint: 1024,
-                                settings: {
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3
+                    
+                    if (!window.isProfilePage && $(".center").length) {
+                        $(".center").slick({
+                            infinite: false,
+                            slidesToShow: 8,
+                            slidesToScroll: 3,
+                            responsive: [
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 3
+                                    }
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 2
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 2
+                                    }
                                 }
-                            },
-                            {
-                                breakpoint: 600,
-                                settings: {
-                                    slidesToShow: 2,
-                                    slidesToScroll: 2
-                                }
-                            },
-                            {
-                                breakpoint: 480,
-                                settings: {
-                                    slidesToShow: 3,
-                                    slidesToScroll: 2
-                                }
-                            }
 
-                        ]
-                    });
+                            ]
+                        });
+                    }
                 },
                 error: function (jqXhr, textStatus, errorThrown) {
 
