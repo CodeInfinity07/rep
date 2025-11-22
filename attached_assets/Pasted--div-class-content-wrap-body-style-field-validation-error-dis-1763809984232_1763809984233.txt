@@ -1,0 +1,292 @@
+<div class="content-wrap body">
+                    <style>
+    .field-validation-error{
+        display:inline-block;
+        width:33vw;
+    }
+
+    /* Styles for the container */
+    .switch-container {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    /* Add Bootstrap-inspired styles to the switch */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 55px;
+        height: 25px;
+        margin-left: 10px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    /* Bootstrap-inspired styles for the slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: red; /* Bootstrap's secondary color */
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #ffffff;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: #3ed300; /* Bootstrap's primary color */
+    }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+    .switch-container p{
+        font-size:20px;
+        color:black;
+        font-family:none;
+    }
+
+    .fa-key {
+        margin-top: -13px;
+        padding-right: 5px;
+    }
+
+    @media screen and (max-width: 635px) {
+        .field-validation-error {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .switch-container p {
+            font-size: 15px;
+        }
+    }
+
+
+</style>
+
+
+<div class="table-wrap ">
+    <div class="col-12 col-md-12">
+        <div class="modal fade modalCasinoToS" id="modalRedirectToLogout" tabindex="-11" role="dialog" aria-labelledby="modalPasswordChange" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Password Changed Successfully</h5>
+                    </div>
+                    <div id="casino-tos-text" class="modal-body">
+                        <p>
+                            </p><center>
+                                <h3 class="text-danger blink_me">
+                                        Password Changed Successfully
+                                        <i class="fa fa-check" style="font-size:48px;color:forestgreen"></i>
+                                </h3>
+                            </center>
+                        <p></p>
+                        <p>Your password is changed successfully. <b>Kindly Login Again </b>.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger ml-4" onclick="ReLogin();">
+                            <strong>Login Again</strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="table-wrap ">
+        <div class="col-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Profile</strong>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Stake1">Stake1</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Stake1 field is required." id="UserProfile_Stake1" name="UserProfile.Stake1" value="2000"><input name="__Invariant" type="hidden" value="UserProfile.Stake1">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Stake1" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Stake2">Stake2</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Stake2 field is required." id="UserProfile_Stake2" name="UserProfile.Stake2" value="5000"><input name="__Invariant" type="hidden" value="UserProfile.Stake2">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Stake2" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Stake3">Stake3</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Stake3 field is required." id="UserProfile_Stake3" name="UserProfile.Stake3" value="10000"><input name="__Invariant" type="hidden" value="UserProfile.Stake3">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Stake3" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Stake4">Stake4</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Stake4 field is required." id="UserProfile_Stake4" name="UserProfile.Stake4" value="25000"><input name="__Invariant" type="hidden" value="UserProfile.Stake4">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Stake4" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div style="display: none;">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="UserProfile_Stake5">Stake5</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="number" data-val="true" data-val-required="The Stake5 field is required." id="UserProfile_Stake5" name="UserProfile.Stake5" value="50000"><input name="__Invariant" type="hidden" value="UserProfile.Stake5">
+                                            <span class="field-validation-valid" data-valmsg-for="UserProfile.Stake5" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="UserProfile_Stake6">Stake6</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="number" data-val="true" data-val-required="The Stake6 field is required." id="UserProfile_Stake6" name="UserProfile.Stake6" value="100000"><input name="__Invariant" type="hidden" value="UserProfile.Stake6">
+                                            <span class="field-validation-valid" data-valmsg-for="UserProfile.Stake6" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Plus1">Plus1</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Plus1 field is required." id="UserProfile_Plus1" name="UserProfile.Plus1" value="1000"><input name="__Invariant" type="hidden" value="UserProfile.Plus1">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Plus1" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Plus2">Plus2</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Plus2 field is required." id="UserProfile_Plus2" name="UserProfile.Plus2" value="5000"><input name="__Invariant" type="hidden" value="UserProfile.Plus2">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Plus2" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Plus3">Plus3</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Plus3 field is required." id="UserProfile_Plus3" name="UserProfile.Plus3" value="10000"><input name="__Invariant" type="hidden" value="UserProfile.Plus3">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Plus3" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="UserProfile_Plus4">Plus4</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" data-val="true" data-val-required="The Plus4 field is required." id="UserProfile_Plus4" name="UserProfile.Plus4" value="25000"><input name="__Invariant" type="hidden" value="UserProfile.Plus4">
+                                        <span class="field-validation-valid" data-valmsg-for="UserProfile.Plus4" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+                                <div style="display: none;">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="UserProfile_Plus5">Plus5</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="number" data-val="true" data-val-required="The Plus5 field is required." id="UserProfile_Plus5" name="UserProfile.Plus5" value="50000"><input name="__Invariant" type="hidden" value="UserProfile.Plus5">
+                                            <span class="field-validation-valid" data-valmsg-for="UserProfile.Plus5" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="UserProfile_Plus6">Plus6</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="number" data-val="true" data-val-required="The Plus6 field is required." id="UserProfile_Plus6" name="UserProfile.Plus6" value="100000"><input name="__Invariant" type="hidden" value="UserProfile.Plus6">
+                                            <span class="field-validation-valid" data-valmsg-for="UserProfile.Plus6" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" data-val="true" data-val-required="The UserId field is required." id="UserProfile_UserId" name="UserProfile.UserId" value="5325466">
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" type="submit">Save changes</button>
+                                    <button class="btn btn-danger" type="button">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NBVcZ085QdGlFRTCF0w4xutFykAUvs5qVwxcOq6lKMAQyoG3a9ostYCzltUhOyARSm8BkRLF4k3kYFO77UL5ovChuf3FpCsLVm9gRBNKF42xABE9bgAb1LErS_UWABoR2mrCRUuEm1roYKto45i1CI24NZ3dbDfruZ0BCb6hdDlYMbSgvsqsJrxfNWklxQZIw"></form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="table-wrap">
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Change Password</strong>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="NewPassword">NewPassword</label>
+                                <div class="col-md-6">
+                                    <input value="" class="form-control" required="" type="text" data-val="true" data-val-length="Kam Sey kam 8 lafaz ka password rekhay jis mey number(123) or alphabets(abc) dono aye . Password must contains alphabets and numbers only." data-val-length-max="30" data-val-length-min="8" data-val-regex="Kam Sey kam 8 lafaz ka password rekhay jis mey number(123) or alphabets(abc) dono aye . Password must contains alphabets and numbers only." data-val-regex-pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,20}$" id="NewPassword" maxlength="30" name="NewPassword">
+                                    <span class="field-validation-valid" data-valmsg-for="NewPassword" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <input type="hidden" data-val="true" data-val-required="The UserId field is required." id="UserProfile_UserId" name="UserProfile.UserId" value="5325466">
+                            <div class="form-actions">
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NBVcZ085QdGlFRTCF0w4xutFykAUvs5qVwxcOq6lKMAQyoG3a9ostYCzltUhOyARSm8BkRLF4k3kYFO77UL5ovChuf3FpCsLVm9gRBNKF42xABE9bgAb1LErS_UWABoR2mrCRUuEm1roYKto45i1CI24NZ3dbDfruZ0BCb6hdDlYMbSgvsqsJrxfNWklxQZIw"></form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="table-wrap">
+    <div class="table-wrap col-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Two Factor Authentication</strong>
+            </div>
+            <div class="card-body">
+                    <div class="switch-container">
+                        <i class="fa fa-key" aria-hidden="true"></i><p>Two factor authentication (2FA) is <strong> DISABLED </strong> for this account:</p>
+                    </div>
+                    <div style="" class="switch-container" id="switchbtndiv">
+                        <p>Enable two factor authentication</p>
+                        <label class="switch">
+                            <input onclick="Mainswitch()" type="checkbox" id="mySwitch">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div id="RenderQRModal"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/lib/kjua/kjua.min.js"></script>
+
+                </div>

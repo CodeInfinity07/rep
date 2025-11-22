@@ -10,10 +10,11 @@ I prefer simple language and detailed explanations when new concepts or changes 
 BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 **UI/UX Decisions:**
-- **Consistent Layouts:** Uses a shared Blade layout (`resources/views/layouts/management.blade.php` and `resources/views/layouts/bettor.blade.php`) for a consistent look and feel across all pages, including dynamic navigation and sidebars.
+- **Consistent Layouts:** Uses a shared Blade layout (`resources/views/layouts/management.blade.php` and `resources/views/layouts/bettor.blade.php`) for a consistent look and feel across all pages, including dynamic navigation and sidebars. Bettor pages (homepage, match pages, profile) use consistent homepage layout structure with footer positioned below main-page div.
 - **Dynamic Content:** Dashboards and sports pages dynamically display real-time data, user-specific information, and betting odds.
 - **Interactive Elements:** Features like AJAX polling for odds updates, date pickers, and interactive user hierarchy views enhance user experience.
 - **Color Coding:** Market cards are color-coded for easy identification (primary for Match Odds, success for Bookmaker, danger for Fancy markets).
+- **Logout Functionality:** Implemented with POST route, CSRF token protection, and `javascript:void(0)` href to prevent navigation issues on all pages.
 
 **Technical Implementations:**
 - **Authentication:** Custom, session-based authentication with `RoleMiddleware` for hierarchical access control.
@@ -30,6 +31,7 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 - **Cash/Credit Management:** Interface for managing cash deposits/withdrawals and credit allocation/retrieval among hierarchical users.
 - **Account Ledger:** Detailed ledger system tracking all financial activities.
 - **Live Sports Data:** Integration with external APIs to display live match data, including in-play status and matched amounts, with caching.
+- **Bettor Profile Page:** `/Customer/Profile` provides bettors with stake management (Stake1-4, Plus1-4), password change functionality, and 2FA settings. Uses the same homepage layout structure with footer positioned below main-page div for consistency.
 
 **System Design Choices:**
 - **Laravel MVC:** Follows the Model-View-Controller pattern.
