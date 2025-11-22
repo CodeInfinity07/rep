@@ -52,12 +52,27 @@ class MatchController extends Controller
                 }
             }
             
+            // Calculate active bets count and total liability
+            $activeBetsData = \DB::table('bets')
+                ->where('user_id', $user->id)
+                ->whereIn('status', ['pending', 'matched'])
+                ->select(
+                    \DB::raw('COUNT(*) as count'),
+                    \DB::raw('COALESCE(SUM(liability), 0) as total_liability')
+                )
+                ->first();
+            
             $viewData = [
                 'marketId' => $marketId,
                 'eventId' => $eventId,
                 'marketDetails' => $marketDetails,
                 'allMarketIds' => $allMarketIds,
-                'marketsData' => $marketsData
+                'marketsData' => $marketsData,
+                'username' => $user->username,
+                'credit' => $user->credit_remaining ?? 0,
+                'balance' => $user->balance ?? 0,
+                'liable' => $activeBetsData->total_liability ?? 0,
+                'active_bets' => $activeBetsData->count ?? 0,
             ];
             
             // Serve bettor or management view based on user role
