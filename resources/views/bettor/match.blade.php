@@ -1219,6 +1219,8 @@
         </div>
     </div>
 
+    </div> <!-- end main-page -->
+
     <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
         <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
         </div>
