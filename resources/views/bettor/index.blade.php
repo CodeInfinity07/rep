@@ -683,7 +683,7 @@
                                 <a class="dropdown-item" id="btn-logout" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             </div>
                             <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                                @csrf
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             </form>
                         </div>
                     </div>
