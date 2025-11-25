@@ -68,11 +68,36 @@ class MatchController extends Controller
             
             // Extract market start time and inPlay status
             $marketStartTime = $marketDetails['marketStartTime'] ?? $marketDetails['event']['openDate'] ?? null;
-            $inPlay = $marketDetails['inPlay'] ?? false;
             
             // Get odds for the main market (Match Odds)
             $mainMarketOdds = $marketsData[$marketId] ?? [];
             $odds = $mainMarketOdds['runners'] ?? [];
+            
+            // Check multiple paths for inPlay status
+            $inPlay = false;
+            if (isset($marketDetails['inPlay'])) {
+                $inPlay = $marketDetails['inPlay'];
+            } elseif (isset($mainMarketOdds['inPlay'])) {
+                $inPlay = $mainMarketOdds['inPlay'];
+            } elseif (isset($marketDetails['inplay'])) {
+                $inPlay = $marketDetails['inplay'];
+            } elseif (isset($marketDetails['isInPlay'])) {
+                $inPlay = $marketDetails['isInPlay'];
+            } elseif (isset($marketDetails['status']) && $marketDetails['status'] === 'OPEN') {
+                // If status is OPEN and market has started, it's likely inPlay
+                if ($marketStartTime) {
+                    $startTime = strtotime($marketStartTime);
+                    $inPlay = $startTime && $startTime <= time();
+                }
+            }
+            
+            // Force inPlay if market start time has passed
+            if (!$inPlay && $marketStartTime) {
+                $startTime = strtotime($marketStartTime);
+                if ($startTime && $startTime <= time()) {
+                    $inPlay = true;
+                }
+            }
             
             $viewData = [
                 'marketId' => $marketId,
