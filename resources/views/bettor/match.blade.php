@@ -10,6 +10,7 @@
     <meta name="description" content="Sports Trading Platform">
     <meta name="keyword" content="sports trading, bet, betfair">
     <meta name="robots" content="noindex">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="/img/favicon/BetPro.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
@@ -2684,10 +2685,122 @@
                 return;
             }
             
-            // TODO: Submit bet to server
-            alert('Bet placed: ' + currentRunnerName + ' @ ' + odds + ' for ' + stake.toLocaleString('en-IN'));
-            closeBetSlip();
+            var submitBtn = document.querySelector('#betSlip .btn-primary');
+            submitBtn.classList.add('running');
+            submitBtn.style.pointerEvents = 'none';
+            
+            var betData = {
+                market_id: marketId,
+                event_id: eventId,
+                event_name: document.querySelector('.event-title')?.textContent || 'Match',
+                market_name: 'Match Odds',
+                selection_name: currentRunnerName,
+                selection_id: currentRunnerId,
+                bet_type: currentBetType,
+                odds: odds,
+                stake: stake,
+                sport_type: 'cricket'
+            };
+            
+            fetch('/api/bets/place', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                },
+                body: JSON.stringify(betData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.classList.remove('running');
+                submitBtn.style.pointerEvents = 'auto';
+                
+                if (data.success) {
+                    alert('Bet placed successfully!\n' + 
+                          currentRunnerName + ' @ ' + odds + '\n' +
+                          'Stake: ' + stake.toLocaleString('en-IN') + '\n' +
+                          'New Balance: ' + data.new_balance.toLocaleString('en-IN'));
+                    closeBetSlip();
+                    
+                    var balanceEl = document.querySelector('.balance-display, .user-balance');
+                    if (balanceEl) {
+                        balanceEl.textContent = data.new_balance.toLocaleString('en-IN');
+                    }
+                    
+                    loadOpenBets();
+                } else {
+                    alert('Failed to place bet: ' + data.message);
+                }
+            })
+            .catch(error => {
+                submitBtn.classList.remove('running');
+                submitBtn.style.pointerEvents = 'auto';
+                console.error('Bet error:', error);
+                alert('Error placing bet. Please try again.');
+            });
         }
+        
+        function loadOpenBets() {
+            fetch('/api/bets/open?market_id=' + marketId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateOpenBetsDisplay(data.bets);
+                    }
+                })
+                .catch(error => console.error('Error loading open bets:', error));
+        }
+        
+        function updateOpenBetsDisplay(bets) {
+            var openBetsSection = document.querySelector('.bets strong');
+            if (openBetsSection && openBetsSection.textContent.includes('Open Bets')) {
+                openBetsSection.innerHTML = 'Open Bets (' + bets.length + ')';
+            }
+            
+            var tbody = document.querySelector('.bets .betting-table tbody');
+            if (tbody && openBetsSection && openBetsSection.textContent.includes('Open Bets')) {
+                tbody.innerHTML = '';
+                bets.forEach(function(bet) {
+                    var row = document.createElement('tr');
+                    row.className = bet.bet_type;
+                    row.innerHTML = 
+                        '<td>' + bet.selection_name + '</td>' +
+                        '<td>' + bet.odds + '</td>' +
+                        '<td>' + parseFloat(bet.stake).toLocaleString('en-IN') + '</td>' +
+                        '<td><button class="btn btn-xs btn-danger" onclick="cancelBet(' + bet.id + ')">X</button></td>';
+                    tbody.appendChild(row);
+                });
+            }
+        }
+        
+        function cancelBet(betId) {
+            if (!confirm('Are you sure you want to cancel this bet?')) return;
+            
+            fetch('/api/bets/' + betId + '/cancel', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Bet cancelled. Refund: ' + data.refund_amount.toLocaleString('en-IN'));
+                    loadOpenBets();
+                } else {
+                    alert('Failed to cancel bet: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Cancel error:', error);
+                alert('Error cancelling bet. Please try again.');
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOpenBets();
+        });
         
         // Add click handlers to odds cells after DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {

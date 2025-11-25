@@ -10,8 +10,12 @@ class Bet extends Model
     protected $fillable = [
         'user_id',
         'market_id',
+        'event_id',
+        'event_name',
         'market_name',
         'selection_name',
+        'selection_id',
+        'sport_type',
         'bet_type',
         'odds',
         'stake',
