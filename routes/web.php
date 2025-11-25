@@ -89,6 +89,7 @@ Route::middleware(['auth', 'restrictBettors'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/cricket/{marketId}', [App\Http\Controllers\MatchController::class, 'show']);
     Route::get('/Customer/Profile', [App\Http\Controllers\BettorController::class, 'profile']);
+    Route::get('/Customer/Bets', [App\Http\Controllers\BettorController::class, 'bets']);
 });
 
 // Public API routes (accessible without authentication)
