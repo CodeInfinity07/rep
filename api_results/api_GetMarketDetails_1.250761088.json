@@ -1,1 +1,215 @@
-{"status":"OPEN","inplay":true,"isLocalMarket":false,"stopBet":false,"runners":[{"totalMatched":0,"lastPriceTraded":0,"back":[{"price":"","size":""},{"price":"","size":""},{"price":"","size":""}],"lay":[{"price":"","size":""},{"price":"","size":""},{"price":"","size":""}],"selectionId":91363584,"runnerName":"Ajman Titans","handicap":0,"sortPriority":2},{"totalMatched":0,"lastPriceTraded":0,"back":[{"price":"","size":""},{"price":"","size":""},{"price":"","size":""}],"lay":[{"price":"","size":""},{"price":"","size":""},{"price":"","size":""}],"selectionId":91406735,"runnerName":"Aspin Stallions","handicap":0,"sortPriority":1}],"marketId":"1.250761088","marketName":"Match Odds","marketStartTime":"2025-11-20T16:00:00Z","description":{"persistenceEnabled":true,"bspMarket":false,"marketTime":"0001-01-01T00:00:00","bettingType":"ODDS","turnInPlayEnabled":true,"marketType":"MATCH_ODDS","regulator":"MALTA LOTTERIES AND GAMBLING AUTHORITY","marketBaseRate":2,"discountAllowed":false,"rules":"<br><b>MARKET INFORMATION</b><br><br>For further information please see <a http://content.betfair.com/aboutus/content.asp?sWhichKey=Rules%20and%20Regulations#undefined.do style=color:0163ad; text-decoration: underline; target=_blank>Rules & Regs</a>.<br><br>Who will win this match? At the start of scheduled play all unmatched bets will be cancelled and this market will be turned in-play. This market will not be actively managed therefore it is the responsibility of all customers to manage their own positions. If scores (including a derived target score using the Duckworth Lewis method) are deemed tied at the completion of both innings then all bets on the Match Odds market will be void. Please note there is a separate Tied Match market available for this game. For the avoidance of doubt, if scores are tied at the completion of both innings then any tie breaker that may be used to determine a winner including, but not limited to, bowl outs, Super Overs, one-over eliminators, losing fewer wickets, run rates, coin toss, higher group position does not count for the purposes of this market.<br><br>Customers should be aware that:<b><br><br><li>Transmissions described as “live” by some broadcasters may actually be delayed and that all in-play matches are not necessarily televised.</li><br><li>The extent of any such delay may vary between customers, depending on the set-up through which they are receiving pictures or data.</li></b>","rulesHasDate":false,"lineRangeInfo":{}},"totalMatched":0,"eventType":{"id":"4","name":"Cricket"},"event":{"id":"34977777","name":"Aspin Stallions v Ajman Titans","countryCode":"GB","openDate":"11/20/2025 4:00:00 PM"},"competition":{"id":"12306621","name":"Abu Dhabi T10"}}
+{
+  "today_result": [
+    {
+      "market_id": "43708546",
+      "competition_name": "Plunket Shield",
+      "event_id": 34952204,
+      "event_name": "Wellington Firebirds v Otago Volts",
+      "open_date": "2025-11-17 21:30:00",
+      "declared_date": "2025-11-20 04:59:50"
+    },
+    {
+      "market_id": "1.250661253",
+      "competition_name": "WBBL",
+      "event_id": 34966434,
+      "event_name": "Sydney Sixers W v Melbourne Stars W",
+      "open_date": "2025-11-20 08:10:00",
+      "declared_date": "2025-11-20 11:07:34"
+    },
+    {
+      "market_id": "2695217",
+      "competition_name": "Super50",
+      "event_id": 34959525,
+      "event_name": "TT Red Force v Barbados Pride",
+      "open_date": "2025-11-19 13:00:00",
+      "declared_date": "2025-11-19 19:10:05"
+    },
+    {
+      "market_id": "43707843",
+      "competition_name": "South Africa T20 Challenge",
+      "event_id": 34973223,
+      "event_name": "Warriors v Boland",
+      "open_date": "2025-11-19 16:00:00",
+      "declared_date": "2025-11-19 19:15:20"
+    },
+    {
+      "market_id": "43708760",
+      "competition_name": "Abu Dhabi T10",
+      "event_id": 34977075,
+      "event_name": "Delhi Bulls v Vista Riders",
+      "open_date": "2025-11-20 13:45:00",
+      "declared_date": "2025-11-20 15:18:47"
+    },
+    {
+      "market_id": "1.250716982",
+      "competition_name": "International Twenty20 Matches",
+      "event_id": 34973620,
+      "event_name": "Sri Lanka v Zimbabwe",
+      "open_date": "2025-11-20 13:00:00",
+      "declared_date": "2025-11-20 16:34:23"
+    },
+    {
+      "market_id": "1.250733475",
+      "competition_name": "WBBL",
+      "event_id": 34973026,
+      "event_name": "Melbourne Renegades W v Hobart Hurricanes W",
+      "open_date": "2025-11-20 04:40:00",
+      "declared_date": "2025-11-20 08:24:00"
+    },
+    {
+      "market_id": "2696663",
+      "competition_name": "Abu Dhabi T10",
+      "event_id": 34976878,
+      "event_name": "Royal Champs v Deccan Gladiators",
+      "open_date": "2025-11-20 11:30:00",
+      "declared_date": "2025-11-20 13:29:19"
+    },
+    {
+      "market_id": "43708637",
+      "competition_name": "Nepal Premier League",
+      "event_id": 34973424,
+      "event_name": "Lumbini Lions v Chitwan Rhinos",
+      "open_date": "2025-11-20 10:15:00",
+      "declared_date": "2025-11-20 13:49:21"
+    },
+    {
+      "market_id": "1.250761088",
+      "competition_name": "Abu Dhabi T10",
+      "event_id": 34977777,
+      "event_name": "Aspin Stallions v Ajman Titans",
+      "open_date": "2025-11-20 16:00:00",
+      "declared_date": "2025-11-20 18:03:48"
+    },
+    {
+      "market_id": "43708621",
+      "competition_name": "Test Matches",
+      "event_id": 34958715,
+      "event_name": "Bangladesh v Ireland",
+      "open_date": "2025-11-19 03:30:00",
+      "declared_date": "2025-11-20 10:40:20"
+    }
+  ],
+  "yesterday_result": [
+    {
+      "market_id": "43707030",
+      "competition_name": "WBBL",
+      "event_id": 34962946,
+      "event_name": "Sydney Thunder W v Perth Scorchers W",
+      "open_date": "2025-11-19 08:10:00",
+      "declared_date": "2025-11-19 11:18:12"
+    },
+    {
+      "market_id": "1.250718642",
+      "competition_name": "Abu Dhabi T10",
+      "event_id": 34973707,
+      "event_name": "Aspin Stallions v Northern Warriors",
+      "open_date": "2025-11-19 11:30:00",
+      "declared_date": "2025-11-19 13:28:19"
+    },
+    {
+      "market_id": "43708032",
+      "competition_name": "Plunket Shield",
+      "event_id": 34952204,
+      "event_name": "Wellington Firebirds v Otago Volts",
+      "open_date": "2025-11-17 21:30:00",
+      "declared_date": "2025-11-19 05:25:32"
+    },
+    {
+      "market_id": "43708082",
+      "competition_name": "Abu Dhabi T10",
+      "event_id": 34970255,
+      "event_name": "Ajman Titans v Quetta Qavalry",
+      "open_date": "2025-11-19 16:00:00",
+      "declared_date": "2025-11-19 17:49:00"
+    },
+    {
+      "market_id": "1.250656297",
+      "competition_name": "One Day Internationals",
+      "event_id": 34966420,
+      "event_name": "New Zealand v West Indies",
+      "open_date": "2025-11-19 01:00:00",
+      "declared_date": "2025-11-19 09:55:17"
+    },
+    {
+      "market_id": "43708230",
+      "competition_name": "Asia Cup Rising Stars",
+      "event_id": 34969509,
+      "event_name": "Afghanistan A v Hong Kong",
+      "open_date": "2025-11-19 09:30:00",
+      "declared_date": "2025-11-19 12:56:09"
+    },
+    {
+      "market_id": "2695102",
+      "competition_name": "South Africa T20 Challenge",
+      "event_id": 34973223,
+      "event_name": "Warriors v Boland",
+      "open_date": "2025-11-19 16:00:00",
+      "declared_date": "2025-11-19 18:23:37"
+    },
+    {
+      "market_id": "290452",
+      "competition_name": "Asia Cup Rising Stars",
+      "event_id": 34969511,
+      "event_name": "Bangladesh A v Sri Lanka A",
+      "open_date": "2025-11-19 14:30:00",
+      "declared_date": "2025-11-19 17:56:55"
+    },
+    {
+      "market_id": "43707444",
+      "competition_name": "South Africa T20 Challenge",
+      "event_id": 34966575,
+      "event_name": "Lions v North West Dragons",
+      "open_date": "2025-11-19 11:00:00",
+      "declared_date": "2025-11-19 14:38:16"
+    },
+    {
+      "market_id": "2693300",
+      "competition_name": "Ranji Trophy\t",
+      "event_id": -10953911,
+      "event_name": "Tamil Nadu v Uttar Pradesh",
+      "open_date": "2025-11-16 04:00:00",
+      "declared_date": "2025-11-19 09:16:06"
+    },
+    {
+      "market_id": "2692994",
+      "competition_name": "Ranji Trophy\t",
+      "event_id": -10953906,
+      "event_name": "Madhya Pradesh v Kerala",
+      "open_date": "2025-11-16 04:00:00",
+      "declared_date": "2025-11-19 09:58:48"
+    },
+    {
+      "market_id": "43684073",
+      "competition_name": "ICC Women's Cricket World Cup",
+      "event_id": 34819677,
+      "event_name": "England W v Sri Lanka W",
+      "open_date": "2025-10-11 09:30:00",
+      "declared_date": "2025-11-19 12:40:58"
+    },
+    {
+      "market_id": "1.250678512",
+      "competition_name": "Abu Dhabi T10",
+      "event_id": 34969972,
+      "event_name": "Royal Champs v Vista Riders",
+      "open_date": "2025-11-19 13:45:00",
+      "declared_date": "2025-11-19 15:48:34"
+    },
+    {
+      "market_id": "43708097",
+      "competition_name": "Nepal Premier League",
+      "event_id": 34969718,
+      "event_name": "Kathmandu Gurkhas v Sudurpaschim Royals",
+      "open_date": "2025-11-19 10:15:00",
+      "declared_date": "2025-11-19 13:47:27"
+    },
+    {
+      "market_id": "43707889",
+      "competition_name": "Test Matches",
+      "event_id": 34958715,
+      "event_name": "Bangladesh v Ireland",
+      "open_date": "2025-11-19 03:30:00",
+      "declared_date": "2025-11-19 10:30:57"
+    }
+  ],
+  "isSuccess": true
+}

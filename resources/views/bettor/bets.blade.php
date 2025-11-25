@@ -56,8 +56,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 
@@ -650,7 +655,8 @@
                                         </li>
                                         <li data-update="item1"
                                             style="white-space: nowrap; float: left; padding: 0px 7px; line-height: 25px;">
-                                            <b>Welcome to Exchange - </b></li>
+                                            <b>Welcome to Exchange - </b>
+                                        </li>
                                         <li class="ticker-spacer"
                                             style="float: left; width: 0px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;">
                                         </li>
@@ -680,7 +686,8 @@
                                 <a class="dropdown-item" href="/Customer/ProfitLoss/">Profit Loss</a>
                                 <a class="dropdown-item" href="/Customer/Bets">Bet History</a>
                                 <a class="dropdown-item" href="/Customer/Profile">Profile</a>
-                                <a class="dropdown-item" id="btn-logout" href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                <a class="dropdown-item" id="btn-logout" href="javascript:void(0);"
+                                    onclick="document.getElementById('logout-form').submit();">Logout</a>
                             </div>
                             <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -689,569 +696,510 @@
                     </div>
                 </div>
 
-<div class="content-wrap body">
-    <script>
-        // Bets page - disable homepage-specific initializations
-        window.isBetsPage = true;
-        window.isProfilePage = true;
-        
-        // Immediately hide preloader for bets page
-        (function() {
-            function hidePreloader() {
-                var loader = document.querySelector('.page_loader');
-                if (loader) loader.style.display = 'none';
-                var preloader = document.getElementById('page-preloader');
-                if (preloader) {
-                    preloader.style.opacity = '0';
-                    preloader.style.display = 'none';
-                }
-            }
-            // Try immediately
-            hidePreloader();
-            // Also on DOMContentLoaded
-            document.addEventListener('DOMContentLoaded', hidePreloader);
-            // And after a short delay as fallback
-            setTimeout(hidePreloader, 100);
-            setTimeout(hidePreloader, 500);
-        })();
-    </script>
-    <link rel="stylesheet" href="/css/all.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+                <div class="content-wrap body">
+                    <script>
+                        // Bets page - disable homepage-specific initializations
+                        window.isBetsPage = true;
+                        window.isProfilePage = true;
 
-    <style>
-        @media screen and (max-width: 635px) {
-            .mobilehide {
-                display:none;
-            }
-            .dashauto{
-                margin:auto;
-            }
-            .mrgleft{
-                margin-left:20px;
-            }
-            .editsbmtbtn {
-                margin: auto;
-                margin-right: 15px;
-                margin-top:10px;
-                text-align: end;
-            }
-        }
-        .card {
-            background: #1e2530;
-            border: 1px solid #2a3441;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .card-header {
-            background: linear-gradient(135deg, #2a3441 0%, #1e2530 100%);
-            color: #fff;
-            padding: 15px 20px;
-            border-bottom: 1px solid #3a4451;
-            font-weight: 600;
-        }
-        .card-body {
-            padding: 20px;
-            color: #ccc;
-        }
-        .form-control {
-            background: #2a3441;
-            border: 1px solid #3a4451;
-            color: #fff;
-            border-radius: 4px;
-        }
-        .form-control:focus {
-            background: #2a3441;
-            border-color: #4CAF50;
-            color: #fff;
-            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            border: none;
-            padding: 10px 25px;
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
-        }
-        .table-wrap {
-            padding: 15px;
-        }
-        .dataTables_wrapper {
-            color: #ccc;
-        }
-        .dataTables_wrapper .dataTables_length select,
-        .dataTables_wrapper .dataTables_filter input {
-            background: #2a3441;
-            border: 1px solid #3a4451;
-            color: #fff;
-        }
-        table.dataTable {
-            border-collapse: collapse !important;
-        }
-        table.dataTable thead th {
-            background: #2a3441;
-            color: #fff;
-            border-bottom: 2px solid #4CAF50;
-        }
-        table.dataTable tbody tr {
-            background: #1e2530;
-            color: #ccc;
-        }
-        table.dataTable tbody tr:hover {
-            background: #2a3441;
-        }
-        table.dataTable tbody td {
-            border: 1px solid #3a4451;
-        }
-        .pagination .page-link {
-            background: #2a3441;
-            border-color: #3a4451;
-            color: #fff;
-        }
-        .pagination .page-item.active .page-link {
-            background: #4CAF50;
-            border-color: #4CAF50;
-        }
-        .input-group-text {
-            background: #3a4451;
-            border-color: #3a4451;
-            color: #fff;
-        }
-    </style>
+                        // Immediately hide preloader for bets page
+                        (function () {
+                            function hidePreloader() {
+                                var loader = document.querySelector('.page_loader');
+                                if (loader) loader.style.display = 'none';
+                                var preloader = document.getElementById('page-preloader');
+                                if (preloader) {
+                                    preloader.style.opacity = '0';
+                                    preloader.style.display = 'none';
+                                }
+                            }
+                            // Try immediately
+                            hidePreloader();
+                            // Also on DOMContentLoaded
+                            document.addEventListener('DOMContentLoaded', hidePreloader);
+                            // And after a short delay as fallback
+                            setTimeout(hidePreloader, 100);
+                            setTimeout(hidePreloader, 500);
+                        })();
+                    </script>
+                    <link rel="stylesheet" href="/css/all.css">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+                    <link rel="stylesheet"
+                        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-    <div class="table-wrap">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-align-justify"></i>
-                        Bets History
-                    </div>
-                    <div class="card-body" style="text-align-last:justify;">
-                        <form id="BetFilterForm" class="form-inline" method="get" action="/Customer/Bets">
-                            <div class="form-group mrgleft">
-                                <select class="form-control" id="EventTypeId" name="EventTypeId">
-                                    <option value="0" {{ ($filters['eventTypeId'] ?? 0) == 0 ? 'selected' : '' }}>All</option>
-                                    <option value="1" {{ ($filters['eventTypeId'] ?? 0) == 1 ? 'selected' : '' }}>Soccer</option>
-                                    <option value="2" {{ ($filters['eventTypeId'] ?? 0) == 2 ? 'selected' : '' }}>Tennis</option>
-                                    <option value="4" {{ ($filters['eventTypeId'] ?? 0) == 4 ? 'selected' : '' }}>Cricket</option>
-                                    <option value="7" {{ ($filters['eventTypeId'] ?? 0) == 7 ? 'selected' : '' }}>Horse Race</option>
-                                    <option value="12" {{ ($filters['eventTypeId'] ?? 0) == 12 ? 'selected' : '' }}>Casino</option>
-                                    <option value="4339" {{ ($filters['eventTypeId'] ?? 0) == 4339 ? 'selected' : '' }}>Greyhound</option>
-                                </select>
-                            </div>
-                            <div class="form-group mrgleft">
-                                <div class="mobilehide">&nbsp;</div> 
-                                <select class="form-control" id="BetStatus" name="BetStatus">
-                                    <option value="0" {{ ($filters['betStatus'] ?? 0) == 0 ? 'selected' : '' }}>Active</option>
-                                    <option value="2" {{ ($filters['betStatus'] ?? 0) == 2 ? 'selected' : '' }}>Settled</option>
-                                    <option value="3" {{ ($filters['betStatus'] ?? 0) == 3 ? 'selected' : '' }}>Voided</option>
-                                    <option value="4" {{ ($filters['betStatus'] ?? 0) == 4 ? 'selected' : '' }}>Cancelled</option>
-                                </select>
-                            </div>&nbsp;&nbsp;
-                            <div class="col-12 col-md-2">
-                                <div class="input-group date" id="ReportFrom" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom" placeholder="From Date">
-                                    <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    <style>
+                        @media screen and (max-width: 635px) {
+                            .mobilehide {
+                                display: none;
+                            }
+
+                            .dashauto {
+                                margin: auto;
+                            }
+
+                            .mrgleft {
+                                margin-left: 20px;
+                            }
+
+                            .editsbmtbtn {
+                                margin: auto;
+                                margin-right: 15px;
+                                margin-top: 10px;
+                                text-align: end;
+                            }
+                        }
+                    </style>
+
+                    <div class="table-wrap">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-align-justify"></i>
+                                        Bets History
+                                    </div>
+                                    <div class="card-body" style="text-align-last:justify;">
+                                        <form id="BetFilterForm" class="form-inline" method="get"
+                                            action="/Customer/Bets">
+                                            <div class="form-group mrgleft">
+                                                <select class="form-control" id="EventTypeId" name="EventTypeId">
+                                                    <option value="0" {{ ($filters['eventTypeId'] ?? 0) == 0 ? 'selected' : '' }}>All</option>
+                                                    <option value="1" {{ ($filters['eventTypeId'] ?? 0) == 1 ? 'selected' : '' }}>Soccer</option>
+                                                    <option value="2" {{ ($filters['eventTypeId'] ?? 0) == 2 ? 'selected' : '' }}>Tennis</option>
+                                                    <option value="4" {{ ($filters['eventTypeId'] ?? 0) == 4 ? 'selected' : '' }}>Cricket</option>
+                                                    <option value="7" {{ ($filters['eventTypeId'] ?? 0) == 7 ? 'selected' : '' }}>Horse Race</option>
+                                                    <option value="12" {{ ($filters['eventTypeId'] ?? 0) == 12 ? 'selected' : '' }}>Casino</option>
+                                                    <option value="4339" {{ ($filters['eventTypeId'] ?? 0) == 4339 ? 'selected' : '' }}>Greyhound</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group mrgleft">
+                                                <div class="mobilehide">&nbsp;</div>
+                                                <select class="form-control" id="BetStatus" name="BetStatus">
+                                                    <option value="0" {{ ($filters['betStatus'] ?? 0) == 0 ? 'selected' : '' }}>Active</option>
+                                                    <option value="2" {{ ($filters['betStatus'] ?? 0) == 2 ? 'selected' : '' }}>Settled</option>
+                                                    <option value="3" {{ ($filters['betStatus'] ?? 0) == 3 ? 'selected' : '' }}>Voided</option>
+                                                    <option value="4" {{ ($filters['betStatus'] ?? 0) == 4 ? 'selected' : '' }}>Cancelled</option>
+                                                </select>
+                                            </div>&nbsp;&nbsp;
+                                            <div class="col-12 col-md-2">
+                                                <div class="input-group date" id="ReportFrom"
+                                                    data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input"
+                                                        data-target="#ReportFrom" id="DisplayFrom"
+                                                        placeholder="From Date">
+                                                    <div class="input-group-append" data-target="#ReportFrom"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="From" id="From"
+                                                    value="{{ $filters['from'] ?? '' }}">
+                                            </div>
+                                            <strong class="dashauto" style="color: #fff;">&nbsp;-&nbsp;</strong>
+                                            <div class="col-12 col-md-2">
+                                                <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input"
+                                                        data-target="#ReportTo" id="DisplayTo" placeholder="To Date">
+                                                    <div class="input-group-append" data-target="#ReportTo"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="To" id="To"
+                                                    value="{{ $filters['to'] ?? '' }}">
+                                            </div>
+
+                                            <div class="form-group editsbmtbtn">
+                                                <label class="mx-1">&nbsp;</label>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <strong>Submit</strong>
+                                                </button>
+                                            </div>
+                                            <input type="hidden" id="ClientId" name="ClientId" value="{{ $clientId }}">
+                                        </form>
                                     </div>
                                 </div>
-                                <input type="hidden" name="From" id="From" value="{{ $filters['from'] ?? '' }}">
                             </div>
-                            <strong class="dashauto" style="color: #fff;">&nbsp;-&nbsp;</strong>
-                            <div class="col-12 col-md-2">
-                                <div class="input-group date" id="ReportTo" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo" placeholder="To Date">
-                                    <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <div class="">
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fa fa-align-justify"></i>
+                                    Bets History
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="tableBets"
+                                            class="table table-striped table-bordered dt-responsive nowrap"
+                                            style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Event</th>
+                                                    <th>Market</th>
+                                                    <th>Selection</th>
+                                                    <th>Type</th>
+                                                    <th>Odds</th>
+                                                    <th>Stake</th>
+                                                    <th>P/L</th>
+                                                    <th>Status</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse($bets as $index => $bet)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>{{ $bet->event_name ?? 'N/A' }}</td>
+                                                        <td>{{ $bet->market_name ?? 'N/A' }}</td>
+                                                        <td>{{ $bet->selection_name ?? 'N/A' }}</td>
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-{{ $bet->bet_type == 'back' ? 'primary' : 'danger' }}">
+                                                                {{ strtoupper($bet->bet_type ?? 'N/A') }}
+                                                            </span>
+                                                        </td>
+                                                        <td>{{ number_format($bet->odds ?? 0, 2) }}</td>
+                                                        <td>{{ number_format($bet->stake ?? 0, 2) }}</td>
+                                                        <td
+                                                            class="{{ ($bet->profit ?? 0) >= 0 ? 'text-success' : 'text-danger' }}">
+                                                            {{ number_format($bet->profit ?? 0, 2) }}
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                                $statusClass = match ($bet->status ?? '') {
+                                                                    'won' => 'success',
+                                                                    'lost' => 'danger',
+                                                                    'pending', 'matched' => 'warning',
+                                                                    'voided' => 'secondary',
+                                                                    'cancelled' => 'dark',
+                                                                    default => 'info'
+                                                                };
+                                                            @endphp
+                                                            <span class="badge badge-{{ $statusClass }}">
+                                                                {{ ucfirst($bet->status ?? 'Unknown') }}
+                                                            </span>
+                                                        </td>
+                                                        <td>{{ isset($bet->created_at) ? date('d/m/Y H:i', strtotime($bet->created_at)) : 'N/A' }}
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="10" class="text-center">No bets found</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <input type="hidden" name="To" id="To" value="{{ $filters['to'] ?? '' }}">
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="form-group editsbmtbtn">
-                                <label class="mx-1">&nbsp;</label>
-                                <button class="btn btn-primary" type="submit">
-                                    <strong>Submit</strong>
-                                </button>
+                    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+                    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $('#tableBets').DataTable({
+                                responsive: true,
+                                order: [[9, 'desc']],
+                                pageLength: 25,
+                                language: {
+                                    emptyTable: "No bets found"
+                                }
+                            });
+
+                            // Hide preloader for bets page
+                            $(".page_loader").hide();
+                            const preloader = document.getElementById('page-preloader');
+                            if (preloader) {
+                                preloader.style.opacity = '0';
+                                setTimeout(() => preloader.style.display = 'none', 300);
+                            }
+                        });
+                    </script>
+                </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <b>Protection of minors</b>
+                                <br>
+                                <p> It is illegal for anybody under the age of 18 to gamble. </p>
+                                <br>
+                                <p>Our site has strict policies and verification measures to prevent access to minors.
+                                </p>
+                                <br>
+                                <p>We encourage parents consider the use of internet use protection tools. You may find
+                                    the
+                                    following links useful. </p>
+                                <br>
+                                <a href="https://www.cyberpatrol.com/" target="_blank" style="color:mediumspringgreen">
+                                    Cyberpatrol</a>
+                                <br>
+                                <a href="https://www.cybersitter.com/" target="_blank" style="color:mediumspringgreen">
+                                    Cybersitter
+                                </a>
                             </div>
-                            <input type="hidden" id="ClientId" name="ClientId" value="{{ $clientId }}">
-                        </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="table-wrap">
-        <div class="">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-align-justify"></i>
-                    Bets History
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="tableBets" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Event</th>
-                                    <th>Market</th>
-                                    <th>Selection</th>
-                                    <th>Type</th>
-                                    <th>Odds</th>
-                                    <th>Stake</th>
-                                    <th>P/L</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($bets as $index => $bet)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $bet->event_name ?? 'N/A' }}</td>
-                                    <td>{{ $bet->market_name ?? 'N/A' }}</td>
-                                    <td>{{ $bet->selection_name ?? 'N/A' }}</td>
-                                    <td>
-                                        <span class="badge badge-{{ $bet->bet_type == 'back' ? 'primary' : 'danger' }}">
-                                            {{ strtoupper($bet->bet_type ?? 'N/A') }}
-                                        </span>
-                                    </td>
-                                    <td>{{ number_format($bet->odds ?? 0, 2) }}</td>
-                                    <td>{{ number_format($bet->stake ?? 0, 2) }}</td>
-                                    <td class="{{ ($bet->profit ?? 0) >= 0 ? 'text-success' : 'text-danger' }}">
-                                        {{ number_format($bet->profit ?? 0, 2) }}
-                                    </td>
-                                    <td>
-                                        @php
-                                            $statusClass = match($bet->status ?? '') {
-                                                'won' => 'success',
-                                                'lost' => 'danger',
-                                                'pending', 'matched' => 'warning',
-                                                'voided' => 'secondary',
-                                                'cancelled' => 'dark',
-                                                default => 'info'
-                                            };
-                                        @endphp
-                                        <span class="badge badge-{{ $statusClass }}">
-                                            {{ ucfirst($bet->status ?? 'Unknown') }}
-                                        </span>
-                                    </td>
-                                    <td>{{ isset($bet->created_at) ? date('d/m/Y H:i', strtotime($bet->created_at)) : 'N/A' }}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="10" class="text-center">No bets found</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
+                    <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <div class="container text-center">
+                        <center>
 
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#tableBets').DataTable({
-                responsive: true,
-                order: [[9, 'desc']],
-                pageLength: 25,
-                language: {
-                    emptyTable: "No bets found"
-                }
-            });
-            
-            // Hide preloader for bets page
-            $(".page_loader").hide();
-            const preloader = document.getElementById('page-preloader');
-            if (preloader) {
-                preloader.style.opacity = '0';
-                setTimeout(() => preloader.style.display = 'none', 300);
-            }
-        });
-    </script>
-</div>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <b>Protection of minors</b>
-                    <br>
-                    <p> It is illegal for anybody under the age of 18 to gamble. </p>
-                    <br>
-                    <p>Our site has strict policies and verification measures to prevent access to minors.</p>
-                    <br>
-                    <p>We encourage parents consider the use of internet use protection tools. You may find the
-                        following links useful. </p>
-                    <br>
-                    <a href="https://www.cyberpatrol.com/" target="_blank" style="color:mediumspringgreen">
-                        Cyberpatrol</a>
-                    <br>
-                    <a href="https://www.cybersitter.com/" target="_blank" style="color:mediumspringgreen"> Cybersitter
-                    </a>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+                            <style>
+                                p {
+                                    font-size: 12px;
+                                    color: white;
+                                }
 
-        </div>
-    </div>
+                                .caoimg {
+                                    max-width: 60px;
+                                }
 
-    <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
-        <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
-        </div>
-        <div class="container text-center">
-            <center>
+                                .bffooter {
+                                    width: 135px;
+                                    height: 30px;
+                                }
 
-                <style>
-                    p {
-                        font-size: 12px;
-                        color: white;
-                    }
+                                .curasaoLinks {
+                                    pointer-events: none;
+                                    cursor: default;
+                                    margin-top: 10px;
+                                }
 
-                    .caoimg {
-                        max-width: 60px;
-                    }
+                                @media screen and (max-width: 635px) {
+                                    .caoimg {
+                                        max-width: 40px;
+                                    }
 
-                    .bffooter {
-                        width: 135px;
-                        height: 30px;
-                    }
-
-                    .curasaoLinks {
-                        pointer-events: none;
-                        cursor: default;
-                        margin-top: 10px;
-                    }
-
-                    @media screen and (max-width: 635px) {
-                        .caoimg {
-                            max-width: 40px;
-                        }
-
-                        .bffooter {
-                            width: 100px;
-                            height: 30px;
-                        }
-                    }
-                </style>
+                                    .bffooter {
+                                        width: 100px;
+                                        height: 30px;
+                                    }
+                                }
+                            </style>
 
 
-                <div class="curasaoLinks row" style="display:inline-flex;" id="curacaodiv">
-                    <hr>
-                    <div class="col-sm-12 col-md-4"></div>
-                    <div class="col-md-4"></div>
-                </div>
+                            <div class="curasaoLinks row" style="display:inline-flex;" id="curacaodiv">
+                                <hr>
+                                <div class="col-sm-12 col-md-4"></div>
+                                <div class="col-md-4"></div>
+                            </div>
 
-                <script>
-                    document.addEventListener("DOMContentLoaded", (event) => {
-                        document.querySelector('#curacaodiv').insertAdjacentHTML(
-                            'afterbegin',
-                            `<hr>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", (event) => {
+                                    document.querySelector('#curacaodiv').insertAdjacentHTML(
+                                        'afterbegin',
+                                        `<hr>
                 <div class="col-sm-12 col-md-4"></div>
                 <div class="col-md-4"></div>`);
-                    });
+                                });
+                            </script>
+
+                        </center>
+
+                    </div>
+                </footer>
+                <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+                <script type="text/javascript" src="/dist/bundle0a.js?11700"></script>
+
+                <script>
+                    const token = getCookie('wexscktoken');
+                    const sess = getCookie('wex3authtoken');
+                    const reft = getCookie('wex3reftoken');
                 </script>
 
-            </center>
 
-        </div>
-    </footer>
-    <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
-    <script type="text/javascript" src="/dist/bundle0a.js?11700"></script>
+                <script type="text/javascript" src="/js/slick.min.js"></script>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        fetchWallet();
 
-    <script>
-        const token = getCookie('wexscktoken');
-        const sess = getCookie('wex3authtoken');
-        const reft = getCookie('wex3reftoken');
-    </script>
-
-
-    <script type="text/javascript" src="/js/slick.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            fetchWallet();
-            
-            // Skip homepage-specific functions on bets page
-            if (!window.isBetsPage) {
-                fetchHighlights();
-                setInterval(fetchHighlights, 60000);
-            } else {
-                // Hide preloader immediately for bets page
-                $(".page_loader").hide();
-                var preloader = document.getElementById('page-preloader');
-                if (preloader) {
-                    preloader.style.opacity = '0';
-                    preloader.style.display = 'none';
-                }
-            }
-
-            isPWCRequired();
-            showWelcomeBanner();
-
-            $(".page_loader").hide();
-            
-            const horseHound = document.getElementById("horsenhound");
-            if (horseHound) {
-                horseHound.classList.remove("d-none");
-            }
-
-            if (!window.isProfilePage && $(".games_slider").length) {
-                $(".games_slider").slick({
-                arrows: false,
-                autoplay: true,
-                infinite: true,
-                slidesToShow: 8,
-                slidesToScroll: 1,
-                swipeToSlide: true,
-                touchThreshold: 100,
-                waitForAnimate: false,
-                responsive: [
-                    {
-                        breakpoint: 1800,
-                        settings: {
-                            slidesToShow: 6,
-                            slidesToScroll: 1
+                        // Skip homepage-specific functions on bets page
+                        if (!window.isBetsPage) {
+                            fetchHighlights();
+                            setInterval(fetchHighlights, 60000);
+                        } else {
+                            // Hide preloader immediately for bets page
+                            $(".page_loader").hide();
+                            var preloader = document.getElementById('page-preloader');
+                            if (preloader) {
+                                preloader.style.opacity = '0';
+                                preloader.style.display = 'none';
+                            }
                         }
-                    },
-                    {
-                        breakpoint: 1500,
-                        settings: {
-                            slidesToShow: 5,
-                            slidesToScroll: 1
+
+                        isPWCRequired();
+                        showWelcomeBanner();
+
+                        $(".page_loader").hide();
+
+                        const horseHound = document.getElementById("horsenhound");
+                        if (horseHound) {
+                            horseHound.classList.remove("d-none");
                         }
-                    },
-                    {
-                        breakpoint: 1200,
-                        settings: {
-                            slidesToShow: 4,
-                            slidesToScroll: 1
+
+                        if (!window.isProfilePage && $(".games_slider").length) {
+                            $(".games_slider").slick({
+                                arrows: false,
+                                autoplay: true,
+                                infinite: true,
+                                slidesToShow: 8,
+                                slidesToScroll: 1,
+                                swipeToSlide: true,
+                                touchThreshold: 100,
+                                waitForAnimate: false,
+                                responsive: [
+                                    {
+                                        breakpoint: 1800,
+                                        settings: {
+                                            slidesToShow: 6,
+                                            slidesToScroll: 1
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 1500,
+                                        settings: {
+                                            slidesToShow: 5,
+                                            slidesToScroll: 1
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 1200,
+                                        settings: {
+                                            slidesToShow: 4,
+                                            slidesToScroll: 1
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 900,
+                                        settings: {
+                                            slidesToShow: 3,
+                                            slidesToScroll: 1
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 700,
+                                        settings: {
+                                            slidesToShow: 3,
+                                            slidesToScroll: 1
+                                        }
+                                    }
+                                ]
+                            });
                         }
-                    },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 700,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1
-                        }
+
+                        $("#modalCasinoToS").on('hidden.bs.modal', function (event) {
+                            showNewsFlash();
+                        });
+                    });
+
+                    function AcceptPassword() {
+                        var newpass = document.getElementById("Newpasswordmodal").value;
+                        $.ajax({
+                            type: "GET",
+                            url: "/Customer/Profile?handler=UpdatePassword&NewPassword=" + newpass,
+                            success: function (result) {
+                                if (result == 'PCS') {
+                                    $('#modalPasswordChange').modal('hide');;
+                                    $('#modalRedirectToLogout').modal('show');;
+                                } else {
+                                    $('#alertmodaltitle').html(result);
+                                }
+                            },
+                            error: function (exception) {
+                                location.reload();
+                            }
+                        });
                     }
-                ]
-                });
-            }
 
-            $("#modalCasinoToS").on('hidden.bs.modal', function (event) {
-                showNewsFlash();
-            });
-        });
-
-        function AcceptPassword() {
-            var newpass = document.getElementById("Newpasswordmodal").value;
-            $.ajax({
-                type: "GET",
-                url: "/Customer/Profile?handler=UpdatePassword&NewPassword=" + newpass,
-                success: function (result) {
-                    if (result == 'PCS') {
-                        $('#modalPasswordChange').modal('hide');;
-                        $('#modalRedirectToLogout').modal('show');;
-                    } else {
-                        $('#alertmodaltitle').html(result);
+                    function ReLogin() {
+                        document.getElementById('logout-form').submit();
                     }
-                },
-                error: function (exception) {
-                    location.reload();
-                }
-            });
-        }
 
-        function ReLogin() {
-            document.getElementById('logout-form').submit();
-        }
+                    function formatOdds(value) {
+                        return value && value > 0 ? value : '';
+                    }
 
-        function formatOdds(value) {
-            return value && value > 0 ? value : '';
-        }
+                    function formatMatched(value) {
+                        if (!value || value === 0) return '';
+                        if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                        if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
+                        return value.toLocaleString();
+                    }
 
-        function formatMatched(value) {
-            if (!value || value === 0) return '';
-            if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
-            if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
-            return value.toLocaleString();
-        }
+                    function formatSize(value) {
+                        if (!value || value === 0) return '-';
+                        if (value >= 1000) {
+                            return (value / 1000).toFixed(2) + 'k';
+                        }
+                        return value.toLocaleString();
+                    }
 
-        function formatSize(value) {
-            if (!value || value === 0) return '-';
-            if (value >= 1000) {
-                return (value / 1000).toFixed(2) + 'k';
-            }
-            return value.toLocaleString();
-        }
+                    function populateAllTables(allCricket, allSoccer, allTennis, cricketInplay, soccerInplay, tennisInplay) {
+                        const tabContents = document.querySelectorAll('.tabcontent');
 
-        function populateAllTables(allCricket, allSoccer, allTennis, cricketInplay, soccerInplay, tennisInplay) {
-            const tabContents = document.querySelectorAll('.tabcontent');
-            
-            tabContents.forEach((tabContent, index) => {
-                const tables = tabContent.querySelectorAll('.high_lights table tbody');
-                
-                let cricketData = [];
-                let soccerData = [];
-                let tennisData = [];
-                
-                if (index === 0) {
-                    cricketData = cricketInplay;
-                    soccerData = soccerInplay;
-                    tennisData = tennisInplay;
-                } else if (index === 1) {
-                    cricketData = allCricket;
-                    soccerData = [];
-                    tennisData = [];
-                } else if (index === 2) {
-                    cricketData = [];
-                    soccerData = [];
-                    tennisData = allTennis;
-                } else if (index === 3) {
-                    cricketData = [];
-                    soccerData = allSoccer;
-                    tennisData = [];
-                }
-                
-                populateTables(tables, cricketData, soccerData, tennisData, index);
-            });
-        }
+                        tabContents.forEach((tabContent, index) => {
+                            const tables = tabContent.querySelectorAll('.high_lights table tbody');
 
-        function populateTables(tables, cricketMatches, soccerMatches, tennisMatches, tabIndex) {
-            
-            if (tabIndex === 0) {
-                if (tables[0]) {
-                    tables[0].innerHTML = cricketMatches.map(match => {
-                    const r1 = match.runners && match.runners[0] || {};
-                    const r2 = match.runners && match.runners[2] || {};
-                    const r3 = match.runners && match.runners[1] || {};
-                    const r1Back = formatOdds(r1.back);
-                    const r1Lay = formatOdds(r1.lay);
-                    const r2Back = formatOdds(r2.back);
-                    const r2Lay = formatOdds(r2.lay);
-                    const r3Back = formatOdds(r3.back);
-                    const r3Lay = formatOdds(r3.lay);
-                    
-                    return `
+                            let cricketData = [];
+                            let soccerData = [];
+                            let tennisData = [];
+
+                            if (index === 0) {
+                                cricketData = cricketInplay;
+                                soccerData = soccerInplay;
+                                tennisData = tennisInplay;
+                            } else if (index === 1) {
+                                cricketData = allCricket;
+                                soccerData = [];
+                                tennisData = [];
+                            } else if (index === 2) {
+                                cricketData = [];
+                                soccerData = [];
+                                tennisData = allTennis;
+                            } else if (index === 3) {
+                                cricketData = [];
+                                soccerData = allSoccer;
+                                tennisData = [];
+                            }
+
+                            populateTables(tables, cricketData, soccerData, tennisData, index);
+                        });
+                    }
+
+                    function populateTables(tables, cricketMatches, soccerMatches, tennisMatches, tabIndex) {
+
+                        if (tabIndex === 0) {
+                            if (tables[0]) {
+                                tables[0].innerHTML = cricketMatches.map(match => {
+                                    const r1 = match.runners && match.runners[0] || {};
+                                    const r2 = match.runners && match.runners[2] || {};
+                                    const r3 = match.runners && match.runners[1] || {};
+                                    const r1Back = formatOdds(r1.back);
+                                    const r1Lay = formatOdds(r1.lay);
+                                    const r2Back = formatOdds(r2.back);
+                                    const r2Lay = formatOdds(r2.lay);
+                                    const r3Back = formatOdds(r3.back);
+                                    const r3Lay = formatOdds(r3.lay);
+
+                                    return `
                         <tr class="McomCustom">
                             <td colspan="2">
                                 <div class="teams">
@@ -1306,22 +1254,22 @@
                             </td>
                         </tr>
                     `;
-                }).join('');
-                }
-                
-                if (tables[1]) {
-                    tables[1].innerHTML = soccerMatches.map(match => {
-                    const r1 = match.runners && match.runners[0] || {};
-                    const r2 = match.runners && match.runners[1] || {};
-                    const r3 = match.runners && match.runners[2] || {};
-                    const r1Back = formatOdds(r1.back);
-                    const r1Lay = formatOdds(r1.lay);
-                    const r2Back = formatOdds(r2.back);
-                    const r2Lay = formatOdds(r2.lay);
-                    const r3Back = formatOdds(r3.back);
-                    const r3Lay = formatOdds(r3.lay);
-                    
-                    return `
+                                }).join('');
+                            }
+
+                            if (tables[1]) {
+                                tables[1].innerHTML = soccerMatches.map(match => {
+                                    const r1 = match.runners && match.runners[0] || {};
+                                    const r2 = match.runners && match.runners[1] || {};
+                                    const r3 = match.runners && match.runners[2] || {};
+                                    const r1Back = formatOdds(r1.back);
+                                    const r1Lay = formatOdds(r1.lay);
+                                    const r2Back = formatOdds(r2.back);
+                                    const r2Lay = formatOdds(r2.lay);
+                                    const r3Back = formatOdds(r3.back);
+                                    const r3Lay = formatOdds(r3.lay);
+
+                                    return `
                         <tr class="McomCustom">
                             <td colspan="2">
                                 <div class="teams">
@@ -1376,19 +1324,19 @@
                             </td>
                         </tr>
                     `;
-                }).join('');
-                }
-                
-                if (tables[2]) {
-                    tables[2].innerHTML = tennisMatches.map(match => {
-                    const r1 = match.runners && match.runners[0] || {};
-                    const r2 = match.runners && match.runners[1] || {};
-                    const r1Back = formatOdds(r1.back);
-                    const r1Lay = formatOdds(r1.lay);
-                    const r2Back = formatOdds(r2.back);
-                    const r2Lay = formatOdds(r2.lay);
-                    
-                    return `
+                                }).join('');
+                            }
+
+                            if (tables[2]) {
+                                tables[2].innerHTML = tennisMatches.map(match => {
+                                    const r1 = match.runners && match.runners[0] || {};
+                                    const r2 = match.runners && match.runners[1] || {};
+                                    const r1Back = formatOdds(r1.back);
+                                    const r1Lay = formatOdds(r1.lay);
+                                    const r2Back = formatOdds(r2.back);
+                                    const r2Lay = formatOdds(r2.lay);
+
+                                    return `
                         <tr class="McomCustom">
                             <td colspan="2">
                                 <div class="teams">
@@ -1443,22 +1391,22 @@
                             </td>
                         </tr>
                     `;
-                }).join('');
-                }
-            } else if (tabIndex === 1) {
-                if (tables[0]) {
-                    tables[0].innerHTML = cricketMatches.map(match => {
-                        const r1 = match.runners && match.runners[0] || {};
-                        const r2 = match.runners && match.runners[2] || {};
-                        const r3 = match.runners && match.runners[1] || {};
-                        const r1Back = formatOdds(r1.back);
-                        const r1Lay = formatOdds(r1.lay);
-                        const r2Back = formatOdds(r2.back);
-                        const r2Lay = formatOdds(r2.lay);
-                        const r3Back = formatOdds(r3.back);
-                        const r3Lay = formatOdds(r3.lay);
-                        
-                        return `
+                                }).join('');
+                            }
+                        } else if (tabIndex === 1) {
+                            if (tables[0]) {
+                                tables[0].innerHTML = cricketMatches.map(match => {
+                                    const r1 = match.runners && match.runners[0] || {};
+                                    const r2 = match.runners && match.runners[2] || {};
+                                    const r3 = match.runners && match.runners[1] || {};
+                                    const r1Back = formatOdds(r1.back);
+                                    const r1Lay = formatOdds(r1.lay);
+                                    const r2Back = formatOdds(r2.back);
+                                    const r2Lay = formatOdds(r2.lay);
+                                    const r3Back = formatOdds(r3.back);
+                                    const r3Lay = formatOdds(r3.lay);
+
+                                    return `
                             <tr class="McomCustom">
                                 <td colspan="2">
                                     <div class="teams">
@@ -1513,19 +1461,19 @@
                                 </td>
                             </tr>
                         `;
-                    }).join('');
-                }
-            } else if (tabIndex === 2) {
-                if (tables[0]) {
-                    tables[0].innerHTML = tennisMatches.map(match => {
-                        const r1 = match.runners && match.runners[0] || {};
-                        const r2 = match.runners && match.runners[1] || {};
-                        const r1Back = formatOdds(r1.back);
-                        const r1Lay = formatOdds(r1.lay);
-                        const r2Back = formatOdds(r2.back);
-                        const r2Lay = formatOdds(r2.lay);
-                        
-                        return `
+                                }).join('');
+                            }
+                        } else if (tabIndex === 2) {
+                            if (tables[0]) {
+                                tables[0].innerHTML = tennisMatches.map(match => {
+                                    const r1 = match.runners && match.runners[0] || {};
+                                    const r2 = match.runners && match.runners[1] || {};
+                                    const r1Back = formatOdds(r1.back);
+                                    const r1Lay = formatOdds(r1.lay);
+                                    const r2Back = formatOdds(r2.back);
+                                    const r2Lay = formatOdds(r2.lay);
+
+                                    return `
                             <tr class="McomCustom">
                                 <td colspan="2">
                                     <div class="teams">
@@ -1580,22 +1528,22 @@
                                 </td>
                             </tr>
                         `;
-                    }).join('');
-                }
-            } else if (tabIndex === 3) {
-                if (tables[0]) {
-                    tables[0].innerHTML = soccerMatches.map(match => {
-                        const r1 = match.runners && match.runners[0] || {};
-                        const r2 = match.runners && match.runners[1] || {};
-                        const r3 = match.runners && match.runners[2] || {};
-                        const r1Back = formatOdds(r1.back);
-                        const r1Lay = formatOdds(r1.lay);
-                        const r2Back = formatOdds(r2.back);
-                        const r2Lay = formatOdds(r2.lay);
-                        const r3Back = formatOdds(r3.back);
-                        const r3Lay = formatOdds(r3.lay);
-                        
-                        return `
+                                }).join('');
+                            }
+                        } else if (tabIndex === 3) {
+                            if (tables[0]) {
+                                tables[0].innerHTML = soccerMatches.map(match => {
+                                    const r1 = match.runners && match.runners[0] || {};
+                                    const r2 = match.runners && match.runners[1] || {};
+                                    const r3 = match.runners && match.runners[2] || {};
+                                    const r1Back = formatOdds(r1.back);
+                                    const r1Lay = formatOdds(r1.lay);
+                                    const r2Back = formatOdds(r2.back);
+                                    const r2Lay = formatOdds(r2.lay);
+                                    const r3Back = formatOdds(r3.back);
+                                    const r3Lay = formatOdds(r3.lay);
+
+                                    return `
                             <tr class="McomCustom">
                                 <td colspan="2">
                                     <div class="teams">
@@ -1650,268 +1598,268 @@
                                 </td>
                             </tr>
                         `;
-                    }).join('');
-                }
-            }
-        }
+                                }).join('');
+                            }
+                        }
+                    }
 
-        function populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches) {
-            const cricketMenu = document.getElementById('sidebar-cricket-menu');
-            const soccerMenu = document.getElementById('sidebar-soccer-menu');
-            const tennisMenu = document.getElementById('sidebar-tennis-menu');
-            
-            // Populate Cricket sidebar (limit to 10 matches)
-            if (cricketMenu && cricketMatches.length > 0) {
-                const cricketItems = cricketMatches.slice(0, 10).map(match => 
-                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
-                ).join('');
-                cricketMenu.innerHTML = `
+                    function populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches) {
+                        const cricketMenu = document.getElementById('sidebar-cricket-menu');
+                        const soccerMenu = document.getElementById('sidebar-soccer-menu');
+                        const tennisMenu = document.getElementById('sidebar-tennis-menu');
+
+                        // Populate Cricket sidebar (limit to 10 matches)
+                        if (cricketMenu && cricketMatches.length > 0) {
+                            const cricketItems = cricketMatches.slice(0, 10).map(match =>
+                                `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                            ).join('');
+                            cricketMenu.innerHTML = `
                     <li><a href="/cricket"><strong>All Cricket</strong></a></li>
                     <li class="divider"></li>
                     ${cricketItems}
                 `;
-            } else if (cricketMenu) {
-                cricketMenu.innerHTML = `
+                        } else if (cricketMenu) {
+                            cricketMenu.innerHTML = `
                     <li><a href="/cricket"><strong>All Cricket</strong></a></li>
                     <li class="divider"></li>
                     <li class="text-center"><small>No matches available</small></li>
                 `;
-            }
-            
-            // Populate Soccer sidebar (limit to 10 matches)
-            if (soccerMenu && soccerMatches.length > 0) {
-                const soccerItems = soccerMatches.slice(0, 10).map(match => 
-                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
-                ).join('');
-                soccerMenu.innerHTML = `
+                        }
+
+                        // Populate Soccer sidebar (limit to 10 matches)
+                        if (soccerMenu && soccerMatches.length > 0) {
+                            const soccerItems = soccerMatches.slice(0, 10).map(match =>
+                                `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                            ).join('');
+                            soccerMenu.innerHTML = `
                     <li><a href="/soccer"><strong>All Soccer</strong></a></li>
                     <li class="divider"></li>
                     ${soccerItems}
                 `;
-            } else if (soccerMenu) {
-                soccerMenu.innerHTML = `
+                        } else if (soccerMenu) {
+                            soccerMenu.innerHTML = `
                     <li><a href="/soccer"><strong>All Soccer</strong></a></li>
                     <li class="divider"></li>
                     <li class="text-center"><small>No matches available</small></li>
                 `;
-            }
-            
-            // Populate Tennis sidebar (limit to 10 matches)
-            if (tennisMenu && tennisMatches.length > 0) {
-                const tennisItems = tennisMatches.slice(0, 10).map(match => 
-                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
-                ).join('');
-                tennisMenu.innerHTML = `
+                        }
+
+                        // Populate Tennis sidebar (limit to 10 matches)
+                        if (tennisMenu && tennisMatches.length > 0) {
+                            const tennisItems = tennisMatches.slice(0, 10).map(match =>
+                                `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                            ).join('');
+                            tennisMenu.innerHTML = `
                     <li><a href="/tennis"><strong>All Tennis</strong></a></li>
                     <li class="divider"></li>
                     ${tennisItems}
                 `;
-            } else if (tennisMenu) {
-                tennisMenu.innerHTML = `
+                        } else if (tennisMenu) {
+                            tennisMenu.innerHTML = `
                     <li><a href="/tennis"><strong>All Tennis</strong></a></li>
                     <li class="divider"></li>
                     <li class="text-center"><small>No matches available</small></li>
                 `;
-            }
-        }
-
-        function fetchHighlights() {
-            $.ajax({
-                type: "GET",
-                url: "/api/cricket-matches",
-                timeout: 12000,
-                success: function (result) {
-                    if (result) {
-                        const cricketMatches = result.cricket || [];
-                        const soccerMatches = result.soccer || [];
-                        const tennisMatches = result.tennis || [];
-                        
-                        const cricketInplay = cricketMatches.filter(m => m.inplay === true);
-                        const soccerInplay = soccerMatches.filter(m => m.inplay === true);
-                        const tennisInplay = tennisMatches.filter(m => m.inplay === true);
-                        
-                        const totalInplay = cricketInplay.length + soccerInplay.length + tennisInplay.length;
-                        
-                        document.querySelector('#owlitemactive1t div i').textContent = totalInplay;
-                        document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
-                        document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
-                        document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
-                        
-                        populateAllTables(cricketMatches, soccerMatches, tennisMatches, cricketInplay, soccerInplay, tennisInplay);
-                        populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches);
-                        
-                        const preloader = document.getElementById('page-preloader');
-                        if (preloader) {
-                            preloader.style.opacity = '0';
-                            setTimeout(() => preloader.style.display = 'none', 300);
                         }
                     }
-                    ActivateTab(LastTab);
-                    convertAllToClientTime();
-                    
-                    if (!window.isProfilePage && $(".center").length) {
-                        $(".center").slick({
-                            infinite: false,
-                            slidesToShow: 8,
-                            slidesToScroll: 3,
-                            responsive: [
-                                {
-                                    breakpoint: 1024,
-                                    settings: {
-                                        slidesToShow: 3,
-                                        slidesToScroll: 3
-                                    }
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 2
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        slidesToShow: 3,
-                                        slidesToScroll: 2
+
+                    function fetchHighlights() {
+                        $.ajax({
+                            type: "GET",
+                            url: "/api/cricket-matches",
+                            timeout: 12000,
+                            success: function (result) {
+                                if (result) {
+                                    const cricketMatches = result.cricket || [];
+                                    const soccerMatches = result.soccer || [];
+                                    const tennisMatches = result.tennis || [];
+
+                                    const cricketInplay = cricketMatches.filter(m => m.inplay === true);
+                                    const soccerInplay = soccerMatches.filter(m => m.inplay === true);
+                                    const tennisInplay = tennisMatches.filter(m => m.inplay === true);
+
+                                    const totalInplay = cricketInplay.length + soccerInplay.length + tennisInplay.length;
+
+                                    document.querySelector('#owlitemactive1t div i').textContent = totalInplay;
+                                    document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
+                                    document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
+                                    document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
+
+                                    populateAllTables(cricketMatches, soccerMatches, tennisMatches, cricketInplay, soccerInplay, tennisInplay);
+                                    populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches);
+
+                                    const preloader = document.getElementById('page-preloader');
+                                    if (preloader) {
+                                        preloader.style.opacity = '0';
+                                        setTimeout(() => preloader.style.display = 'none', 300);
                                     }
                                 }
+                                ActivateTab(LastTab);
+                                convertAllToClientTime();
 
-                            ]
+                                if (!window.isProfilePage && $(".center").length) {
+                                    $(".center").slick({
+                                        infinite: false,
+                                        slidesToShow: 8,
+                                        slidesToScroll: 3,
+                                        responsive: [
+                                            {
+                                                breakpoint: 1024,
+                                                settings: {
+                                                    slidesToShow: 3,
+                                                    slidesToScroll: 3
+                                                }
+                                            },
+                                            {
+                                                breakpoint: 600,
+                                                settings: {
+                                                    slidesToShow: 2,
+                                                    slidesToScroll: 2
+                                                }
+                                            },
+                                            {
+                                                breakpoint: 480,
+                                                settings: {
+                                                    slidesToShow: 3,
+                                                    slidesToScroll: 2
+                                                }
+                                            }
+
+                                        ]
+                                    });
+                                }
+                            },
+                            error: function (jqXhr, textStatus, errorThrown) {
+
+                            }
+                        });
+                    };
+
+                    function fetchWallet() {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/Customer/Wallet',
+                            success: function (result) {
+                                $('#cust-wallet').html(result);
+                            }
                         });
                     }
-                },
-                error: function (jqXhr, textStatus, errorThrown) {
 
-                }
-            });
-        };
+                    function convertAllToClientTime() {
+                        $('.utctime').each(function (index, el) {
+                            try {
+                                convertToClientTime(el);
+                            }
+                            catch { }
+                        });
+                    }
 
-        function fetchWallet() {
-            $.ajax({
-                type: 'GET',
-                url: '/Customer/Wallet',
-                success: function (result) {
-                    $('#cust-wallet').html(result);
-                }
-            });
-        }
+                    function convertToClientTime(el) {
+                        var reqFormat = $(el).data('format');
+                        var isoDate = $(el).text().trim();
 
-        function convertAllToClientTime() {
-            $('.utctime').each(function (index, el) {
-                try {
-                    convertToClientTime(el);
-                }
-                catch { }
-            });
-        }
+                        var clientDateTime = moment(isoDate).format(reqFormat);
 
-        function convertToClientTime(el) {
-            var reqFormat = $(el).data('format');
-            var isoDate = $(el).text().trim();
+                        $(el).prev('.market-time').text(clientDateTime);
+                        let dateText = $(el).prev().prev('.day').text().toString();
 
-            var clientDateTime = moment(isoDate).format(reqFormat);
+                        if (dateText.toLocaleLowerCase() !== "inplay") {
+                            let currentDay = parseInt(moment(new Date()).format("DDDD"));
+                            let marketDay = parseInt(moment(isoDate).format("DDDD"));
+                            let daysDiff = marketDay - currentDay;
 
-            $(el).prev('.market-time').text(clientDateTime);
-            let dateText = $(el).prev().prev('.day').text().toString();
+                            if (daysDiff == 0) {
+                                dateText = "Today";
+                            }
+                            else if (daysDiff == 1) {
+                                dateText = "Tomorrow";
+                            }
+                            else if (daysDiff == -1) {
+                                dateText = "Yesterday";
+                            }
 
-            if (dateText.toLocaleLowerCase() !== "inplay") {
-                let currentDay = parseInt(moment(new Date()).format("DDDD"));
-                let marketDay = parseInt(moment(isoDate).format("DDDD"));
-                let daysDiff = marketDay - currentDay;
+                            $(el).prev().prev('.day').text(dateText);
+                        }
+                    }
 
-                if (daysDiff == 0) {
-                    dateText = "Today";
-                }
-                else if (daysDiff == 1) {
-                    dateText = "Tomorrow";
-                }
-                else if (daysDiff == -1) {
-                    dateText = "Yesterday";
-                }
+                    var highlightLink = function () {
+                        var active = null, colour = 'black';
+                        if (this.attachEvent) this.attachEvent('onunload', function () {
+                            active = null;
+                        });
+                        return function (element) {
+                            if ((active != element) && element.style) {
+                                if (active) active.style.backgroundColor = '';
+                                element.style.backgroundColor = colour;
+                                active = element;
+                            }
+                        };
+                    }();
 
-                $(el).prev().prev('.day').text(dateText);
-            }
-        }
+                    var LastTab = 0;
 
-        var highlightLink = function () {
-            var active = null, colour = 'black';
-            if (this.attachEvent) this.attachEvent('onunload', function () {
-                active = null;
-            });
-            return function (element) {
-                if ((active != element) && element.style) {
-                    if (active) active.style.backgroundColor = '';
-                    element.style.backgroundColor = colour;
-                    active = element;
-                }
-            };
-        }();
+                    function ActivateTab(tab_index) {
 
-        var LastTab = 0;
+                        tab_index = parseInt(tab_index);
+                        LastTab = tab_index;
 
-        function ActivateTab(tab_index) {
+                        $(".tablinks").removeClass('active');
+                        $(".tablinks:eq( " + tab_index + " )").addClass('active');
 
-            tab_index = parseInt(tab_index);
-            LastTab = tab_index;
+                        $(".tabcontent").hide();
+                        $(".tabcontent:eq( " + tab_index + " )").show();
+                    }
 
-            $(".tablinks").removeClass('active');
-            $(".tablinks:eq( " + tab_index + " )").addClass('active');
+                    function showWelcomeBanner() {
+                        let isShowBanner = localStorage.getItem('welcome-banner');
 
-            $(".tabcontent").hide();
-            $(".tabcontent:eq( " + tab_index + " )").show();
-        }
+                        if (isShowBanner) {
+                            $('#modalCasinoToS').modal('show');
 
-        function showWelcomeBanner() {
-            let isShowBanner = localStorage.getItem('welcome-banner');
+                            fetchProfile();
+                        }
 
-            if (isShowBanner) {
-                $('#modalCasinoToS').modal('show');
+                        localStorage.removeItem('welcome-banner');
+                    }
 
-                fetchProfile();
-            }
+                    function isPWCRequired() {
+                        let isPWC = localStorage.getItem('pwc-req');
 
-            localStorage.removeItem('welcome-banner');
-        }
+                        if (isPWC) {
+                            $('#modalPasswordChange').modal('show');
+                        }
+                    }
 
-        function isPWCRequired() {
-            let isPWC = localStorage.getItem('pwc-req');
-
-            if (isPWC) {
-                $('#modalPasswordChange').modal('show');
-            }
-        }
-
-        function fetchProfile() {
-            $.ajax({
-                type: 'GET',
-                url: '/api/users/profile',
-                success: function (result) {
-                    localStorage.setItem('symbol', result.currencySymbol);
-                }
-            });
-        }
-    </script>
+                    function fetchProfile() {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/api/users/profile',
+                            success: function (result) {
+                                localStorage.setItem('symbol', result.currencySymbol);
+                            }
+                        });
+                    }
+                </script>
 
 
-    <script>
-        $(document).ready(function () {
-            pollRefreshToken();
-        });
+                <script>
+                    $(document).ready(function () {
+                        pollRefreshToken();
+                    });
 
-        if (genSck === 1) {
-            const signalRConnection = new UWS(uwsUrl, token, sess);
-            signalRConnection.connect();
-        }
-        else {
-            pollUserData();
-        }
-    </script>
-    <script defer=""
-        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-        data-cf-beacon="{&quot;rayId&quot;:&quot;99ac001e6ec6fdb0&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}"
-        crossorigin="anonymous"></script>
+                    if (genSck === 1) {
+                        const signalRConnection = new UWS(uwsUrl, token, sess);
+                        signalRConnection.connect();
+                    }
+                    else {
+                        pollUserData();
+                    }
+                </script>
+                <script defer=""
+                    src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+                    integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+                    data-cf-beacon="{&quot;rayId&quot;:&quot;99ac001e6ec6fdb0&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}"
+                    crossorigin="anonymous"></script>
 
 </body>
 
