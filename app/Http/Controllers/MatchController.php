@@ -62,9 +62,20 @@ class MatchController extends Controller
                 )
                 ->first();
             
+            // Extract event name and runners from market details
+            $eventName = $marketDetails['event']['name'] ?? $marketDetails['marketName'] ?? 'Match';
+            $runners = $marketDetails['runners'] ?? [];
+            
+            // Get odds for the main market (Match Odds)
+            $mainMarketOdds = $marketsData[$marketId] ?? [];
+            $odds = $mainMarketOdds['runners'] ?? [];
+            
             $viewData = [
                 'marketId' => $marketId,
                 'eventId' => $eventId,
+                'eventName' => $eventName,
+                'runners' => $runners,
+                'odds' => $odds,
                 'marketDetails' => $marketDetails,
                 'allMarketIds' => $allMarketIds,
                 'marketsData' => $marketsData,
