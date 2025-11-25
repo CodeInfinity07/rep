@@ -2206,6 +2206,92 @@
             pollUserData();
         }
     </script>
+    
+    <script>
+        // Real-time Match Odds polling - updates every second
+        function formatAmount(size) {
+            if (!size) return '';
+            if (size >= 1000000) return (size / 1000000).toFixed(1) + 'M';
+            if (size >= 1000) return (size / 1000).toFixed(1) + 'K';
+            return size.toString();
+        }
+        
+        function updateMatchOdds() {
+            const currentMarketId = marketId;
+            if (!currentMarketId) return;
+            
+            fetch('/api/match-odds/' + currentMarketId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.log('Odds update error:', data.error);
+                        return;
+                    }
+                    
+                    const runners = data.runners || [];
+                    
+                    runners.forEach(runner => {
+                        const selectionId = runner.selectionId;
+                        const ex = runner.ex || {};
+                        const back = ex.availableToBack || [];
+                        const lay = ex.availableToLay || [];
+                        
+                        // Update Back prices (B1, B2, B3)
+                        if (back[0]) {
+                            const b1 = document.querySelector('#B1-' + selectionId);
+                            if (b1) {
+                                b1.querySelector('.price-odd').textContent = back[0].price || '-';
+                                b1.querySelector('.price-amount').textContent = formatAmount(back[0].size);
+                            }
+                        }
+                        if (back[1]) {
+                            const b2 = document.querySelector('#B2-' + selectionId);
+                            if (b2) {
+                                b2.querySelector('.price-odd').textContent = back[1].price || '-';
+                                b2.querySelector('.price-amount').textContent = formatAmount(back[1].size);
+                            }
+                        }
+                        if (back[2]) {
+                            const b3 = document.querySelector('#B3-' + selectionId);
+                            if (b3) {
+                                b3.querySelector('.price-odd').textContent = back[2].price || '-';
+                                b3.querySelector('.price-amount').textContent = formatAmount(back[2].size);
+                            }
+                        }
+                        
+                        // Update Lay prices (L1 and unnamed lay buttons)
+                        if (lay[0]) {
+                            const l1 = document.querySelector('#L1-' + selectionId);
+                            if (l1) {
+                                l1.querySelector('.price-odd').textContent = lay[0].price || '-';
+                                l1.querySelector('.price-amount').textContent = formatAmount(lay[0].size);
+                            }
+                        }
+                        
+                        // Update additional lay prices (the next two price-lay elements after L1)
+                        const runnerDiv = document.querySelector('#runner-' + selectionId);
+                        if (runnerDiv) {
+                            const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
+                            if (lay[1] && layButtons[0]) {
+                                layButtons[0].querySelector('.price-odd').textContent = lay[1].price || '-';
+                                layButtons[0].querySelector('.price-amount').textContent = formatAmount(lay[1].size);
+                            }
+                            if (lay[2] && layButtons[1]) {
+                                layButtons[1].querySelector('.price-odd').textContent = lay[2].price || '-';
+                                layButtons[1].querySelector('.price-amount').textContent = formatAmount(lay[2].size);
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.log('Odds fetch error:', error));
+        }
+        
+        // Start polling every second
+        setInterval(updateMatchOdds, 1000);
+        
+        // Initial update
+        updateMatchOdds();
+    </script>
     <script defer=""
         src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
