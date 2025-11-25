@@ -692,251 +692,162 @@
                             <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             </form>
-<div class="content-wrap body">
-    <script>
-        // Profit/Loss page - disable homepage-specific initializations
-        window.isProfitLossPage = true;
-        window.isProfilePage = true;
-        
-        // Immediately hide preloader
-        (function() {
-            function hidePreloader() {
-                var loader = document.querySelector('.page_loader');
-                if (loader) loader.style.display = 'none';
-                var preloader = document.getElementById('page-preloader');
-                if (preloader) {
-                    preloader.style.opacity = '0';
-                    preloader.style.display = 'none';
-                }
-            }
-            hidePreloader();
-            document.addEventListener('DOMContentLoaded', hidePreloader);
-            setTimeout(hidePreloader, 100);
-            setTimeout(hidePreloader, 500);
-        })();
-    </script>
-    <link rel="stylesheet" href="/css/all.css">
-    
-    <style>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-wrap body">
+                    <link rel="stylesheet" href="/css/all.css">
+<style>
+    .totalAmount {
+        float: right;
+        margin-top: -30px;
+    }
+    @media screen and (max-width: 635px) {
         .totalAmount {
             float: right;
-            margin-top: -30px;
+            margin-top:10px;
         }
-        @media screen and (max-width: 635px) {
-            .totalAmount {
-                float: right;
-                margin-top:10px;
-            }
+    }
+</style>
+<div class="table-wrap">
+    
+<style>
+    .datee {
+        background-color: white;
+    }
+    @media screen and (max-width: 635px) {
+        .editsbmtbtn {
+            margin: auto;
+            margin-right: 15px;
         }
-        .card {
-            background: #1e2530;
-            border: 1px solid #2a3441;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .card-header {
-            background: linear-gradient(135deg, #2a3441 0%, #1e2530 100%);
-            color: #fff;
-            padding: 15px 20px;
-            border-bottom: 1px solid #3a4451;
-            font-weight: 600;
-        }
-        .card-body {
-            padding: 20px;
-            color: #ccc;
-        }
-        .form-control {
-            background: #2a3441;
-            border: 1px solid #3a4451;
-            color: #fff;
-            border-radius: 4px;
-        }
-        .form-control:focus {
-            background: #2a3441;
-            border-color: #4CAF50;
-            color: #fff;
-            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            border: none;
-            padding: 10px 25px;
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
-        }
-        .table-wrap {
-            padding: 15px;
-        }
-        .input-group-text {
-            background: #3a4451;
-            border-color: #3a4451;
-            color: #fff;
-        }
-        .datee {
-            background-color: #2a3441;
-        }
-        @media screen and (max-width: 635px) {
-            .editsbmtbtn {
-                margin: auto;
-                margin-right: 15px;
-            }
-        }
-        .nav-pills .nav-link {
-            color: #ccc;
-            background: #2a3441;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-        .nav-pills .nav-link.active {
-            background: #4CAF50;
-            color: #fff;
-        }
-        .profit-item {
-            background: #2a3441;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        .profit-positive {
-            color: #4CAF50;
-        }
-        .profit-negative {
-            color: #dc3545;
-        }
-    </style>
+    }
+</style>
 
-    <div class="table-wrap">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-align-justify"></i>
-                        Report Filter
-                    </div>
-                    <div class="card-body">
-                        <form id="ReportFilterForm" class="form-inline" method="get" action="/Customer/ProfitLoss">
-                            <div class="row" style="text-align-last:justify; width: 100%;">
-                                <div class="col-12 col-md-5">
-                                    <div class="form-group">
-                                        <div class="input-group date" id="ReportFrom" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom" placeholder="From Date">
-                                            <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="From" id="From" value="{{ $filters['from'] ?? '' }}">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+                Report Filter
+            </div>
+            <div class="card-body">
+                <form id="ReportFilterForm" class="form-inline" method="get">
+                    <div class="row" style="text-align-last:justify;">
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <div class="input-group date" id="ReportFrom" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom">
+                                    <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
-
-                                <strong style="margin:auto; color: #fff;">&nbsp;-&nbsp;</strong>
-                                <div class="col-12 col-md-5">
-                                    <div class="form-group">
-                                        <div class="input-group date" id="ReportTo" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo" placeholder="To Date">
-                                            <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="To" id="To" value="{{ $filters['to'] ?? '' }}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group editsbmtbtn">
-                                    <label class="mx-1"> </label>
-                                    <button class="btn btn-primary" type="submit">
-                                        <strong>Submit</strong>
-                                    </button>
-                                </div>
-                                <input type="hidden" id="ClientId" name="ClientId" value="{{ $clientId }}">
-                                <input type="hidden" id="EventTypeId" name="EventTypeId" value="0">
+                                <span class="market-time d-none">8/25/2025 10:07 AM</span>
+                                <span class="d-none utctime" data-nofirst="0" data-format="M/D/YYYY h:mm A">
+                                    2025-08-25T05:07:23.0000000Z
+                                </span>
+                                <input type="hidden" name="From" id="From" value="2025-08-25T05:07:23.0000000Z">
                             </div>
-                        </form>
+                        </div>
+
+                        <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo">
+                                    <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <span class="market-time d-none">11/25/2025 11:59 PM</span>
+                                <span class="d-none utctime" data-nofirst="0" data-format="M/D/YYYY h:mm A">
+                                    2025-11-25T18:59:00.0000000Z
+                                </span>
+                                <input type="hidden" name="To" id="To" value="2025-11-25T18:59:00.0000000Z">
+                            </div>
+                        </div>
+
+                        <div class="form-group editsbmtbtn">
+                            <label class="mx-1"> </label>
+                            <button class="btn btn-primary" type="submit" onclick="return updateDates();">
+                                <strong>Submit</strong>
+                            </button>
+                        </div>
+                        <input type="hidden" data-val="true" data-val-required="The ClientId field is required." id="ClientId" name="ClientId" value="5325466">
+                        <input type="hidden" data-val="true" data-val-required="The EventTypeId field is required." id="EventTypeId" name="EventTypeId" value="0">
+                        <input type="hidden" data-val="true" data-val-required="The IsFirstVisit field is required." id="IsFirstVisit" name="IsFirstVisit" value="False">
                     </div>
-                </div>
+                    <div class="row col-12">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-    <div class="table-wrap">
-        <div class="">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Sports ProfitLoss <b>({{ strtoupper($username) }})</b>
-                </div>
-                <div class="card-body">
-                    @if($profitLossData->count() > 0)
-                        <div class="table-responsive">
-                            <table class="table table-dark table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Market</th>
-                                        <th>Won</th>
-                                        <th>Lost</th>
-                                        <th>Net P/L</th>
-                                        <th>Bets</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($profitLossData as $item)
-                                        @php
-                                            $netProfit = $item->net_profit ?? 0;
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $item->market_name ?? 'Unknown' }}</td>
-                                            <td class="profit-positive">+{{ number_format($item->total_won ?? 0, 2) }}</td>
-                                            <td class="profit-negative">{{ number_format($item->total_lost ?? 0, 2) }}</td>
-                                            <td class="{{ $netProfit >= 0 ? 'profit-positive' : 'profit-negative' }}">
-                                                {{ $netProfit >= 0 ? '+' : '' }}{{ number_format($netProfit, 2) }}
-                                            </td>
-                                            <td>{{ $item->total_bets }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="mt-4 p-3" style="background: #1a1f28; border-radius: 8px;">
-                            <div class="row">
-                                <div class="col-md-4 text-center">
-                                    <h6 style="color: #888;">Total Won</h6>
-                                    <h4 class="profit-positive">+{{ number_format($overallStats->total_won ?? 0, 2) }}</h4>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <h6 style="color: #888;">Total Lost</h6>
-                                    <h4 class="profit-negative">-{{ number_format($overallStats->total_lost ?? 0, 2) }}</h4>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <h6 style="color: #888;">Net Profit/Loss</h6>
-                                    @php $netTotal = $overallStats->net_profit ?? 0; @endphp
-                                    <h4 class="{{ $netTotal >= 0 ? 'profit-positive' : 'profit-negative' }}">
-                                        {{ $netTotal >= 0 ? '+' : '' }}{{ number_format($netTotal, 2) }}
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="text-center mt-3">
-                                <small style="color: #888;">Total Bets: {{ $overallStats->total_bets ?? 0 }}</small>
-                            </div>
-                        </div>
-                    @else
-                        <p class="text-center" style="color: #888;">No profit/loss data available for the selected period.</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function popup_report(vid, aid) {
-            var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
-            newwindow = window.open(url, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
-            if (window.focus) { newwindow.focus() }
-            return false;
-        }
-    </script>
 </div>
+
+</div>
+<div class="table-wrap">
+    <div class="">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Sports ProfitLoss <b> (HAFIZ6969) </b>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-pills">
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function popup_report(vid, aid) {
+        var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
+        newwindow = window.open(url, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
+        if (window.focus) { newwindow.focus() }
+        return false;
+    }
+</script>
+                </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <b>Protection of minors</b>
+                                <br>
+                                <p> It is illegal for anybody under the age of 18 to gamble. </p>
+                                <br>
+                                <p>Our site has strict policies and verification measures to prevent access to minors.
+                                </p>
+                                <br>
+                                <p>We encourage parents consider the use of internet use protection tools. You may find
+                                    the
+                                    following links useful. </p>
+                                <br>
+                                <a href="https://www.cyberpatrol.com/" target="_blank" style="color:mediumspringgreen">
+                                    Cyberpatrol</a>
+                                <br>
+                                <a href="https://www.cybersitter.com/" target="_blank" style="color:mediumspringgreen">
+                                    Cybersitter
+                                </a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
+                    <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
+                    </div>
+                    <div class="container text-center">
+                        <center>
+
+                            <style>
+                                p {
                                     font-size: 12px;
                                     color: white;
                                 }
