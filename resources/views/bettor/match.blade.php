@@ -1078,6 +1078,82 @@
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
+    
+    /* Bet Slip Styles */
+    #betSlip {
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+    
+    #betSlip .stake-btn {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 3px;
+        background-color: #e0e0e0;
+        display: inline-block;
+        margin: 2px;
+        transition: background-color 0.2s;
+    }
+    
+    #betSlip .stake-btn:hover {
+        background-color: #c0c0c0;
+    }
+    
+    #betSlip tr.back {
+        background-color: #a6d8ff;
+    }
+    
+    #betSlip tr.lay {
+        background-color: #ffc0cb;
+    }
+    
+    #betSlip .quantity {
+        display: flex;
+        align-items: center;
+    }
+    
+    #betSlip .quantity input {
+        width: 60px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    
+    #betSlip .quantity-nav {
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+    }
+    
+    #betSlip .quantity-button {
+        cursor: pointer;
+        padding: 0 5px;
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        font-size: 10px;
+    }
+    
+    #betSlip .quantity-button:hover {
+        background-color: #bbb;
+    }
+    
+    #betSlip .stake input {
+        width: 80px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    
+    .price-back:hover, .price-lay:hover {
+        opacity: 0.8;
+        transform: scale(1.02);
+        transition: all 0.1s;
+    }
 </style>
 
 <script>
@@ -1244,7 +1320,60 @@
                 </span> <span>
                     &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
                 SUSPENDED
-            </div></div></div></div></div></div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px;"><iframe id="livesc" src="https://score.akamaized.uk/?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;"><strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong> <div class="betting-table"><table class="table"><thead><tr><th>Bet for</th> <th>Odds</th> <th>Stake</th> <th>Profit</th></tr></thead> <tbody><tr class="back"><td></td> <td width="10%"><div class="quantity"><input type="text" id="bet-price"> <div class="quantity-nav"><div class="quantity-button quantity-up"><span class="fa fa-caret-up"></span></div> <div class="quantity-button quantity-down"><span class="fa fa-caret-down"></span></div></div></div></td> <td width="10%"><div class="stake"><input type="text" id="bet-size"></div></td> <td> / -</td></tr> <tr class="back"><td colspan="5"><table class="table"><tbody><tr class="checknow"><td><span data-amount="2000" class="points">2,000</span></td> <td><span class="points">5,000</span></td> <td><span class="points">10,000</span></td> <td><span class="points">25,000</span></td></tr> <tr class="checknow"><td><span class="points">+ 1,000</span></td> <td><span class="points">+ 5,000</span></td> <td><span class="points">+ 10,000</span></td> <td><span class="points">+ 25,000</span></td></tr> <tr><td colspan="4" class="alert-danger pr-5"></td></tr> <tr><td><button type="reset" class="align-left btn btn-danger"><b>Close</b></button></td> <td><button type="reset" class="align-left btn btn-warning"><b>Clear</b></button></td> <td colspan="1"></td> <td><div class="btn btn-primary ld-over" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div></td></tr></tbody></table></td></tr></tbody></table></div></div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+            </div></div></div></div></div></div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px;"><iframe id="livesc" src="https://score.akamaized.uk/?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
+    <strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong>
+    <div class="betting-table">
+        <table class="table">
+            <thead>
+                <tr><th>Bet for</th><th>Odds</th><th>Stake</th><th>Profit</th></tr>
+            </thead>
+            <tbody>
+                <tr id="betSlipRow" class="back">
+                    <td id="betRunnerName">-</td>
+                    <td width="10%">
+                        <div class="quantity">
+                            <input type="text" id="bet-price" readonly>
+                            <div class="quantity-nav">
+                                <div class="quantity-button quantity-up" onclick="adjustOdds(0.01)"><span class="fa fa-caret-up"></span></div>
+                                <div class="quantity-button quantity-down" onclick="adjustOdds(-0.01)"><span class="fa fa-caret-down"></span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="10%">
+                        <div class="stake"><input type="text" id="bet-size" oninput="calculateProfit()"></div>
+                    </td>
+                    <td id="betProfitDisplay">0 / 0</td>
+                </tr>
+                <tr id="betSlipRow2" class="back">
+                    <td colspan="5">
+                        <table class="table">
+                            <tbody>
+                                <tr class="checknow">
+                                    <td><span data-amount="2000" class="points stake-btn" onclick="setStake(2000)">2,000</span></td>
+                                    <td><span data-amount="5000" class="points stake-btn" onclick="setStake(5000)">5,000</span></td>
+                                    <td><span data-amount="10000" class="points stake-btn" onclick="setStake(10000)">10,000</span></td>
+                                    <td><span data-amount="25000" class="points stake-btn" onclick="setStake(25000)">25,000</span></td>
+                                </tr>
+                                <tr class="checknow">
+                                    <td><span class="points stake-btn" onclick="addStake(1000)">+ 1,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(5000)">+ 5,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(10000)">+ 10,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(25000)">+ 25,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="align-left btn btn-danger" onclick="closeBetSlip()"><b>Close</b></button></td>
+                                    <td><button type="button" class="align-left btn btn-warning" onclick="clearBetSlip()"><b>Clear</b></button></td>
+                                    <td colspan="1"></td>
+                                    <td><div class="btn btn-primary ld-over" style="cursor: pointer;" onclick="submitBet()"><b>Submit</b><div class="ld ld-ball ld-flip"></div></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
                                 2,000
                             </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
                                 5,000
@@ -2444,6 +2573,180 @@
             document.getElementById('LIVEDIV').style.display = 'block';
             document.getElementById('btnTV').classList.remove('active');
             document.getElementById('btnScore').classList.add('active');
+        }
+        
+        // Bet Slip Variables
+        var currentBetType = 'back'; // 'back' or 'lay'
+        var currentRunnerId = null;
+        var currentRunnerName = '';
+        var currentOdds = 0;
+        
+        // Open bet slip when clicking on odds
+        function openBetSlip(runnerName, runnerId, odds, betType) {
+            currentRunnerName = runnerName;
+            currentRunnerId = runnerId;
+            currentOdds = parseFloat(odds);
+            currentBetType = betType;
+            
+            // Update bet slip display
+            document.getElementById('betRunnerName').textContent = runnerName;
+            document.getElementById('bet-price').value = odds;
+            document.getElementById('bet-size').value = '';
+            document.getElementById('betProfitDisplay').textContent = '0 / 0';
+            
+            // Set row color based on bet type
+            var betRow = document.getElementById('betSlipRow');
+            var betRow2 = document.getElementById('betSlipRow2');
+            if (betType === 'back') {
+                betRow.className = 'back';
+                betRow2.className = 'back';
+            } else {
+                betRow.className = 'lay';
+                betRow2.className = 'lay';
+            }
+            
+            // Show bet slip
+            document.getElementById('betSlip').style.display = 'block';
+            
+            // Focus on stake input
+            document.getElementById('bet-size').focus();
+        }
+        
+        // Close bet slip
+        function closeBetSlip() {
+            document.getElementById('betSlip').style.display = 'none';
+            currentRunnerId = null;
+            currentRunnerName = '';
+            currentOdds = 0;
+        }
+        
+        // Clear bet slip
+        function clearBetSlip() {
+            document.getElementById('bet-size').value = '';
+            document.getElementById('betProfitDisplay').textContent = '0 / 0';
+        }
+        
+        // Set stake amount
+        function setStake(amount) {
+            document.getElementById('bet-size').value = amount;
+            calculateProfit();
+        }
+        
+        // Add to stake amount
+        function addStake(amount) {
+            var currentStake = parseInt(document.getElementById('bet-size').value) || 0;
+            document.getElementById('bet-size').value = currentStake + amount;
+            calculateProfit();
+        }
+        
+        // Adjust odds
+        function adjustOdds(delta) {
+            var priceInput = document.getElementById('bet-price');
+            var newOdds = (parseFloat(priceInput.value) || 1) + delta;
+            if (newOdds >= 1.01) {
+                priceInput.value = newOdds.toFixed(2);
+                currentOdds = newOdds;
+                calculateProfit();
+            }
+        }
+        
+        // Calculate profit/liability
+        function calculateProfit() {
+            var stake = parseFloat(document.getElementById('bet-size').value) || 0;
+            var odds = parseFloat(document.getElementById('bet-price').value) || 0;
+            
+            var profit = 0;
+            var liability = 0;
+            
+            if (currentBetType === 'back') {
+                profit = stake * (odds - 1);
+                liability = stake;
+            } else {
+                profit = stake;
+                liability = stake * (odds - 1);
+            }
+            
+            document.getElementById('betProfitDisplay').textContent = 
+                profit.toLocaleString('en-IN', {maximumFractionDigits: 0}) + ' / -' + 
+                liability.toLocaleString('en-IN', {maximumFractionDigits: 0});
+        }
+        
+        // Submit bet
+        function submitBet() {
+            var stake = parseFloat(document.getElementById('bet-size').value) || 0;
+            var odds = parseFloat(document.getElementById('bet-price').value) || 0;
+            
+            if (stake <= 0) {
+                alert('Please enter a valid stake amount');
+                return;
+            }
+            
+            if (odds < 1.01) {
+                alert('Invalid odds');
+                return;
+            }
+            
+            // TODO: Submit bet to server
+            alert('Bet placed: ' + currentRunnerName + ' @ ' + odds + ' for ' + stake.toLocaleString('en-IN'));
+            closeBetSlip();
+        }
+        
+        // Add click handlers to odds cells after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            attachOddsClickHandlers();
+        });
+        
+        function attachOddsClickHandlers() {
+            // Back odds (price-back class)
+            document.querySelectorAll('.price-back').forEach(function(el) {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', function() {
+                    var oddsEl = this.querySelector('.price-odd');
+                    var odds = oddsEl ? oddsEl.textContent.trim() : '-';
+                    if (odds === '-' || odds === '') return;
+                    
+                    // Find runner name from parent
+                    var runnerDiv = this.closest('.runner-runner');
+                    var runnerName = 'Unknown';
+                    var runnerId = '';
+                    
+                    if (runnerDiv) {
+                        var nameEl = runnerDiv.querySelector('.runner-display-name h4');
+                        if (nameEl) runnerName = nameEl.textContent.trim();
+                        runnerId = runnerDiv.id.replace('runner-', '');
+                    }
+                    
+                    openBetSlip(runnerName, runnerId, odds, 'back');
+                });
+            });
+            
+            // Lay odds (price-lay class)
+            document.querySelectorAll('.price-lay').forEach(function(el) {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', function() {
+                    var oddsEl = this.querySelector('.price-odd');
+                    var odds = oddsEl ? oddsEl.textContent.trim() : '-';
+                    if (odds === '-' || odds === '') return;
+                    
+                    // Find runner name from parent
+                    var runnerDiv = this.closest('.runner-runner');
+                    var runnerName = 'Unknown';
+                    var runnerId = '';
+                    
+                    if (runnerDiv) {
+                        var nameEl = runnerDiv.querySelector('.runner-display-name h4');
+                        if (nameEl) runnerName = nameEl.textContent.trim();
+                        runnerId = runnerDiv.id.replace('runner-', '');
+                    }
+                    
+                    openBetSlip(runnerName, runnerId, odds, 'lay');
+                });
+            });
+        }
+        
+        // Re-attach handlers after odds update (for dynamically updated content)
+        function reattachOddsHandlers() {
+            attachOddsClickHandlers();
         }
     </script>
     <script defer=""
