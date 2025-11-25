@@ -91,6 +91,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Customer/Profile', [App\Http\Controllers\BettorController::class, 'profile']);
     Route::get('/Customer/Bets', [App\Http\Controllers\BettorController::class, 'bets']);
     Route::get('/Customer/ProfitLoss', [App\Http\Controllers\BettorController::class, 'profitLoss']);
+    Route::get('/Customer/Ledger', [App\Http\Controllers\BettorController::class, 'statement']);
+    Route::get('/Customer/Ledger/', [App\Http\Controllers\BettorController::class, 'statement']);
+    Route::get('/Common/Result', [App\Http\Controllers\BettorController::class, 'results']);
+    Route::get('/Common/Result/', [App\Http\Controllers\BettorController::class, 'results']);
 });
 
 // Public API routes (accessible without authentication)

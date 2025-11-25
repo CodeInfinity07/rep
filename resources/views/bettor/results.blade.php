@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="/dist/site.css?11700">
     <link href="/css/BetPro-style.css?11700" rel="stylesheet">
 
-    <title>Profit Loss | BETGURU</title>
+    <title>Results | BETGURU</title>
     <script>
         // EARLY: Mark this as non-homepage and setup preloader hide
         window.isNonHomePage = true;
-        window.isProfitLossPage = true;
+        window.isResultsPage = true;
         window.isProfilePage = true;
 
         // Hide preloader as soon as DOM is ready

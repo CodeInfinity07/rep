@@ -194,4 +194,62 @@ class BettorController extends Controller
         
         return view('bettor.profitloss', $data);
     }
+
+    public function results()
+    {
+        $user = Auth::user();
+        
+        // Calculate active bets count and total liability
+        $activeBetsData = DB::table('bets')
+            ->where('user_id', $user->id)
+            ->whereIn('status', ['pending', 'matched'])
+            ->select(
+                DB::raw('COUNT(*) as count'),
+                DB::raw('COALESCE(SUM(liability), 0) as total_liability')
+            )
+            ->first();
+        
+        $data = [
+            'username' => $user->username,
+            'credit' => $user->credit_remaining ?? 0,
+            'balance' => $user->balance ?? 0,
+            'liable' => $activeBetsData->total_liability ?? 0,
+            'active_bets' => $activeBetsData->count ?? 0,
+        ];
+        
+        return view('bettor.results', $data);
+    }
+
+    public function statement(Request $request)
+    {
+        $user = Auth::user();
+        
+        // Calculate active bets count and total liability
+        $activeBetsData = DB::table('bets')
+            ->where('user_id', $user->id)
+            ->whereIn('status', ['pending', 'matched'])
+            ->select(
+                DB::raw('COUNT(*) as count'),
+                DB::raw('COALESCE(SUM(liability), 0) as total_liability')
+            )
+            ->first();
+        
+        // Get ledger entries for this user
+        $ledgerEntries = DB::table('ledger_entries')
+            ->where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(100)
+            ->get();
+        
+        $data = [
+            'username' => $user->username,
+            'credit' => $user->credit_remaining ?? 0,
+            'balance' => $user->balance ?? 0,
+            'liable' => $activeBetsData->total_liability ?? 0,
+            'active_bets' => $activeBetsData->count ?? 0,
+            'ledgerEntries' => $ledgerEntries,
+        ];
+        
+        return view('bettor.statement', $data);
+    }
 }
