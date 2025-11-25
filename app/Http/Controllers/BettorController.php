@@ -146,21 +146,36 @@ class BettorController extends Controller
         $from = $request->input('From', now()->subMonths(3)->startOfDay()->toIso8601String());
         $to = $request->input('To', now()->endOfDay()->toIso8601String());
         
-        // Get profit/loss data grouped by event type
+        // Get profit/loss data grouped by market (since event_type_id doesn't exist)
         $profitLossData = DB::table('bets')
             ->where('user_id', $user->id)
             ->whereIn('status', ['won', 'lost', 'settled'])
             ->where('created_at', '>=', $from)
             ->where('created_at', '<=', $to)
             ->select(
-                'event_type_id',
+                'market_name',
                 DB::raw('SUM(CASE WHEN status = "won" THEN profit ELSE 0 END) as total_won'),
                 DB::raw('SUM(CASE WHEN status = "lost" THEN -stake ELSE 0 END) as total_lost'),
                 DB::raw('SUM(profit) as net_profit'),
                 DB::raw('COUNT(*) as total_bets')
             )
-            ->groupBy('event_type_id')
+            ->groupBy('market_name')
+            ->orderBy('net_profit', 'desc')
             ->get();
+        
+        // Calculate overall totals
+        $overallStats = DB::table('bets')
+            ->where('user_id', $user->id)
+            ->whereIn('status', ['won', 'lost', 'settled'])
+            ->where('created_at', '>=', $from)
+            ->where('created_at', '<=', $to)
+            ->select(
+                DB::raw('SUM(CASE WHEN status = "won" THEN profit ELSE 0 END) as total_won'),
+                DB::raw('SUM(CASE WHEN status = "lost" THEN stake ELSE 0 END) as total_lost'),
+                DB::raw('COALESCE(SUM(profit), 0) as net_profit'),
+                DB::raw('COUNT(*) as total_bets')
+            )
+            ->first();
         
         $data = [
             'username' => $user->username,
@@ -169,6 +184,7 @@ class BettorController extends Controller
             'liable' => $activeBetsData->total_liability ?? 0,
             'active_bets' => $activeBetsData->count ?? 0,
             'profitLossData' => $profitLossData,
+            'overallStats' => $overallStats,
             'filters' => [
                 'from' => $from,
                 'to' => $to,

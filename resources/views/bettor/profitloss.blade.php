@@ -867,45 +867,58 @@
                     <i class="fa fa-align-justify"></i> Sports ProfitLoss <b>({{ strtoupper($username) }})</b>
                 </div>
                 <div class="card-body">
-                    @php
-                        $eventTypes = [
-                            4 => 'Cricket',
-                            1 => 'Soccer',
-                            2 => 'Tennis',
-                            7 => 'Horse Racing',
-                            4339 => 'Greyhound',
-                            12 => 'Casino'
-                        ];
-                        $totalProfit = 0;
-                    @endphp
-                    
                     @if($profitLossData->count() > 0)
-                        <ul class="nav nav-pills flex-wrap">
-                            @foreach($profitLossData as $item)
-                                @php
-                                    $eventName = $eventTypes[$item->event_type_id] ?? 'Other';
-                                    $netProfit = $item->net_profit ?? 0;
-                                    $totalProfit += $netProfit;
-                                @endphp
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        {{ $eventName }}: 
-                                        <span class="{{ $netProfit >= 0 ? 'profit-positive' : 'profit-negative' }}">
-                                            {{ $netProfit >= 0 ? '+' : '' }}{{ number_format($netProfit, 2) }}
-                                        </span>
-                                        <small>({{ $item->total_bets }} bets)</small>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Market</th>
+                                        <th>Won</th>
+                                        <th>Lost</th>
+                                        <th>Net P/L</th>
+                                        <th>Bets</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($profitLossData as $item)
+                                        @php
+                                            $netProfit = $item->net_profit ?? 0;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $item->market_name ?? 'Unknown' }}</td>
+                                            <td class="profit-positive">+{{ number_format($item->total_won ?? 0, 2) }}</td>
+                                            <td class="profit-negative">{{ number_format($item->total_lost ?? 0, 2) }}</td>
+                                            <td class="{{ $netProfit >= 0 ? 'profit-positive' : 'profit-negative' }}">
+                                                {{ $netProfit >= 0 ? '+' : '' }}{{ number_format($netProfit, 2) }}
+                                            </td>
+                                            <td>{{ $item->total_bets }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         
                         <div class="mt-4 p-3" style="background: #1a1f28; border-radius: 8px;">
-                            <h5 style="color: #fff;">
-                                Total Profit/Loss: 
-                                <span class="{{ $totalProfit >= 0 ? 'profit-positive' : 'profit-negative' }}" style="font-size: 1.5em;">
-                                    {{ $totalProfit >= 0 ? '+' : '' }}{{ number_format($totalProfit, 2) }}
-                                </span>
-                            </h5>
+                            <div class="row">
+                                <div class="col-md-4 text-center">
+                                    <h6 style="color: #888;">Total Won</h6>
+                                    <h4 class="profit-positive">+{{ number_format($overallStats->total_won ?? 0, 2) }}</h4>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <h6 style="color: #888;">Total Lost</h6>
+                                    <h4 class="profit-negative">-{{ number_format($overallStats->total_lost ?? 0, 2) }}</h4>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <h6 style="color: #888;">Net Profit/Loss</h6>
+                                    @php $netTotal = $overallStats->net_profit ?? 0; @endphp
+                                    <h4 class="{{ $netTotal >= 0 ? 'profit-positive' : 'profit-negative' }}">
+                                        {{ $netTotal >= 0 ? '+' : '' }}{{ number_format($netTotal, 2) }}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <small style="color: #888;">Total Bets: {{ $overallStats->total_bets ?? 0 }}</small>
+                            </div>
                         </div>
                     @else
                         <p class="text-center" style="color: #888;">No profit/loss data available for the selected period.</p>
