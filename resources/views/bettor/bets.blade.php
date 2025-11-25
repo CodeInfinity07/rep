@@ -18,7 +18,33 @@
     <link rel="stylesheet" href="/dist/site.css?11700">
     <link href="/css/BetPro-style.css?11700" rel="stylesheet">
 
-    <title>Dashboard | BETGURU</title>
+    <title>Bet History | BETGURU</title>
+    <script>
+        // EARLY: Mark this as non-homepage and setup preloader hide
+        window.isNonHomePage = true;
+        window.isBetsPage = true;
+        window.isProfilePage = true;
+        
+        // Hide preloader as soon as DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            var preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                preloader.style.display = 'none';
+            }
+            var loader = document.querySelector('.page_loader');
+            if (loader) loader.style.display = 'none';
+        });
+        
+        // Also try immediately when this script runs
+        if (document.readyState !== 'loading') {
+            var preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                preloader.style.display = 'none';
+            }
+        }
+    </script>
     <style>
         .body {
             min-height: 91.7vh;
