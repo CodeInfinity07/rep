@@ -690,14 +690,30 @@
                 </div>
 
 <div class="content-wrap body">
-                    <script>
-                        // Profile page - disable homepage-specific initializations
-                        window.isProfilePage = true;
-<div class="content-wrap body">
     <script>
         // Bets page - disable homepage-specific initializations
         window.isBetsPage = true;
-        window.isProfilePage = true; // Using same flag for consistency
+        window.isProfilePage = true;
+        
+        // Immediately hide preloader for bets page
+        (function() {
+            function hidePreloader() {
+                var loader = document.querySelector('.page_loader');
+                if (loader) loader.style.display = 'none';
+                var preloader = document.getElementById('page-preloader');
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    preloader.style.display = 'none';
+                }
+            }
+            // Try immediately
+            hidePreloader();
+            // Also on DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', hidePreloader);
+            // And after a short delay as fallback
+            setTimeout(hidePreloader, 100);
+            setTimeout(hidePreloader, 500);
+        })();
     </script>
     <link rel="stylesheet" href="/css/all.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -1066,8 +1082,20 @@
     <script type="text/javascript">
         $(document).ready(function () {
             fetchWallet();
-            fetchHighlights();
-            setInterval(fetchHighlights, 60000);
+            
+            // Skip homepage-specific functions on bets page
+            if (!window.isBetsPage) {
+                fetchHighlights();
+                setInterval(fetchHighlights, 60000);
+            } else {
+                // Hide preloader immediately for bets page
+                $(".page_loader").hide();
+                var preloader = document.getElementById('page-preloader');
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    preloader.style.display = 'none';
+                }
+            }
 
             isPWCRequired();
             showWelcomeBanner();
