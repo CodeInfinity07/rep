@@ -723,20 +723,16 @@
                 </div>
 
                 <div class="content-wrap body">
-                    <link rel="stylesheet" href="/css/all.css">
+                    <link rel="stylesheet" type="text/css" href="/lib/datatables/datatables.min.css">
+                    <link rel="stylesheet" type="text/css" href="/css/ledger.css">
                     <style>
-                        .totalAmount {
-                            float: right;
-                            margin-top: -30px;
-                        }
-
-                        @media screen and (max-width: 635px) {
-                            .totalAmount {
-                                float: right;
-                                margin-top: 10px;
-                            }
+                        button.dt-button,
+                        div.dt-button,
+                        a.dt-button {
+                            padding: 5px;
                         }
                     </style>
+
                     <div class="table-wrap">
 
                         <style>
@@ -774,13 +770,13 @@
                                                                         class="fa fa-calendar"></i></div>
                                                             </div>
                                                         </div>
-                                                        <span class="market-time d-none">8/25/2025 10:07 AM</span>
+                                                        <span class="market-time d-none">8/25/2025 10:23 AM</span>
                                                         <span class="d-none utctime" data-nofirst="0"
                                                             data-format="M/D/YYYY h:mm A">
-                                                            2025-08-25T05:07:23.0000000Z
+                                                            2025-08-25T05:23:23.0000000Z
                                                         </span>
                                                         <input type="hidden" name="From" id="From"
-                                                            value="2025-08-25T05:07:23.0000000Z">
+                                                            value="2025-08-25T05:23:23.0000000Z">
                                                     </div>
                                                 </div>
 
@@ -816,7 +812,7 @@
                                                 </div>
                                                 <input type="hidden" data-val="true"
                                                     data-val-required="The ClientId field is required." id="ClientId"
-                                                    name="ClientId" value="5325466">
+                                                    name="ClientId" value="5870909">
                                                 <input type="hidden" data-val="true"
                                                     data-val-required="The EventTypeId field is required."
                                                     id="EventTypeId" name="EventTypeId" value="0">
@@ -837,12 +833,275 @@
                         <div class="">
                             <div class="card">
                                 <div class="card-header">
-                                    <i class="fa fa-align-justify"></i> Sports ProfitLoss <b> (HAFIZ6969) </b>
+                                    <i class="fa fa-align-justify"></i>
+                                    Account Ledger
                                 </div>
                                 <div class="card-body">
-                                    <ul class="nav nav-pills">
-                                    </ul>
+                                    <div id="tableLedger_wrapper" class="dt-container dt-bootstrap4 dt-empty-footer">
+                                        <div id="" class="row">
+                                            <div id="" class="col-sm-2">
+                                                <div class="dt-length"><select aria-controls="tableLedger"
+                                                        class="custom-select custom-select-sm form-control form-control-sm"
+                                                        id="dt-length-0">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select><label for="dt-length-0"> entries per page</label></div>
+                                            </div>
+                                            <div id="" class="col-sm-5">
+                                                <div class="dt-buttons btn-group flex-wrap"> <button
+                                                        class="btn btn-secondary buttons-print" tabindex="0"
+                                                        aria-controls="tableLedger" type="button" title="Copy"><span><i
+                                                                class=""> Print</i></span></button> <button
+                                                        class="btn btn-secondary buttons-excel buttons-html5"
+                                                        tabindex="0" aria-controls="tableLedger" type="button"
+                                                        title="Excel"><span><i class=""> Excel</i></span></button>
+                                                    <button class="btn btn-secondary buttons-pdf buttons-html5"
+                                                        tabindex="0" aria-controls="tableLedger" type="button"
+                                                        title="PDF"><span><i class=""> PDF</i></span></button> </div>
+                                            </div>
+                                            <div id="" class="col-sm-5">
+                                                <div class="dt-search"><label for="dt-search-0">Search:</label><input
+                                                        type="search" class="form-control form-control-sm"
+                                                        id="dt-search-0" placeholder="" aria-controls="tableLedger">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="" class="row">
+                                            <div id="" class="col-sm-12">
+                                                <table id="tableLedger"
+                                                    class="table table-striped table-bordered dataTable"
+                                                    aria-describedby="tableLedger_info" style="width: 100%;">
+                                                    <colgroup>
+                                                        <col data-dt-column="0" style="width: 58.9453px;">
+                                                        <col data-dt-column="1" style="width: 171.738px;">
+                                                        <col data-dt-column="2" style="width: 273.926px;">
+                                                        <col data-dt-column="3" style="width: 100.156px;">
+                                                        <col data-dt-column="4" style="width: 101.484px;">
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-dt-column="0" rowspan="1" colspan="1"
+                                                                class="dt-type-numeric dt-orderable-asc dt-orderable-desc dt-ordering-asc"
+                                                                aria-sort="ascending"
+                                                                aria-label="#: Activate to invert sorting"><span
+                                                                    class="dt-column-title">#</span><span
+                                                                    class="dt-column-order" role="button"
+                                                                    tabindex="0"></span></th>
+                                                            <th data-dt-column="1" rowspan="1" colspan="1"
+                                                                class="dt-type-date dt-orderable-asc dt-orderable-desc"
+                                                                aria-label="Date: Activate to sort"><span
+                                                                    class="dt-column-title">Date</span><span
+                                                                    class="dt-column-order" role="button"
+                                                                    tabindex="0"></span></th>
+                                                            <th data-dt-column="2" rowspan="1" colspan="1"
+                                                                class="dt-orderable-asc dt-orderable-desc"
+                                                                aria-label="Description: Activate to sort"><span
+                                                                    class="dt-column-title">Description</span><span
+                                                                    class="dt-column-order" role="button"
+                                                                    tabindex="0"></span></th>
+                                                            <th data-dt-column="3" rowspan="1" colspan="1"
+                                                                class="dt-type-numeric dt-orderable-asc dt-orderable-desc"
+                                                                aria-label="Amount: Activate to sort"><span
+                                                                    class="dt-column-title">Amount</span><span
+                                                                    class="dt-column-order" role="button"
+                                                                    tabindex="0"></span></th>
+                                                            <th data-dt-column="4" rowspan="1" colspan="1"
+                                                                class="dt-type-numeric dt-orderable-asc dt-orderable-desc"
+                                                                aria-label="Balance: Activate to sort"><span
+                                                                    class="dt-column-title">Balance</span><span
+                                                                    class="dt-column-order" role="button"
+                                                                    tabindex="0"></span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">1</td>
+                                                            <td class="dt-type-date">
 
+                                                                <span class="market-time">8/25/2025 10:23:00 am</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-08-25T05:23:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" onclick="return popup_report(0, 5870909);">
+                                                                    Opening Balance
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">0</td>
+                                                            <td class="dt-type-numeric">0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">2</td>
+                                                            <td class="dt-type-date">
+
+                                                                <span class="market-time">10/8/2025 06:50:00 pm</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-10-08T13:50:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    onclick="return popup_report(371251336, 5870909);">
+                                                                    Credit Issued to HAFIZ6969 (Credit)
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">50,000</td>
+                                                            <td class="dt-type-numeric">50,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">3</td>
+                                                            <td class="dt-type-date">
+
+                                                                <span class="market-time">10/8/2025 06:51:00 pm</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-10-08T13:51:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    onclick="return popup_report(371251825, 5870909);">
+                                                                    Credit Withdrawn from HAFIZ6969 (Credit)
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">-50,000</td>
+                                                            <td class="dt-type-numeric">0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">4</td>
+                                                            <td class="dt-type-date">
+
+                                                                <span class="market-time">10/8/2025 07:27:00 pm</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-10-08T14:27:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    onclick="return popup_report(371266352, 5870909);">
+                                                                    Credit Issued to HAFIZ6969 (Credit)
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">50,000</td>
+                                                            <td class="dt-type-numeric">50,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">5</td>
+                                                            <td class="dt-type-date">
+
+                                                                <span class="market-time">10/10/2025 08:39:00 pm</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-10-10T15:39:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    onclick="return popup_report(372037094, 5870909);">
+                                                                    Credit Withdrawn from HAFIZ6969 (Credit)
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">-50,000</td>
+                                                            <td class="dt-type-numeric">0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">6</td>
+                                                            <td class="dt-type-date">
+
+                                                                <span class="market-time">10/10/2025 08:41:00 pm</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-10-10T15:41:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    onclick="return popup_report(372037505, 5870909);">
+                                                                    Cash deposit in HAFIZ6969 (Cash)
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">50,000</td>
+                                                            <td class="dt-type-numeric">50,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="dt-type-numeric sorting_1">7</td>
+                                                            <td class="dt-type-date">
+
+                                                                <span class="market-time">10/10/2025 08:48:00 pm</span>
+                                                                <span class="d-none utctime"
+                                                                    data-format="M/D/YYYY hh:mm:ss a"
+                                                                    data-target="time">
+                                                                    2025-10-10T15:48:00.0000000Z
+                                                                </span>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    onclick="return popup_report(372039887, 5870909);">
+                                                                    Cash withdrawn from HAFIZ6969 (Cash)
+                                                                </a>
+                                                            </td>
+                                                            <td class="dt-type-numeric">-50,000</td>
+                                                            <td class="dt-type-numeric">0</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot></tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="" class="row">
+                                            <div id="" class="col-sm-5">
+                                                <div class="dt-info" aria-live="polite" id="tableLedger_info"
+                                                    role="status">Showing 1 to 7 of 7 entries</div>
+                                            </div>
+                                            <div id="" class="col-sm-7">
+                                                <div class="dt-paging">
+                                                    <nav aria-label="pagination">
+                                                        <ul class="pagination">
+                                                            <li class="dt-paging-button page-item disabled"><a
+                                                                    class="page-link first" aria-controls="tableLedger"
+                                                                    aria-disabled="true" aria-label="First"
+                                                                    data-dt-idx="first" tabindex="-1">«</a></li>
+                                                            <li class="dt-paging-button page-item disabled"><a
+                                                                    class="page-link previous"
+                                                                    aria-controls="tableLedger" aria-disabled="true"
+                                                                    aria-label="Previous" data-dt-idx="previous"
+                                                                    tabindex="-1">‹</a></li>
+                                                            <li class="dt-paging-button page-item active"><a href="#"
+                                                                    class="page-link" aria-controls="tableLedger"
+                                                                    aria-current="page" data-dt-idx="0">1</a></li>
+                                                            <li class="dt-paging-button page-item disabled"><a
+                                                                    class="page-link next" aria-controls="tableLedger"
+                                                                    aria-disabled="true" aria-label="Next"
+                                                                    data-dt-idx="next" tabindex="-1">›</a></li>
+                                                            <li class="dt-paging-button page-item disabled"><a
+                                                                    class="page-link last" aria-controls="tableLedger"
+                                                                    aria-disabled="true" aria-label="Last"
+                                                                    data-dt-idx="last" tabindex="-1">»</a></li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -855,6 +1114,7 @@
                             return false;
                         }
                     </script>
+
                 </div>
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog modal-dialog-centered">

@@ -723,138 +723,1521 @@
                 </div>
 
                 <div class="content-wrap body">
-                    <link rel="stylesheet" href="/css/all.css">
-                    <style>
-                        .totalAmount {
-                            float: right;
-                            margin-top: -30px;
-                        }
 
-                        @media screen and (max-width: 635px) {
-                            .totalAmount {
-                                float: right;
-                                margin-top: 10px;
-                            }
-                        }
-                    </style>
-                    <div class="table-wrap">
+                    <link rel="stylesheet" type="text/css"
+                        href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+                    <link rel="stylesheet" type="text/css"
+                        href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
 
-                        <style>
-                            .datee {
-                                background-color: white;
-                            }
-
-                            @media screen and (max-width: 635px) {
-                                .editsbmtbtn {
-                                    margin: auto;
-                                    margin-right: 15px;
-                                }
-                            }
-                        </style>
-
+                    <form method="post">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-12">
+
                                 <div class="card">
                                     <div class="card-header">
                                         <i class="fa fa-align-justify"></i>
-                                        Report Filter
+                                        Market Results
                                     </div>
                                     <div class="card-body">
-                                        <form id="ReportFilterForm" class="form-inline" method="get">
-                                            <div class="row" style="text-align-last:justify;">
-                                                <div class="col-12 col-md-5">
-                                                    <div class="form-group">
-                                                        <div class="input-group date" id="ReportFrom"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#ReportFrom" id="DisplayFrom">
-                                                            <div class="input-group-append" data-target="#ReportFrom"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i></div>
-                                                            </div>
+
+                                        <div class="row col-12">
+                                            <div class="col-6 col-md-3">
+                                                <div class="input-group datee date" id="ReportFrom"
+                                                    data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input"
+                                                        data-target="#ReportFrom" id="DisplayFrom">
+                                                    <div class="input-group-append" data-target="#ReportFrom"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <span class="market-time d-none">8/25/2025 10:07 AM</span>
-                                                        <span class="d-none utctime" data-nofirst="0"
-                                                            data-format="M/D/YYYY h:mm A">
-                                                            2025-08-25T05:07:23.0000000Z
-                                                        </span>
-                                                        <input type="hidden" name="From" id="From"
-                                                            value="2025-08-25T05:07:23.0000000Z">
                                                     </div>
                                                 </div>
+                                                <span class="market-time d-none">11/21/2025 5:00 AM</span>
+                                                <span class="d-none utctime" data-format="M/D/YYYY h:mm A">
+                                                    2025-11-21T00:00:00.0000000Z
+                                                </span>
+                                                <input type="hidden" name="From" id="From"
+                                                    value="2025-11-21T00:00:00.0000000Z">
+                                            </div>
 
-                                                <strong style="margin:auto">&nbsp;-&nbsp;</strong>
-                                                <div class="col-12 col-md-5">
-                                                    <div class="form-group">
-                                                        <div class="input-group date" id="ReportTo"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#ReportTo" id="DisplayTo">
-                                                            <div class="input-group-append" data-target="#ReportTo"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i></div>
-                                                            </div>
+                                            <strong>&nbsp;-&nbsp;</strong>
+                                            <div class="col-6 col-md-3">
+                                                <div class="input-group date datee" id="ReportTo"
+                                                    data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input"
+                                                        data-target="#ReportTo" id="DisplayTo">
+                                                    <div class="input-group-append" data-target="#ReportTo"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <span class="market-time d-none">11/25/2025 11:59 PM</span>
-                                                        <span class="d-none utctime" data-nofirst="0"
-                                                            data-format="M/D/YYYY h:mm A">
-                                                            2025-11-25T18:59:00.0000000Z
-                                                        </span>
-                                                        <input type="hidden" name="To" id="To"
-                                                            value="2025-11-25T18:59:00.0000000Z">
                                                     </div>
                                                 </div>
+                                                <span class="market-time d-none">11/26/2025 4:59 AM</span>
+                                                <span class="d-none utctime" data-format="M/D/YYYY h:mm A">
+                                                    2025-11-25T23:59:00.0000000Z
+                                                </span>
+                                                <input type="hidden" name="To" id="To"
+                                                    value="2025-11-25T23:59:00.0000000Z">
+                                            </div>
 
-                                                <div class="form-group editsbmtbtn">
-                                                    <label class="mx-1"> </label>
-                                                    <button class="btn btn-primary" type="submit"
-                                                        onclick="return updateDates();">
-                                                        <strong>Submit</strong>
-                                                    </button>
-                                                </div>
-                                                <input type="hidden" data-val="true"
-                                                    data-val-required="The ClientId field is required." id="ClientId"
-                                                    name="ClientId" value="5325466">
-                                                <input type="hidden" data-val="true"
-                                                    data-val-required="The EventTypeId field is required."
-                                                    id="EventTypeId" name="EventTypeId" value="0">
-                                                <input type="hidden" data-val="true"
-                                                    data-val-required="The IsFirstVisit field is required."
-                                                    id="IsFirstVisit" name="IsFirstVisit" value="False">
-                                            </div>
-                                            <div class="row col-12">
-                                            </div>
-                                        </form>
+                                            <input type="hidden" data-val="true"
+                                                data-val-required="The IsFirstVisit field is required."
+                                                id="IsFirstVisit" name="IsFirstVisit" value="False">
+                                        </div>
+
+                                        <br>
+
+                                        <p>
+                                            <button class="btn btn-secondary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=1">
+                                                Soccer
+                                            </button>
+                                            <button class="btn btn-secondary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=2">
+                                                Tennis
+                                            </button>
+                                            <button class="btn btn-secondary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=4">
+                                                Cricket
+                                            </button>
+                                            <button class="btn btn-secondary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=7">
+                                                Horse Race
+                                            </button>
+                                            <button class="btn btn-primary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=8">
+                                                <strong>Fancy</strong>
+                                            </button>
+                                            <button class="btn btn-secondary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=12">
+                                                Casino
+                                            </button>
+                                            <button class="btn btn-secondary" type="submit"
+                                                onclick="return updateDates();" formaction="/Common/Result?id=4339">
+                                                Greyhound
+                                            </button>
+                                        </p>
+
+                                        <div id="example_wrapper" class="dataTables_wrapper no-footer">
+                                            <div class="dataTables_length" id="example_length"><label>Show <select
+                                                        name="example_length" aria-controls="example" class="">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select> entries</label></div>
+                                            <div id="example_filter" class="dataTables_filter"><label>Search:<input
+                                                        type="search" class="" placeholder=""
+                                                        aria-controls="example"></label></div>
+                                            <table id="example" width="100%"
+                                                class="table-striped table-hover table-bordered table-sm display compact nowrap dataTable no-footer dtr-inline"
+                                                role="grid" aria-describedby="example_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th style="width: 0.5px;" class="sorting" tabindex="0"
+                                                            aria-controls="example" rowspan="1" colspan="1"
+                                                            aria-label=": activate to sort column ascending"></th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example"
+                                                            rowspan="1" colspan="1" style="width: 260.5px;"
+                                                            aria-label="Match name: activate to sort column ascending">
+                                                            Match name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example"
+                                                            rowspan="1" colspan="1" style="width: 281.5px;"
+                                                            aria-label="Market Name: activate to sort column ascending">
+                                                            Market Name</th>
+                                                        <th class="sorting_desc" tabindex="0" aria-controls="example"
+                                                            rowspan="1" colspan="1" style="width: 133.5px;"
+                                                            aria-label="Date: activate to sort column ascending"
+                                                            aria-sort="descending">Date</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example"
+                                                            rowspan="1" colspan="1" style="width: 41.5px;"
+                                                            aria-label="Result: activate to sort column ascending">
+                                                            Result</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">1</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 3rd Wkt SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 5:01:00 AM</td>
+                                                        <td>77</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">2</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Temba Bavuma Runs 2</td>
+                                                        <td class="sorting_1">11/25/2025 5:01:00 AM</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">3</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Temba Bavuma Boundaries 2</td>
+                                                        <td class="sorting_1">11/25/2025 5:01:00 AM</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">4</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>30 Over Run SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:55:00 AM</td>
+                                                        <td>76</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">5</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Aiden Markram Runs 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:48:00 AM</td>
+                                                        <td>29</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">6</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Aiden Markram Boundaries 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:48:00 AM</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">7</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 2nd Wkt SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:48:00 AM</td>
+                                                        <td>74</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">8</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>25 Over Run SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:38:00 AM</td>
+                                                        <td>67</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">9</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>20 Over Run SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:21:00 AM</td>
+                                                        <td>60</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">10</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 1st Wkt SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:14:00 AM</td>
+                                                        <td>59</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">11</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Ryan Rickelton Runs 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:14:00 AM</td>
+                                                        <td>35</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">12</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Ryan Rickelton Boundaries 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:14:00 AM</td>
+                                                        <td>4</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">13</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>15 Over Run SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 4:02:00 AM</td>
+                                                        <td>49</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">14</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>10 Over Run SA 2</td>
+                                                        <td class="sorting_1">11/25/2025 3:42:00 AM</td>
+                                                        <td>33</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">15</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>5 Over Run SA 2</td>
+                                                        <td class="sorting_1">11/24/2025 10:14:00 AM</td>
+                                                        <td>22</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">16</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>1st Innings Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 9:39:00 AM</td>
+                                                        <td>201</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">17</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Kuldeep Yadav Runs</td>
+                                                        <td class="sorting_1">11/24/2025 9:28:00 AM</td>
+                                                        <td>19</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">18</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Kuldeep Yadav Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 9:28:00 AM</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">19</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Washington Sundar Runs</td>
+                                                        <td class="sorting_1">11/24/2025 9:12:00 AM</td>
+                                                        <td>48</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">20</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Washington Sundar Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 9:12:00 AM</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">21</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 8th Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 9:12:00 AM</td>
+                                                        <td>194</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">22</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>45 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 6:34:00 AM</td>
+                                                        <td>123</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">23</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Ravindra Jadeja Runs</td>
+                                                        <td class="sorting_1">11/24/2025 6:28:00 AM</td>
+                                                        <td>6</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">24</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Ravindra Jadeja Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 6:28:00 AM</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">25</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 7th Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 6:27:00 AM</td>
+                                                        <td>122</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">26</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 6th Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 6:17:00 AM</td>
+                                                        <td>119</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">27</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Nitish Kumar Reddy Runs</td>
+                                                        <td class="sorting_1">11/24/2025 6:17:00 AM</td>
+                                                        <td>10</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">28</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Nitish Kumar Reddy Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 6:17:00 AM</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">29</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>40 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 6:11:00 AM</td>
+                                                        <td>113</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">30</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Rishabh Pant Runs</td>
+                                                        <td class="sorting_1">11/24/2025 6:00:00 AM</td>
+                                                        <td>7</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">31</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Rishabh Pant Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 6:00:00 AM</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">32</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 5th Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 5:59:00 AM</td>
+                                                        <td>105</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">33</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>35 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 5:31:00 AM</td>
+                                                        <td>102</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">34</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Dhruv Jurel Runs</td>
+                                                        <td class="sorting_1">11/24/2025 5:27:00 AM</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">35</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Dhruv Jurel Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 5:27:00 AM</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">36</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 4th Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 5:27:00 AM</td>
+                                                        <td>102</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">37</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Sai Sudharsan Runs</td>
+                                                        <td class="sorting_1">11/24/2025 5:24:00 AM</td>
+                                                        <td>15</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">38</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Sai Sudharsan Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 5:24:00 AM</td>
+                                                        <td>2</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">39</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 3rd Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 5:24:00 AM</td>
+                                                        <td>96</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">40</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Yashasvi Jaiswal Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 5:11:00 AM</td>
+                                                        <td>8</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">41</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Yashasvi Jaiswal Runs</td>
+                                                        <td class="sorting_1">11/24/2025 5:10:00 AM</td>
+                                                        <td>57</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">42</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 2nd Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 5:10:00 AM</td>
+                                                        <td>95</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">43</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>30 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 5:02:00 AM</td>
+                                                        <td>92</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">44</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>25 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 4:45:00 AM</td>
+                                                        <td>73</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">45</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>Fall of 1st Wkt IND</td>
+                                                        <td class="sorting_1">11/24/2025 4:32:00 AM</td>
+                                                        <td>65</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">46</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>KL Rahul Runs</td>
+                                                        <td class="sorting_1">11/24/2025 4:32:00 AM</td>
+                                                        <td>22</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">47</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>KL Rahul Boundaries</td>
+                                                        <td class="sorting_1">11/24/2025 4:32:00 AM</td>
+                                                        <td>2</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">48</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>20 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 4:26:00 AM</td>
+                                                        <td>52</td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="dtr-control" tabindex="0">49</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>15 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 4:09:00 AM</td>
+                                                        <td>37</td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="dtr-control" tabindex="0">50</td>
+                                                        <td> India v South Africa </td>
+                                                        <td>10 Over Run IND</td>
+                                                        <td class="sorting_1">11/24/2025 3:49:00 AM</td>
+                                                        <td>20</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="dataTables_info" id="example_info" role="status"
+                                                aria-live="polite">Showing 1 to 50 of 1,000 entries</div>
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                id="example_paginate"><a class="paginate_button previous disabled"
+                                                    aria-controls="example" data-dt-idx="0" tabindex="-1"
+                                                    id="example_previous">Previous</a><span><a
+                                                        class="paginate_button current" aria-controls="example"
+                                                        data-dt-idx="1" tabindex="0">1</a><a class="paginate_button "
+                                                        aria-controls="example" data-dt-idx="2" tabindex="0">2</a><a
+                                                        class="paginate_button " aria-controls="example" data-dt-idx="3"
+                                                        tabindex="0">3</a><a class="paginate_button "
+                                                        aria-controls="example" data-dt-idx="4" tabindex="0">4</a><a
+                                                        class="paginate_button " aria-controls="example" data-dt-idx="5"
+                                                        tabindex="0">5</a><span class="ellipsis">…</span><a
+                                                        class="paginate_button " aria-controls="example" data-dt-idx="6"
+                                                        tabindex="0">20</a></span><a class="paginate_button next"
+                                                    aria-controls="example" data-dt-idx="7" tabindex="0"
+                                                    id="example_next">Next</a></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <input name="__RequestVerificationToken" type="hidden"
+                                    value="CfDJ8F78ByjY7DpIo9wNgC4COkC7HPsSX4pE8XR7ketj_GLhNi1waWzUL7QaulPzGP2CwyDzXaoG-vk1JMfulplXxe3R_mgh2L3zCt1rQZhREB-GMYViEVoJb5ju-QSV5nYsEHKtKnczqYdzqsn0Mw6evCC1RxOk1xbkfx8Y7U5PDuvXSCL0WeDQ2L02EGXtuUZ9yg">
                             </div>
                         </div>
+                    </form>
+                    <input name="__RequestVerificationToken" type="hidden"
+                        value="CfDJ8F78ByjY7DpIo9wNgC4COkC7HPsSX4pE8XR7ketj_GLhNi1waWzUL7QaulPzGP2CwyDzXaoG-vk1JMfulplXxe3R_mgh2L3zCt1rQZhREB-GMYViEVoJb5ju-QSV5nYsEHKtKnczqYdzqsn0Mw6evCC1RxOk1xbkfx8Y7U5PDuvXSCL0WeDQ2L02EGXtuUZ9yg">
 
-                    </div>
-                    <div class="table-wrap">
-                        <div class="">
-                            <div class="card">
-                                <div class="card-header">
-                                    <i class="fa fa-align-justify"></i> Sports ProfitLoss <b> (HAFIZ6969) </b>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="nav nav-pills">
-                                    </ul>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                        function popup_report(vid, aid) {
-                            var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
-                            newwindow = window.open(url, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
-                            if (window.focus) { newwindow.focus() }
-                            return false;
-                        }
-                    </script>
                 </div>
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog modal-dialog-centered">
