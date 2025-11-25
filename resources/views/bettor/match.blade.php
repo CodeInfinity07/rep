@@ -2207,13 +2207,66 @@
         }
     </script>
     
+    <style>
+        /* Flash animation for odds changes */
+        @keyframes flashBack {
+            0% { background-color: rgb(141, 210, 240); }
+            25% { background-color: #ffff00; }
+            50% { background-color: #90EE90; }
+            75% { background-color: #ffff00; }
+            100% { background-color: rgb(141, 210, 240); }
+        }
+        @keyframes flashLay {
+            0% { background-color: rgb(254, 175, 178); }
+            25% { background-color: #ffff00; }
+            50% { background-color: #FFB6C1; }
+            75% { background-color: #ffff00; }
+            100% { background-color: rgb(254, 175, 178); }
+        }
+        .flash-back {
+            animation: flashBack 0.5s ease-in-out;
+        }
+        .flash-lay {
+            animation: flashLay 0.5s ease-in-out;
+        }
+    </style>
     <script>
         // Real-time Match Odds polling - updates every second
+        var previousOdds = {};
+        
         function formatAmount(size) {
             if (!size) return '';
             if (size >= 1000000) return (size / 1000000).toFixed(1) + 'M';
             if (size >= 1000) return (size / 1000).toFixed(1) + 'K';
             return size.toString();
+        }
+        
+        function flashElement(element, isBack) {
+            if (!element) return;
+            element.classList.remove('flash-back', 'flash-lay');
+            void element.offsetWidth; // Trigger reflow to restart animation
+            element.classList.add(isBack ? 'flash-back' : 'flash-lay');
+            setTimeout(() => {
+                element.classList.remove('flash-back', 'flash-lay');
+            }, 500);
+        }
+        
+        function updatePriceWithFlash(element, newPrice, newSize, isBack, key) {
+            if (!element) return;
+            
+            const oldValue = previousOdds[key];
+            const newValue = newPrice + '|' + newSize;
+            
+            if (oldValue && oldValue !== newValue) {
+                flashElement(element, isBack);
+            }
+            
+            previousOdds[key] = newValue;
+            
+            const priceOdd = element.querySelector('.price-odd');
+            const priceAmount = element.querySelector('.price-amount');
+            if (priceOdd) priceOdd.textContent = newPrice || '-';
+            if (priceAmount) priceAmount.textContent = formatAmount(newSize);
         }
         
         function updateMatchOdds() {
@@ -2236,49 +2289,35 @@
                         const back = ex.availableToBack || [];
                         const lay = ex.availableToLay || [];
                         
-                        // Update Back prices (B1, B2, B3)
+                        // Update Back prices (B1, B2, B3) with flash
                         if (back[0]) {
                             const b1 = document.querySelector('#B1-' + selectionId);
-                            if (b1) {
-                                b1.querySelector('.price-odd').textContent = back[0].price || '-';
-                                b1.querySelector('.price-amount').textContent = formatAmount(back[0].size);
-                            }
+                            updatePriceWithFlash(b1, back[0].price, back[0].size, true, 'B1-' + selectionId);
                         }
                         if (back[1]) {
                             const b2 = document.querySelector('#B2-' + selectionId);
-                            if (b2) {
-                                b2.querySelector('.price-odd').textContent = back[1].price || '-';
-                                b2.querySelector('.price-amount').textContent = formatAmount(back[1].size);
-                            }
+                            updatePriceWithFlash(b2, back[1].price, back[1].size, true, 'B2-' + selectionId);
                         }
                         if (back[2]) {
                             const b3 = document.querySelector('#B3-' + selectionId);
-                            if (b3) {
-                                b3.querySelector('.price-odd').textContent = back[2].price || '-';
-                                b3.querySelector('.price-amount').textContent = formatAmount(back[2].size);
-                            }
+                            updatePriceWithFlash(b3, back[2].price, back[2].size, true, 'B3-' + selectionId);
                         }
                         
-                        // Update Lay prices (L1 and unnamed lay buttons)
+                        // Update Lay prices (L1) with flash
                         if (lay[0]) {
                             const l1 = document.querySelector('#L1-' + selectionId);
-                            if (l1) {
-                                l1.querySelector('.price-odd').textContent = lay[0].price || '-';
-                                l1.querySelector('.price-amount').textContent = formatAmount(lay[0].size);
-                            }
+                            updatePriceWithFlash(l1, lay[0].price, lay[0].size, false, 'L1-' + selectionId);
                         }
                         
-                        // Update additional lay prices (the next two price-lay elements after L1)
+                        // Update additional lay prices with flash
                         const runnerDiv = document.querySelector('#runner-' + selectionId);
                         if (runnerDiv) {
                             const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
                             if (lay[1] && layButtons[0]) {
-                                layButtons[0].querySelector('.price-odd').textContent = lay[1].price || '-';
-                                layButtons[0].querySelector('.price-amount').textContent = formatAmount(lay[1].size);
+                                updatePriceWithFlash(layButtons[0], lay[1].price, lay[1].size, false, 'L2-' + selectionId);
                             }
                             if (lay[2] && layButtons[1]) {
-                                layButtons[1].querySelector('.price-odd').textContent = lay[2].price || '-';
-                                layButtons[1].querySelector('.price-amount').textContent = formatAmount(lay[2].size);
+                                updatePriceWithFlash(layButtons[1], lay[2].price, lay[2].size, false, 'L3-' + selectionId);
                             }
                         }
                     });
