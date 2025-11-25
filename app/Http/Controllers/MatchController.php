@@ -66,6 +66,10 @@ class MatchController extends Controller
             $eventName = $marketDetails['event']['name'] ?? $marketDetails['marketName'] ?? 'Match';
             $runners = $marketDetails['runners'] ?? [];
             
+            // Extract market start time and inPlay status
+            $marketStartTime = $marketDetails['marketStartTime'] ?? $marketDetails['event']['openDate'] ?? null;
+            $inPlay = $marketDetails['inPlay'] ?? false;
+            
             // Get odds for the main market (Match Odds)
             $mainMarketOdds = $marketsData[$marketId] ?? [];
             $odds = $mainMarketOdds['runners'] ?? [];
@@ -76,6 +80,8 @@ class MatchController extends Controller
                 'eventName' => $eventName,
                 'runners' => $runners,
                 'odds' => $odds,
+                'marketStartTime' => $marketStartTime,
+                'inPlay' => $inPlay,
                 'marketDetails' => $marketDetails,
                 'allMarketIds' => $allMarketIds,
                 'marketsData' => $marketsData,

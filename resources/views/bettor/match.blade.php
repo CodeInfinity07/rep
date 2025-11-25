@@ -1091,7 +1091,11 @@
 </script>
 <script src="/js/unreal_html5_player_script_v2.js?00001"></script>
 
-<div id="MarketView"><div class="text-center mt-10" style="display: none;"><img src="/img/loadinggif.gif" alt="Loading..."></div> <div id="loadedmarkettoshow" class="row" style=""><div class="col-lg-8"><div class="left-content"><div class="table-wrap"><div class="table-box-header"><div class="row no-gutters"><div class="col-md-auto"><div class="box-main-icon"><img src="/img/v2/cricket.svg" alt="Box Icon"></div></div> <div class="col-md"><div class="tb-top-text"><p><img src="/img/v2/clock-green.svg"> <span class="green-upper-text">InPlay</span> <span class="black-light-text">7 hours ago | Nov 22 8:30 am</span> <span class="black-light-text"> | Winners: 1</span></p> <h4 class="event-title">{{ $eventName ?? 'Match' }}</h4> <p><span class="medium-black">Elapsed : 06:55:57</span></p><div id="DisplayOnBox" class="form-group form-check pull-right"><input type="checkbox" id="IsDisplayOn" class="form-check-input"> <label for="IsDisplayOn" class="form-check-label">Keep Display On</label></div> <p></p></div></div></div> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
+<div id="MarketView"><div class="text-center mt-10" style="display: none;"><img src="/img/loadinggif.gif" alt="Loading..."></div> <div id="loadedmarkettoshow" class="row" style=""><div class="col-lg-8"><div class="left-content"><div class="table-wrap"><div class="table-box-header"><div class="row no-gutters"><div class="col-md-auto"><div class="box-main-icon"><img src="/img/v2/cricket.svg" alt="Box Icon"></div></div> <div class="col-md"><div class="tb-top-text"><p><img src="/img/v2/clock-green.svg"> <span class="green-upper-text">{{ ($inPlay ?? false) ? 'InPlay' : 'Upcoming' }}</span> <span class="black-light-text" id="matchTimeDisplay">Loading...</span> <span class="black-light-text"> | Winners: 1</span></p> <h4 class="event-title">{{ $eventName ?? 'Match' }}</h4> <p><span class="medium-black" id="elapsedTimeDisplay">Elapsed : --:--:--</span></p><div id="DisplayOnBox" class="form-group form-check pull-right"><input type="checkbox" id="IsDisplayOn" class="form-check-input"> <label for="IsDisplayOn" class="form-check-label">Keep Display On</label></div> <p></p></div></div></div>
+<script>
+    var marketStartTimeISO = '{{ $marketStartTime ?? '' }}';
+    var isInPlay = {{ ($inPlay ?? false) ? 'true' : 'false' }};
+</script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
                                 ALL
                             </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <!----> <!----> <!----> </div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
                     (MaxBet: 200K)
@@ -2324,6 +2328,108 @@
         
         // Initial update
         updateMatchOdds();
+        
+        // Match time and elapsed time functions
+        function formatMatchTime(isoString) {
+            if (!isoString) return '';
+            
+            const matchDate = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - matchDate;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            
+            let timeAgo = '';
+            if (diffMs < 0) {
+                // Future match
+                const futureMins = Math.abs(diffMins);
+                const futureHours = Math.floor(futureMins / 60);
+                if (futureHours >= 24) {
+                    timeAgo = 'in ' + Math.floor(futureHours / 24) + ' day(s)';
+                } else if (futureHours > 0) {
+                    timeAgo = 'in ' + futureHours + ' hour(s)';
+                } else {
+                    timeAgo = 'in ' + futureMins + ' min(s)';
+                }
+            } else {
+                if (diffDays > 0) {
+                    timeAgo = diffDays + ' day(s) ago';
+                } else if (diffHours > 0) {
+                    timeAgo = diffHours + ' hour(s) ago';
+                } else if (diffMins > 0) {
+                    timeAgo = diffMins + ' min(s) ago';
+                } else {
+                    timeAgo = 'just now';
+                }
+            }
+            
+            // Format date: "Nov 22 8:30 am"
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const month = months[matchDate.getMonth()];
+            const day = matchDate.getDate();
+            let hours = matchDate.getHours();
+            const mins = matchDate.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12 || 12;
+            
+            return timeAgo + ' | ' + month + ' ' + day + ' ' + hours + ':' + mins + ' ' + ampm;
+        }
+        
+        function formatElapsedTime(isoString) {
+            if (!isoString) return 'Elapsed : --:--:--';
+            
+            const matchDate = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - matchDate;
+            
+            if (diffMs < 0) {
+                // Match hasn't started yet
+                return 'Starts in : ' + formatCountdown(-diffMs);
+            }
+            
+            // Calculate elapsed time
+            const totalSeconds = Math.floor(diffMs / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            
+            return 'Elapsed : ' + 
+                hours.toString().padStart(2, '0') + ':' + 
+                mins.toString().padStart(2, '0') + ':' + 
+                secs.toString().padStart(2, '0');
+        }
+        
+        function formatCountdown(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            
+            return hours.toString().padStart(2, '0') + ':' + 
+                mins.toString().padStart(2, '0') + ':' + 
+                secs.toString().padStart(2, '0');
+        }
+        
+        function updateTimeDisplays() {
+            if (marketStartTimeISO) {
+                const matchTimeEl = document.getElementById('matchTimeDisplay');
+                const elapsedEl = document.getElementById('elapsedTimeDisplay');
+                
+                if (matchTimeEl) {
+                    matchTimeEl.textContent = formatMatchTime(marketStartTimeISO);
+                }
+                if (elapsedEl) {
+                    elapsedEl.textContent = formatElapsedTime(marketStartTimeISO);
+                }
+            }
+        }
+        
+        // Update time displays every second
+        setInterval(updateTimeDisplays, 1000);
+        
+        // Initial time update
+        updateTimeDisplays();
     </script>
     <script defer=""
         src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
