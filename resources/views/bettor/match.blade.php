@@ -1081,157 +1081,192 @@
 </style>
 
 <script>
-    const marketId = '{{ $marketId ?? "1.250636959" }}';
-    const eventId = '{{ $eventId ?? "34872738" }}';
+    const marketId = '{{ $marketId ?? "" }}';
+    const eventId = '{{ $eventId ?? "" }}';
     const timeCode = '';
 
     const CommentrySignalR = 1;
     const SsocketEnable = 1;
-    const CatalogSignalR = 0; //1;
+    const CatalogSignalR = 0;
 </script>
 <script src="/js/unreal_html5_player_script_v2.js?00001"></script>
 
-<div id="MarketView"><div class="text-center mt-10" style="display: none;"><img src="/img/loadinggif.gif" alt="Loading..."></div> <div id="loadedmarkettoshow" class="row" style=""><div class="col-lg-8"><div class="left-content"><div class="table-wrap"><div class="table-box-header"><div class="row no-gutters"><div class="col-md-auto"><div class="box-main-icon"><img src="/img/v2/cricket.svg" alt="Box Icon"></div></div> <div class="col-md"><div class="tb-top-text"><p><img src="/img/v2/clock-green.svg"> <span class="green-upper-text">InPlay</span> <span class="black-light-text">7 hours ago | Nov 22 8:30 am</span> <span class="black-light-text"> | Winners: 1</span></p> <h4 class="event-title">Bangladesh v Ireland</h4> <p><span class="medium-black">Elapsed : 06:55:57</span></p><div id="DisplayOnBox" class="form-group form-check pull-right"><input type="checkbox" id="IsDisplayOn" class="form-check-input"> <label for="IsDisplayOn" class="form-check-label">Keep Display On</label></div> <p></p></div></div></div> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
-                                ALL
-                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <!----> <!----> <!----> </div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
-                    (MaxBet: 200K)
-                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners"><div id="runner-7659" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
-                        Bangladesh
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+<div id="MarketView">
+    <div class="text-center mt-10" style="display: none;">
+        <img src="/img/loadinggif.gif" alt="Loading...">
+    </div>
+    <div id="loadedmarkettoshow" class="row">
+        <div class="col-lg-8">
+            <div class="left-content">
+                <div class="table-wrap">
+                    <div class="table-box-header">
+                        <div class="row no-gutters">
+                            <div class="col-md-auto">
+                                <div class="box-main-icon">
+                                    <img src="/img/v2/cricket.svg" alt="Box Icon">
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="tb-top-text">
+                                    <p>
+                                        <img src="/img/v2/clock-green.svg">
+                                        @if(isset($marketDetails['inplay']) && $marketDetails['inplay'])
+                                            <span class="green-upper-text">InPlay</span>
+                                        @else
+                                            <span class="black-light-text">Upcoming</span>
+                                        @endif
+                                        <span class="black-light-text">
+                                            @if(isset($marketDetails['marketStartTime']))
+                                                {{ \Carbon\Carbon::parse($marketDetails['marketStartTime'])->format('M d g:i a') }}
+                                            @endif
+                                        </span>
+                                    </p>
+                                    <h4 class="event-title">{{ $marketDetails['event']['name'] ?? 'Match' }}</h4>
+                                    <p><span class="medium-black">{{ $marketDetails['marketName'] ?? 'Match Odds' }}</span></p>
+                                    <div id="DisplayOnBox" class="form-group form-check pull-right">
+                                        <input type="checkbox" id="IsDisplayOn" class="form-check-input">
+                                        <label for="IsDisplayOn" class="form-check-label">Keep Display On</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     
-                </span> <!----></div></h3> <a id="B3-7659" role="button" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B2-7659" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B1-7659" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.01</span> <span class="price-amount">11.8M</span></a> <a id="L1-7659" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.02</span> <span class="price-amount">5.5M</span></a> <a class="price-price price-lay"><span class="price-odd">1.03</span> <span class="price-amount">13.5M</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">1.04</span> <span class="price-amount">1.6M</span></a></div><div id="runner-152530" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
-                        Ireland
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <a id="B3-152530" role="button" class="price-price price-back"><span class="price-odd">250</span> <span class="price-amount">6.8K</span></a> <a id="B2-152530" class="price-price price-back"><span class="price-odd">300</span> <span class="price-amount">707</span></a> <a id="B1-152530" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">310</span> <span class="price-amount">685</span></a> <a id="L1-152530" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">390</span> <span class="price-amount">714</span></a> <a class="price-price price-lay"><span class="price-odd">400</span> <span class="price-amount">7.3K</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">970</span> <span class="price-amount">572</span></a></div><div id="runner-60443" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
-                        The Draw
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <a id="B3-60443" role="button" class="price-price price-back"><span class="price-odd">60</span> <span class="price-amount">6.0K</span></a> <a id="B2-60443" class="price-price price-back"><span class="price-odd">65</span> <span class="price-amount">6.7K</span></a> <a id="B1-60443" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">70</span> <span class="price-amount">877</span></a> <a id="L1-60443" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">90</span> <span class="price-amount">714</span></a> <a class="price-price price-lay"><span class="price-odd">95</span> <span class="price-amount">1.4K</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">110</span> <span class="price-amount">1.5K</span></a></div></div></div> <!----> <!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
-                    (MaxBet: 1M)
-                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners"><div id="runner-989523" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Bangladesh
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <a id="B3-989523" role="button" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B2-989523" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B1-989523" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.0125</span> <span class="price-amount">100</span></a> <a id="L1-989523" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.02</span> <span class="price-amount">100</span></a> <a class="price-price price-lay"><span class="price-odd"></span> <span class="price-amount"></span></a> <a class="price-price price-lay mr-4"><span class="price-odd"></span> <span class="price-amount"></span></a></div><div id="runner-839387" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Ireland
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div><div id="runner-147882" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        The Draw
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div> <!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
-                    (MaxBet: 20K)
-                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div id="market-9.20530814"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        2nd Innings Run IRE
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530781"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Curtis Campher Boundaries 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530780"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Curtis Campher Runs 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530811"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Fall of 6th Wkt IRE 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530813"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Stephen Doheny Boundaries 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530812"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Stephen Doheny Runs 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div></div>   <!----></div></div></div></div> <!----> <div id="BM" class="tabcontent"><div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
-                    (MaxBet: 1M)
-                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners"><div id="runner-989523" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Bangladesh
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <a id="B3-989523" role="button" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B2-989523" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B1-989523" class="price-price price-back mb-show"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.0125</span> <span class="price-amount">100</span></a> <a id="L1-989523" class="price-price price-lay ml-4 mb-show"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.02</span> <span class="price-amount">100</span></a> <a class="price-price price-lay"><span class="price-odd"></span> <span class="price-amount"></span></a> <a class="price-price price-lay mr-4"><span class="price-odd"></span> <span class="price-amount"></span></a></div><div id="runner-839387" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Ireland
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div><div id="runner-147882" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        The Draw
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <!----></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div></div> <!----> <div id="Fancy2" class="tabcontent"><div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
-                    (MaxBet: 20K)
-                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div id="market-9.20530814"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        2nd Innings Run IRE
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530781"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Curtis Campher Boundaries 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530780"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Curtis Campher Runs 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530811"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Fall of 6th Wkt IRE 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530813"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Stephen Doheny Boundaries 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div><div id="market-9.20530812"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
-                        Stephen Doheny Runs 2
-                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
-                    
-                </span> <span>
-                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
-                SUSPENDED
-            </div></div></div></div></div></div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE('1.250542387')" class="btn btn-primary btn-xs" style="width: 50%;">Score Card</button></div> <div id="TVDIVIFRAME" style="display: none;"></div> <div id="TVDIV" style="display: none;"><div class="bets"><div id="VBox1" style="display: none;"><unrealhtml5videoplayer id="UnrealPlayer1"></unrealhtml5videoplayer> <video id="streamVideo1" width="465" autoplay="autoplay" playsinline="" controls="controls" onloadedmetadata="OnMetadata()"></video></div></div></div> <div id="LIVEDIV" class="container" style="height: 174px;"><iframe id="livesc" src="https://bpexch.xyz/Common/LiveScoreCard?id=1.250542387" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;"><strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong> <div class="betting-table"><table class="table"><thead><tr><th>Bet for</th> <th>Odds</th> <th>Stake</th> <th>Profit</th></tr></thead> <tbody><tr class="back"><td></td> <td width="10%"><div class="quantity"><input type="text" id="bet-price"> <div class="quantity-nav"><div class="quantity-button quantity-up"><span class="fa fa-caret-up"></span></div> <div class="quantity-button quantity-down"><span class="fa fa-caret-down"></span></div></div></div></td> <td width="10%"><div class="stake"><input type="text" id="bet-size"></div></td> <td> / -</td></tr> <tr class="back"><td colspan="5"><table class="table"><tbody><tr class="checknow"><td><span data-amount="2000" class="points">2,000</span></td> <td><span class="points">5,000</span></td> <td><span class="points">10,000</span></td> <td><span class="points">25,000</span></td></tr> <tr class="checknow"><td><span class="points">+ 1,000</span></td> <td><span class="points">+ 5,000</span></td> <td><span class="points">+ 10,000</span></td> <td><span class="points">+ 25,000</span></td></tr> <tr><td colspan="4" class="alert-danger pr-5"></td></tr> <tr><td><button type="reset" class="align-left btn btn-danger"><b>Close</b></button></td> <td><button type="reset" class="align-left btn btn-warning"><b>Clear</b></button></td> <td colspan="1"></td> <td><div class="btn btn-primary ld-over" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div></td></tr></tbody></table></td></tr></tbody></table></div></div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                    <!-- Match Odds Only - No tabs -->
+                    <div id="All" class="tabcontent" style="display: block;">
+                        <div id="nav-tabContent" class="tab-content">
+                            <div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active">
+                                <div class="table-box-body">
+                                    <!-- Match Odds Section -->
+                                    <div class="tb-content">
+                                        <div class="market-titlebar">
+                                            <p class="market-name">
+                                                <span class="market-name-badge">
+                                                    <i class="market-name-icon">
+                                                        <img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;">
+                                                    </i>
+                                                    <span>Match Odds</span>
+                                                    <span style="text-transform: initial;">(MaxBet: 200K)</span>
+                                                </span>
+                                                <span class="rules-badge"><i class="fa fa-info-circle"></i></span>
+                                            </p>
+                                            <div class="market-overarround"><span></span><strong>Back</strong></div>
+                                            <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div>
+                                        </div>
+                                        
+                                        <div class="market-runners" id="match-odds-runners">
+                                            @php
+                                                $currentOdds = $marketsData[$marketId] ?? null;
+                                                $runners = $marketDetails['runners'] ?? [];
+                                            @endphp
+                                            
+                                            @if($currentOdds && isset($currentOdds['runners']))
+                                                @foreach($currentOdds['runners'] as $runner)
+                                                    @php
+                                                        $runnerId = $runner['selectionId'] ?? $runner['id'] ?? 0;
+                                                        $runnerName = $runner['runnerName'] ?? $runner['name'] ?? 'Unknown';
+                                                        
+                                                        // Extract back prices (best 3)
+                                                        $backPrices = $runner['ex']['availableToBack'] ?? [];
+                                                        $back1 = $backPrices[0] ?? ['price' => '', 'size' => ''];
+                                                        $back2 = $backPrices[1] ?? ['price' => '', 'size' => ''];
+                                                        $back3 = $backPrices[2] ?? ['price' => '', 'size' => ''];
+                                                        
+                                                        // Extract lay prices (best 3)
+                                                        $layPrices = $runner['ex']['availableToLay'] ?? [];
+                                                        $lay1 = $layPrices[0] ?? ['price' => '', 'size' => ''];
+                                                        $lay2 = $layPrices[1] ?? ['price' => '', 'size' => ''];
+                                                        $lay3 = $layPrices[2] ?? ['price' => '', 'size' => ''];
+                                                        
+                                                        // Format size for display
+                                                        $formatSize = function($size) {
+                                                            if (!$size) return '';
+                                                            if ($size >= 1000000) return round($size/1000000, 1) . 'M';
+                                                            if ($size >= 1000) return round($size/1000, 1) . 'K';
+                                                            return number_format($size);
+                                                        };
+                                                    @endphp
+                                                    
+                                                    <div id="runner-{{ $runnerId }}" class="runner-runner">
+                                                        <span class="selector ml-2" style="display: none;"></span>
+                                                        <img src="" class="ml-2" style="display:none;">
+                                                        <h3 class="runner-name">
+                                                            <div class="runner-info">
+                                                                <span class="clippable runner-display-name">
+                                                                    <h4 class="clippable-spacer">{{ $runnerName }}</h4>
+                                                                </span>
+                                                            </div>
+                                                            <div class="runner-position">
+                                                                <span><span class="position-minus"><strong></strong></span></span>
+                                                                <span class="ml-1" style="font-weight: normal;"></span>
+                                                            </div>
+                                                        </h3>
+                                                        
+                                                        <!-- Back prices (3, 2, 1 - right to left) -->
+                                                        <a id="B3-{{ $runnerId }}" role="button" class="price-price price-back">
+                                                            <span class="price-odd">{{ $back3['price'] ?? '' }}</span>
+                                                            <span class="price-amount">{{ $formatSize($back3['size'] ?? 0) }}</span>
+                                                        </a>
+                                                        <a id="B2-{{ $runnerId }}" class="price-price price-back">
+                                                            <span class="price-odd">{{ $back2['price'] ?? '' }}</span>
+                                                            <span class="price-amount">{{ $formatSize($back2['size'] ?? 0) }}</span>
+                                                        </a>
+                                                        <a id="B1-{{ $runnerId }}" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
+                                                            <span class="price-odd">{{ $back1['price'] ?? '-' }}</span>
+                                                            <span class="price-amount">{{ $formatSize($back1['size'] ?? 0) }}</span>
+                                                        </a>
+                                                        
+                                                        <!-- Lay prices (1, 2, 3 - left to right) -->
+                                                        <a id="L1-{{ $runnerId }}" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
+                                                            <span class="price-odd">{{ $lay1['price'] ?? '-' }}</span>
+                                                            <span class="price-amount">{{ $formatSize($lay1['size'] ?? 0) }}</span>
+                                                        </a>
+                                                        <a id="L2-{{ $runnerId }}" class="price-price price-lay">
+                                                            <span class="price-odd">{{ $lay2['price'] ?? '' }}</span>
+                                                            <span class="price-amount">{{ $formatSize($lay2['size'] ?? 0) }}</span>
+                                                        </a>
+                                                        <a id="L3-{{ $runnerId }}" class="price-price price-lay mr-4">
+                                                            <span class="price-odd">{{ $lay3['price'] ?? '' }}</span>
+                                                            <span class="price-amount">{{ $formatSize($lay3['size'] ?? 0) }}</span>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <!-- Fallback: use runners from marketDetails -->
+                                                @foreach($runners as $runner)
+                                                    @php
+                                                        $runnerId = $runner['selectionId'] ?? $runner['id'] ?? 0;
+                                                        $runnerName = $runner['runnerName'] ?? $runner['name'] ?? 'Unknown';
+                                                    @endphp
+                                                    <div id="runner-{{ $runnerId }}" class="runner-runner">
+                                                        <span class="selector ml-2" style="display: none;"></span>
+                                                        <img src="" class="ml-2" style="display:none;">
+                                                        <h3 class="runner-name">
+                                                            <div class="runner-info">
+                                                                <span class="clippable runner-display-name">
+                                                                    <h4 class="clippable-spacer">{{ $runnerName }}</h4>
+                                                                </span>
+                                                            </div>
+                                                        </h3>
+                                                        <a class="price-price price-back"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                                                        <a class="price-price price-back"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                                                        <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                                                        <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                                                        <a class="price-price price-lay"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                                                        <a class="price-price price-lay mr-4"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!-- End Match Odds Section -->
+                                </div><!-- table-box-body -->
+                            </div><!-- tab-pane -->
+                        </div><!-- tab-content -->
+                    </div><!-- tabcontent All -->
+                </div><!-- table-wrap -->
+            </div><!-- left-content -->
+        </div><!-- col-lg-8 -->
+        <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE('1.250542387')" class="btn btn-primary btn-xs" style="width: 50%;">Score Card</button></div> <div id="TVDIVIFRAME" style="display: none;"></div> <div id="TVDIV" style="display: none;"><div class="bets"><div id="VBox1" style="display: none;"><unrealhtml5videoplayer id="UnrealPlayer1"></unrealhtml5videoplayer> <video id="streamVideo1" width="465" autoplay="autoplay" playsinline="" controls="controls" onloadedmetadata="OnMetadata()"></video></div></div></div> <div id="LIVEDIV" class="container" style="height: 174px;"><iframe id="livesc" src="https://bpexch.xyz/Common/LiveScoreCard?id=1.250542387" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;"><strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong> <div class="betting-table"><table class="table"><thead><tr><th>Bet for</th> <th>Odds</th> <th>Stake</th> <th>Profit</th></tr></thead> <tbody><tr class="back"><td></td> <td width="10%"><div class="quantity"><input type="text" id="bet-price"> <div class="quantity-nav"><div class="quantity-button quantity-up"><span class="fa fa-caret-up"></span></div> <div class="quantity-button quantity-down"><span class="fa fa-caret-down"></span></div></div></div></td> <td width="10%"><div class="stake"><input type="text" id="bet-size"></div></td> <td> / -</td></tr> <tr class="back"><td colspan="5"><table class="table"><tbody><tr class="checknow"><td><span data-amount="2000" class="points">2,000</span></td> <td><span class="points">5,000</span></td> <td><span class="points">10,000</span></td> <td><span class="points">25,000</span></td></tr> <tr class="checknow"><td><span class="points">+ 1,000</span></td> <td><span class="points">+ 5,000</span></td> <td><span class="points">+ 10,000</span></td> <td><span class="points">+ 25,000</span></td></tr> <tr><td colspan="4" class="alert-danger pr-5"></td></tr> <tr><td><button type="reset" class="align-left btn btn-danger"><b>Close</b></button></td> <td><button type="reset" class="align-left btn btn-warning"><b>Clear</b></button></td> <td colspan="1"></td> <td><div class="btn btn-primary ld-over" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div></td></tr></tbody></table></td></tr></tbody></table></div></div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
                                 2,000
                             </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
                                 5,000
