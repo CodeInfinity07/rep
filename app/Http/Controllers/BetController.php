@@ -111,6 +111,10 @@ class BetController extends Controller
 
             DB::commit();
 
+            $totalLiability = Bet::where('user_id', $user->id)
+                ->whereIn('status', ['pending', 'matched'])
+                ->sum('liability');
+
             return response()->json([
                 'success' => true,
                 'message' => 'Bet placed successfully',
@@ -125,6 +129,7 @@ class BetController extends Controller
                     'status' => $bet->status,
                 ],
                 'new_balance' => $newBalance,
+                'total_liability' => $totalLiability,
             ]);
 
         } catch (\Exception $e) {
@@ -240,11 +245,16 @@ class BetController extends Controller
 
             DB::commit();
 
+            $totalLiability = Bet::where('user_id', $user->id)
+                ->whereIn('status', ['pending', 'matched'])
+                ->sum('liability');
+
             return response()->json([
                 'success' => true,
                 'message' => 'Bet cancelled successfully',
                 'refund_amount' => $refundAmount,
                 'new_balance' => $newBalance,
+                'total_liability' => $totalLiability,
             ]);
 
         } catch (\Exception $e) {

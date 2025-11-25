@@ -2722,11 +2722,7 @@
                           'New Balance: ' + data.new_balance.toLocaleString('en-IN'));
                     closeBetSlip();
                     
-                    var balanceEl = document.querySelector('.balance-display, .user-balance');
-                    if (balanceEl) {
-                        balanceEl.textContent = data.new_balance.toLocaleString('en-IN');
-                    }
-                    
+                    updateHeaderValues(data.new_balance, data.total_liability);
                     loadOpenBets();
                 } else {
                     alert('Failed to place bet: ' + data.message);
@@ -2738,6 +2734,18 @@
                 console.error('Bet error:', error);
                 alert('Error placing bet. Please try again.');
             });
+        }
+        
+        function updateHeaderValues(newBalance, totalLiability) {
+            var balanceEl = document.querySelector('.wallet-balance');
+            if (balanceEl) {
+                balanceEl.textContent = 'B: Rs. ' + parseFloat(newBalance).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+            
+            var liableEl = document.querySelector('.wallet-exposure');
+            if (liableEl) {
+                liableEl.textContent = ' | L: ' + parseFloat(totalLiability).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
         }
         
         function loadOpenBets() {
@@ -2787,6 +2795,7 @@
             .then(data => {
                 if (data.success) {
                     alert('Bet cancelled. Refund: ' + data.refund_amount.toLocaleString('en-IN'));
+                    updateHeaderValues(data.new_balance, data.total_liability);
                     loadOpenBets();
                 } else {
                     alert('Failed to cancel bet: ' + data.message);
