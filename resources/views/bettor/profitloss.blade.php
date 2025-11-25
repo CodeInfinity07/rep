@@ -692,278 +692,238 @@
                             <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             </form>
-                        </div>
+<div class="content-wrap body">
+    <script>
+        // Profit/Loss page - disable homepage-specific initializations
+        window.isProfitLossPage = true;
+        window.isProfilePage = true;
+        
+        // Immediately hide preloader
+        (function() {
+            function hidePreloader() {
+                var loader = document.querySelector('.page_loader');
+                if (loader) loader.style.display = 'none';
+                var preloader = document.getElementById('page-preloader');
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    preloader.style.display = 'none';
+                }
+            }
+            hidePreloader();
+            document.addEventListener('DOMContentLoaded', hidePreloader);
+            setTimeout(hidePreloader, 100);
+            setTimeout(hidePreloader, 500);
+        })();
+    </script>
+    <link rel="stylesheet" href="/css/all.css">
+    
+    <style>
+        .totalAmount {
+            float: right;
+            margin-top: -30px;
+        }
+        @media screen and (max-width: 635px) {
+            .totalAmount {
+                float: right;
+                margin-top:10px;
+            }
+        }
+        .card {
+            background: #1e2530;
+            border: 1px solid #2a3441;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #2a3441 0%, #1e2530 100%);
+            color: #fff;
+            padding: 15px 20px;
+            border-bottom: 1px solid #3a4451;
+            font-weight: 600;
+        }
+        .card-body {
+            padding: 20px;
+            color: #ccc;
+        }
+        .form-control {
+            background: #2a3441;
+            border: 1px solid #3a4451;
+            color: #fff;
+            border-radius: 4px;
+        }
+        .form-control:focus {
+            background: #2a3441;
+            border-color: #4CAF50;
+            color: #fff;
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+        }
+        .table-wrap {
+            padding: 15px;
+        }
+        .input-group-text {
+            background: #3a4451;
+            border-color: #3a4451;
+            color: #fff;
+        }
+        .datee {
+            background-color: #2a3441;
+        }
+        @media screen and (max-width: 635px) {
+            .editsbmtbtn {
+                margin: auto;
+                margin-right: 15px;
+            }
+        }
+        .nav-pills .nav-link {
+            color: #ccc;
+            background: #2a3441;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .nav-pills .nav-link.active {
+            background: #4CAF50;
+            color: #fff;
+        }
+        .profit-item {
+            background: #2a3441;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .profit-positive {
+            color: #4CAF50;
+        }
+        .profit-negative {
+            color: #dc3545;
+        }
+    </style>
+
+    <div class="table-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i>
+                        Report Filter
                     </div>
-                </div>
-
-                <div class="content-wrap body">
-                    <script>
-                        // Bets page - disable homepage-specific initializations
-                        window.isBetsPage = true;
-                        window.isProfilePage = true;
-
-                        // Immediately hide preloader for bets page
-                        (function () {
-                            function hidePreloader() {
-                                var loader = document.querySelector('.page_loader');
-                                if (loader) loader.style.display = 'none';
-                                var preloader = document.getElementById('page-preloader');
-                                if (preloader) {
-                                    preloader.style.opacity = '0';
-                                    preloader.style.display = 'none';
-                                }
-                            }
-                            // Try immediately
-                            hidePreloader();
-                            // Also on DOMContentLoaded
-                            document.addEventListener('DOMContentLoaded', hidePreloader);
-                            // And after a short delay as fallback
-                            setTimeout(hidePreloader, 100);
-                            setTimeout(hidePreloader, 500);
-                        })();
-                    </script>
-                    <link rel="stylesheet" href="/css/all.css">
-                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-                    <link rel="stylesheet"
-                        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-
-                    <style>
-                        @media screen and (max-width: 635px) {
-                            .mobilehide {
-                                display: none;
-                            }
-
-                            .dashauto {
-                                margin: auto;
-                            }
-
-                            .mrgleft {
-                                margin-left: 20px;
-                            }
-
-                            .editsbmtbtn {
-                                margin: auto;
-                                margin-right: 15px;
-                                margin-top: 10px;
-                                text-align: end;
-                            }
-                        }
-                    </style>
-
-                    <div class="table-wrap">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <i class="fa fa-align-justify"></i>
-                                        Bets History
-                                    </div>
-                                    <div class="card-body" style="text-align-last:justify;">
-                                        <form id="BetFilterForm" class="form-inline" method="get"
-                                            action="/Customer/Bets">
-                                            <div class="form-group mrgleft">
-                                                <select class="form-control" id="EventTypeId" name="EventTypeId">
-                                                    <option value="0" {{ ($filters['eventTypeId'] ?? 0) == 0 ? 'selected' : '' }}>All</option>
-                                                    <option value="1" {{ ($filters['eventTypeId'] ?? 0) == 1 ? 'selected' : '' }}>Soccer</option>
-                                                    <option value="2" {{ ($filters['eventTypeId'] ?? 0) == 2 ? 'selected' : '' }}>Tennis</option>
-                                                    <option value="4" {{ ($filters['eventTypeId'] ?? 0) == 4 ? 'selected' : '' }}>Cricket</option>
-                                                    <option value="7" {{ ($filters['eventTypeId'] ?? 0) == 7 ? 'selected' : '' }}>Horse Race</option>
-                                                    <option value="12" {{ ($filters['eventTypeId'] ?? 0) == 12 ? 'selected' : '' }}>Casino</option>
-                                                    <option value="4339" {{ ($filters['eventTypeId'] ?? 0) == 4339 ? 'selected' : '' }}>Greyhound</option>
-                                                </select>
+                    <div class="card-body">
+                        <form id="ReportFilterForm" class="form-inline" method="get" action="/Customer/ProfitLoss">
+                            <div class="row" style="text-align-last:justify; width: 100%;">
+                                <div class="col-12 col-md-5">
+                                    <div class="form-group">
+                                        <div class="input-group date" id="ReportFrom" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom" placeholder="From Date">
+                                            <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-                                            <div class="form-group mrgleft">
-                                                <div class="mobilehide">&nbsp;</div>
-                                                <select class="form-control" id="BetStatus" name="BetStatus">
-                                                    <option value="0" {{ ($filters['betStatus'] ?? 0) == 0 ? 'selected' : '' }}>Active</option>
-                                                    <option value="2" {{ ($filters['betStatus'] ?? 0) == 2 ? 'selected' : '' }}>Settled</option>
-                                                    <option value="3" {{ ($filters['betStatus'] ?? 0) == 3 ? 'selected' : '' }}>Voided</option>
-                                                    <option value="4" {{ ($filters['betStatus'] ?? 0) == 4 ? 'selected' : '' }}>Cancelled</option>
-                                                </select>
-                                            </div>&nbsp;&nbsp;
-                                            <div class="col-12 col-md-2">
-                                                <div class="input-group date" id="ReportFrom"
-                                                    data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input"
-                                                        data-target="#ReportFrom" id="DisplayFrom"
-                                                        placeholder="From Date">
-                                                    <div class="input-group-append" data-target="#ReportFrom"
-                                                        data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" name="From" id="From"
-                                                    value="{{ $filters['from'] ?? '' }}">
-                                            </div>
-                                            <strong class="dashauto" style="color: #fff;">&nbsp;-&nbsp;</strong>
-                                            <div class="col-12 col-md-2">
-                                                <div class="input-group date" id="ReportTo" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input"
-                                                        data-target="#ReportTo" id="DisplayTo" placeholder="To Date">
-                                                    <div class="input-group-append" data-target="#ReportTo"
-                                                        data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" name="To" id="To"
-                                                    value="{{ $filters['to'] ?? '' }}">
-                                            </div>
-
-                                            <div class="form-group editsbmtbtn">
-                                                <label class="mx-1">&nbsp;</label>
-                                                <button class="btn btn-primary" type="submit">
-                                                    <strong>Submit</strong>
-                                                </button>
-                                            </div>
-                                            <input type="hidden" id="ClientId" name="ClientId" value="{{ $clientId }}">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-wrap">
-                        <div class="">
-                            <div class="card">
-                                <div class="card-header">
-                                    <i class="fa fa-align-justify"></i>
-                                    Bets History
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="tableBets"
-                                            class="table table-striped table-bordered dt-responsive nowrap"
-                                            style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Event</th>
-                                                    <th>Market</th>
-                                                    <th>Selection</th>
-                                                    <th>Type</th>
-                                                    <th>Odds</th>
-                                                    <th>Stake</th>
-                                                    <th>P/L</th>
-                                                    <th>Status</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse($bets as $index => $bet)
-                                                    <tr>
-                                                        <td>{{ $index + 1 }}</td>
-                                                        <td>{{ $bet->event_name ?? 'N/A' }}</td>
-                                                        <td>{{ $bet->market_name ?? 'N/A' }}</td>
-                                                        <td>{{ $bet->selection_name ?? 'N/A' }}</td>
-                                                        <td>
-                                                            <span
-                                                                class="badge badge-{{ $bet->bet_type == 'back' ? 'primary' : 'danger' }}">
-                                                                {{ strtoupper($bet->bet_type ?? 'N/A') }}
-                                                            </span>
-                                                        </td>
-                                                        <td>{{ number_format($bet->odds ?? 0, 2) }}</td>
-                                                        <td>{{ number_format($bet->stake ?? 0, 2) }}</td>
-                                                        <td
-                                                            class="{{ ($bet->profit ?? 0) >= 0 ? 'text-success' : 'text-danger' }}">
-                                                            {{ number_format($bet->profit ?? 0, 2) }}
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                                $statusClass = match ($bet->status ?? '') {
-                                                                    'won' => 'success',
-                                                                    'lost' => 'danger',
-                                                                    'pending', 'matched' => 'warning',
-                                                                    'voided' => 'secondary',
-                                                                    'cancelled' => 'dark',
-                                                                    default => 'info'
-                                                                };
-                                                            @endphp
-                                                            <span class="badge badge-{{ $statusClass }}">
-                                                                {{ ucfirst($bet->status ?? 'Unknown') }}
-                                                            </span>
-                                                        </td>
-                                                        <td>{{ isset($bet->created_at) ? date('d/m/Y H:i', strtotime($bet->created_at)) : 'N/A' }}
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="10" class="text-center">No bets found</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
+                                        </div>
+                                        <input type="hidden" name="From" id="From" value="{{ $filters['from'] ?? '' }}">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-                    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-                    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-                    <script>
-                        $(document).ready(function () {
-                            $('#tableBets').DataTable({
-                                responsive: true,
-                                order: [[9, 'desc']],
-                                pageLength: 25,
-                                language: {
-                                    emptyTable: "No bets found"
-                                }
-                            });
+                                <strong style="margin:auto; color: #fff;">&nbsp;-&nbsp;</strong>
+                                <div class="col-12 col-md-5">
+                                    <div class="form-group">
+                                        <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo" placeholder="To Date">
+                                            <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="To" id="To" value="{{ $filters['to'] ?? '' }}">
+                                    </div>
+                                </div>
 
-                            // Hide preloader for bets page
-                            $(".page_loader").hide();
-                            const preloader = document.getElementById('page-preloader');
-                            if (preloader) {
-                                preloader.style.opacity = '0';
-                                setTimeout(() => preloader.style.display = 'none', 300);
-                            }
-                        });
-                    </script>
-                </div>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <b>Protection of minors</b>
-                                <br>
-                                <p> It is illegal for anybody under the age of 18 to gamble. </p>
-                                <br>
-                                <p>Our site has strict policies and verification measures to prevent access to minors.
-                                </p>
-                                <br>
-                                <p>We encourage parents consider the use of internet use protection tools. You may find
-                                    the
-                                    following links useful. </p>
-                                <br>
-                                <a href="https://www.cyberpatrol.com/" target="_blank" style="color:mediumspringgreen">
-                                    Cyberpatrol</a>
-                                <br>
-                                <a href="https://www.cybersitter.com/" target="_blank" style="color:mediumspringgreen">
-                                    Cybersitter
-                                </a>
+                                <div class="form-group editsbmtbtn">
+                                    <label class="mx-1"> </label>
+                                    <button class="btn btn-primary" type="submit">
+                                        <strong>Submit</strong>
+                                    </button>
+                                </div>
+                                <input type="hidden" id="ClientId" name="ClientId" value="{{ $clientId }}">
+                                <input type="hidden" id="EventTypeId" name="EventTypeId" value="0">
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
-                    <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
-                    </div>
-                    <div class="container text-center">
-                        <center>
+    <div class="table-wrap">
+        <div class="">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Sports ProfitLoss <b>({{ strtoupper($username) }})</b>
+                </div>
+                <div class="card-body">
+                    @php
+                        $eventTypes = [
+                            4 => 'Cricket',
+                            1 => 'Soccer',
+                            2 => 'Tennis',
+                            7 => 'Horse Racing',
+                            4339 => 'Greyhound',
+                            12 => 'Casino'
+                        ];
+                        $totalProfit = 0;
+                    @endphp
+                    
+                    @if($profitLossData->count() > 0)
+                        <ul class="nav nav-pills flex-wrap">
+                            @foreach($profitLossData as $item)
+                                @php
+                                    $eventName = $eventTypes[$item->event_type_id] ?? 'Other';
+                                    $netProfit = $item->net_profit ?? 0;
+                                    $totalProfit += $netProfit;
+                                @endphp
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        {{ $eventName }}: 
+                                        <span class="{{ $netProfit >= 0 ? 'profit-positive' : 'profit-negative' }}">
+                                            {{ $netProfit >= 0 ? '+' : '' }}{{ number_format($netProfit, 2) }}
+                                        </span>
+                                        <small>({{ $item->total_bets }} bets)</small>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        
+                        <div class="mt-4 p-3" style="background: #1a1f28; border-radius: 8px;">
+                            <h5 style="color: #fff;">
+                                Total Profit/Loss: 
+                                <span class="{{ $totalProfit >= 0 ? 'profit-positive' : 'profit-negative' }}" style="font-size: 1.5em;">
+                                    {{ $totalProfit >= 0 ? '+' : '' }}{{ number_format($totalProfit, 2) }}
+                                </span>
+                            </h5>
+                        </div>
+                    @else
+                        <p class="text-center" style="color: #888;">No profit/loss data available for the selected period.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            <style>
-                                p {
+    <script>
+        function popup_report(vid, aid) {
+            var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
+            newwindow = window.open(url, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
+            if (window.focus) { newwindow.focus() }
+            return false;
+        }
+    </script>
+</div>
                                     font-size: 12px;
                                     color: white;
                                 }

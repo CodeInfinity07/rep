@@ -127,4 +127,55 @@ class BettorController extends Controller
         
         return view('bettor.bets', $data);
     }
+
+    public function profitLoss(Request $request)
+    {
+        $user = Auth::user();
+        
+        // Calculate active bets count and total liability
+        $activeBetsData = DB::table('bets')
+            ->where('user_id', $user->id)
+            ->whereIn('status', ['pending', 'matched'])
+            ->select(
+                DB::raw('COUNT(*) as count'),
+                DB::raw('COALESCE(SUM(liability), 0) as total_liability')
+            )
+            ->first();
+        
+        // Get filter parameters
+        $from = $request->input('From', now()->subMonths(3)->startOfDay()->toIso8601String());
+        $to = $request->input('To', now()->endOfDay()->toIso8601String());
+        
+        // Get profit/loss data grouped by event type
+        $profitLossData = DB::table('bets')
+            ->where('user_id', $user->id)
+            ->whereIn('status', ['won', 'lost', 'settled'])
+            ->where('created_at', '>=', $from)
+            ->where('created_at', '<=', $to)
+            ->select(
+                'event_type_id',
+                DB::raw('SUM(CASE WHEN status = "won" THEN profit ELSE 0 END) as total_won'),
+                DB::raw('SUM(CASE WHEN status = "lost" THEN -stake ELSE 0 END) as total_lost'),
+                DB::raw('SUM(profit) as net_profit'),
+                DB::raw('COUNT(*) as total_bets')
+            )
+            ->groupBy('event_type_id')
+            ->get();
+        
+        $data = [
+            'username' => $user->username,
+            'credit' => $user->credit_remaining ?? 0,
+            'balance' => $user->balance ?? 0,
+            'liable' => $activeBetsData->total_liability ?? 0,
+            'active_bets' => $activeBetsData->count ?? 0,
+            'profitLossData' => $profitLossData,
+            'filters' => [
+                'from' => $from,
+                'to' => $to,
+            ],
+            'clientId' => $user->id,
+        ];
+        
+        return view('bettor.profitloss', $data);
+    }
 }
