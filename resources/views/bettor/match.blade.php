@@ -2208,26 +2208,20 @@
     </script>
     
     <style>
-        /* Flash animation for odds changes */
+        /* Flash animation for odds changes - single flash with same color */
         @keyframes flashBack {
-            0% { background-color: rgb(141, 210, 240); }
-            25% { background-color: #ffff00; }
-            50% { background-color: #90EE90; }
-            75% { background-color: #ffff00; }
+            0% { background-color: rgb(80, 180, 220); }
             100% { background-color: rgb(141, 210, 240); }
         }
         @keyframes flashLay {
-            0% { background-color: rgb(254, 175, 178); }
-            25% { background-color: #ffff00; }
-            50% { background-color: #FFB6C1; }
-            75% { background-color: #ffff00; }
+            0% { background-color: rgb(250, 120, 130); }
             100% { background-color: rgb(254, 175, 178); }
         }
         .flash-back {
-            animation: flashBack 0.5s ease-in-out;
+            animation: flashBack 0.3s ease-out;
         }
         .flash-lay {
-            animation: flashLay 0.5s ease-in-out;
+            animation: flashLay 0.3s ease-out;
         }
     </style>
     <script>
