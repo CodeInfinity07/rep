@@ -34,6 +34,9 @@
             }
             var loader = document.querySelector('.page_loader');
             if (loader) loader.style.display = 'none';
+            
+            // Initialize sidebar menus for non-homepage
+            initSidebarMenus();
         });
 
         // Also try immediately when this script runs
@@ -42,6 +45,60 @@
             if (preloader) {
                 preloader.style.opacity = '0';
                 preloader.style.display = 'none';
+            }
+        }
+        
+        // Sidebar menu initializer for non-homepage pages
+        function initSidebarMenus() {
+            fetch('/api/cricket-matches')
+                .then(response => response.json())
+                .then(data => {
+                    const result = data.result || data;
+                    const cricketMatches = result.cricket || [];
+                    const soccerMatches = result.soccer || [];
+                    const tennisMatches = result.tennis || [];
+                    
+                    populateSidebarOnly(cricketMatches, soccerMatches, tennisMatches);
+                })
+                .catch(error => console.error('Error loading sidebar:', error));
+        }
+        
+        function populateSidebarOnly(cricketMatches, soccerMatches, tennisMatches) {
+            const cricketMenu = document.getElementById('sidebar-cricket-menu');
+            const soccerMenu = document.getElementById('sidebar-soccer-menu');
+            const tennisMenu = document.getElementById('sidebar-tennis-menu');
+            
+            if (cricketMenu) {
+                if (cricketMatches.length > 0) {
+                    const items = cricketMatches.slice(0, 10).map(match => 
+                        `<li class="nav-item"><a class="nav-link" href="/cricket/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    ).join('');
+                    cricketMenu.innerHTML = `<li><a href="/"><strong>All Cricket</strong></a></li><li class="divider"></li>${items}`;
+                } else {
+                    cricketMenu.innerHTML = `<li><a href="/"><strong>All Cricket</strong></a></li><li class="divider"></li><li class="text-center"><small>No matches</small></li>`;
+                }
+            }
+            
+            if (soccerMenu) {
+                if (soccerMatches.length > 0) {
+                    const items = soccerMatches.slice(0, 10).map(match => 
+                        `<li class="nav-item"><a class="nav-link" href="/soccer/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    ).join('');
+                    soccerMenu.innerHTML = `<li><a href="/soccer"><strong>All Soccer</strong></a></li><li class="divider"></li>${items}`;
+                } else {
+                    soccerMenu.innerHTML = `<li><a href="/soccer"><strong>All Soccer</strong></a></li><li class="divider"></li><li class="text-center"><small>No matches</small></li>`;
+                }
+            }
+            
+            if (tennisMenu) {
+                if (tennisMatches.length > 0) {
+                    const items = tennisMatches.slice(0, 10).map(match => 
+                        `<li class="nav-item"><a class="nav-link" href="/tennis/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    ).join('');
+                    tennisMenu.innerHTML = `<li><a href="/tennis"><strong>All Tennis</strong></a></li><li class="divider"></li>${items}`;
+                } else {
+                    tennisMenu.innerHTML = `<li><a href="/tennis"><strong>All Tennis</strong></a></li><li class="divider"></li><li class="text-center"><small>No matches</small></li>`;
+                }
             }
         }
     </script>
