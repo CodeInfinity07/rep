@@ -1090,10 +1090,8 @@
     
     #betSlip .stake-btn {
         cursor: pointer;
-        padding: 5px 10px;
         border-radius: 3px;
         background-color: #e0e0e0;
-        display: inline-block;
         margin: 2px;
         transition: background-color 0.2s;
     }
@@ -1103,11 +1101,11 @@
     }
     
     #betSlip tr.back {
-        background-color: #a6d8ff;
+        background-color: #d4edff;
     }
     
     #betSlip tr.lay {
-        background-color: #ffc0cb;
+        background-color: #ffe4e8;
     }
     
     #betSlip .quantity {
