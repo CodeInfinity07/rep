@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 class MatchController extends Controller
 {
     private $baseUrl = 'http://89.116.20.218:8085/api';
+    private $pricesApiUrl = 'https://prices9.mgs11.com/api/Markets/Data';
     
     public function show($marketId)
     {
@@ -291,6 +292,53 @@ class MatchController extends Controller
             
             if ($details) {
                 return response()->json($details);
+            }
+            
+            return response()->json(['error' => 'No data available'], 404);
+            
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    private function getPricesData($marketId)
+    {
+        try {
+            $token = $_SERVER['MGS_API_TOKEN'] ?? $_ENV['MGS_API_TOKEN'] ?? getenv('MGS_API_TOKEN') ?? env('MGS_API_TOKEN');
+            
+            if (!$token) {
+                \Log::error('MGS API token not configured');
+                return null;
+            }
+            
+            $url = $this->pricesApiUrl . '?id=' . $marketId . '&token=' . $token;
+            
+            $response = Http::timeout(10)->get($url);
+            
+            if ($response->successful()) {
+                return $response->json();
+            }
+        } catch (\Exception $e) {
+            \Log::error('Prices API error: ' . $e->getMessage());
+        }
+        
+        return null;
+    }
+    
+    public function getPricesApi($marketId)
+    {
+        if (!\Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        try {
+            $data = $this->getPricesData($marketId);
+            
+            if ($data) {
+                return response()->json([
+                    'success' => true,
+                    'data' => $data
+                ]);
             }
             
             return response()->json(['error' => 'No data available'], 404);

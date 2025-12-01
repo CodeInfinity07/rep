@@ -2399,51 +2399,59 @@
             const currentMarketId = marketId;
             if (!currentMarketId) return;
             
-            fetch('/api/match-odds/' + currentMarketId)
+            fetch('/api/prices/' + currentMarketId)
                 .then(response => response.json())
                 .then(data => {
-                    if (data.error) {
-                        console.log('Odds update error:', data.error);
+                    if (data.error || !data.success) {
+                        console.log('Odds update error:', data.error || 'No data');
                         return;
                     }
                     
-                    const runners = data.runners || [];
+                    const marketBooks = data.data?.marketBooks || [];
+                    const matchOddsMarket = marketBooks.find(m => m.id === currentMarketId);
+                    
+                    if (!matchOddsMarket) {
+                        console.log('Market not found in response');
+                        return;
+                    }
+                    
+                    const runners = matchOddsMarket.runners || [];
                     
                     runners.forEach(runner => {
-                        const selectionId = runner.selectionId;
-                        const ex = runner.ex || {};
-                        const back = ex.availableToBack || [];
-                        const lay = ex.availableToLay || [];
+                        const selectionId = runner.id;
+                        
+                        // New API format: price1/2/3 for back, lay1/2/3 for lay
+                        // size1/2/3 for back sizes, ls1/2/3 for lay sizes
                         
                         // Update Back prices (B1, B2, B3) with flash
-                        if (back[0]) {
+                        if (runner.price1) {
                             const b1 = document.querySelector('#B1-' + selectionId);
-                            updatePriceWithFlash(b1, back[0].price, back[0].size, true, 'B1-' + selectionId);
+                            updatePriceWithFlash(b1, runner.price1, runner.size1, true, 'B1-' + selectionId);
                         }
-                        if (back[1]) {
+                        if (runner.price2) {
                             const b2 = document.querySelector('#B2-' + selectionId);
-                            updatePriceWithFlash(b2, back[1].price, back[1].size, true, 'B2-' + selectionId);
+                            updatePriceWithFlash(b2, runner.price2, runner.size2, true, 'B2-' + selectionId);
                         }
-                        if (back[2]) {
+                        if (runner.price3) {
                             const b3 = document.querySelector('#B3-' + selectionId);
-                            updatePriceWithFlash(b3, back[2].price, back[2].size, true, 'B3-' + selectionId);
+                            updatePriceWithFlash(b3, runner.price3, runner.size3, true, 'B3-' + selectionId);
                         }
                         
-                        // Update Lay prices (L1) with flash
-                        if (lay[0]) {
+                        // Update Lay prices (L1, L2, L3) with flash
+                        if (runner.lay1) {
                             const l1 = document.querySelector('#L1-' + selectionId);
-                            updatePriceWithFlash(l1, lay[0].price, lay[0].size, false, 'L1-' + selectionId);
+                            updatePriceWithFlash(l1, runner.lay1, runner.ls1, false, 'L1-' + selectionId);
                         }
                         
                         // Update additional lay prices with flash
                         const runnerDiv = document.querySelector('#runner-' + selectionId);
                         if (runnerDiv) {
                             const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
-                            if (lay[1] && layButtons[0]) {
-                                updatePriceWithFlash(layButtons[0], lay[1].price, lay[1].size, false, 'L2-' + selectionId);
+                            if (runner.lay2 && layButtons[0]) {
+                                updatePriceWithFlash(layButtons[0], runner.lay2, runner.ls2, false, 'L2-' + selectionId);
                             }
-                            if (lay[2] && layButtons[1]) {
-                                updatePriceWithFlash(layButtons[1], lay[2].price, lay[2].size, false, 'L3-' + selectionId);
+                            if (runner.lay3 && layButtons[1]) {
+                                updatePriceWithFlash(layButtons[1], runner.lay3, runner.ls3, false, 'L3-' + selectionId);
                             }
                         }
                     });

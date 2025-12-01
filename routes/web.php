@@ -109,6 +109,11 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/api/cricket-matches', [App\Http\Controllers\SportsDataController::class, 'getCricketMatches']);
 Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::class, 'getOddsApi']);
 
+// Protected API routes for prices data
+Route::middleware(['auth'])->group(function () {
+    Route::get('/api/prices/{marketId}', [App\Http\Controllers\MatchController::class, 'getPricesApi']);
+});
+
 Route::get('/result', function () {
     return view('result');
 });
