@@ -1153,6 +1153,30 @@
         transform: scale(1.02);
         transition: all 0.1s;
     }
+    
+    .runrate {
+        color: #009069;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    
+    #scoreboard-display {
+        font-size: 16px;
+    }
+    
+    #scoreboard-display #team1-name {
+        font-weight: bold;
+    }
+    
+    #commentry-text {
+        color: #009069;
+        font-weight: bold;
+    }
+    
+    #this-over-display {
+        font-size: 14px;
+        color: #333;
+    }
 </style>
 
 <script>
@@ -1170,9 +1194,14 @@
 <script>
     var marketStartTimeISO = '{{ $marketStartTime ?? '' }}';
     var isInPlay = {{ ($inPlay ?? false) ? 'true' : 'false' }};
+    var scoreCardUrl = '{{ $scoreCardUrl ?? "" }}';
 </script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
                                 ALL
-                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <!----> <!----> <!----> </div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
+                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary">Figure</a> <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
+
+<div class="table-box-header"><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
+                                                    Ball Running...
+                                                </div> <div style="margin-left: 8px; margin-top: -3px;"><input type="checkbox" class="fas fa-volume-mute fa-inverse" style="width: 0px; margin-right: 35px; font-size: 15px;"></div></div></span> <p></p> <p id="this-over-display">This Over : &nbsp; --</p></div></div></div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
                     (MaxBet: 200K)
                 </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners">
 @php
@@ -2408,6 +2437,12 @@
                     }
                     
                     const marketBooks = data.data?.marketBooks || [];
+                    const scoreboard = data.data?.scoreboard || null;
+                    
+                    // Update scoreboard display
+                    if (scoreboard) {
+                        updateScoreboard(scoreboard);
+                    }
                     
                     // Process all markets from the response
                     marketBooks.forEach(market => {
@@ -2544,6 +2579,49 @@
                     if (layBtn) {
                         updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + marketId);
                     }
+                }
+            }
+        }
+        
+        function updateScoreboard(scoreboard) {
+            // Update team1 info
+            const team1Name = document.getElementById('team1-name');
+            const team1Score = document.getElementById('team1-score');
+            const team1Crr = document.getElementById('team1-crr');
+            const commentryText = document.getElementById('commentry-text');
+            const thisOverDisplay = document.getElementById('this-over-display');
+            
+            if (team1Name && scoreboard.team1) {
+                team1Name.textContent = scoreboard.team1;
+            }
+            
+            if (team1Score) {
+                const runs = scoreboard.t1_runs || '0';
+                const wickets = scoreboard.t1_wickets || '0';
+                const overs = scoreboard.t1_overs || '0';
+                team1Score.textContent = `${runs}/${wickets} (${overs})`;
+            }
+            
+            if (team1Crr && scoreboard.t1_crr) {
+                team1Crr.textContent = `CRR: ${scoreboard.t1_crr}`;
+            }
+            
+            if (commentryText && scoreboard.commentry) {
+                const commentary = scoreboard.commentry;
+                if (commentary === 'Over' || commentary === 'Ball') {
+                    commentryText.textContent = commentary === 'Over' ? 'Over Complete!' : 'Ball Chaloo!!';
+                } else {
+                    commentryText.textContent = commentary;
+                }
+            }
+            
+            if (thisOverDisplay && scoreboard.recent_string) {
+                // Parse recent_string: "4   4   4   1   4   1   -   This Over : 18"
+                const recentStr = scoreboard.recent_string;
+                if (recentStr.includes('This Over')) {
+                    thisOverDisplay.textContent = recentStr.split('-').pop().trim().replace('This Over :', 'This Over :');
+                } else {
+                    thisOverDisplay.textContent = `${scoreboard.lastOverLabel || 'This Over'} : ${recentStr}`;
                 }
             }
         }

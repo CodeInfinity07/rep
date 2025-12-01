@@ -1,0 +1,237 @@
+{
+    "requestId": "2f26a7b4-9d56-4c5f-bd7d-a1022fceaac7",
+    "marketBooks": [
+        {
+            "id": "1.251136842",
+            "winners": 1,
+            "betDelay": 5,
+            "totalMatched": 217072562.49,
+            "marketStatus": "InPlay",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "89981477",
+                    "price1": 1.08,
+                    "price2": 1.07,
+                    "price3": 1.06,
+                    "size1": 1011436.61,
+                    "size2": 1478398.24,
+                    "size3": 2329049.78,
+                    "lay1": 1.09,
+                    "lay2": 1.1,
+                    "lay3": 1.11,
+                    "ls1": 849544.0,
+                    "ls2": 704870.13,
+                    "ls3": 434246.15,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                },
+                {
+                    "id": "90023848",
+                    "price1": 12.0,
+                    "price2": 11.5,
+                    "price3": 11.0,
+                    "size1": 88367.08,
+                    "size2": 447.42,
+                    "size3": 57800.9,
+                    "lay1": 13.0,
+                    "lay2": 13.5,
+                    "lay3": 14.0,
+                    "ls1": 637.81,
+                    "ls2": 80300.74,
+                    "ls3": 459.55,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "1.251136844",
+            "winners": 1,
+            "betDelay": 5,
+            "totalMatched": 14071136.26,
+            "marketStatus": "InPlay",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "37302",
+                    "price1": 1.08,
+                    "price2": 1.07,
+                    "price3": 1.06,
+                    "size1": 9180.3,
+                    "size2": 13298.44,
+                    "size3": 73497.96,
+                    "lay1": 1.09,
+                    "lay2": 1.1,
+                    "lay3": 1.11,
+                    "ls1": 1847.5,
+                    "ls2": 5696.2,
+                    "ls3": 48812.88,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                },
+                {
+                    "id": "37303",
+                    "price1": 12.0,
+                    "price2": 11.0,
+                    "price3": 10.0,
+                    "size1": 167.81,
+                    "size2": 569.62,
+                    "size3": 5418.23,
+                    "lay1": 13.5,
+                    "lay2": 15.5,
+                    "lay3": 18.0,
+                    "ls1": 734.42,
+                    "ls2": 918.02,
+                    "ls3": 4328.21,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "1.251136845",
+            "winners": 1,
+            "betDelay": 5,
+            "totalMatched": 1167793.92,
+            "marketStatus": "InPlay",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "37302",
+                    "price1": 110.0,
+                    "price2": 100.0,
+                    "price3": 75.0,
+                    "size1": 10.39,
+                    "size2": 1116.23,
+                    "size3": 11.53,
+                    "lay1": 140.0,
+                    "lay2": 160.0,
+                    "lay3": 170.0,
+                    "ls1": 71.83,
+                    "ls2": 138.71,
+                    "ls3": 12.25,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                },
+                {
+                    "id": "37303",
+                    "lay1": 1.01,
+                    "lay2": 1.02,
+                    "lay3": 1.03,
+                    "ls1": 110517.57,
+                    "ls2": 288277.06,
+                    "ls3": 157146.35,
+                    "status": "ACTIVE",
+                    "handicap": 0.0
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20533978",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "783382",
+                    "name": "Hobart Hurricanes W",
+                    "price1": 1.08,
+                    "size1": 100.0,
+                    "lay1": 1.09,
+                    "ls1": 100.0,
+                    "status": ""
+                },
+                {
+                    "id": "883051",
+                    "name": "Melbourne Stars W",
+                    "price1": 0.0,
+                    "size1": 100.0,
+                    "lay1": 0.0,
+                    "ls1": 100.0,
+                    "status": "SUSPENDED"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        },
+        {
+            "id": "9.20534630",
+            "winners": 0,
+            "betDelay": 0,
+            "totalMatched": 0.0,
+            "marketStatus": "OPEN",
+            "maxBetSize": 0.0,
+            "bettingAllowed": true,
+            "isMarketDataDelayed": false,
+            "runners": [
+                {
+                    "id": "1",
+                    "name": "17 Over Run HH-W",
+                    "price1": 188.0,
+                    "size1": 100.0,
+                    "lay1": 187.0,
+                    "ls1": 100.0,
+                    "status": "OPEN"
+                }
+            ],
+            "isRoot": false,
+            "timestamp": "0001-01-01T00:00:00",
+            "winnerIDs": []
+        }
+    ],
+    "news": "",
+    "scoreboard": {
+        "marketId": "1.251136842",
+        "team1": "HH-W",
+        "t1_runs": "165",
+        "t1_wickets": "2",
+        "t1_overs": "15",
+        "t1_crr": "11.00",
+        "team2": "MS-W",
+        "t2_runs": "0",
+        "t2_wickets": "0",
+        "t2_overs": "0",
+        "t2_crr": "0",
+        "rrr": "0",
+        "target": "0",
+        "commentry": "Over",
+        "recent_string": "4   4   4   1   4   1   -   This Over : 18",
+        "lastOverLabel": "This Over",
+        "toWin": "",
+        "isSuspendSessions": true
+    },
+    "scores": {
+        "home": "Hobart Hurricanes W",
+        "away": "Melbourne Stars W",
+        "currentSet": 0,
+        "runs": [
+            "165",
+            "-"
+        ],
+        "wickets": [
+            "2",
+            "-"
+        ]
+    }
+}

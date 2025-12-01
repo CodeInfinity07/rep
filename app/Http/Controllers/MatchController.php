@@ -100,6 +100,8 @@ class MatchController extends Controller
                 }
             }
             
+            $scoreCardUrl = 'https://score.akamaized.uk/live-src?id=' . $eventId;
+            
             $viewData = [
                 'marketId' => $marketId,
                 'eventId' => $eventId,
@@ -116,6 +118,7 @@ class MatchController extends Controller
                 'balance' => $user->balance ?? 0,
                 'liable' => $activeBetsData->total_liability ?? 0,
                 'active_bets' => $activeBetsData->count ?? 0,
+                'scoreCardUrl' => $scoreCardUrl,
             ];
             
             // Serve bettor or management view based on user role
