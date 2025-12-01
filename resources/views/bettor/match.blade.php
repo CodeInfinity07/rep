@@ -2408,55 +2408,144 @@
                     }
                     
                     const marketBooks = data.data?.marketBooks || [];
-                    const matchOddsMarket = marketBooks.find(m => m.id === currentMarketId);
                     
-                    if (!matchOddsMarket) {
-                        console.log('Market not found in response');
-                        return;
-                    }
-                    
-                    const runners = matchOddsMarket.runners || [];
-                    
-                    runners.forEach(runner => {
-                        const selectionId = runner.id;
+                    // Process all markets from the response
+                    marketBooks.forEach(market => {
+                        const mktId = market.id;
+                        const runners = market.runners || [];
+                        const isMatchOdds = mktId === currentMarketId;
+                        const isFancy = mktId.startsWith('9.');
                         
-                        // New API format: price1/2/3 for back, lay1/2/3 for lay
-                        // size1/2/3 for back sizes, ls1/2/3 for lay sizes
-                        
-                        // Update Back prices (B1, B2, B3) with flash
-                        if (runner.price1) {
-                            const b1 = document.querySelector('#B1-' + selectionId);
-                            updatePriceWithFlash(b1, runner.price1, runner.size1, true, 'B1-' + selectionId);
-                        }
-                        if (runner.price2) {
-                            const b2 = document.querySelector('#B2-' + selectionId);
-                            updatePriceWithFlash(b2, runner.price2, runner.size2, true, 'B2-' + selectionId);
-                        }
-                        if (runner.price3) {
-                            const b3 = document.querySelector('#B3-' + selectionId);
-                            updatePriceWithFlash(b3, runner.price3, runner.size3, true, 'B3-' + selectionId);
-                        }
-                        
-                        // Update Lay prices (L1, L2, L3) with flash
-                        if (runner.lay1) {
-                            const l1 = document.querySelector('#L1-' + selectionId);
-                            updatePriceWithFlash(l1, runner.lay1, runner.ls1, false, 'L1-' + selectionId);
-                        }
-                        
-                        // Update additional lay prices with flash
-                        const runnerDiv = document.querySelector('#runner-' + selectionId);
-                        if (runnerDiv) {
-                            const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
-                            if (runner.lay2 && layButtons[0]) {
-                                updatePriceWithFlash(layButtons[0], runner.lay2, runner.ls2, false, 'L2-' + selectionId);
+                        runners.forEach(runner => {
+                            const selectionId = runner.id;
+                            const status = runner.status;
+                            
+                            // For Fancy markets, update the market container
+                            if (isFancy) {
+                                updateFancyMarket(mktId, runner);
+                                return;
                             }
-                            if (runner.lay3 && layButtons[1]) {
-                                updatePriceWithFlash(layButtons[1], runner.lay3, runner.ls3, false, 'L3-' + selectionId);
-                            }
-                        }
+                            
+                            // For Match Odds and Bookmaker, update runner prices
+                            // Check for SUSPENDED status
+                            const runnerDivs = document.querySelectorAll('#runner-' + selectionId);
+                            runnerDivs.forEach(runnerDiv => {
+                                if (!runnerDiv) return;
+                                
+                                const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+                                const priceButtons = runnerDiv.querySelectorAll('.price-price');
+                                
+                                if (status === 'SUSPENDED' || !runner.price1) {
+                                    // Show SUSPENDED
+                                    if (!disabledDiv && priceButtons.length > 0) {
+                                        // Hide price buttons and show suspended
+                                        priceButtons.forEach(btn => btn.style.display = 'none');
+                                        const suspendedHtml = '<div class="runner-disabled">SUSPENDED</div>';
+                                        if (!runnerDiv.querySelector('.runner-disabled')) {
+                                            const wrapper = document.createElement('div');
+                                            wrapper.innerHTML = suspendedHtml;
+                                            runnerDiv.appendChild(wrapper.firstChild);
+                                        }
+                                    }
+                                } else {
+                                    // Remove SUSPENDED and show prices
+                                    if (disabledDiv) {
+                                        disabledDiv.parentElement?.remove();
+                                    }
+                                    priceButtons.forEach(btn => btn.style.display = '');
+                                    
+                                    // Update prices
+                                    if (runner.price1) {
+                                        const b1 = runnerDiv.querySelector('[id^="B1-"]');
+                                        if (b1) updatePriceWithFlash(b1, runner.price1, runner.size1, true, 'B1-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.price2) {
+                                        const b2 = runnerDiv.querySelector('[id^="B2-"]');
+                                        if (b2) updatePriceWithFlash(b2, runner.price2, runner.size2, true, 'B2-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.price3) {
+                                        const b3 = runnerDiv.querySelector('[id^="B3-"]');
+                                        if (b3) updatePriceWithFlash(b3, runner.price3, runner.size3, true, 'B3-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.lay1) {
+                                        const l1 = runnerDiv.querySelector('[id^="L1-"]');
+                                        if (l1) updatePriceWithFlash(l1, runner.lay1, runner.ls1, false, 'L1-' + selectionId + '-' + mktId);
+                                    }
+                                    
+                                    // Update additional lay prices
+                                    const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
+                                    if (runner.lay2 && layButtons[0]) {
+                                        updatePriceWithFlash(layButtons[0], runner.lay2, runner.ls2, false, 'L2-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.lay3 && layButtons[1]) {
+                                        updatePriceWithFlash(layButtons[1], runner.lay3, runner.ls3, false, 'L3-' + selectionId + '-' + mktId);
+                                    }
+                                }
+                            });
+                        });
                     });
                 })
                 .catch(error => console.log('Odds fetch error:', error));
+        }
+        
+        function updateFancyMarket(marketId, runner) {
+            const marketDiv = document.querySelector('#market-' + marketId);
+            if (!marketDiv) return;
+            
+            const runnerDiv = marketDiv.querySelector('.runner-runner');
+            if (!runnerDiv) return;
+            
+            const status = runner.status;
+            const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+            
+            if (status === 'SUSPENDED' || (!runner.price1 && !runner.lay1)) {
+                // Show SUSPENDED
+                if (!disabledDiv) {
+                    const priceButtons = runnerDiv.querySelectorAll('.price-price');
+                    priceButtons.forEach(btn => btn.style.display = 'none');
+                    const suspendedHtml = '<div><div class="runner-disabled">SUSPENDED</div></div>';
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = suspendedHtml;
+                    runnerDiv.appendChild(wrapper.firstChild);
+                }
+            } else {
+                // Remove SUSPENDED and show/create prices
+                if (disabledDiv) {
+                    disabledDiv.parentElement?.remove();
+                }
+                
+                // Find or create price buttons
+                let priceButtons = runnerDiv.querySelectorAll('.price-price');
+                if (priceButtons.length === 0) {
+                    // Create price buttons for fancy markets
+                    const runnerName = runnerDiv.querySelector('.runner-name');
+                    if (runnerName) {
+                        const priceHtml = `
+                            <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
+                                <span class="price-odd">${runner.price1 || '-'}</span>
+                                <span class="price-amount">${formatAmount(runner.size1)}</span>
+                            </a>
+                            <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
+                                <span class="price-odd">${runner.lay1 || '-'}</span>
+                                <span class="price-amount">${formatAmount(runner.ls1)}</span>
+                            </a>
+                        `;
+                        runnerName.insertAdjacentHTML('afterend', priceHtml);
+                    }
+                } else {
+                    priceButtons.forEach(btn => btn.style.display = '');
+                    // Update existing buttons
+                    const backBtn = runnerDiv.querySelector('.price-back');
+                    const layBtn = runnerDiv.querySelector('.price-lay');
+                    
+                    if (backBtn) {
+                        updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'fancy-back-' + marketId);
+                    }
+                    if (layBtn) {
+                        updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + marketId);
+                    }
+                }
+            }
         }
         
         // Start polling every second
