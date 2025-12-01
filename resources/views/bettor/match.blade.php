@@ -1,790 +1,2977 @@
-@extends('layouts.bettor')
+<html lang="en"><plasmo-csui></plasmo-csui>
 
-@section('title', ($eventName ?? 'Match Details') . ' | BETGURU')
+<head>
 
-@push('styles')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<style>
-    .container { position: relative; overflow: hidden; width: 100%; }
-    .responsive-iframe { position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; }
-    .containerofiframe { position: relative; overflow: hidden; width: 100%; height: max-content; padding-top: 88%; }
-    .checknow { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
-    .controls { overflow: hidden; background: #2b2f35; position: absolute; bottom: 0; left: 0; }
-    .scores { background-color: #2b2f35; border: 1px solid #2b2f35; padding: 0.25rem; }
-    .scores .runnername { margin-top: 7px; line-height: 0.2; color: white; font-size: 18px; }
-    .scores .runner-score { color: white; font-size: 18px; margin-top: 2px; padding: 0px; }
-    .scores .active { color: #009069 }
-    .scores .col-divider { border-left: 1px solid white; }
-    .tablefoter { font-size: 14px; border: 1px solid white; color: white; }
-    .socindivs { padding: 0px; }
-    .timeshow { color: white; font-size: 18px; }
-    .scoresocer { color: white; font-size: 18px }
-    .tablefotercs { font-size: 12px; color: white; }
-    .colwidthset { width: 1vw; }
-    .right-nav { padding-left: 10px; }
-    .runrate { color: #666; font-size: 12px; margin-left: 10px; }
+    <style id="stndz-custom-css"></style>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sports Trading Platform">
+    <meta name="keyword" content="sports trading, bet, betfair">
+    <meta name="robots" content="noindex">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="shortcut icon" href="/img/favicon/BetPro.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/img/sprites/css/sprite.css">
+    <link rel="stylesheet" href="/dist/site.css?11700">
+    <link href="/css/BetPro-style.css?11700" rel="stylesheet">
+
+    <title>Match Details | BETGURU</title>
+    <style>
+        .body {
+            min-height: 91.7vh;
+        }
+
+        center a {
+            color: white;
+        }
+
+        center a {
+            font-size: 13px;
+        }
+
+        #page-preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
     
-    #TVDIVIFRAME iframe { height: 330px; width: 100%; border: none; overflow: hidden; }
-    @media screen and (max-width: 480px) {
-        #TVDIVIFRAME iframe { height: 230px; width: 100%; border: none; overflow: hidden; }
-        .runnername { margin-top: 10px; line-height: 0.1; color: white; font-size: 9px; }
-        .colwidthset { width: 50px; }
-        .tableresp { display: inline-table; }
-        .lrhom { display: none; }
-        .sethourshow { line-height: 0.3; font-size: 15px; }
-        .tablefoter { font-size: 10px; }
-        .runnersocer { color: white; font-size: 13px; margin-top: 2px; padding: 0px; line-height: 1.2; }
-        .socindivs { padding: 0px; }
-        .timeshow { color: white; font-size: 12px; }
-        .scoresocer { color: white; font-size: 18px; padding: 0px; margin-bottom: 7px; }
-        .tablefotercs { font-size: 11px; color: white; }
-        .scores .runnername { margin-top: 7px; line-height: 0.2; color: white; font-size: 12px; }
-    }
-
-    iframe { width: 1px; min-width: 100%; }
-    .tabcontent { margin-top: -4px; display: none; border: 1px solid #ccc; border-top: none; background-color: white; }
-    div.scrollmenu { overflow: auto; white-space: nowrap; margin-bottom: -10px; transition: 0.5s; border-top-left-radius: 10px; border-top-right-radius: 10px; }
-    div.scrollmenu a { display: inline-block; color: black; text-align: center; padding: 0px 20px; text-decoration: none; border-top-left-radius: 10px; border-top-right-radius: 10px; }
-    div.scrollmenu a:hover { color: white; border-top-left-radius: 10px; border-top-right-radius: 10px; }
-    
-    @keyframes flashBack { 0% { background-color: rgb(80, 180, 220); } 100% { background-color: rgb(141, 210, 240); } }
-    @keyframes flashLay { 0% { background-color: rgb(250, 120, 130); } 100% { background-color: rgb(254, 175, 178); } }
-    .flash-back { animation: flashBack 0.3s ease-out; }
-    .flash-lay { animation: flashLay 0.3s ease-out; }
-    
-    .customcheck { cursor: pointer; }
-    .customcheck:hover { background-color: #e0f0ff; }
-    .priceodd { font-size: 14px; }
-    .priceamount { font-size: 11px; color: #666; }
-    .positioncustom { font-size: 11px; }
-</style>
-@endpush
-
-@section('content')
-<div class="content-wrap body">
     <script>
-        const marketId = '{{ $marketId }}';
-        const eventId = '{{ $eventId ?? '' }}';
+        // EARLY: Mark this as non-homepage and setup preloader hide
+        window.isNonHomePage = true;
+        window.isMatchPage = true;
+
+        // Hide preloader as soon as DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            var preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                preloader.style.display = 'none';
+            }
+            var loader = document.querySelector('.page_loader');
+            if (loader) loader.style.display = 'none';
+            
+            // Initialize sidebar menus for non-homepage
+            initSidebarMenus();
+        });
+
+        // Also try immediately when this script runs
+        if (document.readyState !== 'loading') {
+            var preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                preloader.style.display = 'none';
+            }
+        }
+        
+        // Sidebar menu initializer for non-homepage pages
+        function initSidebarMenus() {
+            fetch('/api/cricket-matches')
+                .then(response => response.json())
+                .then(data => {
+                    const result = data.result || data;
+                    const cricketMatches = result.cricket || [];
+                    const soccerMatches = result.soccer || [];
+                    const tennisMatches = result.tennis || [];
+                    
+                    populateSidebarOnly(cricketMatches, soccerMatches, tennisMatches);
+                })
+                .catch(error => console.error('Error loading sidebar:', error));
+        }
+        
+        function populateSidebarOnly(cricketMatches, soccerMatches, tennisMatches) {
+            const cricketMenu = document.getElementById('sidebar-cricket-menu');
+            const soccerMenu = document.getElementById('sidebar-soccer-menu');
+            const tennisMenu = document.getElementById('sidebar-tennis-menu');
+            
+            if (cricketMenu) {
+                if (cricketMatches.length > 0) {
+                    const items = cricketMatches.slice(0, 10).map(match => 
+                        `<li class="nav-item"><a class="nav-link" href="/cricket/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    ).join('');
+                    cricketMenu.innerHTML = `<li><a href="/"><strong>All Cricket</strong></a></li><li class="divider"></li>${items}`;
+                } else {
+                    cricketMenu.innerHTML = `<li><a href="/"><strong>All Cricket</strong></a></li><li class="divider"></li><li class="text-center"><small>No matches</small></li>`;
+                }
+            }
+            
+            if (soccerMenu) {
+                if (soccerMatches.length > 0) {
+                    const items = soccerMatches.slice(0, 10).map(match => 
+                        `<li class="nav-item"><a class="nav-link" href="/soccer/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    ).join('');
+                    soccerMenu.innerHTML = `<li><a href="/soccer"><strong>All Soccer</strong></a></li><li class="divider"></li>${items}`;
+                } else {
+                    soccerMenu.innerHTML = `<li><a href="/soccer"><strong>All Soccer</strong></a></li><li class="divider"></li><li class="text-center"><small>No matches</small></li>`;
+                }
+            }
+            
+            if (tennisMenu) {
+                if (tennisMatches.length > 0) {
+                    const items = tennisMatches.slice(0, 10).map(match => 
+                        `<li class="nav-item"><a class="nav-link" href="/tennis/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    ).join('');
+                    tennisMenu.innerHTML = `<li><a href="/tennis"><strong>All Tennis</strong></a></li><li class="divider"></li>${items}`;
+                } else {
+                    tennisMenu.innerHTML = `<li><a href="/tennis"><strong>All Tennis</strong></a></li><li class="divider"></li><li class="text-center"><small>No matches</small></li>`;
+                }
+            }
+        }
     </script>
 
-    <div id="MarketView">
-        <div id="loadedmarkettoshow" class="row">
-            <div class="col-lg-8">
-                <div class="left-content">
-                    <div class="table-wrap">
-                        <div class="table-box-header">
-                            <div class="row no-gutters">
-                                <div class="col-md-auto">
-                                    <div class="box-main-icon">
-                                        <img src="/img/v2/cricket.svg" alt="Box Icon">
-                                    </div>
+    <script>
+        const pricesUrl = "https://prices9.mgs11.com/api";
+        const ordersUrl = "https://orders.mgs11.com/api";
+        const LiquidityRate = 35;
+        const SsocketUrl = "https://orders-ws.mgs11.com/signalr";
+        const uwsUrl = "https://orders-ws.mgs11.com/usershub";
+        const genSck = 1;
+        const CasSck = 1;
+        const casinoUrl = "https://casino-ws.mgs11.com/signalr";
+        // var SsocketEnable = 0;
+    </script>
+</head>
+
+<body class="bg-gray d-flex flex-column">
+    <div id="page-preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+    <div class="main-page">
+        <div class="row no-gutters">
+            <div class="col-md-3 col-lg-2" id="sidebar">
+                <div class="logo-bar">
+                    <a href="/Common/Dashboard">
+                        <span class="green-logo-text">BETGURU</span>
+                    </a>
+                </div>
+                <div class="divider"></div>
+                <div class="sidebar-menu" style="height:100%;">
+                    <ul>
+
+
+                        <ul class="nav">
+
+
+
+                            <style>
+                                @keyframes spin {
+                                    from {
+                                        transform: rotateY(0deg);
+                                        moz-transform: rotateY(0deg);
+                                        ms-transform: rotateY(0deg);
+                                    }
+
+                                    to {
+                                        transform: rotateY(360deg);
+                                        moz-transform: rotateY(360deg);
+                                        ms-transform: rotateY(360deg);
+                                    }
+                                }
+
+                                @-webkit-keyframes spin {
+                                    from {
+                                        -webkit-transform: rotateY(0deg);
+                                    }
+
+                                    to {
+                                        -webkit-transform: rotateY(360deg);
+                                    }
+                                }
+
+                                .imageSpin {
+                                    transition-delay: 5s;
+                                    animation-name: spin;
+                                    animation-iteration-count: infinite;
+                                    animation-duration: inherit;
+                                    -webkit-animation-name: spin;
+                                    -webkit-animation-iteration-count: infinite;
+                                    -webkit-animation-timing-function: initial;
+                                    -webkit-animation-duration: 4s;
+                                    -webkit-animation-delay: 2s;
+                                }
+
+                                .imageSpin2 {
+                                    transition-delay: 3s;
+                                    animation-name: spin;
+                                    animation-iteration-count: infinite;
+                                    animation-duration: inherit;
+                                    -webkit-animation-name: spin;
+                                    -webkit-animation-iteration-count: infinite;
+                                    -webkit-animation-timing-function: initial;
+                                    -webkit-animation-duration: 3s;
+                                    -webkit-animation-delay: 2s;
+                                }
+
+
+                                /*for spin2*/
+                                #spinning-circle {
+                                    animation-name: spinning-circle;
+                                    animation-duration: 5s;
+                                    animation-iteration-count: infinite;
+                                }
+
+                                @-webkit-keyframes spinning-circle {
+                                    0% {
+                                        -webkit-transform: rotate(0deg);
+                                        transform: rotate(0deg);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: rotate(360deg);
+                                        transform: rotate(360deg);
+                                    }
+                                }
+
+                                #invertcolor {
+                                    filter: invert(100%);
+                                    -webkit-filter: invert(100%);
+                                    animation-name: spinning-circle;
+                                    animation-duration: 3s;
+                                    animation-iteration-count: infinite;
+                                }
+
+                                #invertcolor2 {
+                                    filter: invert(100%);
+                                    -webkit-filter: invert(100%);
+                                    animation-name: spin;
+                                    animation-duration: 4s;
+                                    animation-iteration-count: infinite;
+                                    max-height: 30px;
+                                }
+
+                                #invertcolor3 {
+                                    filter: invert(100%);
+                                    -webkit-filter: invert(100%);
+                                    animation-name: spin;
+                                    animation-duration: 3s;
+                                    animation-iteration-count: infinite;
+                                    max-height: 30px;
+                                }
+
+
+                                .exgameblinker {
+                                    animation: animate 8s linear infinite;
+                                }
+
+                                @keyframes animate {
+                                    0% {
+                                        background-color: red;
+                                    }
+
+                                    25% {
+                                        background-color: inherit;
+                                    }
+
+                                    50% {
+                                        background-color: inherit;
+                                    }
+
+                                    75% {
+                                        background-color: inherit;
+                                    }
+
+                                    100% {
+                                        background-color: red;
+                                    }
+                                }
+
+                                .Galaxyblinker {
+                                    position: relative;
+                                    z-index: 0;
+                                }
+
+                                .Galaxyblinker::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    z-index: -1;
+                                    background: linear-gradient(90deg, #8a47ff 0%, #c36eff 100%);
+                                    opacity: 1;
+                                    animation: animateGradient 12s linear infinite;
+                                    transition: opacity 0.5s ease;
+                                }
+
+                                @keyframes animateGradient {
+
+                                    0%,
+                                    100% {
+                                        opacity: 1;
+                                    }
+
+                                    25%,
+                                    50%,
+                                    75% {
+                                        opacity: 0;
+                                    }
+
+                                }
+                            </style>
+
+                            <li style="width:100%;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-soccer svg-soccer-dims svg-span" role="img"></span>
+                                    <span>Soccer</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" id="sidebar-soccer-menu" href="#">
+                                        <li><a href="/soccer"><strong>All Soccer</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="text-center"><small>Loading...</small></li>
+                                    </ul>
                                 </div>
-                                <div class="col-md">
-                                    <div class="tb-top-text">
-                                        <p>
-                                            <img src="/img/v2/clock-green.svg">
-                                            <span id="inplay-status" class="green-upper-text">{{ $inPlay ? 'InPlay' : 'Upcoming' }}</span>
-                                            <span id="match-time-display" class="black-light-text"></span>
-                                            <span class="black-light-text"> | Winners: 1</span>
-                                        </p>
-                                        <h4 class="event-title">{{ $eventName ?? 'Match' }}</h4>
-                                        <p><span id="elapsed-time" class="medium-black">Elapsed : --:--:--</span></p>
-                                    </div>
+                            </li>
+                            <li style="width:100%;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-tennis svg-tennis-dims svg-span" role="img"></span>
+                                    <span>Tennis</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" id="sidebar-tennis-menu" href="#">
+                                        <li><a href="/tennis"><strong>All Tennis</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="text-center"><small>Loading...</small></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li style="width:100%;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-cricket svg-cricket-dims svg-span" role="img"></span>
+                                    <span>Cricket</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" id="sidebar-cricket-menu" href="#">
+                                        <li><a href="/cricket"><strong>All Cricket</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="text-center"><small>Loading...</small></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li style="width:100%;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-horse svg-horse-dims svg-span" role="img"></span>
+                                    <span>Horse Race</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" id="sidebar-horserace-menu" href="#">
+                                        <li><a href="#"><strong>All Horse Race</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="text-center"><small>Coming Soon</small></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li style="width:100%;display:none;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-greyhound svg-greyhound-dims svg-span" role="img"></span>
+                                    <span>Greyhound Race</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" id="sidebar-greyhound-menu" href="#">
+                                        <li><a href="#"><strong>All Greyhound</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="text-center"><small>Coming Soon</small></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li style="width:100%;display:none;">
+
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="svg-greyhound-racing svg-greyhound-racing-dims svg-span"
+                                        role="img"></span>
+                                    <span>Greyhound Legacy</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="nav">
+                                    <ul class="sub-menu" href="#">
+
+                                        <li><a href="#"><strong>All Greyhound</strong></a></li>
+                                        <li class="divider"></li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250209693">
+                                                <span class="market-time">3:02 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:02:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Bendigo (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208472">
+                                                <span class="market-time">3:08 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:08:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Richmond (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208645">
+                                                <span class="market-time">3:11 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:11:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Wagga (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250210132">
+                                                <span class="market-time">3:19 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:19:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Geelong (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250209698">
+                                                <span class="market-time">3:22 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:22:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Bendigo (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208477">
+                                                <span class="market-time">3:26 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:26:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Richmond (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208650">
+                                                <span class="market-time">3:29 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:29:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Wagga (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250230237">
+                                                <span class="market-time">3:32 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:32:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Harlow (GB)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250210137">
+                                                <span class="market-time">3:38 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:38:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Geelong (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208655">
+                                                <span class="market-time">3:44 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:44:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Wagga (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250209703">
+                                                <span class="market-time">3:47 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:47:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Bendigo (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250230239">
+                                                <span class="market-time">3:48 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:48:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Harlow (GB)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208482">
+                                                <span class="market-time">3:49 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:49:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Richmond (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250211384">
+                                                <span class="market-time">3:52 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:52:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Mandurah (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250210142">
+                                                <span class="market-time">3:56 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T10:56:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Geelong (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250229792">
+                                                <span class="market-time">4:01 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T11:01:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Hove (GB)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250230241">
+                                                <span class="market-time">4:04 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T11:04:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Harlow (GB)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250209708">
+                                                <span class="market-time">4:05 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T11:05:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Bendigo (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250208660">
+                                                <span class="market-time">4:08 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T11:08:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Wagga (AU)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Common/market/?id=1.250228637">
+                                                <span class="market-time">4:09 PM</span>
+                                                <span class="d-none utctime" data-format="h:mm A">
+                                                    2025-11-07T11:09:00.0000000Z
+                                                </span>
+                                                <span class="race-venue">Central Park (GB)</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item" style="width:100%;">
+                                <a href="/Common/sap" class="dropdown-toggle" role="button">
+                                    <span class="svg-Casino svg-Casino-dims imageSpin2" role="img"></span>
+                                    <span>Sports Book</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a href="/Common/RSC" class="dropdown-toggle" role="button">
+                                    <i style="font-size:17px;" class="fas fa-star fa-2x fa-spin fa-lg"></i>
+                                    <span>RoyalStar Casino</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a href="/Common/Games" class="dropdown-toggle" role="button">
+                                    <img id="spinning-circle" src="/img/v2/livegameing.png"
+                                        onerror="this.onerror = null; this.src= null" alt="G">
+                                    <span>Star Casino</span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="dropdown-toggle" role="button" href="/Common/WorldCasino">
+                                    <img id="invertcolor" style="background:invert(100%)"
+                                        src="/img/v2/worldcasinosvg.png" alt="WC">
+                                    <span>World Casino</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="dropdown-toggle" role="button" href="/Common/Dream">
+                                    <span class="svg-Casino svg-Casino-dims imageSpin2" role="img"></span>
+                                    <span>Royal Casino</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="dropdown-toggle" role="button" href="/Common/ExGames">
+                                    <img id="invertcolor2" src="/img/v2/BLogo.png">
+                                    <span>BetFairGames</span>
+                                </a>
+                            </li>
+                            <li class="nav-item exgameblinker" style="width:100%;">
+                                <a class="dropdown-toggle" role="button" href="/Common/BetProGames">
+                                    <img id="invertcolor3" src="/img/v2/TPS.png">
+                                    <span>TeenPatti Studio</span>
+                                </a>
+                            </li>
+                            <li class="nav-item Galaxyblinker" style="width:100%;">
+                                <a class="dropdown-toggle" role="button" href="/Common/Galaxy">
+                                    <img src="/img/v2/Glogo.png">
+                                    <span>Galaxy Casino</span>
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="nav-link" href="/Customer/Liable">
+                                    <span class="svg-colossus svg-colossus-dims svg-span" role="img"></span>
+                                    Current Position
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="nav-link" href="/Common/Dashboard">
+                                    <span class="svg-soccer svg-soccer-dims svg-span" role="img"></span>
+                                    All Sports
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="nav-link" href="/Common/Result">
+                                    <span class="svg-clipboard svg-clipboard-dims svg-span" role="img"></span>
+                                    Results
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="nav-link" href="#" onclick="ShowExchangeRules(); return false;">
+                                    <i class="fa fa-info-circle"></i>Market Rules
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:100%;">
+                                <a class="nav-link" href="#" onclick="ShowTos(); return false;">
+                                    <i class="fa fa-info-circle"></i>Terms &amp; Conditions
+                                </a>
+                            </li>
+                        </ul>
+                        <script>
+                            function ShowExchangeRules() {
+                                $("#modalMarketRules").modal('show');
+
+                                $.get("/rules.html", function (data) {
+                                    $("#modalMarketRules .modal-body").html(data);
+                                });
+                            }
+
+                            function ShowTos() {
+                                $("#modalTos").modal('show');
+                                $.get("/tos.html", function (data) {
+                                    $("#modalTos .modal-body").html(data);
+                                });
+                            }
+                        </script>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md" id="main-wrap">
+                <div class="header">
+                    <button class="burger-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <ul class="top-nav">
+                        <li><a href="/Common/Dashboard">Dashboard</a></li>
+                    </ul>
+
+                    <div id="sticky-footer" style="width:50vw; padding:0px; margin:0px; float:left; "
+                        class="py-1 bg-black text-white">
+                        <div class="container text-center" style="padding:0px; margin:0px;">
+                            <div class="tickercontainer" style="height: 25px; overflow: hidden;">
+                                <div class="mask">
+                                    <ul id="news-ticker-foot"
+                                        style="padding: 0px; margin: 0px; position: relative; overflow: hidden; float: left; font: bold 10px Verdana; list-style-type: none; width: 1201.29px; transition-timing-function: linear; transition-duration: 15.8275s; left: -853.75px;">
+                                        <li class="webticker-init"
+                                            style="float: left; width: 853.75px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;">
+                                        </li>
+                                        <li data-update="item1"
+                                            style="white-space: nowrap; float: left; padding: 0px 7px; line-height: 25px;">
+                                            <b>Welcome to Exchange - </b></li>
+                                        <li class="ticker-spacer"
+                                            style="float: left; width: 0px; height: 25px; white-space: nowrap; padding: 0px 7px; line-height: 25px;">
+                                        </li>
+                                    </ul><span class="tickeroverlay-left" style="display: none;">&nbsp;</span><span
+                                        class="tickeroverlay-right" style="display: none;">&nbsp;</span>
                                 </div>
                             </div>
-                            
-                            <div class="scrollmenu">
-                                <a id="Alltab" class="tablink btn btn-primary active" onclick="MarketTab('All')">ALL</a>
-                                <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a>
-                                <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a>
-                                <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary">Figure</a>
-                                <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a>
-                                <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a>
+                        </div>
+                    </div>
+
+
+                    <div class="dropdown-wrap">
+                        <div class="dropdown">
+
+                            <div class="designation">
+                                <span class="wallet-balance">B: Rs. {{ number_format($balance, 2) }}</span>
+                                <span class="wallet-exposure"> | L: {{ number_format($liable, 2) }}</span>
                             </div>
-                        </div>
-                        
-                        <div class="table-box-header">
-                            <div class="row no-gutters">
-                                <div class="col-md">
-                                    <div class="tb-top-text">
-                                        <div id="live-score-display">
-                                            <span id="team1-name">Team 1</span>
-                                            <span id="team1-score" class="medium-black">0/0 (0)</span>
-                                            <span id="team1-crr" class="runrate">CRR: 0</span>
-                                        </div>
-                                        <span class="green-upper-text" id="commentary-display">
-                                            <div class="row">
-                                                <div id="ball-commentary">Ball Chaloo!!</div>
-                                            </div>
-                                        </span>
-                                        <p id="this-over-display">This Over : -</p>
-                                    </div>
-                                </div>
+
+                            <button class="btn profile-dropdown dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ strtoupper($username ?? Auth::user()->username) }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/Customer/Ledger/">Statement</a>
+                                <a class="dropdown-item" href="/Common/Result/">Result</a>
+                                <a class="dropdown-item" href="/Customer/ProfitLoss/">Profit Loss</a>
+                                <a class="dropdown-item" href="/Customer/Bets">Bet History</a>
+                                <a class="dropdown-item" href="/Customer/Profile">Profile</a>
+                                <a class="dropdown-item" id="btn-logout" href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();">Logout</a>
                             </div>
-                        </div>
-                        
-                        <div id="All" class="tabcontent" style="display: block;">
-                            <div id="nav-tabContent" class="tab-content">
-                                <div id="nav-1" class="tab-pane fade show active">
-                                    <div class="table-box-body">
-                                        <div id="match-odds-section" class="tb-content"></div>
-                                        <div id="bookmaker-section" class="tb-content"></div>
-                                        <div id="fancy2-section" class="tb-content"></div>
-                                        <div id="completed-match-section" class="tb-content"></div>
-                                        <div id="tied-match-section" class="tb-content"></div>
-                                        <div id="figure-section" class="tb-content"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="BM" class="tabcontent">
-                            <div id="bm-tab-content" class="tb-content"></div>
-                        </div>
-                        
-                        <div id="Fancy2" class="tabcontent">
-                            <div id="fancy2-tab-content" class="tb-content"></div>
-                        </div>
-                        
-                        <div id="Figure" class="tabcontent">
-                            <div id="figure-tab-content" class="tb-content"></div>
-                        </div>
-                        
-                        <div id="OddFigure" class="tabcontent">
-                            <div id="oddfigure-tab-content" class="tb-content"></div>
-                        </div>
-                        
-                        <div id="Other" class="tabcontent">
-                            <div id="other-tab-content" class="tb-content"></div>
+                            <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-lg-4 right-nav">
-                <div class="right-content">
-                    <div class="table-wrap">
-                        <div class="table-box-body">
-                            <div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;">
-                                <button onclick="SHOWTV()" class="btn btn-primary btn-xs" style="width: 50%; border-right: solid;">Tv</button>
-                                <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" style="width: 50%;">Score Card</button>
-                            </div>
-                            
-                            <div id="TVDIVIFRAME" style="display: none;">
-                                <iframe src="https://live.cricketid.xyz/casino-tv" allowfullscreen></iframe>
-                            </div>
-                            
-                            <div id="LIVEDIV" style="display: block;">
-                                <iframe id="livesc" src="https://score.akamaized.uk/index.html?id={{ $eventId }}" style="width:100%; height:200px; border:none;"></iframe>
-                            </div>
-                            
-                            <div id="bet-slip-container" style="display: none; padding: 10px; margin-top: 10px; border-radius: 5px;">
-                                <div id="bet-slip" class="bets">
-                                    <div class="betting-table">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="4">
-                                                        <strong id="bet-slip-runner">Runner Name</strong>
-                                                        <span id="bet-slip-type" class="badge"></span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 50%;">
-                                                        <input type="number" id="bet-slip-odds" class="form-control" placeholder="Odds" step="0.01" readonly>
-                                                    </td>
-                                                    <td style="width: 50%;">
-                                                        <input type="number" id="bet-slip-stake" class="form-control" placeholder="Stake" min="1">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="2000">2,000</button></td>
-                                                    <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="5000">5,000</button></td>
-                                                    <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="10000">10,000</button></td>
-                                                    <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="25000">25,000</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="+1000">+1,000</button></td>
-                                                    <td><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="+5000">+5,000</button></td>
-                                                    <td><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="+10000">+10,000</button></td>
-                                                    <td><button type="button" class="btn btn-secondary btn-block mt-2 stake-btn" data-amount="+25000">+25,000</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><button type="button" class="btn btn-danger mt-2" onclick="closeBetSlip()">Close</button></td>
-                                                    <td colspan="2">
-                                                        <button type="button" class="btn btn-primary ld-over mt-2" onclick="submitBet()"><b>Submit</b></button>
-                                                        <span id="bet-slip-profit"> / -</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bets">
-                                <strong>Open Bets (<span id="open-bets-count">0</span>)</strong>
-                                <div class="betting-table">
-                                    <table class="table">
-                                        <thead>
-                                            <tr><th>Runner</th><th>Price</th><th>Size</th><th></th></tr>
-                                        </thead>
-                                        <tbody id="open-bets-tbody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            
-                            <div class="bets">
-                                <strong>Matched Bets (0)</strong>
-                                <div class="betting-table">
-                                    <table class="table">
-                                        <thead>
-                                            <tr><th>Runner</th><th>Price</th><th>Size</th></tr>
-                                        </thead>
-                                        <tbody id="matched-bets-tbody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            
-                            <div style="margin-top: 7px;">
-                                <strong class="RM_In_Markets" style="display: block; background: rgb(43, 47, 53); color: rgb(255, 255, 255); padding: 10px;">Related Events</strong>
-                                <div id="related-events-container">
-                                    <table class="table compact" style="margin-bottom: 0px;">
-                                        <tbody id="related-events-tbody"></tbody>
-                                    </table>
-                                </div>
+
+<div class="content-wrap body">
+                    
+
+<style>
+
+    .container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .containerofiframe {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: max-content;
+        padding-top: 88%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .checknow {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ and Edge */
+        user-select: none; /* Standard syntax */
+    }
+
+    .controls {
+        overflow: hidden;
+        background: #2b2f35;
+        /* height: 35px; */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .scores {
+        background-color: #2b2f35;
+        border: 1px solid #2b2f35;
+        padding: 0.25rem;
+    }
+
+    .scores .runnername {
+        margin-top: 7px;
+        line-height: 0.2;
+        color: white;
+        font-size: 18px;
+    }
+
+    .scores .runner-score {
+        color: white;
+        font-size: 18px;
+        margin-top: 2px;
+        padding: 0px;
+    }
+
+    .scores .active {
+        color: #009069
+    }
+
+    .scores .col-divider {
+        border-left: 1px solid white;
+    }
+
+    .tablefoter {
+        font-size: 14px;
+        border: 1px solid white;
+        color: white;
+    }
+
+    .socindivs {
+        padding: 0px;
+    }
+
+    .timeshow {
+        color: white;
+        font-size: 18px;
+    }
+
+    .scoresocer {
+        color: white;
+        font-size: 18px
+    }
+
+    .tablefotercs {
+        font-size: 12px;
+        color: white;
+    }
+
+    .colwidthset {
+        width: 1vw;
+    }
+
+    .right-nav {
+        padding-left: 10px;
+    }
+
+    #TVDIVIFRAME iframe {
+        height: 330px;
+        width: 100%;
+        border: none;
+        overflow: hidden;
+    }
+
+    @media screen and (max-width: 480px) {
+        #TVDIVIFRAME iframe {
+            height: 230px;
+            width: 100%;
+            border: none;
+            overflow: hidden;
+        }
+
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: white;
+            font-size: 9px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: white;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: white;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: white;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: white;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: white;
+            font-size: 12px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: white;
+            font-size: 9px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: white;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: white;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: white;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: white;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: white;
+            font-size: 12px;
+        }
+
+        iframe {
+            width: 1px;
+            min-width: 100%;
+        }
+    }
+
+    iframe {
+        width: 1px;
+        min-width: 100%;
+    }
+
+    /* Style the tab */
+    .tabcontent {
+        margin-top: -4px;
+        display: none;
+        border: 1px solid #ccc;
+        border-top: none;
+        background-color: white;
+    }
+
+    div.scrollmenu {
+        overflow: auto;
+        white-space: nowrap;
+        margin-bottom: -10px;
+        transition: 0.5s;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    div.scrollmenu a {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 0px 20px;
+        text-decoration: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    div.scrollmenu a:hover {
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    /* Bet Slip Styles */
+    #betSlip {
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+    
+    #betSlip .stake-btn {
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #e0e0e0;
+        margin: 2px;
+        transition: background-color 0.2s;
+    }
+    
+    #betSlip .stake-btn:hover {
+        background-color: #c0c0c0;
+    }
+    
+    #betSlip tr.back {
+        background-color: #d4edff;
+    }
+    
+    #betSlip tr.lay {
+        background-color: #ffe4e8;
+    }
+    
+    #betSlip .quantity {
+        display: flex;
+        align-items: center;
+    }
+    
+    #betSlip .quantity input {
+        width: 60px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    
+    #betSlip .quantity-nav {
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+    }
+    
+    #betSlip .quantity-button {
+        cursor: pointer;
+        padding: 0 5px;
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        font-size: 10px;
+    }
+    
+    #betSlip .quantity-button:hover {
+        background-color: #bbb;
+    }
+    
+    #betSlip .stake input {
+        width: 80px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    
+    .price-back:hover, .price-lay:hover {
+        opacity: 0.8;
+        transform: scale(1.02);
+        transition: all 0.1s;
+    }
+</style>
+
+<script>
+    const marketId = '{{ $marketId ?? "1.250636959" }}';
+    const eventId = '{{ $eventId ?? "34872738" }}';
+    const timeCode = '';
+
+    const CommentrySignalR = 1;
+    const SsocketEnable = 1;
+    const CatalogSignalR = 0; //1;
+</script>
+<script src="/js/unreal_html5_player_script_v2.js?00001"></script>
+
+<div id="MarketView"><div class="text-center mt-10" style="display: none;"><img src="/img/loadinggif.gif" alt="Loading..."></div> <div id="loadedmarkettoshow" class="row" style=""><div class="col-lg-8"><div class="left-content"><div class="table-wrap"><div class="table-box-header"><div class="row no-gutters"><div class="col-md-auto"><div class="box-main-icon"><img src="/img/v2/cricket.svg" alt="Box Icon"></div></div> <div class="col-md"><div class="tb-top-text"><p><img src="/img/v2/clock-green.svg"> <span class="green-upper-text">{{ ($inPlay ?? false) ? 'InPlay' : 'Upcoming' }}</span> <span class="black-light-text" id="matchTimeDisplay">Loading...</span> <span class="black-light-text"> | Winners: 1</span></p> <h4 class="event-title">{{ $eventName ?? 'Match' }}</h4> <p><span class="medium-black" id="elapsedTimeDisplay">Elapsed : --:--:--</span></p><div id="DisplayOnBox" class="form-group form-check pull-right"><input type="checkbox" id="IsDisplayOn" class="form-check-input"> <label for="IsDisplayOn" class="form-check-label">Keep Display On</label></div> <p></p></div></div></div>
+<script>
+    var marketStartTimeISO = '{{ $marketStartTime ?? '' }}';
+    var isInPlay = {{ ($inPlay ?? false) ? 'true' : 'false' }};
+</script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
+                                ALL
+                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <!----> <!----> <!----> </div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
+                    (MaxBet: 200K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners">
+@php
+    $runners = $runners ?? [];
+    $odds = $odds ?? [];
+@endphp
+@if(count($runners) > 0)
+    @foreach($runners as $runner)
+        @php
+            $runnerId = $runner['selectionId'] ?? $runner['id'] ?? 0;
+            $runnerName = $runner['runnerName'] ?? $runner['name'] ?? 'Unknown';
+            $runnerOdds = collect($odds)->firstWhere('selectionId', $runnerId) ?? [];
+            $backPrices = $runnerOdds['ex']['availableToBack'] ?? [];
+            $layPrices = $runnerOdds['ex']['availableToLay'] ?? [];
+        @endphp
+        <div id="runner-{{ $runnerId }}" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
+                        {{ $runnerName }}
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3> <a id="B3-{{ $runnerId }}" role="button" class="price-price price-back"><span class="price-odd">{{ $backPrices[2]['price'] ?? '-' }}</span> <span class="price-amount">{{ isset($backPrices[2]['size']) ? number_format($backPrices[2]['size']) : '' }}</span></a> <a id="B2-{{ $runnerId }}" class="price-price price-back"><span class="price-odd">{{ $backPrices[1]['price'] ?? '-' }}</span> <span class="price-amount">{{ isset($backPrices[1]['size']) ? number_format($backPrices[1]['size']) : '' }}</span></a> <a id="B1-{{ $runnerId }}" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">{{ $backPrices[0]['price'] ?? '-' }}</span> <span class="price-amount">{{ isset($backPrices[0]['size']) ? number_format($backPrices[0]['size']) : '' }}</span></a> <a id="L1-{{ $runnerId }}" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">{{ $layPrices[0]['price'] ?? '-' }}</span> <span class="price-amount">{{ isset($layPrices[0]['size']) ? number_format($layPrices[0]['size']) : '' }}</span></a> <a class="price-price price-lay"><span class="price-odd">{{ $layPrices[1]['price'] ?? '-' }}</span> <span class="price-amount">{{ isset($layPrices[1]['size']) ? number_format($layPrices[1]['size']) : '' }}</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">{{ $layPrices[2]['price'] ?? '-' }}</span> <span class="price-amount">{{ isset($layPrices[2]['size']) ? number_format($layPrices[2]['size']) : '' }}</span></a></div>
+    @endforeach
+@else
+    <div class="runner-runner"><h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">No runners available</h4></span></div></h3></div>
+@endif
+</div></div> <!----> <!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
+                    (MaxBet: 1M)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners"><div id="runner-989523" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Bangladesh
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <a id="B3-989523" role="button" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B2-989523" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B1-989523" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.0125</span> <span class="price-amount">100</span></a> <a id="L1-989523" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.02</span> <span class="price-amount">100</span></a> <a class="price-price price-lay"><span class="price-odd"></span> <span class="price-amount"></span></a> <a class="price-price price-lay mr-4"><span class="price-odd"></span> <span class="price-amount"></span></a></div><div id="runner-839387" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Ireland
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div><div id="runner-147882" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        The Draw
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div> <!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
+                    (MaxBet: 20K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div id="market-9.20530814"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        2nd Innings Run IRE
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530781"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Curtis Campher Boundaries 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530780"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Curtis Campher Runs 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530811"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Fall of 6th Wkt IRE 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530813"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Stephen Doheny Boundaries 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530812"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Stephen Doheny Runs 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div></div>   <!----></div></div></div></div> <!----> <div id="BM" class="tabcontent"><div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
+                    (MaxBet: 1M)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners"><div id="runner-989523" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Bangladesh
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <a id="B3-989523" role="button" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B2-989523" class="price-price price-back"><span class="price-odd"></span> <span class="price-amount"></span></a> <a id="B1-989523" class="price-price price-back mb-show"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.0125</span> <span class="price-amount">100</span></a> <a id="L1-989523" class="price-price price-lay ml-4 mb-show"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.02</span> <span class="price-amount">100</span></a> <a class="price-price price-lay"><span class="price-odd"></span> <span class="price-amount"></span></a> <a class="price-price price-lay mr-4"><span class="price-odd"></span> <span class="price-amount"></span></a></div><div id="runner-839387" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Ireland
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div><div id="runner-147882" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        The Draw
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div></div> <!----> <div id="Fancy2" class="tabcontent"><div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
+                    (MaxBet: 20K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div id="market-9.20530814"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        2nd Innings Run IRE
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530781"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Curtis Campher Boundaries 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530780"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Curtis Campher Runs 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530811"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Fall of 6th Wkt IRE 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530813"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Stephen Doheny Boundaries 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div><div id="market-9.20530812"><div class="market-runners"><div id="runner-1" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Stephen Doheny Runs 2
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <span>
+                    &nbsp;&nbsp;<a href="#">Book</a></span></div></h3> <div><div class="runner-disabled">
+                SUSPENDED
+            </div></div></div></div></div></div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px;"><iframe id="livesc" src="https://score.akamaized.uk/?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
+    <strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong>
+    <div class="betting-table">
+        <table class="table">
+            <thead>
+                <tr><th>Bet for</th><th>Odds</th><th>Stake</th><th>Profit</th></tr>
+            </thead>
+            <tbody>
+                <tr id="betSlipRow" class="back">
+                    <td id="betRunnerName">-</td>
+                    <td width="10%">
+                        <div class="quantity">
+                            <input type="text" id="bet-price" readonly>
+                            <div class="quantity-nav">
+                                <div class="quantity-button quantity-up" onclick="adjustOdds(0.01)"><span class="fa fa-caret-up"></span></div>
+                                <div class="quantity-button quantity-down" onclick="adjustOdds(-0.01)"><span class="fa fa-caret-down"></span></div>
                             </div>
                         </div>
-                    </div>
+                    </td>
+                    <td width="10%">
+                        <div class="stake"><input type="text" id="bet-size" oninput="calculateProfit()"></div>
+                    </td>
+                    <td id="betProfitDisplay">0 / 0</td>
+                </tr>
+                <tr id="betSlipRow2" class="back">
+                    <td colspan="5">
+                        <table class="table">
+                            <tbody>
+                                <tr class="checknow">
+                                    <td><span data-amount="2000" class="points stake-btn" onclick="setStake(2000)">2,000</span></td>
+                                    <td><span data-amount="5000" class="points stake-btn" onclick="setStake(5000)">5,000</span></td>
+                                    <td><span data-amount="10000" class="points stake-btn" onclick="setStake(10000)">10,000</span></td>
+                                    <td><span data-amount="25000" class="points stake-btn" onclick="setStake(25000)">25,000</span></td>
+                                </tr>
+                                <tr class="checknow">
+                                    <td><span class="points stake-btn" onclick="addStake(1000)">+ 1,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(5000)">+ 5,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(10000)">+ 10,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(25000)">+ 25,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="align-left btn btn-danger" onclick="closeBetSlip()"><b>Close</b></button></td>
+                                    <td><button type="button" class="align-left btn btn-warning" onclick="clearBetSlip()"><b>Clear</b></button></td>
+                                    <td colspan="1"></td>
+                                    <td><div class="btn btn-primary ld-over" style="cursor: pointer;" onclick="submitBet()"><b>Submit</b><div class="ld ld-ball ld-flip"></div></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                2,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                5,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                10,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                25,000
+                            </button></td></tr> <tr><td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +1,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +5,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +10,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +25,000
+                            </button></td></tr> <tr><td><button type="button" data-dismiss="modal" class="btn btn-danger mt-2" style="touch-action: manipulation;">
+                                Close
+                            </button></td> <td colspan="2"><div class="btn btn-primary ld-over mt-2" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div> <span> / -</span></td></tr> <tr style="display: none;"><td colspan="4" class="alert-danger pr-5"></td></tr></tbody></table></div></div></div></div> <div class="bets"><strong>
+        Open Bets (0)
+        <img src="/img/reconnecting.gif" alt="dc" class="rounded disconnected" style="display: none;"> <!----> <!----></strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th> <th></th></tr></thead> <tbody></tbody></table></div></div> <div class="bets"><strong>Matched Bets (0)</strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th></tr></thead> <tbody></tbody></table></div></div> <div style="margin-top: 7px;"><strong class="RM_In_Markets" style="display: block; background: rgb(43, 47, 53); color: rgb(255, 255, 255); padding: 10px;">Related Events</strong> <div><table class="table compact" style="margin-bottom: 0px;"><tbody><tr id="m_1_250636959" onclick="window.location='/Common/Market?id=1.250636959';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">8:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T03:30:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    India v South Africa
+                                </div></td></tr> <tr id="m_1_250776463" onclick="window.location='/Common/Market?id=1.250776463';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">14:50</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T09:50:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Perth Scorchers W v Adelaide Strikers W
+                                </div></td></tr> <tr id="m_1_250836685" onclick="window.location='/Common/Market?id=1.250836685';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">16:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T11:30:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Aspin Stallions v Vista Riders
+                                </div></td></tr> <tr id="m_1_250777438" onclick="window.location='/Common/Market?id=1.250777438';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">18:00</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T13:00:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Pakistan v Sri Lanka
+                                </div></td></tr> <tr id="m_1_250840894" onclick="window.location='/Common/Market?id=1.250840894';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">18:45</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T13:45:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Northern Warriors v Deccan Gladiators
+                                </div></td></tr></tbody></table></div></div></div></div></div></div> <div id="fancyPosition" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title"></h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="fancypos-body" class="modal-body"><table class="table"><tbody><tr><th>Score</th> <th>Position</th></tr> </tbody></table></div> <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button></div></div></div></div> <div id="modalRules" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title">Market Rules</h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="rules-box" class="modal-body"></div></div></div></div></div></div>
+
+
+                </div>
+                </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <b>Protection of minors</b>
+                    <br>
+                    <p> It is illegal for anybody under the age of 18 to gamble. </p>
+                    <br>
+                    <p>Our site has strict policies and verification measures to prevent access to minors.</p>
+                    <br>
+                    <p>We encourage parents consider the use of internet use protection tools. You may find the
+                        following links useful. </p>
+                    <br>
+                    <a href="https://www.cyberpatrol.com/" target="_blank" style="color:mediumspringgreen">
+                        Cyberpatrol</a>
+                    <br>
+                    <a href="https://www.cybersitter.com/" target="_blank" style="color:mediumspringgreen"> Cybersitter
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
-@endsection
 
-@push('scripts')
-<script>
-    var currentBetData = null;
-    var previousOdds = {};
-    var allMarketData = {};
-    
-    function SHOWTV() {
-        document.getElementById('TVDIVIFRAME').style.display = 'block';
-        document.getElementById('LIVEDIV').style.display = 'none';
-    }
-    
-    function SHOWLIVE() {
-        document.getElementById('TVDIVIFRAME').style.display = 'none';
-        document.getElementById('LIVEDIV').style.display = 'block';
-    }
-    
-    function MarketTab(tabName) {
-        var tabcontent = document.getElementsByClassName("tabcontent");
-        for (var i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        var tablinks = document.getElementsByClassName("tablink");
-        for (var i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-        document.getElementById(tabName).style.display = "block";
-        document.getElementById(tabName + "tab").classList.add("active");
-    }
-    
-    function formatAmount(size) {
-        if (!size) return '';
-        if (size >= 1000000) return (size / 1000000).toFixed(1) + 'M';
-        if (size >= 1000) return (size / 1000).toFixed(1) + 'K';
-        return Math.round(size).toString();
-    }
-    
-    function createMarketSection(title, maxBet, mktId, runners, showBook = false) {
-        let html = `
-            <div class="market-titlebar">
-                <p class="market-name">
-                    <span class="market-name-badge">
-                        <i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i>
-                        <span>${title} </span>
-                        <span style="text-transform: initial;">(MaxBet: ${maxBet})</span>
-                    </span>
-                    <span class="rules-badge"><i class="fa fa-info-circle"></i></span>
-                </p>
-                <div class="market-overarround"><span></span><strong>Back</strong></div>
-                <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div>
-            </div>
-            <div class="market-runners">
-        `;
-        
-        runners.forEach(runner => {
-            const runnerId = runner.id;
-            const runnerName = runner.name || 'Runner';
-            const status = runner.status;
-            const isSuspended = status === 'SUSPENDED' || (!runner.price1 && !runner.lay1);
+    </div> <!-- end main-page -->
+
+    <footer id="sticky-footer" class="py-1 bg-dark text-white-50 Bl_NT_SF">
+        <div class="col-12 container" style="background-color:#4dbd74; height:6px; margin-top:-4px;">
+        </div>
+        <div class="container text-center">
+            <center>
+
+                <style>
+                    p {
+                        font-size: 12px;
+                        color: white;
+                    }
+
+                    .caoimg {
+                        max-width: 60px;
+                    }
+
+                    .bffooter {
+                        width: 135px;
+                        height: 30px;
+                    }
+
+                    .curasaoLinks {
+                        pointer-events: none;
+                        cursor: default;
+                        margin-top: 10px;
+                    }
+
+                    @media screen and (max-width: 635px) {
+                        .caoimg {
+                            max-width: 40px;
+                        }
+
+                        .bffooter {
+                            width: 100px;
+                            height: 30px;
+                        }
+                    }
+                </style>
+
+
+                <div class="curasaoLinks row" style="display:inline-flex;" id="curacaodiv">
+                    <hr>
+                    <div class="col-sm-12 col-md-4"></div>
+                    <div class="col-md-4"></div>
+                </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", (event) => {
+                        document.querySelector('#curacaodiv').insertAdjacentHTML(
+                            'afterbegin',
+                            `<hr>
+                <div class="col-sm-12 col-md-4"></div>
+                <div class="col-md-4"></div>`);
+                    });
+                </script>
+
+            </center>
+
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+    <script type="text/javascript" src="/dist/bundle0a.js?11700"></script>
+
+    <script>
+        const token = getCookie('wexscktoken');
+        const sess = getCookie('wex3authtoken');
+        const reft = getCookie('wex3reftoken');
+    </script>
+
+
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fetchWallet();
+            fetchHighlights();
+            setInterval(fetchHighlights, 60000);
+
+            isPWCRequired();
+            showWelcomeBanner();
+
+            $(".page_loader").hide();
             
-            html += `
-                <div id="runner-${mktId}-${runnerId}" class="runner-runner">
-                    <span class="selector ml-2" style="display: none;"></span>
-                    <img class="ml-2" style="display: none;">
-                    <h3 class="runner-name">
-                        <div class="runner-info">
-                            <span class="clippable runner-display-name">
-                                <h4 class="clippable-spacer">${runnerName}</h4>
-                            </span>
-                        </div>
-                        <div class="runner-position">
-                            <span><span class="position-minus"><strong></strong></span></span>
-                            <span class="ml-1" style="font-weight: normal;"></span>
-                            ${showBook ? '<span>&nbsp;&nbsp;<a href="#">Book</a></span>' : ''}
-                        </div>
-                    </h3>
-            `;
+            // Hide preloader
+            const preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.style.display = 'none', 300);
+            }
             
-            if (isSuspended) {
-                html += `<div><div class="runner-disabled">SUSPENDED</div></div>`;
-            } else {
-                html += `
-                    <a id="B3-${mktId}-${runnerId}" role="button" class="price-price price-back" onclick="openBetSlip('${runnerName}', ${runner.price3 || 0}, 'back', '${mktId}', '${runnerId}', '${title}')">
-                        <span class="price-odd">${runner.price3 || ''}</span>
-                        <span class="price-amount">${formatAmount(runner.size3)}</span>
-                    </a>
-                    <a id="B2-${mktId}-${runnerId}" class="price-price price-back" onclick="openBetSlip('${runnerName}', ${runner.price2 || 0}, 'back', '${mktId}', '${runnerId}', '${title}')">
-                        <span class="price-odd">${runner.price2 || ''}</span>
-                        <span class="price-amount">${formatAmount(runner.size2)}</span>
-                    </a>
-                    <a id="B1-${mktId}-${runnerId}" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);" onclick="openBetSlip('${runnerName}', ${runner.price1 || 0}, 'back', '${mktId}', '${runnerId}', '${title}')">
-                        <span class="price-odd">${runner.price1 || ''}</span>
-                        <span class="price-amount">${formatAmount(runner.size1)}</span>
-                    </a>
-                    <a id="L1-${mktId}-${runnerId}" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);" onclick="openBetSlip('${runnerName}', ${runner.lay1 || 0}, 'lay', '${mktId}', '${runnerId}', '${title}')">
-                        <span class="price-odd">${runner.lay1 || ''}</span>
-                        <span class="price-amount">${formatAmount(runner.ls1)}</span>
-                    </a>
-                    <a id="L2-${mktId}-${runnerId}" class="price-price price-lay" onclick="openBetSlip('${runnerName}', ${runner.lay2 || 0}, 'lay', '${mktId}', '${runnerId}', '${title}')">
-                        <span class="price-odd">${runner.lay2 || ''}</span>
-                        <span class="price-amount">${formatAmount(runner.ls2)}</span>
-                    </a>
-                    <a id="L3-${mktId}-${runnerId}" class="price-price price-lay mr-4" onclick="openBetSlip('${runnerName}', ${runner.lay3 || 0}, 'lay', '${mktId}', '${runnerId}', '${title}')">
-                        <span class="price-odd">${runner.lay3 || ''}</span>
-                        <span class="price-amount">${formatAmount(runner.ls3)}</span>
-                    </a>
+            // Only hide horsenhound if it exists (homepage only)
+            const horsenhound = document.getElementById("horsenhound");
+            if (horsenhound) {
+                horsenhound.classList.remove("d-none");
+            }
+
+            $(".games_slider").slick({
+                arrows: false,
+                autoplay: true,
+                infinite: true,
+                slidesToShow: 8,
+                slidesToScroll: 1,
+                swipeToSlide: true,
+                touchThreshold: 100,
+                waitForAnimate: false,
+                responsive: [
+                    {
+                        breakpoint: 1800,
+                        settings: {
+                            slidesToShow: 6,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1500,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 700,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $("#modalCasinoToS").on('hidden.bs.modal', function (event) {
+                showNewsFlash();
+            });
+        });
+
+        function AcceptPassword() {
+            var newpass = document.getElementById("Newpasswordmodal").value;
+            $.ajax({
+                type: "GET",
+                url: "/Customer/Profile?handler=UpdatePassword&NewPassword=" + newpass,
+                success: function (result) {
+                    if (result == 'PCS') {
+                        $('#modalPasswordChange').modal('hide');;
+                        $('#modalRedirectToLogout').modal('show');;
+                    } else {
+                        $('#alertmodaltitle').html(result);
+                    }
+                },
+                error: function (exception) {
+                    location.reload();
+                }
+            });
+        }
+
+        function ReLogin() {
+            document.getElementById('logout-form').submit();
+        }
+
+        function formatOdds(value) {
+            return value && value > 0 ? value : '';
+        }
+
+        function formatMatched(value) {
+            if (!value || value === 0) return '';
+            if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+            if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
+            return value.toLocaleString();
+        }
+
+        function formatSize(value) {
+            if (!value || value === 0) return '-';
+            if (value >= 1000) {
+                return (value / 1000).toFixed(2) + 'k';
+            }
+            return value.toLocaleString();
+        }
+
+        function populateAllTables(allCricket, allSoccer, allTennis, cricketInplay, soccerInplay, tennisInplay) {
+            const tabContents = document.querySelectorAll('.tabcontent');
+            
+            tabContents.forEach((tabContent, index) => {
+                const tables = tabContent.querySelectorAll('.high_lights table tbody');
+                
+                let cricketData = [];
+                let soccerData = [];
+                let tennisData = [];
+                
+                if (index === 0) {
+                    cricketData = cricketInplay;
+                    soccerData = soccerInplay;
+                    tennisData = tennisInplay;
+                } else if (index === 1) {
+                    cricketData = allCricket;
+                    soccerData = [];
+                    tennisData = [];
+                } else if (index === 2) {
+                    cricketData = [];
+                    soccerData = [];
+                    tennisData = allTennis;
+                } else if (index === 3) {
+                    cricketData = [];
+                    soccerData = allSoccer;
+                    tennisData = [];
+                }
+                
+                populateTables(tables, cricketData, soccerData, tennisData, index);
+            });
+        }
+
+        function populateTables(tables, cricketMatches, soccerMatches, tennisMatches, tabIndex) {
+            
+            if (tabIndex === 0) {
+                if (tables[0]) {
+                    tables[0].innerHTML = cricketMatches.map(match => {
+                    const r1 = match.runners && match.runners[0] || {};
+                    const r2 = match.runners && match.runners[2] || {};
+                    const r3 = match.runners && match.runners[1] || {};
+                    const r1Back = formatOdds(r1.back);
+                    const r1Lay = formatOdds(r1.lay);
+                    const r2Back = formatOdds(r2.back);
+                    const r2Lay = formatOdds(r2.lay);
+                    const r3Back = formatOdds(r3.back);
+                    const r3Lay = formatOdds(r3.lay);
+                    
+                    return `
+                        <tr class="McomCustom">
+                            <td colspan="2">
+                                <div class="teams">
+                                    <strong class="team-1">
+                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                    </strong>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matched">
+                                    <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                    <strong>${r1Back || ' '}</strong>
+                                    <span>${formatSize(r1.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                    <strong>${r1Lay || ' '}</strong>
+                                    <span>${formatSize(r1.laySize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                    <strong>${r2Back || ' '}</strong>
+                                    <span>${formatSize(r2.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                    <strong>${r2Lay || ' '}</strong>
+                                    <span>${formatSize(r2.laySize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                    <strong>${r3Back || ' '}</strong>
+                                    <span>${formatSize(r3.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                    <strong>${r3Lay || ' '}</strong>
+                                    <span>${formatSize(r3.laySize)}</span>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-info-circle"></i></a>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                }
+                
+                if (tables[1]) {
+                    tables[1].innerHTML = soccerMatches.map(match => {
+                    const r1 = match.runners && match.runners[0] || {};
+                    const r2 = match.runners && match.runners[1] || {};
+                    const r3 = match.runners && match.runners[2] || {};
+                    const r1Back = formatOdds(r1.back);
+                    const r1Lay = formatOdds(r1.lay);
+                    const r2Back = formatOdds(r2.back);
+                    const r2Lay = formatOdds(r2.lay);
+                    const r3Back = formatOdds(r3.back);
+                    const r3Lay = formatOdds(r3.lay);
+                    
+                    return `
+                        <tr class="McomCustom">
+                            <td colspan="2">
+                                <div class="teams">
+                                    <strong class="team-1">
+                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                    </strong>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matched">
+                                    <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                    <strong>${r1Back || ' '}</strong>
+                                    <span>${formatSize(r1.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                    <strong>${r1Lay || ' '}</strong>
+                                    <span>${formatSize(r1.laySize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                    <strong>${r2Back || ' '}</strong>
+                                    <span>${formatSize(r2.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                    <strong>${r2Lay || ' '}</strong>
+                                    <span>${formatSize(r2.laySize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                    <strong>${r3Back || ' '}</strong>
+                                    <span>${formatSize(r3.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                    <strong>${r3Lay || ' '}</strong>
+                                    <span>${formatSize(r3.laySize)}</span>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-info-circle"></i></a>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                }
+                
+                if (tables[2]) {
+                    tables[2].innerHTML = tennisMatches.map(match => {
+                    const r1 = match.runners && match.runners[0] || {};
+                    const r2 = match.runners && match.runners[1] || {};
+                    const r1Back = formatOdds(r1.back);
+                    const r1Lay = formatOdds(r1.lay);
+                    const r2Back = formatOdds(r2.back);
+                    const r2Lay = formatOdds(r2.lay);
+                    
+                    return `
+                        <tr class="McomCustom">
+                            <td colspan="2">
+                                <div class="teams">
+                                    <strong class="team-1">
+                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                    </strong>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matched">
+                                    <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                    <strong>${r1Back || ' '}</strong>
+                                    <span>${formatSize(r1.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                    <strong>${r1Lay || ' '}</strong>
+                                    <span>${formatSize(r1.laySize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue m-left -empty_blue">
+                                    <strong> </strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink m-right -empty_pink">
+                                    <strong> </strong>
+                                    <span>-</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                    <strong>${r2Back || ' '}</strong>
+                                    <span>${formatSize(r2.backSize)}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                    <strong>${r2Lay || ' '}</strong>
+                                    <span>${formatSize(r2.laySize)}</span>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-info-circle"></i></a>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                }
+            } else if (tabIndex === 1) {
+                if (tables[0]) {
+                    tables[0].innerHTML = cricketMatches.map(match => {
+                        const r1 = match.runners && match.runners[0] || {};
+                        const r2 = match.runners && match.runners[2] || {};
+                        const r3 = match.runners && match.runners[1] || {};
+                        const r1Back = formatOdds(r1.back);
+                        const r1Lay = formatOdds(r1.lay);
+                        const r2Back = formatOdds(r2.back);
+                        const r2Lay = formatOdds(r2.lay);
+                        const r3Back = formatOdds(r3.back);
+                        const r3Lay = formatOdds(r3.lay);
+                        
+                        return `
+                            <tr class="McomCustom">
+                                <td colspan="2">
+                                    <div class="teams">
+                                        <strong class="team-1">
+                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="matched">
+                                        <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                        <strong>${r1Back || ' '}</strong>
+                                        <span>${formatSize(r1.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                        <strong>${r1Lay || ' '}</strong>
+                                        <span>${formatSize(r1.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                        <strong>${r2Back || ' '}</strong>
+                                        <span>${formatSize(r2.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                        <strong>${r2Lay || ' '}</strong>
+                                        <span>${formatSize(r2.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                        <strong>${r3Back || ' '}</strong>
+                                        <span>${formatSize(r3.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                        <strong>${r3Lay || ' '}</strong>
+                                        <span>${formatSize(r3.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a href="#"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } else if (tabIndex === 2) {
+                if (tables[0]) {
+                    tables[0].innerHTML = tennisMatches.map(match => {
+                        const r1 = match.runners && match.runners[0] || {};
+                        const r2 = match.runners && match.runners[1] || {};
+                        const r1Back = formatOdds(r1.back);
+                        const r1Lay = formatOdds(r1.lay);
+                        const r2Back = formatOdds(r2.back);
+                        const r2Lay = formatOdds(r2.lay);
+                        
+                        return `
+                            <tr class="McomCustom">
+                                <td colspan="2">
+                                    <div class="teams">
+                                        <strong class="team-1">
+                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="matched">
+                                        <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                        <strong>${r1Back || ' '}</strong>
+                                        <span>${formatSize(r1.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                        <strong>${r1Lay || ' '}</strong>
+                                        <span>${formatSize(r1.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue m-left -empty_blue">
+                                        <strong> </strong>
+                                        <span>-</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink m-right -empty_pink">
+                                        <strong> </strong>
+                                        <span>-</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                        <strong>${r2Back || ' '}</strong>
+                                        <span>${formatSize(r2.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                        <strong>${r2Lay || ' '}</strong>
+                                        <span>${formatSize(r2.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a href="#"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } else if (tabIndex === 3) {
+                if (tables[0]) {
+                    tables[0].innerHTML = soccerMatches.map(match => {
+                        const r1 = match.runners && match.runners[0] || {};
+                        const r2 = match.runners && match.runners[1] || {};
+                        const r3 = match.runners && match.runners[2] || {};
+                        const r1Back = formatOdds(r1.back);
+                        const r1Lay = formatOdds(r1.lay);
+                        const r2Back = formatOdds(r2.back);
+                        const r2Lay = formatOdds(r2.lay);
+                        const r3Back = formatOdds(r3.back);
+                        const r3Lay = formatOdds(r3.lay);
+                        
+                        return `
+                            <tr class="McomCustom">
+                                <td colspan="2">
+                                    <div class="teams">
+                                        <strong class="team-1">
+                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="matched">
+                                        <span class="TMFORDESK">${formatMatched(match.totalMatched)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r1Back ? '' : '-empty_blue'}">
+                                        <strong>${r1Back || ' '}</strong>
+                                        <span>${formatSize(r1.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r1Lay ? '' : '-empty_pink'}">
+                                        <strong>${r1Lay || ' '}</strong>
+                                        <span>${formatSize(r1.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r2Back ? '' : '-empty_blue'}">
+                                        <strong>${r2Back || ' '}</strong>
+                                        <span>${formatSize(r2.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r2Lay ? '' : '-empty_pink'}">
+                                        <strong>${r2Lay || ' '}</strong>
+                                        <span>${formatSize(r2.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -blue ${r3Back ? '' : '-empty_blue'}">
+                                        <strong>${r3Back || ' '}</strong>
+                                        <span>${formatSize(r3.backSize)}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="box -pink ${r3Lay ? '' : '-empty_pink'}">
+                                        <strong>${r3Lay || ' '}</strong>
+                                        <span>${formatSize(r3.laySize)}</span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a href="#"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            }
+        }
+
+        function populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches) {
+            const cricketMenu = document.getElementById('sidebar-cricket-menu');
+            const soccerMenu = document.getElementById('sidebar-soccer-menu');
+            const tennisMenu = document.getElementById('sidebar-tennis-menu');
+            
+            // Populate Cricket sidebar (limit to 10 matches)
+            if (cricketMenu && cricketMatches.length > 0) {
+                const cricketItems = cricketMatches.slice(0, 10).map(match => 
+                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                ).join('');
+                cricketMenu.innerHTML = `
+                    <li><a href="/cricket"><strong>All Cricket</strong></a></li>
+                    <li class="divider"></li>
+                    ${cricketItems}
+                `;
+            } else if (cricketMenu) {
+                cricketMenu.innerHTML = `
+                    <li><a href="/cricket"><strong>All Cricket</strong></a></li>
+                    <li class="divider"></li>
+                    <li class="text-center"><small>No matches available</small></li>
                 `;
             }
             
-            html += `</div>`;
-        });
-        
-        html += `</div>`;
-        return html;
-    }
-    
-    function createFancyMarket(mktId, runner) {
-        const runnerName = runner.name || 'Session';
-        const status = runner.status;
-        const isSuspended = status === 'SUSPENDED' || (!runner.price1 && !runner.lay1);
-        
-        let html = `
-            <div id="market-${mktId}">
-                <div class="market-runners">
-                    <div id="runner-${mktId}-1" class="runner-runner">
-                        <span class="selector ml-2" style="display: none;"></span>
-                        <img class="ml-2" style="display: none;">
-                        <h3 class="runner-name">
-                            <div class="runner-info">
-                                <span class="clippable runner-display-name">
-                                    <h4 class="clippable-spacer">${runnerName}</h4>
-                                </span>
-                            </div>
-                            <div class="runner-position">
-                                <span><span class="position-minus"><strong></strong></span></span>
-                                <span class="ml-1" style="font-weight: normal;"></span>
-                                <span>&nbsp;&nbsp;<a href="#">Book</a></span>
-                            </div>
-                        </h3>
-        `;
-        
-        if (isSuspended) {
-            html += `<div><div class="runner-disabled">SUSPENDED</div></div>`;
-        } else {
-            html += `
-                <a id="B3-${mktId}-1" role="button" class="price-price price-back"><span class="price-odd"></span><span class="price-amount"></span></a>
-                <a id="B2-${mktId}-1" class="price-price price-back"><span class="price-odd"></span><span class="price-amount"></span></a>
-                <a id="B1-${mktId}-1" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);" onclick="openBetSlip('${runnerName}', ${runner.price1 || 0}, 'back', '${mktId}', '1', 'Fancy')">
-                    <span class="price-odd">${runner.price1 || ''}</span>
-                    <span class="price-amount">${formatAmount(runner.size1)}</span>
-                </a>
-                <a id="L1-${mktId}-1" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);" onclick="openBetSlip('${runnerName}', ${runner.lay1 || 0}, 'lay', '${mktId}', '1', 'Fancy')">
-                    <span class="price-odd">${runner.lay1 || ''}</span>
-                    <span class="price-amount">${formatAmount(runner.ls1)}</span>
-                </a>
-                <a class="price-price price-lay"><span class="price-odd"></span><span class="price-amount"></span></a>
-                <a class="price-price price-lay mr-4"><span class="price-odd"></span><span class="price-amount"></span></a>
-            `;
-        }
-        
-        html += `</div></div></div>`;
-        return html;
-    }
-    
-    function createFigureSection(title, maxBet, figures) {
-        let html = `
-            <div class="tb-content">
-                <div class="market-titlebar">
-                    <p class="market-name">
-                        <span class="market-name-badge">
-                            <i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i>
-                            <span>${title} </span>
-                            <span style="text-transform: initial;">(MaxBet: ${maxBet})</span>
-                        </span>
-                        <span class="rules-badge"><i class="fa fa-info-circle"></i></span>
-                    </p>
-                </div>
-                <div>
-                    <div class="card" style="padding: 1px 18px;">
-                        <div class="row">
-                            <div class="col-3 col-lg-4 mobilehide"></div>
-        `;
-        
-        for (let i = 0; i <= 9; i++) {
-            const figData = figures[i] || { odd: i, amount: '8.85' };
-            html += `
-                <div class="col customcheck" style="text-align: center; border: 1px solid black;" onclick="openFigureBet('${title}', ${i}, ${figData.amount || 8.85})">
-                    <div id="fig-${i}">
-                        <b><span class="priceodd">${i}</span><br></b>
-                        <span class="priceamount">${figData.amount || '8.85'}</span><br>
-                        <hr style="margin: 0px;">
-                        <div style="background-color: rgb(233, 246, 252);">
-                            <span class="positioncustom" style="color: red;"><strong></strong></span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        html += `
-                            <div class="col-3 col-lg-4 mobilehide"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        return html;
-    }
-    
-    function updateScoreboard(scoreboard) {
-        if (!scoreboard) return;
-        
-        document.getElementById('team1-name').textContent = scoreboard.team1 || 'Team 1';
-        document.getElementById('team1-score').textContent = `${scoreboard.t1_runs || 0}/${scoreboard.t1_wickets || 0} (${scoreboard.t1_overs || 0})`;
-        document.getElementById('team1-crr').textContent = `CRR: ${scoreboard.t1_crr || 0}`;
-        document.getElementById('ball-commentary').textContent = scoreboard.commentry || 'Ball Chaloo!!';
-        document.getElementById('this-over-display').textContent = `This Over : ${scoreboard.recent_string || '-'}`;
-    }
-    
-    function processMarkets(data) {
-        const marketBooks = data.marketBooks || [];
-        allMarketData = {};
-        
-        let matchOddsHtml = '';
-        let bookmakerHtml = '';
-        let fancy2Html = '';
-        let completedMatchHtml = '';
-        let tiedMatchHtml = '';
-        let figureHtml = '';
-        let oddEvenHtml = '';
-        
-        marketBooks.forEach(market => {
-            const mktId = market.id;
-            const runners = market.runners || [];
-            allMarketData[mktId] = market;
+            // Populate Soccer sidebar (limit to 10 matches)
+            if (soccerMenu && soccerMatches.length > 0) {
+                const soccerItems = soccerMatches.slice(0, 10).map(match => 
+                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                ).join('');
+                soccerMenu.innerHTML = `
+                    <li><a href="/soccer"><strong>All Soccer</strong></a></li>
+                    <li class="divider"></li>
+                    ${soccerItems}
+                `;
+            } else if (soccerMenu) {
+                soccerMenu.innerHTML = `
+                    <li><a href="/soccer"><strong>All Soccer</strong></a></li>
+                    <li class="divider"></li>
+                    <li class="text-center"><small>No matches available</small></li>
+                `;
+            }
             
-            if (mktId === marketId) {
-                const runnerNames = runners.map(r => ({...r, name: r.name || getRunnerName(r.id)}));
-                matchOddsHtml = createMarketSection('Match Odds', '200K', mktId, runnerNames);
-            } else if (mktId.startsWith('9.')) {
-                if (runners.length > 0) {
-                    const runner = runners[0];
-                    if (runner.name) {
-                        fancy2Html += createFancyMarket(mktId, runner);
+            // Populate Tennis sidebar (limit to 10 matches)
+            if (tennisMenu && tennisMatches.length > 0) {
+                const tennisItems = tennisMatches.slice(0, 10).map(match => 
+                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                ).join('');
+                tennisMenu.innerHTML = `
+                    <li><a href="/tennis"><strong>All Tennis</strong></a></li>
+                    <li class="divider"></li>
+                    ${tennisItems}
+                `;
+            } else if (tennisMenu) {
+                tennisMenu.innerHTML = `
+                    <li><a href="/tennis"><strong>All Tennis</strong></a></li>
+                    <li class="divider"></li>
+                    <li class="text-center"><small>No matches available</small></li>
+                `;
+            }
+        }
+
+        function fetchHighlights() {
+            $.ajax({
+                type: "GET",
+                url: "/api/cricket-matches",
+                timeout: 12000,
+                success: function (result) {
+                    if (result) {
+                        const cricketMatches = result.cricket || [];
+                        const soccerMatches = result.soccer || [];
+                        const tennisMatches = result.tennis || [];
+                        
+                        const cricketInplay = cricketMatches.filter(m => m.inplay === true);
+                        const soccerInplay = soccerMatches.filter(m => m.inplay === true);
+                        const tennisInplay = tennisMatches.filter(m => m.inplay === true);
+                        
+                        const totalInplay = cricketInplay.length + soccerInplay.length + tennisInplay.length;
+                        
+                        document.querySelector('#owlitemactive1t div i').textContent = totalInplay;
+                        document.querySelector('#owlitemactive2t div i').textContent = cricketMatches.length;
+                        document.querySelector('#owlitemactive3t div i').textContent = tennisMatches.length;
+                        document.querySelector('#owlitemactive4t div i').textContent = soccerMatches.length;
+                        
+                        populateAllTables(cricketMatches, soccerMatches, tennisMatches, cricketInplay, soccerInplay, tennisInplay);
+                        populateSidebarMenus(cricketMatches, soccerMatches, tennisMatches);
+                        
+                        const preloader = document.getElementById('page-preloader');
+                        if (preloader) {
+                            preloader.style.opacity = '0';
+                            setTimeout(() => preloader.style.display = 'none', 300);
+                        }
+                    }
+                    ActivateTab(LastTab);
+                    convertAllToClientTime();
+                    $(".center").slick({
+                        infinite: false,
+                        slidesToShow: 8,
+                        slidesToScroll: 3,
+                        responsive: [
+                            {
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 3
+                                }
+                            },
+                            {
+                                breakpoint: 600,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
+                                }
+                            },
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 2
+                                }
+                            }
+
+                        ]
+                    });
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+
+                }
+            });
+        };
+
+        function fetchWallet() {
+            $.ajax({
+                type: 'GET',
+                url: '/Customer/Wallet',
+                success: function (result) {
+                    $('#cust-wallet').html(result);
+                }
+            });
+        }
+
+        function convertAllToClientTime() {
+            $('.utctime').each(function (index, el) {
+                try {
+                    convertToClientTime(el);
+                }
+                catch { }
+            });
+        }
+
+        function convertToClientTime(el) {
+            var reqFormat = $(el).data('format');
+            var isoDate = $(el).text().trim();
+
+            var clientDateTime = moment(isoDate).format(reqFormat);
+
+            $(el).prev('.market-time').text(clientDateTime);
+            let dateText = $(el).prev().prev('.day').text().toString();
+
+            if (dateText.toLocaleLowerCase() !== "inplay") {
+                let currentDay = parseInt(moment(new Date()).format("DDDD"));
+                let marketDay = parseInt(moment(isoDate).format("DDDD"));
+                let daysDiff = marketDay - currentDay;
+
+                if (daysDiff == 0) {
+                    dateText = "Today";
+                }
+                else if (daysDiff == 1) {
+                    dateText = "Tomorrow";
+                }
+                else if (daysDiff == -1) {
+                    dateText = "Yesterday";
+                }
+
+                $(el).prev().prev('.day').text(dateText);
+            }
+        }
+
+        var highlightLink = function () {
+            var active = null, colour = 'black';
+            if (this.attachEvent) this.attachEvent('onunload', function () {
+                active = null;
+            });
+            return function (element) {
+                if ((active != element) && element.style) {
+                    if (active) active.style.backgroundColor = '';
+                    element.style.backgroundColor = colour;
+                    active = element;
+                }
+            };
+        }();
+
+        var LastTab = 0;
+
+        function ActivateTab(tab_index) {
+
+            tab_index = parseInt(tab_index);
+            LastTab = tab_index;
+
+            $(".tablinks").removeClass('active');
+            $(".tablinks:eq( " + tab_index + " )").addClass('active');
+
+            $(".tabcontent").hide();
+            $(".tabcontent:eq( " + tab_index + " )").show();
+        }
+
+        function showWelcomeBanner() {
+            let isShowBanner = localStorage.getItem('welcome-banner');
+
+            if (isShowBanner) {
+                $('#modalCasinoToS').modal('show');
+
+                fetchProfile();
+            }
+
+            localStorage.removeItem('welcome-banner');
+        }
+
+        function isPWCRequired() {
+            let isPWC = localStorage.getItem('pwc-req');
+
+            if (isPWC) {
+                $('#modalPasswordChange').modal('show');
+            }
+        }
+
+        function fetchProfile() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/users/profile',
+                success: function (result) {
+                    localStorage.setItem('symbol', result.currencySymbol);
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            pollRefreshToken();
+        });
+
+        if (genSck === 1) {
+            const signalRConnection = new UWS(uwsUrl, token, sess);
+            signalRConnection.connect();
+        }
+        else {
+            pollUserData();
+        }
+    </script>
+    
+    <style>
+        /* Flash animation for odds changes - single flash with same color */
+        @keyframes flashBack {
+            0% { background-color: rgb(80, 180, 220); }
+            100% { background-color: rgb(141, 210, 240); }
+        }
+        @keyframes flashLay {
+            0% { background-color: rgb(250, 120, 130); }
+            100% { background-color: rgb(254, 175, 178); }
+        }
+        .flash-back {
+            animation: flashBack 0.3s ease-out;
+        }
+        .flash-lay {
+            animation: flashLay 0.3s ease-out;
+        }
+    </style>
+    <script>
+        // Real-time Match Odds polling - updates every second
+        var previousOdds = {};
+        
+        function formatAmount(size) {
+            if (!size) return '';
+            if (size >= 1000000) return (size / 1000000).toFixed(1) + 'M';
+            if (size >= 1000) return (size / 1000).toFixed(1) + 'K';
+            return size.toString();
+        }
+        
+        function flashElement(element, isBack) {
+            if (!element) return;
+            element.classList.remove('flash-back', 'flash-lay');
+            void element.offsetWidth; // Trigger reflow to restart animation
+            element.classList.add(isBack ? 'flash-back' : 'flash-lay');
+            setTimeout(() => {
+                element.classList.remove('flash-back', 'flash-lay');
+            }, 500);
+        }
+        
+        function updatePriceWithFlash(element, newPrice, newSize, isBack, key) {
+            if (!element) return;
+            
+            const oldValue = previousOdds[key];
+            const newValue = newPrice + '|' + newSize;
+            
+            if (oldValue && oldValue !== newValue) {
+                flashElement(element, isBack);
+            }
+            
+            previousOdds[key] = newValue;
+            
+            const priceOdd = element.querySelector('.price-odd');
+            const priceAmount = element.querySelector('.price-amount');
+            if (priceOdd) priceOdd.textContent = newPrice || '-';
+            if (priceAmount) priceAmount.textContent = formatAmount(newSize);
+        }
+        
+        function updateMatchOdds() {
+            const currentMarketId = marketId;
+            if (!currentMarketId) return;
+            
+            fetch('/api/prices/' + currentMarketId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error || !data.success) {
+                        console.log('Odds update error:', data.error || 'No data');
+                        return;
+                    }
+                    
+                    const marketBooks = data.data?.marketBooks || [];
+                    
+                    // Process all markets from the response
+                    marketBooks.forEach(market => {
+                        const mktId = market.id;
+                        const runners = market.runners || [];
+                        const isMatchOdds = mktId === currentMarketId;
+                        const isFancy = mktId.startsWith('9.');
+                        
+                        runners.forEach(runner => {
+                            const selectionId = runner.id;
+                            const status = runner.status;
+                            
+                            // For Fancy markets, update the market container
+                            if (isFancy) {
+                                updateFancyMarket(mktId, runner);
+                                return;
+                            }
+                            
+                            // For Match Odds and Bookmaker, update runner prices
+                            // Check for SUSPENDED status
+                            const runnerDivs = document.querySelectorAll('#runner-' + selectionId);
+                            runnerDivs.forEach(runnerDiv => {
+                                if (!runnerDiv) return;
+                                
+                                const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+                                const priceButtons = runnerDiv.querySelectorAll('.price-price');
+                                
+                                if (status === 'SUSPENDED' || !runner.price1) {
+                                    // Show SUSPENDED
+                                    if (!disabledDiv && priceButtons.length > 0) {
+                                        // Hide price buttons and show suspended
+                                        priceButtons.forEach(btn => btn.style.display = 'none');
+                                        const suspendedHtml = '<div class="runner-disabled">SUSPENDED</div>';
+                                        if (!runnerDiv.querySelector('.runner-disabled')) {
+                                            const wrapper = document.createElement('div');
+                                            wrapper.innerHTML = suspendedHtml;
+                                            runnerDiv.appendChild(wrapper.firstChild);
+                                        }
+                                    }
+                                } else {
+                                    // Remove SUSPENDED and show prices
+                                    if (disabledDiv) {
+                                        disabledDiv.parentElement?.remove();
+                                    }
+                                    priceButtons.forEach(btn => btn.style.display = '');
+                                    
+                                    // Update prices
+                                    if (runner.price1) {
+                                        const b1 = runnerDiv.querySelector('[id^="B1-"]');
+                                        if (b1) updatePriceWithFlash(b1, runner.price1, runner.size1, true, 'B1-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.price2) {
+                                        const b2 = runnerDiv.querySelector('[id^="B2-"]');
+                                        if (b2) updatePriceWithFlash(b2, runner.price2, runner.size2, true, 'B2-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.price3) {
+                                        const b3 = runnerDiv.querySelector('[id^="B3-"]');
+                                        if (b3) updatePriceWithFlash(b3, runner.price3, runner.size3, true, 'B3-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.lay1) {
+                                        const l1 = runnerDiv.querySelector('[id^="L1-"]');
+                                        if (l1) updatePriceWithFlash(l1, runner.lay1, runner.ls1, false, 'L1-' + selectionId + '-' + mktId);
+                                    }
+                                    
+                                    // Update additional lay prices
+                                    const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
+                                    if (runner.lay2 && layButtons[0]) {
+                                        updatePriceWithFlash(layButtons[0], runner.lay2, runner.ls2, false, 'L2-' + selectionId + '-' + mktId);
+                                    }
+                                    if (runner.lay3 && layButtons[1]) {
+                                        updatePriceWithFlash(layButtons[1], runner.lay3, runner.ls3, false, 'L3-' + selectionId + '-' + mktId);
+                                    }
+                                }
+                            });
+                        });
+                    });
+                })
+                .catch(error => console.log('Odds fetch error:', error));
+        }
+        
+        function updateFancyMarket(marketId, runner) {
+            const marketDiv = document.querySelector('#market-' + marketId);
+            if (!marketDiv) return;
+            
+            const runnerDiv = marketDiv.querySelector('.runner-runner');
+            if (!runnerDiv) return;
+            
+            const status = runner.status;
+            const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+            
+            if (status === 'SUSPENDED' || (!runner.price1 && !runner.lay1)) {
+                // Show SUSPENDED
+                if (!disabledDiv) {
+                    const priceButtons = runnerDiv.querySelectorAll('.price-price');
+                    priceButtons.forEach(btn => btn.style.display = 'none');
+                    const suspendedHtml = '<div><div class="runner-disabled">SUSPENDED</div></div>';
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = suspendedHtml;
+                    runnerDiv.appendChild(wrapper.firstChild);
+                }
+            } else {
+                // Remove SUSPENDED and show/create prices
+                if (disabledDiv) {
+                    disabledDiv.parentElement?.remove();
+                }
+                
+                // Find or create price buttons
+                let priceButtons = runnerDiv.querySelectorAll('.price-price');
+                if (priceButtons.length === 0) {
+                    // Create price buttons for fancy markets
+                    const runnerName = runnerDiv.querySelector('.runner-name');
+                    if (runnerName) {
+                        const priceHtml = `
+                            <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
+                                <span class="price-odd">${runner.price1 || '-'}</span>
+                                <span class="price-amount">${formatAmount(runner.size1)}</span>
+                            </a>
+                            <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
+                                <span class="price-odd">${runner.lay1 || '-'}</span>
+                                <span class="price-amount">${formatAmount(runner.ls1)}</span>
+                            </a>
+                        `;
+                        runnerName.insertAdjacentHTML('afterend', priceHtml);
+                    }
+                } else {
+                    priceButtons.forEach(btn => btn.style.display = '');
+                    // Update existing buttons
+                    const backBtn = runnerDiv.querySelector('.price-back');
+                    const layBtn = runnerDiv.querySelector('.price-lay');
+                    
+                    if (backBtn) {
+                        updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'fancy-back-' + marketId);
+                    }
+                    if (layBtn) {
+                        updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + marketId);
                     }
                 }
             }
-        });
-        
-        const bookmakerMarket = marketBooks.find(m => {
-            if (!m.id.startsWith('9.')) return false;
-            if (!m.runners || m.runners.length !== 2) return false;
-            return m.runners.some(r => r.name && (r.name.includes('Hurricanes') || r.name.includes('Stars') || r.id === '783382' || r.id === '883051'));
-        });
-        
-        if (bookmakerMarket) {
-            const bmRunners = bookmakerMarket.runners.map(r => ({...r, name: r.name || getRunnerName(r.id)}));
-            bookmakerHtml = createMarketSection('Bookmaker', '1M', bookmakerMarket.id, bmRunners);
         }
         
-        const completedMarket = marketBooks.find(m => m.runners && m.runners.length === 2 && m.runners.some(r => r.id === '37302'));
-        if (completedMarket) {
-            const cmRunners = completedMarket.runners.map(r => ({...r, name: r.id === '37302' ? 'Yes' : 'No'}));
-            completedMatchHtml = createMarketSection('Completed Match', '100K', completedMarket.id + '_cm', cmRunners);
+        // Start polling every second
+        setInterval(updateMatchOdds, 1000);
+        
+        // Initial update
+        updateMatchOdds();
+        
+        // Match time and elapsed time functions
+        function formatMatchTime(isoString) {
+            if (!isoString) return '';
+            
+            const matchDate = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - matchDate;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            
+            let timeAgo = '';
+            if (diffMs < 0) {
+                // Future match
+                const futureMins = Math.abs(diffMins);
+                const futureHours = Math.floor(futureMins / 60);
+                if (futureHours >= 24) {
+                    timeAgo = 'in ' + Math.floor(futureHours / 24) + ' day(s)';
+                } else if (futureHours > 0) {
+                    timeAgo = 'in ' + futureHours + ' hour(s)';
+                } else {
+                    timeAgo = 'in ' + futureMins + ' min(s)';
+                }
+            } else {
+                if (diffDays > 0) {
+                    timeAgo = diffDays + ' day(s) ago';
+                } else if (diffHours > 0) {
+                    timeAgo = diffHours + ' hour(s) ago';
+                } else if (diffMins > 0) {
+                    timeAgo = diffMins + ' min(s) ago';
+                } else {
+                    timeAgo = 'just now';
+                }
+            }
+            
+            // Format date: "Nov 22 8:30 am"
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const month = months[matchDate.getMonth()];
+            const day = matchDate.getDate();
+            let hours = matchDate.getHours();
+            const mins = matchDate.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12 || 12;
+            
+            return timeAgo + ' | ' + month + ' ' + day + ' ' + hours + ':' + mins + ' ' + ampm;
         }
         
-        const tiedMarket = marketBooks.find(m => m.id.endsWith('845') || (m.runners && m.runners.length === 2 && m.runners.some(r => r.id === '37302') && m !== completedMarket));
-        if (tiedMarket) {
-            const tmRunners = tiedMarket.runners.map(r => ({...r, name: r.id === '37302' ? 'Yes' : 'No'}));
-            tiedMatchHtml = createMarketSection('Tied Match', '500K', tiedMarket.id + '_tm', tmRunners);
+        function formatElapsedTime(isoString) {
+            if (!isoString) return 'Elapsed : --:--:--';
+            
+            const matchDate = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - matchDate;
+            
+            if (diffMs < 0) {
+                // Match hasn't started yet
+                return 'Starts in : ' + formatCountdown(-diffMs);
+            }
+            
+            // Calculate elapsed time
+            const totalSeconds = Math.floor(diffMs / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            
+            return 'Elapsed : ' + 
+                hours.toString().padStart(2, '0') + ':' + 
+                mins.toString().padStart(2, '0') + ':' + 
+                secs.toString().padStart(2, '0');
         }
         
-        figureHtml = createFigureSection('{{ $eventName ?? "Match" }} 17 Over Total Last Figure', '100K', {});
-        
-        document.getElementById('match-odds-section').innerHTML = matchOddsHtml;
-        document.getElementById('bookmaker-section').innerHTML = bookmakerHtml;
-        
-        if (fancy2Html) {
-            document.getElementById('fancy2-section').innerHTML = `
-                <div class="market-titlebar">
-                    <p class="market-name">
-                        <span class="market-name-badge">
-                            <i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i>
-                            <span>Fancy 2 </span>
-                            <span style="text-transform: initial;">(MaxBet: 20K)</span>
-                        </span>
-                        <span class="rules-badge"><i class="fa fa-info-circle"></i></span>
-                    </p>
-                    <div class="market-overarround"><span></span><strong>Back</strong></div>
-                    <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div>
-                </div>
-                ${fancy2Html}
-            `;
+        function formatCountdown(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            
+            return hours.toString().padStart(2, '0') + ':' + 
+                mins.toString().padStart(2, '0') + ':' + 
+                secs.toString().padStart(2, '0');
         }
         
-        document.getElementById('completed-match-section').innerHTML = completedMatchHtml;
-        document.getElementById('tied-match-section').innerHTML = tiedMatchHtml;
-        document.getElementById('figure-section').innerHTML = figureHtml;
-        
-        document.getElementById('bm-tab-content').innerHTML = bookmakerHtml;
-        document.getElementById('fancy2-tab-content').innerHTML = fancy2Html ? `
-            <div class="market-titlebar">
-                <p class="market-name"><span class="market-name-badge"><span>Fancy 2 </span><span style="text-transform: initial;">(MaxBet: 20K)</span></span></p>
-                <div class="market-overarround"><strong>Back</strong></div>
-                <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div>
-            </div>
-            ${fancy2Html}
-        ` : '<p class="text-center py-3">No fancy markets available</p>';
-        
-        document.getElementById('figure-tab-content').innerHTML = figureHtml;
-        document.getElementById('other-tab-content').innerHTML = completedMatchHtml + tiedMatchHtml;
-        
-        if (data.scoreboard) {
-            updateScoreboard(data.scoreboard);
+        function updateTimeDisplays() {
+            if (marketStartTimeISO) {
+                const matchTimeEl = document.getElementById('matchTimeDisplay');
+                const elapsedEl = document.getElementById('elapsedTimeDisplay');
+                
+                if (matchTimeEl) {
+                    matchTimeEl.textContent = formatMatchTime(marketStartTimeISO);
+                }
+                if (elapsedEl) {
+                    elapsedEl.textContent = formatElapsedTime(marketStartTimeISO);
+                }
+            }
         }
-    }
-    
-    function getRunnerName(runnerId) {
-        const names = {
-            '89981477': 'Hobart Hurricanes W',
-            '90023848': 'Melbourne Stars W',
-            '783382': 'Hobart Hurricanes W',
-            '883051': 'Melbourne Stars W',
-            '37302': 'Yes',
-            '37303': 'No',
-            '15316': '1st Innings 10 Overs Line'
-        };
-        return names[runnerId] || 'Runner ' + runnerId;
-    }
-    
-    function fetchPricesData() {
-        fetch('/api/prices/' + marketId)
+        
+        // Update time displays every second
+        setInterval(updateTimeDisplays, 1000);
+        
+        // Initial time update
+        updateTimeDisplays();
+        
+        // TV and Score Card toggle functions
+        function SHOWTV() {
+            document.getElementById('TVDIV').style.display = 'block';
+            document.getElementById('LIVEDIV').style.display = 'none';
+            document.getElementById('btnTV').classList.add('active');
+            document.getElementById('btnScore').classList.remove('active');
+        }
+        
+        function SHOWLIVE() {
+            document.getElementById('TVDIV').style.display = 'none';
+            document.getElementById('LIVEDIV').style.display = 'block';
+            document.getElementById('btnTV').classList.remove('active');
+            document.getElementById('btnScore').classList.add('active');
+        }
+        
+        // Bet Slip Variables
+        var currentBetType = 'back'; // 'back' or 'lay'
+        var currentRunnerId = null;
+        var currentRunnerName = '';
+        var currentOdds = 0;
+        
+        // Open bet slip when clicking on odds
+        function openBetSlip(runnerName, runnerId, odds, betType) {
+            currentRunnerName = runnerName;
+            currentRunnerId = runnerId;
+            currentOdds = parseFloat(odds);
+            currentBetType = betType;
+            
+            // Update bet slip display
+            document.getElementById('betRunnerName').textContent = runnerName;
+            document.getElementById('bet-price').value = odds;
+            document.getElementById('bet-size').value = '';
+            document.getElementById('betProfitDisplay').textContent = '0 / 0';
+            
+            // Set row color based on bet type
+            var betRow = document.getElementById('betSlipRow');
+            var betRow2 = document.getElementById('betSlipRow2');
+            if (betType === 'back') {
+                betRow.className = 'back';
+                betRow2.className = 'back';
+            } else {
+                betRow.className = 'lay';
+                betRow2.className = 'lay';
+            }
+            
+            // Show bet slip
+            document.getElementById('betSlip').style.display = 'block';
+            
+            // Focus on stake input
+            document.getElementById('bet-size').focus();
+        }
+        
+        // Close bet slip
+        function closeBetSlip() {
+            document.getElementById('betSlip').style.display = 'none';
+            currentRunnerId = null;
+            currentRunnerName = '';
+            currentOdds = 0;
+        }
+        
+        // Clear bet slip
+        function clearBetSlip() {
+            document.getElementById('bet-size').value = '';
+            document.getElementById('betProfitDisplay').textContent = '0 / 0';
+        }
+        
+        // Set stake amount
+        function setStake(amount) {
+            document.getElementById('bet-size').value = amount;
+            calculateProfit();
+        }
+        
+        // Add to stake amount
+        function addStake(amount) {
+            var currentStake = parseInt(document.getElementById('bet-size').value) || 0;
+            document.getElementById('bet-size').value = currentStake + amount;
+            calculateProfit();
+        }
+        
+        // Adjust odds
+        function adjustOdds(delta) {
+            var priceInput = document.getElementById('bet-price');
+            var newOdds = (parseFloat(priceInput.value) || 1) + delta;
+            if (newOdds >= 1.01) {
+                priceInput.value = newOdds.toFixed(2);
+                currentOdds = newOdds;
+                calculateProfit();
+            }
+        }
+        
+        // Calculate profit/liability
+        function calculateProfit() {
+            var stake = parseFloat(document.getElementById('bet-size').value) || 0;
+            var odds = parseFloat(document.getElementById('bet-price').value) || 0;
+            
+            var profit = 0;
+            var liability = 0;
+            
+            if (currentBetType === 'back') {
+                profit = stake * (odds - 1);
+                liability = stake;
+            } else {
+                profit = stake;
+                liability = stake * (odds - 1);
+            }
+            
+            document.getElementById('betProfitDisplay').textContent = 
+                profit.toLocaleString('en-IN', {maximumFractionDigits: 0}) + ' / -' + 
+                liability.toLocaleString('en-IN', {maximumFractionDigits: 0});
+        }
+        
+        // Submit bet
+        function submitBet() {
+            var stake = parseFloat(document.getElementById('bet-size').value) || 0;
+            var odds = parseFloat(document.getElementById('bet-price').value) || 0;
+            
+            if (stake <= 0) {
+                alert('Please enter a valid stake amount');
+                return;
+            }
+            
+            if (odds < 1.01) {
+                alert('Invalid odds');
+                return;
+            }
+            
+            var submitBtn = document.querySelector('#betSlip .btn-primary');
+            submitBtn.classList.add('running');
+            submitBtn.style.pointerEvents = 'none';
+            
+            var betData = {
+                market_id: marketId,
+                event_id: eventId,
+                event_name: document.querySelector('.event-title')?.textContent || 'Match',
+                market_name: 'Match Odds',
+                selection_name: currentRunnerName,
+                selection_id: currentRunnerId,
+                bet_type: currentBetType,
+                odds: odds,
+                stake: stake,
+                sport_type: 'cricket'
+            };
+            
+            fetch('/api/bets/place', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                },
+                body: JSON.stringify(betData)
+            })
             .then(response => response.json())
             .then(data => {
-                if (data.success && data.data) {
-                    processMarkets(data.data);
+                submitBtn.classList.remove('running');
+                submitBtn.style.pointerEvents = 'auto';
+                
+                if (data.success) {
+                    alert('Bet placed successfully!\n' + 
+                          currentRunnerName + ' @ ' + odds + '\n' +
+                          'Stake: ' + stake.toLocaleString('en-IN') + '\n' +
+                          'New Balance: ' + data.new_balance.toLocaleString('en-IN'));
+                    closeBetSlip();
+                    
+                    updateHeaderValues(data.new_balance, data.total_liability);
+                    loadOpenBets();
+                } else {
+                    alert('Failed to place bet: ' + data.message);
                 }
             })
-            .catch(error => console.log('Error fetching prices:', error));
-    }
-    
-    function openBetSlip(runnerName, odds, betType, mktId, selectionId, marketName) {
-        if (!odds || odds <= 0) return;
-        
-        currentBetData = {
-            runner_name: runnerName,
-            odds: odds,
-            bet_type: betType,
-            market_id: mktId,
-            selection_id: selectionId,
-            market_name: marketName || 'Match Odds',
-            event_id: eventId,
-            event_name: '{{ $eventName ?? "Match" }}',
-            sport_type: 'cricket'
-        };
-        
-        document.getElementById('bet-slip-runner').textContent = runnerName;
-        document.getElementById('bet-slip-odds').value = odds;
-        document.getElementById('bet-slip-stake').value = '';
-        document.getElementById('bet-slip-profit').textContent = ' / -';
-        
-        const typeSpan = document.getElementById('bet-slip-type');
-        typeSpan.textContent = betType.toUpperCase();
-        typeSpan.className = 'badge ' + (betType === 'back' ? 'badge-info' : 'badge-danger');
-        
-        const slipContainer = document.getElementById('bet-slip-container');
-        slipContainer.style.display = 'block';
-        slipContainer.style.backgroundColor = betType === 'back' ? '#d4edff' : '#ffe4e8';
-        
-        document.getElementById('bet-slip-stake').focus();
-    }
-    
-    function openFigureBet(title, figure, amount) {
-        openBetSlip(title + ' - ' + figure, amount, 'back', 'figure_' + figure, figure, 'Figure');
-    }
-    
-    function closeBetSlip() {
-        document.getElementById('bet-slip-container').style.display = 'none';
-        currentBetData = null;
-    }
-    
-    function calculateProfit() {
-        const stake = parseFloat(document.getElementById('bet-slip-stake').value) || 0;
-        const odds = parseFloat(document.getElementById('bet-slip-odds').value) || 0;
-        if (stake > 0 && odds > 0 && currentBetData) {
-            const profit = currentBetData.bet_type === 'back' ? stake * (odds - 1) : stake;
-            document.getElementById('bet-slip-profit').textContent = ' / ' + profit.toFixed(2);
-        }
-    }
-    
-    function submitBet() {
-        if (!currentBetData) return;
-        
-        const stake = parseFloat(document.getElementById('bet-slip-stake').value);
-        if (!stake || stake <= 0) {
-            alert('Please enter a valid stake');
-            return;
+            .catch(error => {
+                submitBtn.classList.remove('running');
+                submitBtn.style.pointerEvents = 'auto';
+                console.error('Bet error:', error);
+                alert('Error placing bet. Please try again.');
+            });
         }
         
-        const betData = {
-            ...currentBetData,
-            stake: stake
-        };
-        
-        fetch('/api/bets/place', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify(betData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Bet placed successfully!');
-                closeBetSlip();
-                loadOpenBets();
-            } else {
-                alert('Failed to place bet: ' + data.message);
+        function updateHeaderValues(newBalance, totalLiability) {
+            var balanceEl = document.querySelector('.wallet-balance');
+            if (balanceEl) {
+                balanceEl.textContent = 'B: Rs. ' + parseFloat(newBalance).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             }
-        })
-        .catch(error => {
-            console.error('Bet error:', error);
-            alert('Error placing bet. Please try again.');
-        });
-    }
-    
-    function loadOpenBets() {
-        fetch('/api/bets/open?market_id=' + marketId)
+            
+            var liableEl = document.querySelector('.wallet-exposure');
+            if (liableEl) {
+                liableEl.textContent = ' | L: ' + parseFloat(totalLiability).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+        }
+        
+        function loadOpenBets() {
+            fetch('/api/bets/open?market_id=' + marketId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateOpenBetsDisplay(data.bets);
+                    }
+                })
+                .catch(error => console.error('Error loading open bets:', error));
+        }
+        
+        function updateOpenBetsDisplay(bets) {
+            var openBetsSection = document.querySelector('.bets strong');
+            if (openBetsSection && openBetsSection.textContent.includes('Open Bets')) {
+                openBetsSection.innerHTML = 'Open Bets (' + bets.length + ')';
+            }
+            
+            var tbody = document.querySelector('.bets .betting-table tbody');
+            if (tbody && openBetsSection && openBetsSection.textContent.includes('Open Bets')) {
+                tbody.innerHTML = '';
+                bets.forEach(function(bet) {
+                    var row = document.createElement('tr');
+                    row.className = bet.bet_type;
+                    row.innerHTML = 
+                        '<td>' + bet.selection_name + '</td>' +
+                        '<td>' + bet.odds + '</td>' +
+                        '<td>' + parseFloat(bet.stake).toLocaleString('en-IN') + '</td>' +
+                        '<td><button class="btn btn-xs btn-danger" onclick="cancelBet(' + bet.id + ')">X</button></td>';
+                    tbody.appendChild(row);
+                });
+            }
+        }
+        
+        function cancelBet(betId) {
+            if (!confirm('Are you sure you want to cancel this bet?')) return;
+            
+            fetch('/api/bets/' + betId + '/cancel', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                }
+            })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    const bets = data.bets || [];
-                    document.getElementById('open-bets-count').textContent = bets.length;
-                    
-                    let html = '';
-                    bets.forEach(bet => {
-                        html += `
-                            <tr class="${bet.bet_type === 'back' ? 'table-info' : 'table-danger'}">
-                                <td>${bet.selection_name}</td>
-                                <td>${bet.odds}</td>
-                                <td>${bet.stake}</td>
-                                <td><button class="btn btn-xs btn-danger" onclick="cancelBet(${bet.id})">X</button></td>
-                            </tr>
-                        `;
-                    });
-                    document.getElementById('open-bets-tbody').innerHTML = html;
+                    alert('Bet cancelled. Refund: ' + data.refund_amount.toLocaleString('en-IN'));
+                    updateHeaderValues(data.new_balance, data.total_liability);
+                    loadOpenBets();
+                } else {
+                    alert('Failed to cancel bet: ' + data.message);
                 }
             })
-            .catch(error => console.log('Error loading bets:', error));
-    }
-    
-    function cancelBet(betId) {
-        if (!confirm('Cancel this bet?')) return;
+            .catch(error => {
+                console.error('Cancel error:', error);
+                alert('Error cancelling bet. Please try again.');
+            });
+        }
         
-        fetch('/api/bets/' + betId + '/cancel', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Bet cancelled. Refund: ' + data.refund_amount.toLocaleString('en-IN'));
-                loadOpenBets();
-            } else {
-                alert('Failed to cancel bet: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Cancel error:', error);
-            alert('Error cancelling bet.');
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOpenBets();
         });
-    }
-    
-    function loadRelatedEvents() {
-        fetch('/api/cricket-matches')
-            .then(response => response.json())
-            .then(data => {
-                const result = data.result || data;
-                const matches = result.cricket || [];
-                
-                let html = '';
-                matches.slice(0, 5).forEach(match => {
-                    if (match.marketId !== marketId) {
-                        html += `
-                            <tr onclick="window.location='/Common/Market?id=${match.marketId}';" class="relatedtr" style="cursor: pointer;">
-                                <td class="sport-date" style="font-size: 14px; padding: 0px 20px;">
-                                    <div><span class="day">Today</span></div>
-                                </td>
-                                <td><div>${match.marketName || 'Match'}</div></td>
-                            </tr>
-                        `;
+        
+        // Add click handlers to odds cells after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            attachOddsClickHandlers();
+        });
+        
+        function attachOddsClickHandlers() {
+            // Back odds (price-back class)
+            document.querySelectorAll('.price-back').forEach(function(el) {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', function() {
+                    var oddsEl = this.querySelector('.price-odd');
+                    var odds = oddsEl ? oddsEl.textContent.trim() : '-';
+                    if (odds === '-' || odds === '') return;
+                    
+                    // Find runner name from parent
+                    var runnerDiv = this.closest('.runner-runner');
+                    var runnerName = 'Unknown';
+                    var runnerId = '';
+                    
+                    if (runnerDiv) {
+                        var nameEl = runnerDiv.querySelector('.runner-display-name h4');
+                        if (nameEl) runnerName = nameEl.textContent.trim();
+                        runnerId = runnerDiv.id.replace('runner-', '');
                     }
+                    
+                    openBetSlip(runnerName, runnerId, odds, 'back');
                 });
-                document.getElementById('related-events-tbody').innerHTML = html;
-            })
-            .catch(error => console.error('Error loading related events:', error));
-    }
-    
-    document.querySelectorAll('.stake-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const amount = this.getAttribute('data-amount');
-            const stakeInput = document.getElementById('bet-slip-stake');
-            if (amount.startsWith('+')) {
-                stakeInput.value = (parseFloat(stakeInput.value) || 0) + parseInt(amount.substring(1));
-            } else {
-                stakeInput.value = amount;
-            }
-            calculateProfit();
-        });
-    });
-    
-    document.getElementById('bet-slip-stake').addEventListener('input', calculateProfit);
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchPricesData();
-        setInterval(fetchPricesData, 1000);
-        loadOpenBets();
-        loadRelatedEvents();
-    });
-</script>
-@endpush
+            });
+            
+            // Lay odds (price-lay class)
+            document.querySelectorAll('.price-lay').forEach(function(el) {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', function() {
+                    var oddsEl = this.querySelector('.price-odd');
+                    var odds = oddsEl ? oddsEl.textContent.trim() : '-';
+                    if (odds === '-' || odds === '') return;
+                    
+                    // Find runner name from parent
+                    var runnerDiv = this.closest('.runner-runner');
+                    var runnerName = 'Unknown';
+                    var runnerId = '';
+                    
+                    if (runnerDiv) {
+                        var nameEl = runnerDiv.querySelector('.runner-display-name h4');
+                        if (nameEl) runnerName = nameEl.textContent.trim();
+                        runnerId = runnerDiv.id.replace('runner-', '');
+                    }
+                    
+                    openBetSlip(runnerName, runnerId, odds, 'lay');
+                });
+            });
+        }
+        
+        // Re-attach handlers after odds update (for dynamically updated content)
+        function reattachOddsHandlers() {
+            attachOddsClickHandlers();
+        }
+    </script>
+    <script defer=""
+        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+        data-cf-beacon="{&quot;rayId&quot;:&quot;99ac001e6ec6fdb0&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;412e616bee9c418bbf775c35ab07c6d0&quot;}"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
