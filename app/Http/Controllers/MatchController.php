@@ -379,6 +379,18 @@ class MatchController extends Controller
                 $homeTeam = $scores['home'] ?? 'Team 1';
                 $awayTeam = $scores['away'] ?? 'Team 2';
                 
+                // Determine if match is in play
+                // Check for explicit inPlay field, or if there are bookmaker/fancy markets (indices 1 and 2)
+                $isInPlay = false;
+                if (isset($marketBooks[0]['inPlay'])) {
+                    $isInPlay = $marketBooks[0]['inPlay'];
+                } elseif (isset($marketBooks[0]['isInPlay'])) {
+                    $isInPlay = $marketBooks[0]['isInPlay'];
+                } elseif (count($marketBooks) > 1) {
+                    // If there are bookmaker or fancy markets, the match is likely in play
+                    $isInPlay = true;
+                }
+                
                 // Extract Match Odds (marketBooks[0])
                 $matchOdds = null;
                 if (isset($marketBooks[0])) {
@@ -387,7 +399,7 @@ class MatchController extends Controller
                         'marketId' => $market['id'] ?? $marketId,
                         'marketName' => 'Match Odds',
                         'status' => $market['marketStatus'] ?? 'OPEN',
-                        'inPlay' => $market['bettingAllowed'] ?? false,
+                        'inPlay' => $isInPlay,
                         'runners' => []
                     ];
                     
