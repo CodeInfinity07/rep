@@ -1195,11 +1195,11 @@
     var marketStartTimeISO = '{{ $marketStartTime ?? '' }}';
     var isInPlay = {{ ($inPlay ?? false) ? 'true' : 'false' }};
     var scoreCardUrl = '{{ $scoreCardUrl ?? "" }}';
-</script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
+</script> <div class="scrollmenu" style="display: none;"><a id="Alltab" class="tablink btn btn-primary">
                                 ALL
                             </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary" style="display: none;">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary" style="display: none;">Fancy-2</a> <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary" style="display: none;">Figure</a> <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
 
-<div class="table-box-header"><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
+<div class="table-box-header" id="scoreboard-header" style="display: none;"><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
                                                     Ball Running...
                                                 </div> <div style="margin-left: 8px; margin-top: -3px;"><input type="checkbox" class="fas fa-volume-mute fa-inverse" style="width: 0px; margin-right: 35px; font-size: 15px;"></div></div></span> <p></p> <p id="this-over-display">This Over : &nbsp; --</p></div></div></div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
                     (MaxBet: 200K)
@@ -1392,7 +1392,7 @@
 @empty
     <div class="market-runners"><div class="runner-runner"><h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">No fancy markets available</h4></span></div></h3></div></div>
 @endforelse
-</div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px;"><iframe id="livesc" src="https://score.akamaized.uk/?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
+</div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" id="tv-score-buttons" style="width: 100%; height: 30px; margin-bottom: 2px; display: none;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px; display: none;"><iframe id="livesc" src="https://score.akamaized.uk/?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
     <strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong>
     <div class="betting-table">
         <table class="table">
@@ -2484,6 +2484,10 @@
                     const matchOdds = data.matchOdds;
                     const bookmaker = data.bookmaker;
                     const fancy = data.fancy;
+                    const isInPlayFromApi = matchOdds?.inPlay || false;
+                    
+                    // Handle in-play visibility (tabs and scorecard)
+                    handleInPlayVisibility(isInPlayFromApi, bookmaker, fancy);
                     
                     // Update Match Odds section (marketBooks[0])
                     if (matchOdds && matchOdds.runners) {
@@ -2495,7 +2499,7 @@
                     // Handle Bookmaker section visibility
                     const bookmakerSection = document.getElementById('bookmaker-section');
                     const bmTab = document.getElementById('BMtab');
-                    if (bookmaker && bookmaker.runners && bookmaker.runners.length > 0) {
+                    if (isInPlayFromApi && bookmaker && bookmaker.runners && bookmaker.runners.length > 0) {
                         if (bookmakerSection) bookmakerSection.style.display = '';
                         if (bmTab) bmTab.style.display = '';
                         bookmaker.runners.forEach(runner => {
@@ -2503,7 +2507,7 @@
                             updateRunnerName(runner.selectionId, runner.name, 'bm');
                         });
                     } else {
-                        // Hide Bookmaker section if no data
+                        // Hide Bookmaker section if no data or not in play
                         if (bookmakerSection) bookmakerSection.style.display = 'none';
                         if (bmTab) bmTab.style.display = 'none';
                     }
@@ -2511,17 +2515,41 @@
                     // Handle Fancy section visibility
                     const fancySection = document.getElementById('fancy-section');
                     const fancy2Tab = document.getElementById('Fancy2tab');
-                    if (fancy && fancy.runners && fancy.runners.length > 0) {
+                    if (isInPlayFromApi && fancy && fancy.runners && fancy.runners.length > 0) {
                         if (fancySection) fancySection.style.display = '';
                         if (fancy2Tab) fancy2Tab.style.display = '';
                         updateFancySection(fancy);
                     } else {
-                        // Hide Fancy section if no data
+                        // Hide Fancy section if no data or not in play
                         if (fancySection) fancySection.style.display = 'none';
                         if (fancy2Tab) fancy2Tab.style.display = 'none';
                     }
                 })
                 .catch(error => console.log('Odds fetch error:', error));
+        }
+        
+        function handleInPlayVisibility(isInPlay, bookmaker, fancy) {
+            // Elements to show/hide based on inPlay status
+            const scrollMenu = document.querySelector('.scrollmenu');
+            const scoreboardHeader = document.getElementById('scoreboard-header');
+            const tvScoreButtons = document.getElementById('tv-score-buttons');
+            const tvDiv = document.getElementById('TVDIV');
+            const liveDiv = document.getElementById('LIVEDIV');
+            
+            if (isInPlay) {
+                // Show tabs and scorecard when in play
+                if (scrollMenu) scrollMenu.style.display = '';
+                if (scoreboardHeader) scoreboardHeader.style.display = '';
+                if (tvScoreButtons) tvScoreButtons.style.display = '';
+                if (liveDiv) liveDiv.style.display = '';
+            } else {
+                // Hide tabs and scorecard when not in play
+                if (scrollMenu) scrollMenu.style.display = 'none';
+                if (scoreboardHeader) scoreboardHeader.style.display = 'none';
+                if (tvScoreButtons) tvScoreButtons.style.display = 'none';
+                if (tvDiv) tvDiv.style.display = 'none';
+                if (liveDiv) liveDiv.style.display = 'none';
+            }
         }
         
         function updateRunnerName(selectionId, name, suffix) {
