@@ -1395,7 +1395,7 @@
 @empty
     <div class="market-runners"><div class="runner-runner"><h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">No fancy markets available</h4></span></div></h3></div></div>
 @endforelse
-</div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" id="tv-score-buttons" style="width: 100%; height: 30px; margin-bottom: 2px; display: none;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px; display: none;"><iframe id="livesc" src="https://score.akamaized.uk/?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
+</div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" id="tv-score-buttons" style="width: 100%; height: 30px; margin-bottom: 2px; display: none;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id={{ $eventId ?? '34966369' }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px; display: none;"><iframe id="livesc" src="{{ $scoreCardUrl ?? 'https://score.akamaized.uk/?id=' . ($eventId ?? '34966369') }}" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
     <strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong>
     <div class="betting-table">
         <table class="table">
@@ -2502,8 +2502,20 @@
                     
                     // Update Match Odds section (marketBooks[0]) - always update prices
                     if (matchOdds && matchOdds.runners) {
-                        matchOdds.runners.forEach(runner => {
-                            updateRunnerPrices(runner, 'match-odds');
+                        // Get all runner divs for fallback matching
+                        const matchOddsRunnerDivs = document.querySelectorAll('#All .market-runners:first-of-type .runner-runner');
+                        
+                        matchOdds.runners.forEach((runner, index) => {
+                            // Try ID-based matching first (for legacy API and CricketID)
+                            let runnerDiv = document.getElementById('runner-' + runner.selectionId);
+                            
+                            if (runnerDiv) {
+                                // Found by ID - use original updateRunnerPrices function
+                                updateRunnerPrices(runner, 'match-odds');
+                            } else if (useCricketIdApi && matchOddsRunnerDivs[index]) {
+                                // Fallback to index matching only for CricketID when ID not found
+                                updateRunnerPricesDirect(matchOddsRunnerDivs[index], runner, 'match-odds-' + index);
+                            }
                         });
                     }
                     
@@ -2584,6 +2596,59 @@
                 if (nameEl && nameEl.textContent.trim() !== name) {
                     nameEl.textContent = name;
                 }
+            }
+        }
+        
+        function updateRunnerPricesDirect(runnerDiv, runner, key) {
+            if (!runnerDiv) return;
+            
+            const runnerName = runner.name;
+            const status = runner.status;
+            
+            // Update runner name
+            if (runnerName) {
+                const nameEl = runnerDiv.querySelector('.clippable-spacer');
+                if (nameEl && nameEl.textContent.trim() !== runnerName) {
+                    nameEl.textContent = runnerName;
+                }
+            }
+            
+            const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+            const priceButtons = runnerDiv.querySelectorAll('.price-price');
+            
+            if (status === 'SUSPENDED' || !runner.price1) {
+                // Show SUSPENDED
+                if (!disabledDiv && priceButtons.length > 0) {
+                    priceButtons.forEach(btn => btn.style.display = 'none');
+                    if (!runnerDiv.querySelector('.runner-disabled')) {
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = '<div class="runner-disabled">SUSPENDED</div>';
+                        runnerDiv.appendChild(wrapper.firstChild);
+                    }
+                }
+            } else {
+                // Remove SUSPENDED and show prices
+                if (disabledDiv) {
+                    disabledDiv.parentElement?.remove() || disabledDiv.remove();
+                }
+                priceButtons.forEach(btn => btn.style.display = '');
+                
+                // Update back prices (price1, price2, price3)
+                // HTML order: B3 (index 0), B2 (index 1), B1 (index 2)
+                const backBtns = runnerDiv.querySelectorAll('.price-back');
+                const layBtns = runnerDiv.querySelectorAll('.price-lay');
+                
+                if (backBtns.length >= 3) {
+                    if (runner.price3) updatePriceWithFlash(backBtns[0], runner.price3, runner.size3, true, 'B3-' + key);
+                    if (runner.price2) updatePriceWithFlash(backBtns[1], runner.price2, runner.size2, true, 'B2-' + key);
+                    if (runner.price1) updatePriceWithFlash(backBtns[2], runner.price1, runner.size1, true, 'B1-' + key);
+                } else if (backBtns.length >= 1) {
+                    if (runner.price1) updatePriceWithFlash(backBtns[backBtns.length - 1], runner.price1, runner.size1, true, 'B1-' + key);
+                }
+                
+                if (layBtns.length >= 1 && runner.lay1) updatePriceWithFlash(layBtns[0], runner.lay1, runner.ls1, false, 'L1-' + key);
+                if (layBtns.length >= 2 && runner.lay2) updatePriceWithFlash(layBtns[1], runner.lay2, runner.ls2, false, 'L2-' + key);
+                if (layBtns.length >= 3 && runner.lay3) updatePriceWithFlash(layBtns[2], runner.lay3, runner.ls3, false, 'L3-' + key);
             }
         }
         

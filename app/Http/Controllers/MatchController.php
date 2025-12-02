@@ -158,34 +158,43 @@ class MatchController extends Controller
         $errorView = strtolower($user->type) === 'bettor' ? 'bettor.match' : 'management.cricket.match';
         
         try {
-            $matchDetails = $this->getCricketIdMatchDetails($gmid, $sid);
-            $oddsData = $this->getCricketIdOddsData($gmid, $sid);
+            $matchDetails = $this->getCricketIdMatchDetails($gmid, $sid) ?? [];
+            $oddsData = $this->getCricketIdOddsData($gmid, $sid) ?? [];
             
-            $eventName = $matchDetails['ename'] ?? $matchDetails['name'] ?? 'Match';
+            $eventName = $matchDetails['ename'] ?? $matchDetails['name'] ?? 'Match ' . $gmid;
             $eventId = $matchDetails['eid'] ?? $gmid;
             $gtv = $matchDetails['gtv'] ?? null;
+            $marketStartTime = $matchDetails['stime'] ?? null;
             
             $inPlay = false;
+            $runners = [];
+            
             if (isset($oddsData['t1']) && is_array($oddsData['t1'])) {
                 foreach ($oddsData['t1'] as $market) {
+                    $gtype = $market['gtype'] ?? '';
+                    $mname = $market['mname'] ?? '';
+                    
                     if (isset($market['iplay'])) {
                         $inPlay = (bool)$market['iplay'];
-                        break;
                     }
-                }
-            }
-            
-            $runners = [];
-            if (isset($oddsData['t1']) && is_array($oddsData['t1'])) {
-                foreach ($oddsData['t1'] as $market) {
-                    if (($market['gtype'] ?? '') === 'match') {
+                    
+                    if (!$gtv && isset($market['gtv'])) {
+                        $gtv = $market['gtv'];
+                    }
+                    
+                    if (empty($eventName) || $eventName === 'Match ' . $gmid) {
+                        if (isset($market['ename'])) {
+                            $eventName = $market['ename'];
+                        }
+                    }
+                    
+                    if ($gtype === 'match' || stripos($mname, 'Match Odds') !== false) {
                         foreach ($market['section'] ?? [] as $section) {
                             $runners[] = [
-                                'selectionId' => $section['sid'] ?? 0,
+                                'selectionId' => $section['sid'] ?? $section['nat'] ?? 0,
                                 'runnerName' => $section['nat'] ?? 'Unknown'
                             ];
                         }
-                        break;
                     }
                 }
             }
@@ -209,7 +218,7 @@ class MatchController extends Controller
                 'eventName' => $eventName,
                 'runners' => $runners,
                 'odds' => [],
-                'marketStartTime' => $matchDetails['stime'] ?? null,
+                'marketStartTime' => $marketStartTime,
                 'inPlay' => $inPlay,
                 'marketDetails' => $matchDetails,
                 'allMarketIds' => [],
@@ -239,7 +248,8 @@ class MatchController extends Controller
                 ->header('Expires', '0');
                 
         } catch (\Exception $e) {
-            return view($errorView)->with('error', 'Error: ' . $e->getMessage());
+            \Log::error('CricketID Match page error: ' . $e->getMessage());
+            return view($errorView)->with('error', 'Error loading match: ' . $e->getMessage());
         }
     }
     
