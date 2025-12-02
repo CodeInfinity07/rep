@@ -10,6 +10,12 @@ class MatchController extends Controller
 {
     private $baseUrl = 'http://89.116.20.218:8085/api';
     private $pricesApiUrl = 'https://prices9.mgs11.com/api/Markets/Data';
+    private $cricketIdApiUrl = 'https://api.cricketid.xyz';
+    
+    private function getCricketIdApiKey()
+    {
+        return $_SERVER['CRICKETID_API_KEY'] ?? $_ENV['CRICKETID_API_KEY'] ?? getenv('CRICKETID_API_KEY') ?? env('CRICKETID_API_KEY');
+    }
     
     public function show($marketId)
     {
@@ -136,6 +142,102 @@ class MatchController extends Controller
                 ->header('Pragma', 'no-cache')
                 ->header('Expires', '0');
             
+        } catch (\Exception $e) {
+            return view($errorView)->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+    
+    public function showCricketIdMatch($gmid, Request $request)
+    {
+        if (!\Auth::check()) {
+            return redirect('/login');
+        }
+        
+        $user = \Auth::user();
+        $sid = $request->query('sid', 4);
+        $errorView = strtolower($user->type) === 'bettor' ? 'bettor.match' : 'management.cricket.match';
+        
+        try {
+            $matchDetails = $this->getCricketIdMatchDetails($gmid, $sid);
+            $oddsData = $this->getCricketIdOddsData($gmid, $sid);
+            
+            $eventName = $matchDetails['ename'] ?? $matchDetails['name'] ?? 'Match';
+            $eventId = $matchDetails['eid'] ?? $gmid;
+            $gtv = $matchDetails['gtv'] ?? null;
+            
+            $inPlay = false;
+            if (isset($oddsData['t1']) && is_array($oddsData['t1'])) {
+                foreach ($oddsData['t1'] as $market) {
+                    if (isset($market['iplay'])) {
+                        $inPlay = (bool)$market['iplay'];
+                        break;
+                    }
+                }
+            }
+            
+            $runners = [];
+            if (isset($oddsData['t1']) && is_array($oddsData['t1'])) {
+                foreach ($oddsData['t1'] as $market) {
+                    if (($market['gtype'] ?? '') === 'match') {
+                        foreach ($market['section'] ?? [] as $section) {
+                            $runners[] = [
+                                'selectionId' => $section['sid'] ?? 0,
+                                'runnerName' => $section['nat'] ?? 'Unknown'
+                            ];
+                        }
+                        break;
+                    }
+                }
+            }
+            
+            $activeBetsData = \DB::table('bets')
+                ->where('user_id', $user->id)
+                ->whereIn('status', ['pending', 'matched'])
+                ->select(
+                    \DB::raw('COUNT(*) as count'),
+                    \DB::raw('COALESCE(SUM(liability), 0) as total_liability')
+                )
+                ->first();
+            
+            $scoreCardUrl = $gtv ? '/api/cricketid/score?gtv=' . $gtv . '&sid=' . $sid : null;
+            
+            $viewData = [
+                'marketId' => $gmid,
+                'gmid' => $gmid,
+                'sid' => $sid,
+                'eventId' => $eventId,
+                'eventName' => $eventName,
+                'runners' => $runners,
+                'odds' => [],
+                'marketStartTime' => $matchDetails['stime'] ?? null,
+                'inPlay' => $inPlay,
+                'marketDetails' => $matchDetails,
+                'allMarketIds' => [],
+                'marketsData' => [],
+                'username' => $user->username,
+                'credit' => $user->credit_remaining ?? 0,
+                'balance' => $user->balance ?? 0,
+                'liable' => $activeBetsData->total_liability ?? 0,
+                'active_bets' => $activeBetsData->count ?? 0,
+                'scoreCardUrl' => $scoreCardUrl,
+                'useCricketIdApi' => true,
+                'gtv' => $gtv,
+            ];
+            
+            if (strtolower($user->type) === 'bettor') {
+                return response()
+                    ->view('bettor.match', $viewData)
+                    ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                    ->header('Pragma', 'no-cache')
+                    ->header('Expires', '0');
+            }
+            
+            return response()
+                ->view('management.cricket.match', $viewData)
+                ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', '0');
+                
         } catch (\Exception $e) {
             return view($errorView)->with('error', 'Error: ' . $e->getMessage());
         }
@@ -328,6 +430,72 @@ class MatchController extends Controller
         return null;
     }
     
+    private function getCricketIdMatchList($sid = 4)
+    {
+        try {
+            $apiKey = $this->getCricketIdApiKey();
+            if (!$apiKey) {
+                \Log::error('CricketID API key not configured');
+                return null;
+            }
+            
+            $url = $this->cricketIdApiUrl . '/esid?sid=' . $sid . '&key=' . $apiKey;
+            $response = Http::timeout(10)->get($url);
+            
+            if ($response->successful()) {
+                return $response->json();
+            }
+        } catch (\Exception $e) {
+            \Log::error('CricketID Match List API error: ' . $e->getMessage());
+        }
+        
+        return null;
+    }
+    
+    private function getCricketIdMatchDetails($gmid, $sid = 4)
+    {
+        try {
+            $apiKey = $this->getCricketIdApiKey();
+            if (!$apiKey) {
+                \Log::error('CricketID API key not configured');
+                return null;
+            }
+            
+            $url = $this->cricketIdApiUrl . '/getDetailsData?gmid=' . $gmid . '&sid=' . $sid . '&key=' . $apiKey;
+            $response = Http::timeout(10)->get($url);
+            
+            if ($response->successful()) {
+                return $response->json();
+            }
+        } catch (\Exception $e) {
+            \Log::error('CricketID Match Details API error: ' . $e->getMessage());
+        }
+        
+        return null;
+    }
+    
+    private function getCricketIdOddsData($gmid, $sid = 4)
+    {
+        try {
+            $apiKey = $this->getCricketIdApiKey();
+            if (!$apiKey) {
+                \Log::error('CricketID API key not configured');
+                return null;
+            }
+            
+            $url = $this->cricketIdApiUrl . '/getPriveteData?gmid=' . $gmid . '&sid=' . $sid . '&key=' . $apiKey;
+            $response = Http::timeout(10)->get($url);
+            
+            if ($response->successful()) {
+                return $response->json();
+            }
+        } catch (\Exception $e) {
+            \Log::error('CricketID Odds API error: ' . $e->getMessage());
+        }
+        
+        return null;
+    }
+    
     public function getPricesApi($marketId)
     {
         if (!\Auth::check()) {
@@ -504,6 +672,230 @@ class MatchController extends Controller
             
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function getCricketIdMatchListApi(Request $request)
+    {
+        if (!\Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        $sid = $request->query('sid', 4);
+        $data = $this->getCricketIdMatchList($sid);
+        
+        if ($data) {
+            return response()->json(['success' => true, 'data' => $data]);
+        }
+        
+        return response()->json(['error' => 'No data available'], 404);
+    }
+    
+    public function getCricketIdOddsApi(Request $request, $gmid)
+    {
+        if (!\Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        $sid = $request->query('sid', 4);
+        
+        try {
+            $data = $this->getCricketIdOddsData($gmid, $sid);
+            
+            if (!$data) {
+                return response()->json(['error' => 'No data available from CricketID API'], 404);
+            }
+            
+            $matchOdds = null;
+            $bookmaker = null;
+            $fancy = [];
+            $isInPlay = false;
+            
+            if (isset($data['t1']) && is_array($data['t1'])) {
+                foreach ($data['t1'] as $market) {
+                    $marketName = $market['mname'] ?? '';
+                    $gtype = $market['gtype'] ?? '';
+                    
+                    if ($gtype === 'match' || stripos($marketName, 'Match Odds') !== false) {
+                        $isInPlay = isset($market['iplay']) ? (bool)$market['iplay'] : false;
+                        $matchOdds = [
+                            'marketId' => $market['mid'] ?? '',
+                            'marketName' => $marketName ?: 'Match Odds',
+                            'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
+                            'inPlay' => $isInPlay,
+                            'runners' => []
+                        ];
+                        
+                        foreach ($market['section'] ?? [] as $section) {
+                            $status = 'ACTIVE';
+                            if (isset($section['gstatus']) && $section['gstatus'] != '') {
+                                $status = $section['gstatus'];
+                            }
+                            
+                            $matchOdds['runners'][] = [
+                                'selectionId' => $section['sid'] ?? $section['nat'] ?? 0,
+                                'name' => $section['nat'] ?? 'Unknown',
+                                'status' => $status,
+                                'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
+                                'price2' => isset($section['b2']) ? floatval($section['b2']) : null,
+                                'price3' => isset($section['b3']) ? floatval($section['b3']) : null,
+                                'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
+                                'size2' => isset($section['bs2']) ? floatval($section['bs2']) : null,
+                                'size3' => isset($section['bs3']) ? floatval($section['bs3']) : null,
+                                'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
+                                'lay2' => isset($section['l2']) ? floatval($section['l2']) : null,
+                                'lay3' => isset($section['l3']) ? floatval($section['l3']) : null,
+                                'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null,
+                                'ls2' => isset($section['ls2']) ? floatval($section['ls2']) : null,
+                                'ls3' => isset($section['ls3']) ? floatval($section['ls3']) : null
+                            ];
+                        }
+                    } elseif ($gtype === 'session' || stripos($marketName, 'Bookmaker') !== false) {
+                        $bookmaker = [
+                            'marketId' => $market['mid'] ?? '',
+                            'marketName' => $marketName ?: 'Bookmaker',
+                            'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
+                            'runners' => []
+                        ];
+                        
+                        foreach ($market['section'] ?? [] as $section) {
+                            $status = 'ACTIVE';
+                            if (isset($section['gstatus']) && $section['gstatus'] != '') {
+                                $status = $section['gstatus'];
+                            }
+                            
+                            $bookmaker['runners'][] = [
+                                'selectionId' => $section['sid'] ?? $section['nat'] ?? 0,
+                                'name' => $section['nat'] ?? 'Unknown',
+                                'status' => $status,
+                                'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
+                                'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
+                                'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
+                                'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null
+                            ];
+                        }
+                    }
+                }
+            }
+            
+            if (isset($data['t2']) && is_array($data['t2'])) {
+                foreach ($data['t2'] as $market) {
+                    $marketName = $market['mname'] ?? 'Fancy';
+                    $fancyMarket = [
+                        'marketId' => $market['mid'] ?? '',
+                        'marketName' => $marketName,
+                        'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
+                        'runners' => []
+                    ];
+                    
+                    foreach ($market['section'] ?? [] as $section) {
+                        $status = 'ACTIVE';
+                        if (isset($section['gstatus']) && $section['gstatus'] != '') {
+                            $status = $section['gstatus'];
+                        }
+                        
+                        $fancyMarket['runners'][] = [
+                            'selectionId' => $section['sid'] ?? 0,
+                            'name' => $section['nat'] ?? $marketName,
+                            'status' => $status,
+                            'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
+                            'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
+                            'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
+                            'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null
+                        ];
+                    }
+                    
+                    $fancy[] = $fancyMarket;
+                }
+            }
+            
+            if (isset($data['t3']) && is_array($data['t3'])) {
+                foreach ($data['t3'] as $market) {
+                    $marketName = $market['mname'] ?? 'Fancy';
+                    $fancyMarket = [
+                        'marketId' => $market['mid'] ?? '',
+                        'marketName' => $marketName,
+                        'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
+                        'runners' => []
+                    ];
+                    
+                    foreach ($market['section'] ?? [] as $section) {
+                        $status = 'ACTIVE';
+                        if (isset($section['gstatus']) && $section['gstatus'] != '') {
+                            $status = $section['gstatus'];
+                        }
+                        
+                        $fancyMarket['runners'][] = [
+                            'selectionId' => $section['sid'] ?? 0,
+                            'name' => $section['nat'] ?? $marketName,
+                            'status' => $status,
+                            'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
+                            'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
+                            'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
+                            'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null
+                        ];
+                    }
+                    
+                    $fancy[] = $fancyMarket;
+                }
+            }
+            
+            $scores = [];
+            if (isset($data['score'])) {
+                $scores = $data['score'];
+            }
+            
+            return response()->json([
+                'success' => true,
+                'matchOdds' => $matchOdds,
+                'bookmaker' => $bookmaker,
+                'fancy' => count($fancy) > 0 ? $fancy[0] : null,
+                'allFancy' => $fancy,
+                'scores' => $scores,
+                'inPlay' => $isInPlay,
+                'raw' => $data
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('CricketID Odds API error: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function getCricketIdScoreProxy(Request $request)
+    {
+        if (!\Auth::check()) {
+            return response('Unauthorized', 401);
+        }
+        
+        $gtv = $request->query('gtv');
+        $sid = $request->query('sid', 4);
+        
+        if (!$gtv) {
+            return response('Missing gtv parameter', 400);
+        }
+        
+        $apiKey = $this->getCricketIdApiKey();
+        if (!$apiKey) {
+            return response('API key not configured', 500);
+        }
+        
+        $url = $this->cricketIdApiUrl . '/score?gtv=' . $gtv . '&sid=' . $sid . '&key=' . $apiKey;
+        
+        try {
+            $response = Http::timeout(10)->get($url);
+            
+            if ($response->successful()) {
+                $contentType = $response->header('Content-Type') ?? 'text/html';
+                return response($response->body())
+                    ->header('Content-Type', $contentType)
+                    ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+            }
+            
+            return response('Score data not available', 404);
+        } catch (\Exception $e) {
+            \Log::error('CricketID Score API error: ' . $e->getMessage());
+            return response('Error fetching score', 500);
         }
     }
 }

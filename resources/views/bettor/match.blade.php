@@ -1182,6 +1182,9 @@
 <script>
     const marketId = '{{ $marketId ?? "1.250636959" }}';
     const eventId = '{{ $eventId ?? "34872738" }}';
+    const gmid = '{{ $gmid ?? "" }}';
+    const sid = '{{ $sid ?? "4" }}';
+    const useCricketIdApi = {{ ($useCricketIdApi ?? false) ? 'true' : 'false' }};
     const timeCode = '';
 
     const CommentrySignalR = 1;
@@ -2469,10 +2472,16 @@
         }
         
         function updateMatchOdds() {
-            const currentMarketId = marketId;
-            if (!currentMarketId) return;
+            let apiUrl;
+            if (useCricketIdApi && gmid) {
+                apiUrl = '/api/cricketid/odds/' + gmid + '?sid=' + sid;
+            } else {
+                const currentMarketId = marketId;
+                if (!currentMarketId) return;
+                apiUrl = '/api/all-prices/' + currentMarketId;
+            }
             
-            fetch('/api/all-prices/' + currentMarketId)
+            fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
                     if (data.error || !data.success) {
@@ -2486,7 +2495,7 @@
                     const fancy = data.fancy;
                     
                     // IMPORTANT: Default to false, only true if explicitly set
-                    const isInPlayFromApi = matchOdds?.inPlay === true;
+                    const isInPlayFromApi = useCricketIdApi ? (data.inPlay === true) : (matchOdds?.inPlay === true);
                     
                     // Handle in-play visibility (tabs and scorecard)
                     handleInPlayVisibility(isInPlayFromApi);

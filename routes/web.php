@@ -88,6 +88,7 @@ Route::middleware(['auth', 'restrictBettors'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cricket/{marketId}', [App\Http\Controllers\MatchController::class, 'show']);
+    Route::get('/match/{gmid}', [App\Http\Controllers\MatchController::class, 'showCricketIdMatch']);
     Route::get('/Common/Dashboard', function () {
         return redirect('/');
     });
@@ -113,6 +114,9 @@ Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::
 Route::middleware(['auth'])->group(function () {
     Route::get('/api/prices/{marketId}', [App\Http\Controllers\MatchController::class, 'getPricesApi']);
     Route::get('/api/all-prices/{marketId}', [App\Http\Controllers\MatchController::class, 'getAllPricesApi']);
+    Route::get('/api/cricketid/matches', [App\Http\Controllers\MatchController::class, 'getCricketIdMatchListApi']);
+    Route::get('/api/cricketid/odds/{gmid}', [App\Http\Controllers\MatchController::class, 'getCricketIdOddsApi']);
+    Route::get('/api/cricketid/score', [App\Http\Controllers\MatchController::class, 'getCricketIdScoreProxy']);
 });
 
 Route::get('/result', function () {
