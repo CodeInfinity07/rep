@@ -1,0 +1,604 @@
+<div class="content-wrap body">
+                    
+
+<style>
+
+    .container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .containerofiframe {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: max-content;
+        padding-top: 88%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .checknow {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ and Edge */
+        user-select: none; /* Standard syntax */
+    }
+
+    .controls {
+        overflow: hidden;
+        background: #2b2f35;
+        /* height: 35px; */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .scores {
+        background-color: #2b2f35;
+        border: 1px solid #2b2f35;
+        padding: 0.25rem;
+    }
+
+    .scores .runnername {
+        margin-top: 7px;
+        line-height: 0.2;
+        color: white;
+        font-size: 18px;
+    }
+
+    .scores .runner-score {
+        color: white;
+        font-size: 18px;
+        margin-top: 2px;
+        padding: 0px;
+    }
+
+    .scores .active {
+        color: #009069
+    }
+
+    .scores .col-divider {
+        border-left: 1px solid white;
+    }
+
+    .tablefoter {
+        font-size: 14px;
+        border: 1px solid white;
+        color: white;
+    }
+
+    .socindivs {
+        padding: 0px;
+    }
+
+    .timeshow {
+        color: white;
+        font-size: 18px;
+    }
+
+    .scoresocer {
+        color: white;
+        font-size: 18px
+    }
+
+    .tablefotercs {
+        font-size: 12px;
+        color: white;
+    }
+
+    .colwidthset {
+        width: 1vw;
+    }
+
+    .right-nav {
+        padding-left: 10px;
+    }
+
+    #TVDIVIFRAME iframe {
+        height: 330px;
+        width: 100%;
+        border: none;
+        overflow: hidden;
+    }
+
+    @media screen and (max-width: 480px) {
+        #TVDIVIFRAME iframe {
+            height: 230px;
+            width: 100%;
+            border: none;
+            overflow: hidden;
+        }
+
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: white;
+            font-size: 9px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: white;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: white;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: white;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: white;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: white;
+            font-size: 12px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: white;
+            font-size: 9px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: white;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: white;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: white;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: white;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: white;
+            font-size: 12px;
+        }
+
+        iframe {
+            width: 1px;
+            min-width: 100%;
+        }
+    }
+
+    iframe {
+        width: 1px;
+        min-width: 100%;
+    }
+
+    /* Style the tab */
+    .tabcontent {
+        margin-top: -4px;
+        display: none;
+        border: 1px solid #ccc;
+        border-top: none;
+        background-color: white;
+    }
+
+    div.scrollmenu {
+        overflow: auto;
+        white-space: nowrap;
+        margin-bottom: -10px;
+        transition: 0.5s;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    div.scrollmenu a {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 0px 20px;
+        text-decoration: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    div.scrollmenu a:hover {
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    /* Bet Slip Styles */
+    #betSlip {
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+    
+    #betSlip .stake-btn {
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #e0e0e0;
+        margin: 2px;
+        transition: background-color 0.2s;
+    }
+    
+    #betSlip .stake-btn:hover {
+        background-color: #c0c0c0;
+    }
+    
+    #betSlip tr.back {
+        background-color: #d4edff;
+    }
+    
+    #betSlip tr.lay {
+        background-color: #ffe4e8;
+    }
+    
+    #betSlip .quantity {
+        display: flex;
+        align-items: center;
+    }
+    
+    #betSlip .quantity input {
+        width: 60px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    
+    #betSlip .quantity-nav {
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+    }
+    
+    #betSlip .quantity-button {
+        cursor: pointer;
+        padding: 0 5px;
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        font-size: 10px;
+    }
+    
+    #betSlip .quantity-button:hover {
+        background-color: #bbb;
+    }
+    
+    #betSlip .stake input {
+        width: 80px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    
+    .price-back:hover, .price-lay:hover {
+        opacity: 0.8;
+        transform: scale(1.02);
+        transition: all 0.1s;
+    }
+    
+    .runrate {
+        color: #009069;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    
+    #scoreboard-display {
+        font-size: 16px;
+    }
+    
+    #scoreboard-display #team1-name {
+        font-weight: bold;
+    }
+    
+    #commentry-text {
+        color: #009069;
+        font-weight: bold;
+    }
+    
+    #this-over-display {
+        font-size: 14px;
+        color: #333;
+    }
+</style>
+
+<script>
+    const marketId = '1.251137335';
+    const eventId = '35011871';
+    const timeCode = '';
+
+    const CommentrySignalR = 1;
+    const SsocketEnable = 1;
+    const CatalogSignalR = 0; //1;
+</script>
+<script src="/js/unreal_html5_player_script_v2.js?00001"></script>
+
+<div id="MarketView"><div class="text-center mt-10" style="display: none;"><img src="/img/loadinggif.gif" alt="Loading..."></div> <div id="loadedmarkettoshow" class="row" style=""><div class="col-lg-8"><div class="left-content"><div class="table-wrap"><div class="table-box-header"><div class="row no-gutters"><div class="col-md-auto"><div class="box-main-icon"><img src="/img/v2/cricket.svg" alt="Box Icon"></div></div> <div class="col-md"><div class="tb-top-text"><p><img src="/img/v2/clock-green.svg"> <span class="green-upper-text">Upcoming</span> <span class="black-light-text" id="matchTimeDisplay">in 2 hour(s) | Dec 2 2:10 pm</span> <span class="black-light-text"> | Winners: 1</span></p> <h4 class="event-title">Perth Scorchers W v Melbourne Renegades W</h4> <p><span class="medium-black" id="elapsedTimeDisplay">Starts in : 02:32:58</span></p><div id="DisplayOnBox" class="form-group form-check pull-right"><input type="checkbox" id="IsDisplayOn" class="form-check-input"> <label for="IsDisplayOn" class="form-check-label">Keep Display On</label></div> <p></p></div></div></div>
+<script>
+    var marketStartTimeISO = '2025-12-02T09:10:00Z';
+    var isInPlay = false;
+    var scoreCardUrl = 'https://score.akamaized.uk/live-src?id=35011871';
+</script> <div class="scrollmenu" style=""><a id="Alltab" class="tablink btn btn-primary">
+                                ALL
+                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary" style="">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary" style="">Fancy-2</a> <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary" style="display: none;">Figure</a> <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
+
+<div class="table-box-header" id="scoreboard-header" style=""><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
+                                                    Ball Running...
+                                                </div> <div style="margin-left: 8px; margin-top: -3px;"><input type="checkbox" class="fas fa-volume-mute fa-inverse" style="width: 0px; margin-right: 35px; font-size: 15px;"></div></div></span> <p></p> <p id="this-over-display">This Over : &nbsp; --</p></div></div></div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
+                    (MaxBet: 200K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners">
+                    <div id="runner-90021943" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
+                        Melbourne Renegades W
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3> <a id="B3-90021943" role="button" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">2.22</span> <span class="price-amount">2.9K</span></a> <a id="B2-90021943" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">2.24</span> <span class="price-amount">3.0K</span></a> <a id="B1-90021943" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">2.26</span> <span class="price-amount">3.8K</span></a> <a id="L1-90021943" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">2.28</span> <span class="price-amount">144.57</span></a> <a class="price-price price-lay" style="cursor: pointer;"><span class="price-odd">2.3</span> <span class="price-amount">18.1K</span></a> <a class="price-price price-lay mr-4" style="cursor: pointer;"><span class="price-odd">2.32</span> <span class="price-amount">31.23</span></a></div>
+                    <div id="runner-90213197" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
+                        Perth Scorchers W
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3> <a id="B3-90213197" role="button" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">1.76</span> <span class="price-amount">1.5K</span></a> <a id="B2-90213197" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">1.77</span> <span class="price-amount">10.4K</span></a> <a id="B1-90213197" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.78</span> <span class="price-amount">11.8K</span></a> <a id="L1-90213197" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.79</span> <span class="price-amount">3.8K</span></a> <a class="price-price price-lay" style="cursor: pointer;"><span class="price-odd">1.8</span> <span class="price-amount">3.5K</span></a> <a class="price-price price-lay mr-4" style="cursor: pointer;"><span class="price-odd">1.81</span> <span class="price-amount">4.9K</span></a></div>
+    </div></div> <!----> <!----> <div class="tb-content" id="bookmaker-section" style=""><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
+                    (MaxBet: 1M)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners" id="bookmaker-runners">
+                                                <div id="runner-37302-bm" class="runner-runner" data-market-id="1.251137337"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Runner
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3>
+                            <a id="B3-37302-1.251137337" role="button" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                <a id="B2-37302-1.251137337" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                <a id="B1-37302-1.251137337" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                <a id="L1-37302-1.251137337" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">1.01</span> <span class="price-amount">1,276</span></a>
+                <a class="price-price price-lay" style="cursor: pointer;"><span class="price-odd">1000</span> <span class="price-amount">0</span></a>
+                <a class="price-price price-lay mr-4" style="cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                        </div>
+                                <div id="runner-37303-bm" class="runner-runner" data-market-id="1.251137337"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Runner
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3>
+                            <a id="B3-37303-1.251137337" role="button" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">100</span> <span class="price-amount">16</span></a>
+                <a id="B2-37303-1.251137337" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">150</span> <span class="price-amount">4</span></a>
+                <a id="B1-37303-1.251137337" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">200</span> <span class="price-amount">7</span></a>
+                <a id="L1-37303-1.251137337" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">1000</span> <span class="price-amount">0</span></a>
+                <a class="price-price price-lay" style="cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                <a class="price-price price-lay mr-4" style="cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                        </div>
+                                                            <div id="runner-90213197-bm" class="runner-runner" data-market-id="1.251137500"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Runner
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3>
+                            <a id="B3-90213197-1.251137500" role="button" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">1.91</span> <span class="price-amount">5</span></a>
+                <a id="B2-90213197-1.251137500" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">1.93</span> <span class="price-amount">595</span></a>
+                <a id="B1-90213197-1.251137500" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">1.94</span> <span class="price-amount">19</span></a>
+                <a id="L1-90213197-1.251137500" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">1.99</span> <span class="price-amount">25</span></a>
+                <a class="price-price price-lay" style="cursor: pointer;"><span class="price-odd">2</span> <span class="price-amount">161</span></a>
+                <a class="price-price price-lay mr-4" style="cursor: pointer;"><span class="price-odd">2.02</span> <span class="price-amount">268</span></a>
+                        </div>
+                                <div id="runner-90021943-bm" class="runner-runner" data-market-id="1.251137500"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer">
+                        Runner
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span></span> <span class="ml-1" style="font-weight: normal;"></span></div></h3>
+                            <a id="B3-90021943-1.251137500" role="button" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">1.99</span> <span class="price-amount">69</span></a>
+                <a id="B2-90021943-1.251137500" class="price-price price-back" style="cursor: pointer;"><span class="price-odd">2</span> <span class="price-amount">173</span></a>
+                <a id="B1-90021943-1.251137500" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">2.02</span> <span class="price-amount">13</span></a>
+                <a id="L1-90021943-1.251137500" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">2.06</span> <span class="price-amount">18</span></a>
+                <a class="price-price price-lay" style="cursor: pointer;"><span class="price-odd">2.08</span> <span class="price-amount">552</span></a>
+                <a class="price-price price-lay mr-4" style="cursor: pointer;"><span class="price-odd">2.1</span> <span class="price-amount">5</span></a>
+                        </div>
+            </div></div> <!----> <div class="tb-content" id="fancy-section" style=""><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
+                    (MaxBet: 20K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div>
+    <div class="market-runners"><div class="runner-runner"><h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">No fancy markets available</h4></span></div></h3></div></div>
+</div>   <!----></div></div></div></div> <!----> <div id="BM" class="tabcontent"><div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
+                    (MaxBet: 1M)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners" id="bm-tab-runners">
+                                                <div id="runner-37302-bmtab" class="runner-runner" data-market-id="1.251137337"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">Runner</h4></span></div></h3>
+                            <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">0</span> <span class="price-amount">0</span></a>
+                <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">1.01</span> <span class="price-amount">1,276</span></a>
+                        </div>
+                                <div id="runner-37303-bmtab" class="runner-runner" data-market-id="1.251137337"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">Runner</h4></span></div></h3>
+                            <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">200</span> <span class="price-amount">7</span></a>
+                <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">1000</span> <span class="price-amount">0</span></a>
+                        </div>
+                                                            <div id="runner-90213197-bmtab" class="runner-runner" data-market-id="1.251137500"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">Runner</h4></span></div></h3>
+                            <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">1.94</span> <span class="price-amount">19</span></a>
+                <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">1.99</span> <span class="price-amount">25</span></a>
+                        </div>
+                                <div id="runner-90021943-bmtab" class="runner-runner" data-market-id="1.251137500"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">Runner</h4></span></div></h3>
+                            <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240); cursor: pointer;"><span class="price-odd">2.02</span> <span class="price-amount">13</span></a>
+                <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178); cursor: pointer;"><span class="price-odd">2.06</span> <span class="price-amount">18</span></a>
+                        </div>
+            </div></div></div> <!----> <div id="Fancy2" class="tabcontent"><div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
+                    (MaxBet: 20K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div>
+    <div class="market-runners"><div class="runner-runner"><h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">No fancy markets available</h4></span></div></h3></div></div>
+</div></div> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" id="tv-score-buttons" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" id="btnTV" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE()" class="btn btn-primary btn-xs" id="btnScore" style="width: 50%;">Score Card</button></div> <div id="TVDIV" class="container" style="height: 213px; display: none;"><iframe id="tvframe" src="https://live.cricketid.xyz/casino-tv?id=35011871" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px; width: 100%;"></iframe></div> <div id="LIVEDIV" class="container" style="height: 213px;"><iframe id="livesc" src="https://score.akamaized.uk/?id=35011871" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe" style="height: 213px;"></iframe></div> <div id="betSlip" class="bets" style="display: none;">
+    <strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong>
+    <div class="betting-table">
+        <table class="table">
+            <thead>
+                <tr><th>Bet for</th><th>Odds</th><th>Stake</th><th>Profit</th></tr>
+            </thead>
+            <tbody>
+                <tr id="betSlipRow" class="back">
+                    <td id="betRunnerName">-</td>
+                    <td width="10%">
+                        <div class="quantity">
+                            <input type="text" id="bet-price" readonly="">
+                            <div class="quantity-nav">
+                                <div class="quantity-button quantity-up" onclick="adjustOdds(0.01)"><span class="fa fa-caret-up"></span></div>
+                                <div class="quantity-button quantity-down" onclick="adjustOdds(-0.01)"><span class="fa fa-caret-down"></span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="10%">
+                        <div class="stake"><input type="text" id="bet-size" oninput="calculateProfit()"></div>
+                    </td>
+                    <td id="betProfitDisplay">0 / 0</td>
+                </tr>
+                <tr id="betSlipRow2" class="back">
+                    <td colspan="5">
+                        <table class="table">
+                            <tbody>
+                                <tr class="checknow">
+                                    <td><span data-amount="2000" class="points stake-btn" onclick="setStake(2000)">2,000</span></td>
+                                    <td><span data-amount="5000" class="points stake-btn" onclick="setStake(5000)">5,000</span></td>
+                                    <td><span data-amount="10000" class="points stake-btn" onclick="setStake(10000)">10,000</span></td>
+                                    <td><span data-amount="25000" class="points stake-btn" onclick="setStake(25000)">25,000</span></td>
+                                </tr>
+                                <tr class="checknow">
+                                    <td><span class="points stake-btn" onclick="addStake(1000)">+ 1,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(5000)">+ 5,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(10000)">+ 10,000</span></td>
+                                    <td><span class="points stake-btn" onclick="addStake(25000)">+ 25,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="align-left btn btn-danger" onclick="closeBetSlip()"><b>Close</b></button></td>
+                                    <td><button type="button" class="align-left btn btn-warning" onclick="clearBetSlip()"><b>Clear</b></button></td>
+                                    <td colspan="1"></td>
+                                    <td><div class="btn btn-primary ld-over" style="cursor: pointer;" onclick="submitBet()"><b>Submit</b><div class="ld ld-ball ld-flip"></div></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                2,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                5,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                10,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                25,000
+                            </button></td></tr> <tr><td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +1,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +5,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +10,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +25,000
+                            </button></td></tr> <tr><td><button type="button" data-dismiss="modal" class="btn btn-danger mt-2" style="touch-action: manipulation;">
+                                Close
+                            </button></td> <td colspan="2"><div class="btn btn-primary ld-over mt-2" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div> <span> / -</span></td></tr> <tr style="display: none;"><td colspan="4" class="alert-danger pr-5"></td></tr></tbody></table></div></div></div></div> <div class="bets"><strong>
+        Open Bets (0)
+        <img src="/img/reconnecting.gif" alt="dc" class="rounded disconnected" style="display: none;"> <!----> <!----></strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th> <th></th></tr></thead> <tbody></tbody></table></div></div> <div class="bets"><strong>Matched Bets (0)</strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th></tr></thead> <tbody></tbody></table></div></div> <div style="margin-top: 7px;"><strong class="RM_In_Markets" style="display: block; background: rgb(43, 47, 53); color: rgb(255, 255, 255); padding: 10px;">Related Events</strong> <div><table class="table compact" style="margin-bottom: 0px;"><tbody><tr id="m_1_250636959" onclick="window.location='/Common/Market?id=1.250636959';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">8:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T03:30:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    India v South Africa
+                                </div></td></tr> <tr id="m_1_250776463" onclick="window.location='/Common/Market?id=1.250776463';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">14:50</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T09:50:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Perth Scorchers W v Adelaide Strikers W
+                                </div></td></tr> <tr id="m_1_250836685" onclick="window.location='/Common/Market?id=1.250836685';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">16:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T11:30:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Aspin Stallions v Vista Riders
+                                </div></td></tr> <tr id="m_1_250777438" onclick="window.location='/Common/Market?id=1.250777438';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">18:00</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T13:00:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Pakistan v Sri Lanka
+                                </div></td></tr> <tr id="m_1_250840894" onclick="window.location='/Common/Market?id=1.250840894';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">18:45</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-11-22T13:45:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Northern Warriors v Deccan Gladiators
+                                </div></td></tr></tbody></table></div></div></div></div></div></div> <div id="fancyPosition" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title"></h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="fancypos-body" class="modal-body"><table class="table"><tbody><tr><th>Score</th> <th>Position</th></tr> </tbody></table></div> <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button></div></div></div></div> <div id="modalRules" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title">Market Rules</h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="rules-box" class="modal-body"></div></div></div></div></div></div>
+
+
+                </div>

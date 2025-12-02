@@ -380,16 +380,18 @@ class MatchController extends Controller
                 $awayTeam = $scores['away'] ?? 'Team 2';
                 
                 // Determine if match is in play
-                // Check for explicit inPlay field, or if there are bookmaker/fancy markets (indices 1 and 2)
+                // ONLY set true if explicitly provided by external API - never assume based on market count
                 $isInPlay = false;
-                if (isset($marketBooks[0]['inPlay'])) {
-                    $isInPlay = $marketBooks[0]['inPlay'];
-                } elseif (isset($marketBooks[0]['isInPlay'])) {
-                    $isInPlay = $marketBooks[0]['isInPlay'];
-                } elseif (count($marketBooks) > 1) {
-                    // If there are bookmaker or fancy markets, the match is likely in play
+                if (isset($marketBooks[0]['inPlay']) && $marketBooks[0]['inPlay'] === true) {
+                    $isInPlay = true;
+                } elseif (isset($marketBooks[0]['isInPlay']) && $marketBooks[0]['isInPlay'] === true) {
+                    $isInPlay = true;
+                } elseif (isset($data['inPlay']) && $data['inPlay'] === true) {
+                    $isInPlay = true;
+                } elseif (isset($data['isInPlay']) && $data['isInPlay'] === true) {
                     $isInPlay = true;
                 }
+                // Never assume inPlay based on market count - Bookmaker/Fancy can exist pre-match
                 
                 // Extract Match Odds (marketBooks[0])
                 $matchOdds = null;

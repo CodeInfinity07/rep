@@ -1,0 +1,94 @@
+{
+    "success": true,
+    "matchOdds": {
+        "marketId": "1.251137335",
+        "marketName": "Match Odds",
+        "status": "OPEN",
+        "inPlay": true,
+        "runners": [
+            {
+                "selectionId": "90213197",
+                "name": "Perth Scorchers W",
+                "status": "ACTIVE",
+                "price1": 1.78,
+                "price2": 1.77,
+                "price3": 1.76,
+                "size1": 11816.5,
+                "size2": 10387.02,
+                "size3": 1486.14,
+                "lay1": 1.79,
+                "lay2": 1.8,
+                "lay3": 1.81,
+                "ls1": 3804.38,
+                "ls2": 3539.39,
+                "ls3": 4875.94
+            },
+            {
+                "selectionId": "90021943",
+                "name": "Melbourne Renegades W",
+                "status": "ACTIVE",
+                "price1": 2.26,
+                "price2": 2.24,
+                "price3": 2.22,
+                "size1": 3832.75,
+                "size2": 3046.35,
+                "size3": 2937.1,
+                "lay1": 2.28,
+                "lay2": 2.3,
+                "lay3": 2.32,
+                "ls1": 144.57,
+                "ls2": 18100.85,
+                "ls3": 31.23
+            }
+        ]
+    },
+    "bookmaker": {
+        "marketId": "9.20534290",
+        "marketName": "Bookmaker",
+        "status": "OPEN",
+        "runners": [
+            {
+                "selectionId": "835552",
+                "name": "Perth Scorchers W",
+                "status": "SUSPENDED",
+                "price1": 0,
+                "size1": 100,
+                "lay1": 0,
+                "ls1": 100
+            },
+            {
+                "selectionId": "662286",
+                "name": "Melbourne Renegades W",
+                "status": "SUSPENDED",
+                "price1": 0,
+                "size1": 100,
+                "lay1": 0,
+                "ls1": 100
+            }
+        ]
+    },
+    "fancy": {
+        "marketId": "9.20534596",
+        "marketName": "Fancy",
+        "status": "OPEN",
+        "runners": [
+            {
+                "selectionId": "1",
+                "name": "Fancy",
+                "status": "ACTIVE",
+                "price1": 1.98,
+                "size1": 98,
+                "lay1": 2.02,
+                "ls1": 102
+            }
+        ]
+    },
+    "scores": {
+        "home": "Perth Scorchers W",
+        "away": "Melbourne Renegades W",
+        "currentSet": 0,
+        "runs": [],
+        "wickets": []
+    },
+    "marketCount": 3
+}
