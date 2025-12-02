@@ -373,64 +373,105 @@ class MatchController extends Controller
             if ($data) {
                 // Parse marketBooks array: [0]=Match Odds, [1]=Bookmaker, [2]=Fancy/Fancy-2
                 $marketBooks = $data['marketBooks'] ?? [];
+                $scores = $data['scores'] ?? [];
                 
-                // Extract Match Odds with runner names
+                // Get team names from scores object
+                $homeTeam = $scores['home'] ?? 'Team 1';
+                $awayTeam = $scores['away'] ?? 'Team 2';
+                
+                // Extract Match Odds (marketBooks[0])
                 $matchOdds = null;
                 if (isset($marketBooks[0])) {
+                    $market = $marketBooks[0];
                     $matchOdds = [
-                        'marketId' => $marketBooks[0]['marketId'] ?? $marketId,
-                        'marketName' => $marketBooks[0]['marketName'] ?? 'Match Odds',
-                        'status' => $marketBooks[0]['status'] ?? 'OPEN',
-                        'inPlay' => $marketBooks[0]['inPlay'] ?? false,
+                        'marketId' => $market['id'] ?? $marketId,
+                        'marketName' => 'Match Odds',
+                        'status' => $market['marketStatus'] ?? 'OPEN',
+                        'inPlay' => $market['bettingAllowed'] ?? false,
                         'runners' => []
                     ];
                     
-                    foreach ($marketBooks[0]['runners'] ?? [] as $runner) {
+                    $runnerIndex = 0;
+                    foreach ($market['runners'] ?? [] as $runner) {
+                        // Map runner index to team name: 0=Home, 1=Away, 2=Draw
+                        $runnerName = 'Unknown';
+                        if ($runnerIndex === 0) $runnerName = $homeTeam;
+                        elseif ($runnerIndex === 1) $runnerName = $awayTeam;
+                        elseif ($runnerIndex === 2) $runnerName = 'The Draw';
+                        
                         $matchOdds['runners'][] = [
-                            'selectionId' => $runner['selectionId'] ?? $runner['id'] ?? 0,
-                            'name' => $runner['name'] ?? $runner['runnerName'] ?? 'Unknown',
+                            'selectionId' => $runner['id'] ?? 0,
+                            'name' => $runnerName,
                             'status' => $runner['status'] ?? 'ACTIVE',
-                            'ex' => $runner['ex'] ?? ['availableToBack' => [], 'availableToLay' => []]
+                            'price1' => $runner['price1'] ?? null,
+                            'price2' => $runner['price2'] ?? null,
+                            'price3' => $runner['price3'] ?? null,
+                            'size1' => $runner['size1'] ?? null,
+                            'size2' => $runner['size2'] ?? null,
+                            'size3' => $runner['size3'] ?? null,
+                            'lay1' => $runner['lay1'] ?? null,
+                            'lay2' => $runner['lay2'] ?? null,
+                            'lay3' => $runner['lay3'] ?? null,
+                            'ls1' => $runner['ls1'] ?? null,
+                            'ls2' => $runner['ls2'] ?? null,
+                            'ls3' => $runner['ls3'] ?? null
                         ];
+                        $runnerIndex++;
                     }
                 }
                 
-                // Extract Bookmaker with runner names
+                // Extract Bookmaker (marketBooks[1])
                 $bookmaker = null;
                 if (isset($marketBooks[1])) {
+                    $market = $marketBooks[1];
                     $bookmaker = [
-                        'marketId' => $marketBooks[1]['marketId'] ?? '',
-                        'marketName' => $marketBooks[1]['marketName'] ?? 'Bookmaker',
-                        'status' => $marketBooks[1]['status'] ?? 'OPEN',
+                        'marketId' => $market['id'] ?? '',
+                        'marketName' => 'Bookmaker',
+                        'status' => $market['marketStatus'] ?? 'OPEN',
                         'runners' => []
                     ];
                     
-                    foreach ($marketBooks[1]['runners'] ?? [] as $runner) {
+                    $runnerIndex = 0;
+                    foreach ($market['runners'] ?? [] as $runner) {
+                        $runnerName = 'Unknown';
+                        if ($runnerIndex === 0) $runnerName = $homeTeam;
+                        elseif ($runnerIndex === 1) $runnerName = $awayTeam;
+                        elseif ($runnerIndex === 2) $runnerName = 'The Draw';
+                        
                         $bookmaker['runners'][] = [
-                            'selectionId' => $runner['selectionId'] ?? $runner['id'] ?? 0,
-                            'name' => $runner['name'] ?? $runner['runnerName'] ?? 'Unknown',
+                            'selectionId' => $runner['id'] ?? 0,
+                            'name' => $runnerName,
                             'status' => $runner['status'] ?? 'ACTIVE',
-                            'ex' => $runner['ex'] ?? ['availableToBack' => [], 'availableToLay' => []]
+                            'price1' => $runner['price1'] ?? null,
+                            'size1' => $runner['size1'] ?? null,
+                            'lay1' => $runner['lay1'] ?? null,
+                            'ls1' => $runner['ls1'] ?? null
                         ];
+                        $runnerIndex++;
                     }
                 }
                 
-                // Extract Fancy/Fancy-2 with market name
+                // Extract Fancy/Fancy-2 (marketBooks[2])
                 $fancy = null;
                 if (isset($marketBooks[2])) {
+                    $market = $marketBooks[2];
+                    $fancyName = $market['marketName'] ?? $market['name'] ?? 'Fancy';
                     $fancy = [
-                        'marketId' => $marketBooks[2]['marketId'] ?? '',
-                        'marketName' => $marketBooks[2]['marketName'] ?? 'Fancy',
-                        'status' => $marketBooks[2]['status'] ?? 'OPEN',
+                        'marketId' => $market['id'] ?? '',
+                        'marketName' => $fancyName,
+                        'status' => $market['marketStatus'] ?? 'OPEN',
                         'runners' => []
                     ];
                     
-                    foreach ($marketBooks[2]['runners'] ?? [] as $runner) {
+                    foreach ($market['runners'] ?? [] as $runner) {
                         $fancy['runners'][] = [
-                            'selectionId' => $runner['selectionId'] ?? $runner['id'] ?? 0,
-                            'name' => $runner['name'] ?? $runner['runnerName'] ?? $fancy['marketName'],
+                            'selectionId' => $runner['id'] ?? 0,
+                            'name' => $runner['name'] ?? $runner['runnerName'] ?? $fancyName,
                             'status' => $runner['status'] ?? 'ACTIVE',
-                            'ex' => $runner['ex'] ?? ['availableToBack' => [], 'availableToLay' => []]
+                            'price1' => $runner['price1'] ?? null,
+                            'size1' => $runner['size1'] ?? null,
+                            'lay1' => $runner['lay1'] ?? null,
+                            'ls1' => $runner['ls1'] ?? null
                         ];
                     }
                 }
@@ -440,6 +481,7 @@ class MatchController extends Controller
                     'matchOdds' => $matchOdds,
                     'bookmaker' => $bookmaker,
                     'fancy' => $fancy,
+                    'scores' => $scores,
                     'marketCount' => count($marketBooks)
                 ]);
             }

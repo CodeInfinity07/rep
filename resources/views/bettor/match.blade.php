@@ -2523,9 +2523,7 @@
         function updateRunnerPrices(runner, section, marketId) {
             const selectionId = runner.selectionId;
             const status = runner.status;
-            const ex = runner.ex || {};
-            const backPrices = ex.availableToBack || [];
-            const layPrices = ex.availableToLay || [];
+            const runnerName = runner.name;
             
             // Find runner divs
             let runnerDivs = [];
@@ -2542,10 +2540,18 @@
             runnerDivs.forEach(runnerDiv => {
                 if (!runnerDiv) return;
                 
+                // Update runner name
+                if (runnerName) {
+                    const nameEl = runnerDiv.querySelector('.clippable-spacer');
+                    if (nameEl && nameEl.textContent.trim() !== runnerName) {
+                        nameEl.textContent = runnerName;
+                    }
+                }
+                
                 const disabledDiv = runnerDiv.querySelector('.runner-disabled');
                 const priceButtons = runnerDiv.querySelectorAll('.price-price');
                 
-                if (status === 'SUSPENDED' || (backPrices.length === 0 && layPrices.length === 0)) {
+                if (status === 'SUSPENDED' || !runner.price1) {
                     // Show SUSPENDED
                     if (!disabledDiv && priceButtons.length > 0) {
                         priceButtons.forEach(btn => btn.style.display = 'none');
@@ -2562,22 +2568,22 @@
                     }
                     priceButtons.forEach(btn => btn.style.display = '');
                     
-                    // Update back prices
+                    // Update back prices (price1, price2, price3)
                     const b1 = runnerDiv.querySelector('[id^="B1-"]');
                     const b2 = runnerDiv.querySelector('[id^="B2-"]');
                     const b3 = runnerDiv.querySelector('[id^="B3-"]');
                     
-                    if (b1 && backPrices[0]) updatePriceWithFlash(b1, backPrices[0].price, backPrices[0].size, true, 'B1-' + selectionId);
-                    if (b2 && backPrices[1]) updatePriceWithFlash(b2, backPrices[1].price, backPrices[1].size, true, 'B2-' + selectionId);
-                    if (b3 && backPrices[2]) updatePriceWithFlash(b3, backPrices[2].price, backPrices[2].size, true, 'B3-' + selectionId);
+                    if (b1 && runner.price1) updatePriceWithFlash(b1, runner.price1, runner.size1, true, 'B1-' + selectionId);
+                    if (b2 && runner.price2) updatePriceWithFlash(b2, runner.price2, runner.size2, true, 'B2-' + selectionId);
+                    if (b3 && runner.price3) updatePriceWithFlash(b3, runner.price3, runner.size3, true, 'B3-' + selectionId);
                     
-                    // Update lay prices
+                    // Update lay prices (lay1, lay2, lay3)
                     const l1 = runnerDiv.querySelector('[id^="L1-"]');
-                    if (l1 && layPrices[0]) updatePriceWithFlash(l1, layPrices[0].price, layPrices[0].size, false, 'L1-' + selectionId);
+                    if (l1 && runner.lay1) updatePriceWithFlash(l1, runner.lay1, runner.ls1, false, 'L1-' + selectionId);
                     
                     const layButtons = runnerDiv.querySelectorAll('.price-lay:not([id])');
-                    if (layPrices[1] && layButtons[0]) updatePriceWithFlash(layButtons[0], layPrices[1].price, layPrices[1].size, false, 'L2-' + selectionId);
-                    if (layPrices[2] && layButtons[1]) updatePriceWithFlash(layButtons[1], layPrices[2].price, layPrices[2].size, false, 'L3-' + selectionId);
+                    if (runner.lay2 && layButtons[0]) updatePriceWithFlash(layButtons[0], runner.lay2, runner.ls2, false, 'L2-' + selectionId);
+                    if (runner.lay3 && layButtons[1]) updatePriceWithFlash(layButtons[1], runner.lay3, runner.ls3, false, 'L3-' + selectionId);
                 }
             });
         }
@@ -2601,12 +2607,9 @@
                 }
                 
                 const status = runner.status;
-                const ex = runner.ex || {};
-                const backPrices = ex.availableToBack || [];
-                const layPrices = ex.availableToLay || [];
                 const disabledDiv = runnerDiv.querySelector('.runner-disabled');
                 
-                if (status === 'SUSPENDED' || (backPrices.length === 0 && layPrices.length === 0)) {
+                if (status === 'SUSPENDED' || !runner.price1) {
                     // Show SUSPENDED
                     if (!disabledDiv) {
                         const priceButtons = runnerDiv.querySelectorAll('.price-price');
@@ -2623,30 +2626,30 @@
                     
                     let priceButtons = runnerDiv.querySelectorAll('.price-price');
                     if (priceButtons.length === 0) {
-                        const runnerName = runnerDiv.querySelector('.runner-name');
-                        if (runnerName) {
+                        const runnerNameEl = runnerDiv.querySelector('.runner-name');
+                        if (runnerNameEl) {
                             const priceHtml = `
                                 <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
-                                    <span class="price-odd">${backPrices[0]?.price || '-'}</span>
-                                    <span class="price-amount">${formatAmount(backPrices[0]?.size)}</span>
+                                    <span class="price-odd">${runner.price1 || '-'}</span>
+                                    <span class="price-amount">${formatAmount(runner.size1)}</span>
                                 </a>
                                 <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
-                                    <span class="price-odd">${layPrices[0]?.price || '-'}</span>
-                                    <span class="price-amount">${formatAmount(layPrices[0]?.size)}</span>
+                                    <span class="price-odd">${runner.lay1 || '-'}</span>
+                                    <span class="price-amount">${formatAmount(runner.ls1)}</span>
                                 </a>
                             `;
-                            runnerName.insertAdjacentHTML('afterend', priceHtml);
+                            runnerNameEl.insertAdjacentHTML('afterend', priceHtml);
                         }
                     } else {
                         priceButtons.forEach(btn => btn.style.display = '');
                         const backBtn = runnerDiv.querySelector('.price-back');
                         const layBtn = runnerDiv.querySelector('.price-lay');
                         
-                        if (backBtn && backPrices[0]) {
-                            updatePriceWithFlash(backBtn, backPrices[0].price, backPrices[0].size, true, 'fancy-back-' + fancyMarketId);
+                        if (backBtn && runner.price1) {
+                            updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'fancy-back-' + fancyMarketId);
                         }
-                        if (layBtn && layPrices[0]) {
-                            updatePriceWithFlash(layBtn, layPrices[0].price, layPrices[0].size, false, 'fancy-lay-' + fancyMarketId);
+                        if (layBtn && runner.lay1) {
+                            updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + fancyMarketId);
                         }
                     }
                 }
