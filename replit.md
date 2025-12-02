@@ -43,4 +43,60 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 - **Database:** MySQL (bguru69 on remote server 94.72.106.77)
 - **Live Sports Data API:** ScoreSwift API (http://89.116.20.218:8085/api/home, /api/inplay, /api/GetMarketOdds, /api/GetMarketDetails) for live match data.
 - **Betting Prices and Orders API:** mgs11.com for prices and order management.
+
+## CricketID API Integration (December 2024)
+
+**API Base URL:** `https://api.cricketid.xyz`
+**Authentication:** API key passed as `key` query parameter
+**IP Whitelisting:** Required - production server IP must be registered with CricketID
+
+### Endpoints Available
+
+| Endpoint | Purpose | Parameters |
+|----------|---------|------------|
+| `/allSportid` | Get all sport IDs | `key` |
+| `/esid` | Get match list for a sport | `key`, `sid` |
+| `/tree` | Get hierarchical sports/matches | `key` |
+| `/getDetailsData` | Get match metadata | `key`, `gmid`, `sid` |
+| `/getPriveteData` | Get live odds/bookmaker/fancy | `key`, `gmid`, `sid` |
+| `/score` | Get live scorecard | `key`, `gtv`, `sid` |
+
+### Key Identifiers
+- `sid` - Sport ID (4 = Cricket)
+- `gmid` - Game Match ID (unique match identifier)
+- `gtv` - Score/TV ID (for scorecard data)
+- `eid` - Event ID
+
+### Response Data Structure
+
+**Market Data (`/getPriveteData`):**
+- `t1[]` - Match Odds and Bookmaker markets
+- `t2[]`, `t3[]` - Fancy/Session markets
+- Each market contains `section[]` with runners
+
+**Runner Price Structure:**
 ```
+section[].b1/b2/b3 - Back prices (best to worst)
+section[].l1/l2/l3 - Lay prices (best to worst)
+section[].bs1/bs2/bs3 - Back sizes
+section[].ls1/ls2/ls3 - Lay sizes
+```
+
+**Status Fields:**
+- `iplay` - In-play status (true/false)
+- `gstatus` - Game status
+- `block` - Market blocked status
+
+### Laravel Routes
+
+| Route | Controller Method | Description |
+|-------|------------------|-------------|
+| `GET /match/{gmid}` | `MatchController@showCricketIdMatch` | View match using CricketID |
+| `GET /api/cricketid/matches` | `MatchController@getCricketIdMatches` | Get match list |
+| `GET /api/cricketid/odds/{gmid}` | `MatchController@getCricketIdOdds` | Get live odds |
+| `GET /api/cricketid/score` | `MatchController@proxyCricketIdScore` | Secure score proxy |
+
+### Security Notes
+- API key stored in `CRICKETID_API_KEY` secret
+- Score endpoint uses server-side proxy to hide API key from client
+- Never expose API key in frontend JavaScript
