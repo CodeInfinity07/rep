@@ -1197,7 +1197,7 @@
     var scoreCardUrl = '{{ $scoreCardUrl ?? "" }}';
 </script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary">
                                 ALL
-                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary">Figure</a> <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
+                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary" style="display: none;">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary" style="display: none;">Fancy-2</a> <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary" style="display: none;">Figure</a> <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
 
 <div class="table-box-header"><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
                                                     Ball Running...
@@ -1224,7 +1224,7 @@
 @else
     <div class="runner-runner"><h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">No runners available</h4></span></div></h3></div>
 @endif
-</div></div> <!----> <!----> <div class="tb-content" id="bookmaker-section"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
+</div></div> <!----> <!----> <div class="tb-content" id="bookmaker-section" style="display: none;"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Bookmaker </span> <span style="text-transform: initial;">
                     (MaxBet: 1M)
                 </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners" id="bookmaker-runners">
 @php
@@ -1274,7 +1274,7 @@
         <div id="runner-{{ $runnerId }}-bm" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">{{ $runnerName }}</h4></span></div></h3> <div><div class="runner-disabled">SUSPENDED</div></div></div>
     @endforeach
 @endif
-</div></div> <!----> <div class="tb-content" id="fancy-section"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
+</div></div> <!----> <div class="tb-content" id="fancy-section" style="display: none;"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
                     (MaxBet: 20K)
                 </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div>
 @php
@@ -2492,18 +2492,33 @@
                         });
                     }
                     
-                    // Update Bookmaker section (marketBooks[1])
-                    if (bookmaker && bookmaker.runners) {
+                    // Handle Bookmaker section visibility
+                    const bookmakerSection = document.getElementById('bookmaker-section');
+                    const bmTab = document.getElementById('BMtab');
+                    if (bookmaker && bookmaker.runners && bookmaker.runners.length > 0) {
+                        if (bookmakerSection) bookmakerSection.style.display = '';
+                        if (bmTab) bmTab.style.display = '';
                         bookmaker.runners.forEach(runner => {
                             updateRunnerPrices(runner, 'bookmaker', bookmaker.marketId);
-                            // Also update runner name if needed
                             updateRunnerName(runner.selectionId, runner.name, 'bm');
                         });
+                    } else {
+                        // Hide Bookmaker section if no data
+                        if (bookmakerSection) bookmakerSection.style.display = 'none';
+                        if (bmTab) bmTab.style.display = 'none';
                     }
                     
-                    // Update Fancy section (marketBooks[2])
-                    if (fancy && fancy.runners) {
+                    // Handle Fancy section visibility
+                    const fancySection = document.getElementById('fancy-section');
+                    const fancy2Tab = document.getElementById('Fancy2tab');
+                    if (fancy && fancy.runners && fancy.runners.length > 0) {
+                        if (fancySection) fancySection.style.display = '';
+                        if (fancy2Tab) fancy2Tab.style.display = '';
                         updateFancySection(fancy);
+                    } else {
+                        // Hide Fancy section if no data
+                        if (fancySection) fancySection.style.display = 'none';
+                        if (fancy2Tab) fancy2Tab.style.display = 'none';
                     }
                 })
                 .catch(error => console.log('Odds fetch error:', error));

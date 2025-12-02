@@ -1,0 +1,377 @@
+<div class="content-wrap body">
+                    
+
+<style>
+
+    .container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .containerofiframe {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: max-content;
+        padding-top: 88%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .checknow {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ and Edge */
+        user-select: none; /* Standard syntax */
+    }
+
+    .controls {
+        overflow: hidden;
+        background: #2b2f35;
+        /* height: 35px; */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .scores {
+        background-color: #2b2f35;
+        border: 1px solid #2b2f35;
+        padding: 0.25rem;
+    }
+
+    .scores .runnername {
+        margin-top: 7px;
+        line-height: 0.2;
+        color: white;
+        font-size: 18px;
+    }
+
+    .scores .runner-score {
+        color: white;
+        font-size: 18px;
+        margin-top: 2px;
+        padding: 0px;
+    }
+
+    .scores .active {
+        color: #009069
+    }
+
+    .scores .col-divider {
+        border-left: 1px solid white;
+    }
+
+    .tablefoter {
+        font-size: 14px;
+        border: 1px solid white;
+        color: white;
+    }
+
+    .socindivs {
+        padding: 0px;
+    }
+
+    .timeshow {
+        color: white;
+        font-size: 18px;
+    }
+
+    .scoresocer {
+        color: white;
+        font-size: 18px
+    }
+
+    .tablefotercs {
+        font-size: 12px;
+        color: white;
+    }
+
+    .colwidthset {
+        width: 1vw;
+    }
+
+    .right-nav {
+        padding-left: 10px;
+    }
+
+    #TVDIVIFRAME iframe {
+        height: 330px;
+        width: 100%;
+        border: none;
+        overflow: hidden;
+    }
+
+    @media screen and (max-width: 480px) {
+        #TVDIVIFRAME iframe {
+            height: 230px;
+            width: 100%;
+            border: none;
+            overflow: hidden;
+        }
+
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: white;
+            font-size: 9px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: white;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: white;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: white;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: white;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: white;
+            font-size: 12px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .runnername {
+            margin-top: 10px;
+            line-height: 0.1;
+            color: white;
+            font-size: 9px;
+        }
+
+        .colwidthset {
+            width: 50px;
+        }
+
+        .tableresp {
+            display: inline-table;
+        }
+
+        .lrhom {
+            display: none;
+        }
+
+        .sethourshow {
+            line-height: 0.3;
+            font-size: 15px;
+        }
+
+        .tablefoter {
+            font-size: 10px;
+        }
+
+        .runnersocer {
+            color: white;
+            font-size: 13px;
+            margin-top: 2px;
+            padding: 0px;
+            line-height: 1.2;
+        }
+
+        .socindivs {
+            padding: 0px;
+        }
+
+        .timeshow {
+            color: white;
+            font-size: 12px;
+        }
+
+        .scoresocer {
+            color: white;
+            font-size: 18px;
+            padding: 0px;
+            margin-bottom: 7px;
+        }
+
+        .tablefotercs {
+            font-size: 11px;
+            color: white;
+        }
+
+        .scores .runnername {
+            margin-top: 7px;
+            line-height: 0.2;
+            color: white;
+            font-size: 12px;
+        }
+
+        iframe {
+            width: 1px;
+            min-width: 100%;
+        }
+    }
+
+    iframe {
+        width: 1px;
+        min-width: 100%;
+    }
+
+    /* Style the tab */
+    .tabcontent {
+        margin-top: -4px;
+        display: none;
+        border: 1px solid #ccc;
+        border-top: none;
+        background-color: white;
+    }
+
+    div.scrollmenu {
+        overflow: auto;
+        white-space: nowrap;
+        margin-bottom: -10px;
+        transition: 0.5s;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    div.scrollmenu a {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 0px 20px;
+        text-decoration: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    div.scrollmenu a:hover {
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+</style>
+
+<script>
+    const marketId = '1.250907255';
+    const eventId = '34987920';
+    const timeCode = '';
+
+    const CommentrySignalR = 1;
+    const SsocketEnable = 1;
+    const CatalogSignalR = 0; //1;
+</script>
+<script src="/js/unreal_html5_player_script_v2.js?00001"></script>
+
+<div id="MarketView"><div class="text-center mt-10" style="display: none;"><img src="/img/loadinggif.gif" alt="Loading..."></div> <div id="loadedmarkettoshow" class="row" style=""><div class="col-lg-8"><div class="left-content"><div class="table-wrap"><div class="table-box-header"><div class="row no-gutters"><div class="col-md-auto"><div class="box-main-icon"><img src="/img/v2/cricket.svg" alt="Box Icon"></div></div> <div class="col-md"><div class="tb-top-text"><p><img src="/img/v2/clock-green.svg"> <span class="green-upper-text">OPEN</span> <span class="black-light-text">in 2 days | Dec 4 9:00 am</span> <span class="black-light-text"> | Winners: 1</span></p> <h4 class="event-title">Australia v England</h4> <p><span class="medium-black">Remaining : 45:40:47</span></p><div id="DisplayOnBox" class="form-group form-check pull-right"><input type="checkbox" id="IsDisplayOn" class="form-check-input"> <label for="IsDisplayOn" class="form-check-label">Keep Display On</label></div> <p></p></div></div></div> <div class="scrollmenu"><!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> </div></div> <!----> <!----> <!----> <div id="All" class="tabcontent" style="display: block;"><div id="nav-tabContent" class="tab-content"><div id="nav-1" role="tabpanel" aria-labelledby="nav-home-tab" class="tab-pane fade show active"><div class="table-box-body"><!----> <div class="tb-content"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Match Odds </span> <span style="text-transform: initial;">
+                    (MaxBet: 200K)
+                </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div> <div class="market-runners"><div id="runner-16606" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
+                        Australia
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <a id="B3-16606" role="button" class="price-price price-back"><span class="price-odd">1.56</span> <span class="price-amount">278.3K</span></a> <a id="B2-16606" class="price-price price-back"><span class="price-odd">1.57</span> <span class="price-amount">988.2K</span></a> <a id="B1-16606" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.58</span> <span class="price-amount">434.1K</span></a> <a id="L1-16606" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">1.59</span> <span class="price-amount">34.2K</span></a> <a class="price-price price-lay"><span class="price-odd">1.6</span> <span class="price-amount">5.2M</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">1.61</span> <span class="price-amount">366.3K</span></a></div><div id="runner-10301" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
+                        England
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <a id="B3-10301" role="button" class="price-price price-back"><span class="price-odd">3.05</span> <span class="price-amount">328.8K</span></a> <a id="B2-10301" class="price-price price-back"><span class="price-odd">3.1</span> <span class="price-amount">33.3K</span></a> <a id="B1-10301" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">3.15</span> <span class="price-amount">867.2K</span></a> <a id="L1-10301" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">3.2</span> <span class="price-amount">389.7K</span></a> <a class="price-price price-lay"><span class="price-odd">3.25</span> <span class="price-amount">519.1K</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">3.3</span> <span class="price-amount">17.7K</span></a></div><div id="runner-60443" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img src="" class="ml-2"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 data-toggle="tooltip" data-placement="top" data-html="true" class="clippable-spacer" data-original-title="" title="">
+                        The Draw
+                    </h4></span></div> <div class="runner-position"><span><span class="position-minus"><strong></strong></span> <!----></span> <span class="ml-1" style="font-weight: normal;"><!---->
+                    
+                </span> <!----></div></h3> <a id="B3-60443" role="button" class="price-price price-back"><span class="price-odd">17.5</span> <span class="price-amount">5.2K</span></a> <a id="B2-60443" class="price-price price-back"><span class="price-odd">18</span> <span class="price-amount">9.7K</span></a> <a id="B1-60443" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">18.5</span> <span class="price-amount">457.0K</span></a> <a id="L1-60443" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="fa fa-long-arrow-up" style="display: none;"></span> <span class="fa fa-long-arrow-down" style="display: none;"></span> <span class="price-odd">19</span> <span class="price-amount">2.9K</span></a> <a class="price-price price-lay"><span class="price-odd">19.5</span> <span class="price-amount">6.6K</span></a> <a class="price-price price-lay mr-4"><span class="price-odd">20</span> <span class="price-amount">5.2K</span></a></div></div></div> <!----> <!---->  <!----> <!---->   <!----></div></div></div></div> <!----> <!----> <!----> <!----> <!----> <!----> <!----> </div></div></div> <div class="col-lg-4 right-nav"><div class="right-content"><div class="table-wrap"><div class="table-box-body"><div class="btn-group btn-group-xs" style="width: 100%; height: 30px; margin-bottom: 2px;"><button onclick="SHOWTV()" class="btn btn-primary btn-xs" style="width: 50%; border-right: solid;">Tv</button> <button onclick="SHOWLIVE('1.250907255')" class="btn btn-primary btn-xs" style="width: 50%;">Score Card</button></div> <div id="TVDIVIFRAME" style="display: none;"></div> <div id="TVDIV" style="display: none;"><div class="bets"><div id="VBox1" style="display: none;"><unrealhtml5videoplayer id="UnrealPlayer1"></unrealhtml5videoplayer> <video id="streamVideo1" width="465" autoplay="autoplay" playsinline="" controls="controls" onloadedmetadata="OnMetadata()"></video></div></div></div> <div id="LIVEDIV" class="container"><iframe id="livesc" src="https://bpexch.xyz/Common/LiveScoreCard?id=1.250907255" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" class="responsive-iframe"></iframe></div> <div id="betSlip" class="bets" style="display: none;"><strong>Bet Slip <a target="_blank" href="/Customer/Profile" class="button" style="color: white; float: right;">Edit Bet Sizes</a></strong> <div class="betting-table"><table class="table"><thead><tr><th>Bet for</th> <th>Odds</th> <th>Stake</th> <th>Profit</th></tr></thead> <tbody><tr class="back"><td></td> <td width="10%"><div class="quantity"><input type="text" id="bet-price"> <div class="quantity-nav"><div class="quantity-button quantity-up"><span class="fa fa-caret-up"></span></div> <div class="quantity-button quantity-down"><span class="fa fa-caret-down"></span></div></div></div></td> <td width="10%"><div class="stake"><input type="text" id="bet-size"></div></td> <td> / -</td></tr> <tr class="back"><td colspan="5"><table class="table"><tbody><tr class="checknow"><td><span data-amount="2000" class="points">2,000</span></td> <td><span class="points">5,000</span></td> <td><span class="points">10,000</span></td> <td><span class="points">25,000</span></td></tr> <tr class="checknow"><td><span class="points">+ 1,000</span></td> <td><span class="points">+ 5,000</span></td> <td><span class="points">+ 10,000</span></td> <td><span class="points">+ 25,000</span></td></tr> <tr><td colspan="4" class="alert-danger pr-5"></td></tr> <tr><td><button type="reset" class="align-left btn btn-danger"><b>Close</b></button></td> <td><button type="reset" class="align-left btn btn-warning"><b>Clear</b></button></td> <td colspan="1"></td> <td><div class="btn btn-primary ld-over" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div></td></tr></tbody></table></td></tr></tbody></table></div></div> <div id="betSlipMobile" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-md"><div class="modal-content back"><div class="modal-body"><table><tbody><tr><td>&nbsp;</td> <th colspan="3"></th></tr> <tr><td>ODDS</td> <td colspan="2"><div class="input-group mt-2"><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary"><strong>-</strong></button></div> <input type="number" id="bet-price" step="0.01" min="1.01" max="1000" class="form-control"> <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><strong>+</strong></button></div></div></td></tr> <tr><td>Amount</td> <td colspan="2"><input type="number" id="bet-size-m" class="form-control mt-2"></td></tr> <tr><td style="width: 25%;"><button type="button" data-amount="2000" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                2,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                5,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                10,000
+                            </button></td> <td style="width: 25%;"><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                25,000
+                            </button></td></tr> <tr><td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +1,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +5,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +10,000
+                            </button></td> <td><button type="button" class="btn btn-secondary btn-block mt-2" style="touch-action: manipulation;">
+                                +25,000
+                            </button></td></tr> <tr><td><button type="button" data-dismiss="modal" class="btn btn-danger mt-2" style="touch-action: manipulation;">
+                                Close
+                            </button></td> <td colspan="2"><div class="btn btn-primary ld-over mt-2" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div> <span> / -</span></td></tr> <tr style="display: none;"><td colspan="4" class="alert-danger pr-5"></td></tr></tbody></table></div></div></div></div> <div class="bets"><strong>
+        Open Bets (0)
+        <img src="/img/reconnecting.gif" alt="dc" class="rounded disconnected" style="display: none;"> <!----> <!----></strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th> <th></th></tr></thead> <tbody></tbody></table></div></div> <div class="bets"><strong>Matched Bets (0)</strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th></tr></thead> <tbody></tbody></table></div></div> <div style="margin-top: 7px;"><strong class="RM_In_Markets" style="display: block; background: rgb(43, 47, 53); color: rgb(255, 255, 255); padding: 10px;">Related Events</strong> <div><table class="table compact" style="margin-bottom: 0px;"><tbody><tr id="m_1_251151786" onclick="window.location='/Common/Market?id=1.251151786';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">13:00</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-12-02T08:00:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Bangladesh v Ireland
+                                </div></td></tr> <tr id="m_1_251137335" onclick="window.location='/Common/Market?id=1.251137335';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">14:10</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-12-02T09:10:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Perth Scorchers W v Melbourne Renegades W
+                                </div></td></tr> <tr id="m_1_251092003" onclick="window.location='/Common/Market?id=1.251092003';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">19:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-12-02T14:30:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Dubai Capitals v Desert Vipers
+                                </div></td></tr> <tr id="m_1_251127162" onclick="window.location='/Common/Market?id=1.251127162';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">3:00</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-12-02T22:00:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    New Zealand v West Indies
+                                </div></td></tr> <tr id="m_1_251224830" onclick="window.location='/Common/Market?id=1.251224830';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Tomorrow</span> <span class="market-time">9:40</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
+                                            2025-12-03T04:40:00.0000000Z
+                                        </span></div></td> <td><div>
+                                    Melbourne Stars W v Sydney Sixers W
+                                </div></td></tr></tbody></table></div></div></div></div></div></div> <div id="fancyPosition" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title"></h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="fancypos-body" class="modal-body"><table class="table"><tbody><tr><th>Score</th> <th>Position</th></tr> </tbody></table></div> <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button></div></div></div></div> <div id="modalRules" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title">Market Rules</h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="rules-box" class="modal-body"></div></div></div></div></div></div>
+
+
+                </div>
