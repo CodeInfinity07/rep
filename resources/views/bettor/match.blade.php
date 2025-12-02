@@ -2484,22 +2484,39 @@
                     const matchOdds = data.matchOdds;
                     const bookmaker = data.bookmaker;
                     const fancy = data.fancy;
-                    const isInPlayFromApi = matchOdds?.inPlay || false;
+                    
+                    // IMPORTANT: Default to false, only true if explicitly set
+                    const isInPlayFromApi = matchOdds?.inPlay === true;
                     
                     // Handle in-play visibility (tabs and scorecard)
-                    handleInPlayVisibility(isInPlayFromApi, bookmaker, fancy);
+                    handleInPlayVisibility(isInPlayFromApi);
                     
-                    // Update Match Odds section (marketBooks[0])
+                    // Update Match Odds section (marketBooks[0]) - always update prices
                     if (matchOdds && matchOdds.runners) {
                         matchOdds.runners.forEach(runner => {
                             updateRunnerPrices(runner, 'match-odds');
                         });
                     }
                     
-                    // Handle Bookmaker section visibility
+                    // Only process bookmaker/fancy if in play
+                    if (!isInPlayFromApi) {
+                        // Not in play - ensure sections stay hidden
+                        const bookmakerSection = document.getElementById('bookmaker-section');
+                        const bmTab = document.getElementById('BMtab');
+                        const fancySection = document.getElementById('fancy-section');
+                        const fancy2Tab = document.getElementById('Fancy2tab');
+                        
+                        if (bookmakerSection) bookmakerSection.style.display = 'none';
+                        if (bmTab) bmTab.style.display = 'none';
+                        if (fancySection) fancySection.style.display = 'none';
+                        if (fancy2Tab) fancy2Tab.style.display = 'none';
+                        return; // Exit early, don't process bookmaker/fancy
+                    }
+                    
+                    // Handle Bookmaker section visibility (only when in play)
                     const bookmakerSection = document.getElementById('bookmaker-section');
                     const bmTab = document.getElementById('BMtab');
-                    if (isInPlayFromApi && bookmaker && bookmaker.runners && bookmaker.runners.length > 0) {
+                    if (bookmaker && bookmaker.runners && bookmaker.runners.length > 0) {
                         if (bookmakerSection) bookmakerSection.style.display = '';
                         if (bmTab) bmTab.style.display = '';
                         bookmaker.runners.forEach(runner => {
@@ -2507,20 +2524,18 @@
                             updateRunnerName(runner.selectionId, runner.name, 'bm');
                         });
                     } else {
-                        // Hide Bookmaker section if no data or not in play
                         if (bookmakerSection) bookmakerSection.style.display = 'none';
                         if (bmTab) bmTab.style.display = 'none';
                     }
                     
-                    // Handle Fancy section visibility
+                    // Handle Fancy section visibility (only when in play)
                     const fancySection = document.getElementById('fancy-section');
                     const fancy2Tab = document.getElementById('Fancy2tab');
-                    if (isInPlayFromApi && fancy && fancy.runners && fancy.runners.length > 0) {
+                    if (fancy && fancy.runners && fancy.runners.length > 0) {
                         if (fancySection) fancySection.style.display = '';
                         if (fancy2Tab) fancy2Tab.style.display = '';
                         updateFancySection(fancy);
                     } else {
-                        // Hide Fancy section if no data or not in play
                         if (fancySection) fancySection.style.display = 'none';
                         if (fancy2Tab) fancy2Tab.style.display = 'none';
                     }
@@ -2528,7 +2543,7 @@
                 .catch(error => console.log('Odds fetch error:', error));
         }
         
-        function handleInPlayVisibility(isInPlay, bookmaker, fancy) {
+        function handleInPlayVisibility(isInPlay) {
             // Elements to show/hide based on inPlay status
             const scrollMenu = document.querySelector('.scrollmenu');
             const scoreboardHeader = document.getElementById('scoreboard-header');
@@ -2536,7 +2551,7 @@
             const tvDiv = document.getElementById('TVDIV');
             const liveDiv = document.getElementById('LIVEDIV');
             
-            if (isInPlay) {
+            if (isInPlay === true) {
                 // Show tabs and scorecard when in play
                 if (scrollMenu) scrollMenu.style.display = '';
                 if (scoreboardHeader) scoreboardHeader.style.display = '';
