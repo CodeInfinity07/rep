@@ -112,6 +112,7 @@ Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::
 // Protected API routes for prices data
 Route::middleware(['auth'])->group(function () {
     Route::get('/api/prices/{marketId}', [App\Http\Controllers\MatchController::class, 'getPricesApi']);
+    Route::get('/api/all-prices/{marketId}', [App\Http\Controllers\MatchController::class, 'getAllPricesApi']);
 });
 
 Route::get('/result', function () {

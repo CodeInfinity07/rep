@@ -338,9 +338,109 @@ class MatchController extends Controller
             $data = $this->getPricesData($marketId);
             
             if ($data) {
+                // Parse marketBooks array: [0]=Match Odds, [1]=Bookmaker, [2]=Fancy/Fancy-2
+                $marketBooks = $data['marketBooks'] ?? [];
+                
+                $parsedData = [
+                    'matchOdds' => $marketBooks[0] ?? null,
+                    'bookmaker' => $marketBooks[1] ?? null,
+                    'fancy' => $marketBooks[2] ?? null,
+                    'raw' => $data
+                ];
+                
                 return response()->json([
                     'success' => true,
-                    'data' => $data
+                    'data' => $parsedData
+                ]);
+            }
+            
+            return response()->json(['error' => 'No data available'], 404);
+            
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function getAllPricesApi($marketId)
+    {
+        if (!\Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        try {
+            $data = $this->getPricesData($marketId);
+            
+            if ($data) {
+                // Parse marketBooks array: [0]=Match Odds, [1]=Bookmaker, [2]=Fancy/Fancy-2
+                $marketBooks = $data['marketBooks'] ?? [];
+                
+                // Extract Match Odds with runner names
+                $matchOdds = null;
+                if (isset($marketBooks[0])) {
+                    $matchOdds = [
+                        'marketId' => $marketBooks[0]['marketId'] ?? $marketId,
+                        'marketName' => $marketBooks[0]['marketName'] ?? 'Match Odds',
+                        'status' => $marketBooks[0]['status'] ?? 'OPEN',
+                        'inPlay' => $marketBooks[0]['inPlay'] ?? false,
+                        'runners' => []
+                    ];
+                    
+                    foreach ($marketBooks[0]['runners'] ?? [] as $runner) {
+                        $matchOdds['runners'][] = [
+                            'selectionId' => $runner['selectionId'] ?? $runner['id'] ?? 0,
+                            'name' => $runner['name'] ?? $runner['runnerName'] ?? 'Unknown',
+                            'status' => $runner['status'] ?? 'ACTIVE',
+                            'ex' => $runner['ex'] ?? ['availableToBack' => [], 'availableToLay' => []]
+                        ];
+                    }
+                }
+                
+                // Extract Bookmaker with runner names
+                $bookmaker = null;
+                if (isset($marketBooks[1])) {
+                    $bookmaker = [
+                        'marketId' => $marketBooks[1]['marketId'] ?? '',
+                        'marketName' => $marketBooks[1]['marketName'] ?? 'Bookmaker',
+                        'status' => $marketBooks[1]['status'] ?? 'OPEN',
+                        'runners' => []
+                    ];
+                    
+                    foreach ($marketBooks[1]['runners'] ?? [] as $runner) {
+                        $bookmaker['runners'][] = [
+                            'selectionId' => $runner['selectionId'] ?? $runner['id'] ?? 0,
+                            'name' => $runner['name'] ?? $runner['runnerName'] ?? 'Unknown',
+                            'status' => $runner['status'] ?? 'ACTIVE',
+                            'ex' => $runner['ex'] ?? ['availableToBack' => [], 'availableToLay' => []]
+                        ];
+                    }
+                }
+                
+                // Extract Fancy/Fancy-2 with market name
+                $fancy = null;
+                if (isset($marketBooks[2])) {
+                    $fancy = [
+                        'marketId' => $marketBooks[2]['marketId'] ?? '',
+                        'marketName' => $marketBooks[2]['marketName'] ?? 'Fancy',
+                        'status' => $marketBooks[2]['status'] ?? 'OPEN',
+                        'runners' => []
+                    ];
+                    
+                    foreach ($marketBooks[2]['runners'] ?? [] as $runner) {
+                        $fancy['runners'][] = [
+                            'selectionId' => $runner['selectionId'] ?? $runner['id'] ?? 0,
+                            'name' => $runner['name'] ?? $runner['runnerName'] ?? $fancy['marketName'],
+                            'status' => $runner['status'] ?? 'ACTIVE',
+                            'ex' => $runner['ex'] ?? ['availableToBack' => [], 'availableToLay' => []]
+                        ];
+                    }
+                }
+                
+                return response()->json([
+                    'success' => true,
+                    'matchOdds' => $matchOdds,
+                    'bookmaker' => $bookmaker,
+                    'fancy' => $fancy,
+                    'marketCount' => count($marketBooks)
                 ]);
             }
             
