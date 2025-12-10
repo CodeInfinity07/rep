@@ -264,7 +264,7 @@ async function saveMatches(matches, sportId) {
                 match.gmid,
                 sportId,
                 match.cid,
-                match.ename,
+                match.name || match.ename,
                 match.cname,
                 match.status || 'UNKNOWN',
                 match.iplay || false,
@@ -408,6 +408,9 @@ async function processData(data) {
         
         // Process t2 array (racing events)
         if (data.t2 && Array.isArray(data.t2)) {
+            // Save racing sports to sports table first (fixes foreign key constraint)
+            await saveSports(data.t2);
+            
             for (const sport of data.t2) {
                 const isRacingSport = sport.etid === SPORT_IDS.HORSE_RACING || 
                                      sport.etid === SPORT_IDS.GREYHOUND_RACING;
