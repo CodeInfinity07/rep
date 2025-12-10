@@ -2891,8 +2891,8 @@
             }
         }
         
-        // Start polling every second
-        setInterval(updateMatchOdds, 1000);
+        // Start polling every 800ms
+        setInterval(updateMatchOdds, 800);
         
         // Initial update
         updateMatchOdds();
