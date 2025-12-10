@@ -2728,8 +2728,12 @@
             if (!fancyRunnersContainer) {
                 fancyRunnersContainer = document.createElement('div');
                 fancyRunnersContainer.className = 'market-runners';
-                fancyRunnersContainer.id = 'fancy-runners-container';
                 fancySection.appendChild(fancyRunnersContainer);
+            }
+            
+            const existingNoData = fancyRunnersContainer.querySelector('.runner-runner h4.clippable-spacer');
+            if (existingNoData && existingNoData.textContent.includes('No fancy markets')) {
+                fancyRunnersContainer.innerHTML = '';
             }
             
             const runners = fancy.runners || [];
@@ -2742,25 +2746,7 @@
                     runnerDiv = document.createElement('div');
                     runnerDiv.id = 'fancy-runner-' + runnerId;
                     runnerDiv.className = 'runner-runner';
-                    runnerDiv.innerHTML = `
-                        <span class="selector ml-2" style="display: none;"></span>
-                        <img class="ml-2" style="display: none;">
-                        <h3 class="runner-name">
-                            <div class="runner-info">
-                                <span class="clippable runner-display-name">
-                                    <h4 class="clippable-spacer">${runner.name || 'Fancy'}</h4>
-                                </span>
-                            </div>
-                        </h3>
-                        <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
-                            <span class="price-odd">-</span>
-                            <span class="price-amount"></span>
-                        </a>
-                        <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
-                            <span class="price-odd">-</span>
-                            <span class="price-amount"></span>
-                        </a>
-                    `;
+                    runnerDiv.innerHTML = `<span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">${runner.name || 'Fancy'}</h4></span></div></h3> <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span> <span class="price-amount"></span></a>`;
                     fancyRunnersContainer.appendChild(runnerDiv);
                 }
                 
@@ -2770,21 +2756,21 @@
                 }
                 
                 const status = runner.status;
-                const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+                let disabledDiv = runnerDiv.querySelector('.runner-disabled');
                 const priceButtons = runnerDiv.querySelectorAll('.price-price');
                 
                 if (status === 'SUSPENDED' || status === 'Ball Running' || (!runner.price1 && !runner.lay1)) {
                     priceButtons.forEach(btn => btn.style.display = 'none');
                     if (!disabledDiv) {
                         const wrapper = document.createElement('div');
-                        wrapper.innerHTML = '<div class="runner-disabled">' + (status || 'SUSPENDED') + '</div>';
+                        wrapper.innerHTML = '<div><div class="runner-disabled">' + (status || 'SUSPENDED') + '</div></div>';
                         runnerDiv.appendChild(wrapper.firstChild);
                     } else {
                         disabledDiv.textContent = status || 'SUSPENDED';
                     }
                 } else {
                     if (disabledDiv) {
-                        disabledDiv.remove();
+                        disabledDiv.parentElement?.remove() || disabledDiv.remove();
                     }
                     priceButtons.forEach(btn => btn.style.display = '');
                     
