@@ -1005,4 +1005,50 @@ class MatchController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
+    public function getResultsApi(Request $request)
+    {
+        if (!\Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        try {
+            $sportId = $request->input('sport_id', 4);
+            $fromDate = $request->input('from_date');
+            $toDate = $request->input('to_date');
+            
+            $query = \DB::table('match_results')
+                ->where('sport_id', $sportId);
+            
+            if ($fromDate) {
+                $query->where('result_date', '>=', $fromDate);
+            }
+            
+            if ($toDate) {
+                $query->where('result_date', '<=', $toDate);
+            }
+            
+            $results = $query->orderBy('result_date', 'desc')
+                ->limit(100)
+                ->get();
+            
+            return response()->json([
+                'success' => true,
+                'data' => $results->map(function($r) {
+                    return [
+                        'id' => $r->id,
+                        'gmid' => $r->gmid,
+                        'matchName' => $r->match_name,
+                        'marketName' => $r->market_name,
+                        'resultDate' => date('Y-m-d H:i', strtotime($r->result_date)),
+                        'winner' => $r->winner
+                    ];
+                })
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('Results API error: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
