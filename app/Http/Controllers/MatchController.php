@@ -125,6 +125,9 @@ class MatchController extends Controller
                 'liable' => $activeBetsData->total_liability ?? 0,
                 'active_bets' => $activeBetsData->count ?? 0,
                 'scoreCardUrl' => $scoreCardUrl,
+                'useCricketIdApi' => true,
+                'gmid' => $marketId,
+                'sid' => 4,
             ];
             
             // Serve bettor or management view based on user role
