@@ -172,8 +172,10 @@ class MatchController extends Controller
             $inPlay = false;
             $runners = [];
             
-            if (isset($oddsData['t1']) && is_array($oddsData['t1'])) {
-                foreach ($oddsData['t1'] as $market) {
+            $markets = $oddsData['data'] ?? $oddsData['t1'] ?? [];
+            
+            if (is_array($markets)) {
+                foreach ($markets as $market) {
                     $gtype = $market['gtype'] ?? '';
                     $mname = $market['mname'] ?? '';
                     
@@ -191,13 +193,14 @@ class MatchController extends Controller
                         }
                     }
                     
-                    if ($gtype === 'match' || stripos($mname, 'Match Odds') !== false) {
+                    if ($gtype === 'match' && ($mname === 'MATCH_ODDS' || stripos($mname, 'Match Odds') !== false)) {
                         foreach ($market['section'] ?? [] as $section) {
                             $runners[] = [
                                 'selectionId' => $section['sid'] ?? $section['nat'] ?? 0,
                                 'runnerName' => $section['nat'] ?? 'Unknown'
                             ];
                         }
+                        break;
                     }
                 }
             }
