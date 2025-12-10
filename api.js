@@ -188,13 +188,16 @@ async function fetchSportDetails(sportId) {
     }
 }
 
-// Parse datetime string to MySQL format
+// Parse datetime string to MySQL format (convert from India time to Pakistan time)
 function parseDatetime(dateStr) {
     if (!dateStr) return null;
     try {
-        // Format: "12/10/2025 8:00:00 PM"
+        // Format: "12/10/2025 8:00:00 PM" (India time UTC+5:30)
         const date = new Date(dateStr);
         if (isNaN(date.getTime())) return null;
+        
+        // Convert from India (UTC+5:30) to Pakistan (UTC+5:00) - subtract 30 minutes
+        date.setMinutes(date.getMinutes() - 30);
         
         return date.toISOString().slice(0, 19).replace('T', ' ');
     } catch (error) {
