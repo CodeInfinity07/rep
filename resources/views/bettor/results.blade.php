@@ -845,33 +845,20 @@
                                         <br>
 
                                         <p>
-                                            <button class="btn btn-secondary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=1">
-                                                Soccer
-                                            </button>
-                                            <button class="btn btn-secondary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=2">
-                                                Tennis
-                                            </button>
-                                            <button class="btn btn-secondary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=4">
+                                            <button class="btn sport-btn" type="button" data-sport-id="4" onclick="selectSport(4)">
                                                 Cricket
                                             </button>
-                                            <button class="btn btn-secondary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=7">
-                                                Horse Race
+                                            <button class="btn sport-btn" type="button" data-sport-id="1" onclick="selectSport(1)">
+                                                Football
                                             </button>
-                                            <button class="btn btn-primary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=8">
-                                                <strong>Fancy</strong>
+                                            <button class="btn sport-btn" type="button" data-sport-id="2" onclick="selectSport(2)">
+                                                Tennis
                                             </button>
-                                            <button class="btn btn-secondary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=12">
-                                                Casino
-                                            </button>
-                                            <button class="btn btn-secondary" type="submit"
-                                                onclick="return updateDates();" formaction="/Common/Result?id=4339">
+                                            <button class="btn sport-btn" type="button" data-sport-id="4339" onclick="selectSport(4339)">
                                                 Greyhound
+                                            </button>
+                                            <button class="btn sport-btn" type="button" data-sport-id="7" onclick="selectSport(7)">
+                                                Horse Racing
                                             </button>
                                         </p>
 
@@ -1881,7 +1868,7 @@
                 </script>
                 
                 <script>
-                    var currentSportId = 8;
+                    var currentSportId = 4;
                     var fromDate = null;
                     var toDate = null;
                     
@@ -1892,11 +1879,27 @@
                         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
                     }
                     
-                    function fetchResults() {
-                        var sportIdParam = getUrlParameter('id');
-                        if (sportIdParam) {
-                            currentSportId = parseInt(sportIdParam);
+                    function selectSport(sportId) {
+                        currentSportId = sportId;
+                        updateActiveButton();
+                        fetchResults();
+                    }
+                    
+                    function updateActiveButton() {
+                        document.querySelectorAll('.sport-btn').forEach(function(btn) {
+                            btn.classList.remove('btn-primary');
+                            btn.classList.add('btn-secondary');
+                        });
+                        var activeBtn = document.querySelector('.sport-btn[data-sport-id="' + currentSportId + '"]');
+                        if (activeBtn) {
+                            activeBtn.classList.remove('btn-secondary');
+                            activeBtn.classList.add('btn-primary');
                         }
+                    }
+                    
+                    function fetchResults() {
+                        document.getElementById('results-tbody').innerHTML = 
+                            '<tr><td colspan="5" style="text-align: center; padding: 20px;">Loading results...</td></tr>';
                         
                         fromDate = document.getElementById('From') ? document.getElementById('From').value : null;
                         toDate = document.getElementById('To') ? document.getElementById('To').value : null;
@@ -1918,6 +1921,7 @@
                                 } else {
                                     document.getElementById('results-tbody').innerHTML = 
                                         '<tr><td colspan="5" style="text-align: center; padding: 20px;">No results found</td></tr>';
+                                    updateResultsInfo(0);
                                 }
                             })
                             .catch(error => {
@@ -1932,7 +1936,7 @@
                         if (!tbody) return;
                         
                         if (results.length === 0) {
-                            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No results found for selected date range</td></tr>';
+                            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No results found for selected filters</td></tr>';
                             return;
                         }
                         
@@ -1954,25 +1958,22 @@
                     function updateResultsInfo(count) {
                         var infoEl = document.getElementById('example_info');
                         if (infoEl) {
-                            infoEl.textContent = 'Showing 1 to ' + count + ' of ' + count + ' entries';
+                            infoEl.textContent = 'Showing ' + (count > 0 ? '1' : '0') + ' to ' + count + ' of ' + count + ' entries';
                         }
                     }
                     
                     function updateDates() {
-                        return true;
+                        fetchResults();
+                        return false;
                     }
                     
                     $(document).ready(function() {
+                        var sportIdParam = getUrlParameter('id');
+                        if (sportIdParam) {
+                            currentSportId = parseInt(sportIdParam);
+                        }
+                        updateActiveButton();
                         fetchResults();
-                        
-                        $('.btn-secondary, .btn-primary').on('click', function(e) {
-                            if ($(this).attr('formaction')) {
-                                e.preventDefault();
-                                var sportId = getUrlParameter('id') || $(this).attr('formaction').split('id=')[1];
-                                currentSportId = parseInt(sportId) || 8;
-                                window.location.href = '/Common/Result?id=' + currentSportId;
-                            }
-                        });
                     });
                 </script>
                 
