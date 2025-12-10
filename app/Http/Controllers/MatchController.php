@@ -29,7 +29,7 @@ class MatchController extends Controller
         $errorView = strtolower($user->type) === 'bettor' ? 'bettor.match' : 'management.cricket.match';
         
         if (!$apiKey) {
-            return view($errorView)->with('error', 'API key not configured');
+            return view($errorView)->with(['error' => 'API key not configured', 'balance' => $user->balance ?? 0]);
         }
         
         try {
@@ -37,14 +37,14 @@ class MatchController extends Controller
             $marketDetails = $this->getMarketDetails($apiKey, $marketId);
             
             if (!$marketDetails) {
-                return view($errorView)->with('error', 'Failed to fetch market details');
+                return view($errorView)->with(['error' => 'Failed to fetch market details', 'balance' => $user->balance ?? 0]);
             }
             
             // Extract event ID from nested event object
             $eventId = $marketDetails['event']['id'] ?? null;
             
             if (!$eventId) {
-                return view($errorView)->with('error', 'Event ID not found');
+                return view($errorView)->with(['error' => 'Event ID not found', 'balance' => $user->balance ?? 0]);
             }
             
             // Step 2: Fetch all market IDs for this event
@@ -143,7 +143,7 @@ class MatchController extends Controller
                 ->header('Expires', '0');
             
         } catch (\Exception $e) {
-            return view($errorView)->with('error', 'Error: ' . $e->getMessage());
+            return view($errorView)->with(['error' => 'Error: ' . $e->getMessage(), 'balance' => $user->balance ?? 0]);
         }
     }
     
@@ -249,7 +249,7 @@ class MatchController extends Controller
                 
         } catch (\Exception $e) {
             \Log::error('CricketID Match page error: ' . $e->getMessage());
-            return view($errorView)->with('error', 'Error loading match: ' . $e->getMessage());
+            return view($errorView)->with(['error' => 'Error loading match: ' . $e->getMessage(), 'balance' => $user->balance ?? 0]);
         }
     }
     
