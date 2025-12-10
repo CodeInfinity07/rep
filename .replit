@@ -37,6 +37,10 @@ externalPort = 80
 localPort = 35401
 externalPort = 3000
 
+[[ports]]
+localPort = 41699
+externalPort = 3001
+
 [deployment]
 deploymentTarget = "autoscale"
 run = ["php", "-S", "0.0.0.0:8080", "-t", "public"]
@@ -45,3 +49,4 @@ run = ["php", "-S", "0.0.0.0:8080", "-t", "public"]
 
 [userenv.shared]
 MGS_API_TOKEN = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzMjU0NjYiLCJzdWIiOiJIQUZJWjY5NjkiLCJ0eXAiOiI0IiwicHJpdiI6IjAiLCJjdXIiOiJScy4iLCJjcmUiOiIxLjAwMDAiLCJuYmYiOjE3NjQ1Nzg5MTcsImV4cCI6MTc2NDU4MjUxNywiaWF0IjoxNzY0NTc4OTE3LCJpc3MiOiJ3ZWJleGNoYW5nZSJ9.rDGa_TAqVsD6drM6M_vZJZ0xmTla1hAgf95zo8ozK-AzmWzYW5XRZ4DLW1hyXvarH4vDgHNA6A4D5gzLpUOC6w"
+DB_CONNECTION = "mysql"
