@@ -1,6 +1,6 @@
-require('dotenv').config();
-const axios = require('axios');
-const mysql = require('mysql2/promise');
+import 'dotenv/config';
+import axios from 'axios';
+import mysql from 'mysql2/promise';
 
 // Database configuration
 const dbConfig = {
