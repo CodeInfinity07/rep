@@ -1,0 +1,881 @@
+{
+  "success": true,
+  "msg": "Success",
+  "status": 200,
+  "data": {
+    "t1": [
+      {
+        "gmid": 616405217,
+        "ename": "MI Emirates v Abu Dhabi Knight Riders",
+        "etid": 4,
+        "cid": 7266696,
+        "cname": "International League T20",
+        "iplay": false,
+        "stime": "12/11/2025 8:00:00 PM",
+        "tv": false,
+        "bm": false,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 5422713916892,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 2,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 876590,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "MI Emirates",
+            "odds": [
+              {
+                "sid": 876590,
+                "psid": 0,
+                "odds": 1.84,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 51.09
+              },
+              {
+                "sid": 876590,
+                "psid": 0,
+                "odds": 1.9,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 50.92
+              }
+            ]
+          },
+          {
+            "sid": 589361,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Abu Dhabi Knight Riders",
+            "odds": [
+              {
+                "sid": 589361,
+                "psid": 0,
+                "odds": 2.1,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 46.07
+              },
+              {
+                "sid": 589361,
+                "psid": 0,
+                "odds": 2.2,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 42.73
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "ename": "Kathmandu Gurkhas v Lumbini Lions",
+        "etid": 4,
+        "cid": 5095148,
+        "cname": "Nepal Premier League",
+        "iplay": true,
+        "stime": "12/10/2025 3:45:00 PM",
+        "tv": true,
+        "bm": true,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 4886823263639,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 2,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 87640,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Kathmandu Gurkhas",
+            "odds": [
+              {
+                "sid": 87640,
+                "psid": 0,
+                "odds": 3.85,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 1192.88
+              },
+              {
+                "sid": 87640,
+                "psid": 0,
+                "odds": 3.95,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 74.43
+              }
+            ]
+          },
+          {
+            "sid": 643201,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Lumbini Lions",
+            "odds": [
+              {
+                "sid": 643201,
+                "psid": 0,
+                "odds": 1.34,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 219.4
+              },
+              {
+                "sid": 643201,
+                "psid": 0,
+                "odds": 1.35,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 3401.92
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 721052684,
+        "ename": "South Africa W v Ireland W",
+        "etid": 4,
+        "cid": 7009066,
+        "cname": "Womens International Twenty20 Matches",
+        "iplay": false,
+        "stime": "12/10/2025 9:30:00 PM",
+        "tv": false,
+        "bm": true,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 5612638185274,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 2,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 560550,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "South Africa W",
+            "odds": [
+              {
+                "sid": 560550,
+                "psid": 0,
+                "odds": 1.09,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 13456.41
+              },
+              {
+                "sid": 560550,
+                "psid": 0,
+                "odds": 1.1,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 4384.08
+              }
+            ]
+          },
+          {
+            "sid": 84101,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Ireland W",
+            "odds": [
+              {
+                "sid": 84101,
+                "psid": 0,
+                "odds": 11,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 438.41
+              },
+              {
+                "sid": 84101,
+                "psid": 0,
+                "odds": 12,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 6.32
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 778750086,
+        "ename": "Gulf Giants v Sharjah Warriors",
+        "etid": 4,
+        "cid": 7266696,
+        "cname": "International League T20",
+        "iplay": false,
+        "stime": "12/10/2025 8:00:00 PM",
+        "tv": false,
+        "bm": true,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 6121510570188,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 2,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 84400,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Gulf Giants",
+            "odds": [
+              {
+                "sid": 84400,
+                "psid": 0,
+                "odds": 1.85,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 10.16
+              },
+              {
+                "sid": 84400,
+                "psid": 0,
+                "odds": 1.88,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 3.97
+              }
+            ]
+          },
+          {
+            "sid": 88631,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Sharjah Warriors",
+            "odds": [
+              {
+                "sid": 88631,
+                "psid": 0,
+                "odds": 2.12,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 41.37
+              },
+              {
+                "sid": 88631,
+                "psid": 0,
+                "odds": 2.18,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 8.62
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 811359434,
+        "ename": "India v South Africa",
+        "etid": 4,
+        "cid": 5081526,
+        "cname": "International Twenty20 Matches",
+        "iplay": false,
+        "stime": "12/11/2025 7:00:00 PM",
+        "tv": false,
+        "bm": true,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 7307627845776,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 2,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 76380,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "India",
+            "odds": [
+              {
+                "sid": 76380,
+                "psid": 0,
+                "odds": 1.43,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 5667.71
+              },
+              {
+                "sid": 76380,
+                "psid": 0,
+                "odds": 1.44,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 1579.12
+              }
+            ]
+          },
+          {
+            "sid": 87821,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "South Africa",
+            "odds": [
+              {
+                "sid": 87821,
+                "psid": 0,
+                "odds": 3.25,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 699.67
+              },
+              {
+                "sid": 87821,
+                "psid": 0,
+                "odds": 3.3,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 2441.11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 845922417,
+        "ename": "New Zealand v West Indies",
+        "etid": 4,
+        "cid": 6499977,
+        "cname": "Test Matches",
+        "iplay": false,
+        "stime": "12/10/2025 3:30:00 AM",
+        "tv": false,
+        "bm": true,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 8272935671685,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 3,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 735670,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "New Zealand",
+            "odds": [
+              {
+                "sid": 735670,
+                "psid": 0,
+                "odds": 1.08,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 21133.46
+              },
+              {
+                "sid": 735670,
+                "psid": 0,
+                "odds": 1.09,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 30803.31
+              }
+            ]
+          },
+          {
+            "sid": 48961,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "West Indies",
+            "odds": [
+              {
+                "sid": 48961,
+                "psid": 0,
+                "odds": 18,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 300
+              },
+              {
+                "sid": 48961,
+                "psid": 0,
+                "odds": 19.5,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 17.07
+              }
+            ]
+          },
+          {
+            "sid": 73242,
+            "sno": 2,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "The Draw",
+            "odds": [
+              {
+                "sid": 73242,
+                "psid": 0,
+                "odds": 36,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 53
+              },
+              {
+                "sid": 73242,
+                "psid": 0,
+                "odds": 38,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 177.44
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 897484926,
+        "ename": "Sydney Sixers W v Perth Scorchers W",
+        "etid": 4,
+        "cid": 5381350,
+        "cname": "WBBL",
+        "iplay": false,
+        "stime": "12/11/2025 1:45:00 PM",
+        "tv": false,
+        "bm": true,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 5709097259218,
+        "mname": "MATCH_ODDS",
+        "status": "OPEN",
+        "rc": 2,
+        "gscode": 1,
+        "m": 0,
+        "oid": 1,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 775950,
+            "sno": 1,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Sydney Sixers W",
+            "odds": [
+              {
+                "sid": 775950,
+                "psid": 0,
+                "odds": 1.77,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 9.44
+              },
+              {
+                "sid": 775950,
+                "psid": 0,
+                "odds": 1.78,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 1.86
+              }
+            ]
+          },
+          {
+            "sid": 70321,
+            "sno": 3,
+            "gstatus": "ACTIVE",
+            "gscode": 1,
+            "nat": "Perth Scorchers W",
+            "odds": [
+              {
+                "sid": 70321,
+                "psid": 0,
+                "odds": 2.28,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 1.45
+              },
+              {
+                "sid": 70321,
+                "psid": 0,
+                "odds": 2.3,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 7.26
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "t2": [
+      {
+        "gmid": 644394125,
+        "ename": "Titans v Dolphins",
+        "etid": 4,
+        "cid": 7117971,
+        "cname": "CSA 4-Day Series Division 1",
+        "iplay": true,
+        "stime": "12/9/2025 1:30:00 PM",
+        "tv": true,
+        "bm": false,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 0,
+        "mname": "MATCH_ODDS",
+        "status": "SUSPENDED",
+        "rc": 2,
+        "gscode": 0,
+        "oid": 1,
+        "m": 0,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 1,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 3,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 739194399,
+        "ename": "The Ashes 2025 - 2026",
+        "etid": 4,
+        "cid": 8807922,
+        "cname": "The Ashes 2025 - 2026",
+        "iplay": true,
+        "stime": "11/21/2025 8:00:00 AM",
+        "tv": false,
+        "bm": false,
+        "f": true,
+        "f1": false,
+        "iscc": 0,
+        "mid": 0,
+        "mname": "MATCH_ODDS",
+        "status": "SUSPENDED",
+        "rc": 2,
+        "gscode": 0,
+        "oid": 1,
+        "m": 0,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 1,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 3,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 816538183,
+        "ename": "WBBL",
+        "etid": 4,
+        "cid": 7485382,
+        "cname": "WBBL",
+        "iplay": true,
+        "stime": "11/9/2025 5:10:00 AM",
+        "tv": false,
+        "bm": true,
+        "f": true,
+        "f1": false,
+        "iscc": 0,
+        "mid": 0,
+        "mname": "MATCH_ODDS",
+        "status": "SUSPENDED",
+        "rc": 2,
+        "gscode": 0,
+        "oid": 1,
+        "m": 0,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 1,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 3,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 858204523,
+        "ename": "Lions v Boland",
+        "etid": 4,
+        "cid": 7117971,
+        "cname": "CSA 4-Day Series Division 1",
+        "iplay": true,
+        "stime": "12/9/2025 1:30:00 PM",
+        "tv": true,
+        "bm": false,
+        "f": true,
+        "f1": true,
+        "iscc": 0,
+        "mid": 0,
+        "mname": "MATCH_ODDS",
+        "status": "SUSPENDED",
+        "rc": 2,
+        "gscode": 0,
+        "oid": 1,
+        "m": 0,
+        "gtype": "match",
+        "section": [
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 1,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 0,
+            "gstatus": "SUSPENDED",
+            "nat": "",
+            "sno": 3,
+            "gscode": 0,
+            "odds": [
+              {
+                "odds": 0,
+                "oname": "BACK1",
+                "otype": "BACK",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "odds": 0,
+                "oname": "LAY1",
+                "otype": "LAY",
+                "sid": 0,
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "lastUpdatedaAt": "2025-12-10T16:17:57.811Z"
+}

@@ -144,7 +144,7 @@ async function createTables() {
     }
 }
 
-// Fetch data from API
+// Fetch tree data from API
 async function fetchSportsData() {
     try {
         const response = await axios.get('https://api.cricketid.xyz/tree?key=dijbfuwd719e12rqhfbjdqdnkqnd11', {
@@ -161,7 +161,29 @@ async function fetchSportsData() {
         
         return null;
     } catch (error) {
-        console.error('❌ Error fetching data:', error.message);
+        console.error('❌ Error fetching tree data:', error.message);
+        return null;
+    }
+}
+
+// Fetch detailed match data for a specific sport from esid endpoint
+async function fetchSportDetails(sportId) {
+    try {
+        const response = await axios.get(`https://api.cricketid.xyz/esid?sid=${sportId}&key=dijbfuwd719e12rqhfbjdqdnkqnd11`, {
+            timeout: 15000,
+            headers: {
+                'User-Agent': 'Mozilla/5.0',
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.data && response.data.success) {
+            return response.data.data;
+        }
+        
+        return null;
+    } catch (error) {
+        console.error(`❌ Error fetching details for sport ${sportId}:`, error.message);
         return null;
     }
 }
@@ -371,59 +393,178 @@ async function saveRacingEvents(events, sportId) {
     }
 }
 
-// Process and save all data
+// Process and save all data from tree endpoint
 async function processData(data) {
     if (!data) return;
     
     try {
-        // Process t1 array (regular sports)
+        // Process t1 array (regular sports) - save sports and competitions from tree
         if (data.t1 && Array.isArray(data.t1)) {
             // Save all sports first
             await saveSports(data.t1);
             
-            // Process each sport
+            // Save competitions for tracked sports
             for (const sport of data.t1) {
-                // Check if this is a sport we want to track
                 const isTrackedSport = Object.values(SPORT_IDS).includes(sport.etid);
-                
                 if (isTrackedSport && sport.children && Array.isArray(sport.children)) {
-                    // Save competitions
                     await saveCompetitions(sport.children, sport.etid);
-                    
-                    // Collect all matches from all competitions
-                    const allMatches = [];
-                    for (const competition of sport.children) {
-                        if (competition.children && Array.isArray(competition.children)) {
-                            allMatches.push(...competition.children);
-                        }
-                    }
-                    
-                    if (allMatches.length > 0) {
-                        await saveMatches(allMatches, sport.etid);
-                        console.log(`✅ Saved ${allMatches.length} ${sport.name} matches`);
-                    }
                 }
             }
         }
         
-        // Process t2 array (racing events)
+        // Process t2 array (racing events) - save sports from tree
         if (data.t2 && Array.isArray(data.t2)) {
-            // Save racing sports to sports table first (fixes foreign key constraint)
             await saveSports(data.t2);
-            
-            for (const sport of data.t2) {
-                const isRacingSport = sport.etid === SPORT_IDS.HORSE_RACING || 
-                                     sport.etid === SPORT_IDS.GREYHOUND_RACING;
-                
-                if (isRacingSport && sport.children && Array.isArray(sport.children)) {
-                    await saveRacingEvents(sport.children, sport.etid);
-                    console.log(`✅ Saved ${sport.children.length} ${sport.name} events`);
-                }
-            }
         }
         
     } catch (error) {
-        console.error('❌ Error processing data:', error.message);
+        console.error('❌ Error processing tree data:', error.message);
+    }
+}
+
+// Fetch and save detailed match data from esid endpoint for all tracked sports
+async function fetchAndSaveDetailedData() {
+    const sportNames = {
+        [SPORT_IDS.CRICKET]: 'Cricket',
+        [SPORT_IDS.FOOTBALL]: 'Football',
+        [SPORT_IDS.TENNIS]: 'Tennis',
+        [SPORT_IDS.HORSE_RACING]: 'Horse Racing',
+        [SPORT_IDS.GREYHOUND_RACING]: 'Greyhound Racing'
+    };
+    
+    // Fetch detailed data for Cricket, Football, Tennis
+    const regularSports = [SPORT_IDS.CRICKET, SPORT_IDS.FOOTBALL, SPORT_IDS.TENNIS];
+    
+    for (const sportId of regularSports) {
+        try {
+            const details = await fetchSportDetails(sportId);
+            if (details && details.t1 && Array.isArray(details.t1)) {
+                await saveMatchesFromEsid(details.t1, sportId);
+                console.log(`✅ Saved ${details.t1.length} ${sportNames[sportId]} matches with odds`);
+            }
+        } catch (error) {
+            console.error(`❌ Error processing ${sportNames[sportId]}:`, error.message);
+        }
+    }
+    
+    // Fetch detailed data for Horse Racing and Greyhound Racing
+    const racingSports = [SPORT_IDS.HORSE_RACING, SPORT_IDS.GREYHOUND_RACING];
+    
+    for (const sportId of racingSports) {
+        try {
+            const details = await fetchSportDetails(sportId);
+            if (details && details.t2 && Array.isArray(details.t2)) {
+                await saveRacingEvents(details.t2, sportId);
+                console.log(`✅ Saved ${details.t2.length} ${sportNames[sportId]} events`);
+            }
+        } catch (error) {
+            console.error(`❌ Error processing ${sportNames[sportId]}:`, error.message);
+        }
+    }
+}
+
+// Save matches from esid endpoint with full odds data
+async function saveMatchesFromEsid(matches, sportId) {
+    const connection = await pool.getConnection();
+    try {
+        await connection.beginTransaction();
+        
+        const insertSql = `
+            INSERT INTO matches (
+                gmid, sport_id, cid, match_name, competition_name, 
+                match_status, is_inplay, scheduled_time, is_live, 
+                has_bookmaker, has_fancy, iscc
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE 
+                match_name = VALUES(match_name),
+                competition_name = VALUES(competition_name),
+                match_status = VALUES(match_status),
+                is_inplay = VALUES(is_inplay),
+                scheduled_time = VALUES(scheduled_time),
+                is_live = VALUES(is_live),
+                has_bookmaker = VALUES(has_bookmaker),
+                has_fancy = VALUES(has_fancy),
+                iscc = VALUES(iscc),
+                last_updated = CURRENT_TIMESTAMP
+        `;
+        
+        for (const match of matches) {
+            // esid endpoint uses 'ename' for match name
+            const matchName = match.ename || match.name;
+            if (!matchName) continue; // Skip if no name
+            
+            await connection.query(insertSql, [
+                match.gmid,
+                sportId,
+                match.cid,
+                matchName,
+                match.cname,
+                match.status || 'UNKNOWN',
+                match.iplay || false,
+                parseDatetime(match.stime),
+                match.tv || false,
+                match.bm || false,
+                match.f || false,
+                match.iscc || 0
+            ]);
+            
+            // Save odds if available
+            if (match.section && Array.isArray(match.section)) {
+                await saveMatchOddsFromEsid(connection, match.gmid, match.section);
+            }
+        }
+        
+        await connection.commit();
+    } catch (error) {
+        await connection.rollback();
+        console.error('❌ Error saving matches from esid:', error.message);
+    } finally {
+        connection.release();
+    }
+}
+
+// Save match odds from esid endpoint
+async function saveMatchOddsFromEsid(connection, gmid, sections) {
+    try {
+        // Delete old odds for this match
+        await connection.query('DELETE FROM match_odds WHERE gmid = ?', [gmid]);
+        
+        const insertSql = `
+            INSERT INTO match_odds (
+                gmid, sid, selection_name, back_odds, back_size, 
+                lay_odds, lay_size, section_number, status
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        
+        for (const section of sections) {
+            let backOdds = null, backSize = null, layOdds = null, laySize = null;
+            
+            if (section.odds && Array.isArray(section.odds)) {
+                for (const odd of section.odds) {
+                    if (odd.otype === 'back' || odd.otype === 'BACK') {
+                        backOdds = odd.odds;
+                        backSize = odd.size;
+                    } else if (odd.otype === 'lay' || odd.otype === 'LAY') {
+                        layOdds = odd.odds;
+                        laySize = odd.size;
+                    }
+                }
+            }
+            
+            await connection.query(insertSql, [
+                gmid,
+                section.sid || 0,
+                section.nat || '',
+                backOdds,
+                backSize,
+                layOdds,
+                laySize,
+                section.sno || 0,
+                section.gstatus || 'UNKNOWN'
+            ]);
+        }
+    } catch (error) {
+        console.error('❌ Error saving match odds from esid:', error.message);
     }
 }
 
@@ -439,11 +580,16 @@ async function main() {
         const timestamp = new Date().toLocaleString();
         console.log(`\n⏰ [${timestamp}] Fetching data...`);
         
+        // First, fetch tree data and save sports/competitions
         const data = await fetchSportsData();
         if (data) {
             await processData(data);
-            console.log('✅ Data processing complete');
         }
+        
+        // Then, fetch detailed match data from esid endpoint for all 5 sports
+        await fetchAndSaveDetailedData();
+        
+        console.log('✅ Data processing complete');
     };
     
     // Initial fetch
