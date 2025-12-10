@@ -722,104 +722,137 @@ class MatchController extends Controller
             $matchOdds = null;
             $bookmaker = null;
             $fancy = [];
+            $allFancy = [];
             $isInPlay = false;
+            $scores = [];
             
-            if (isset($data['t1']) && is_array($data['t1'])) {
-                foreach ($data['t1'] as $market) {
-                    $marketName = $market['mname'] ?? '';
-                    $gtype = $market['gtype'] ?? '';
-                    
-                    if ($gtype === 'match' || stripos($marketName, 'Match Odds') !== false) {
-                        $isInPlay = isset($market['iplay']) ? (bool)$market['iplay'] : false;
-                        $matchOdds = [
-                            'marketId' => $market['mid'] ?? '',
-                            'marketName' => $marketName ?: 'Match Odds',
-                            'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
-                            'inPlay' => $isInPlay,
-                            'runners' => []
-                        ];
-                        
-                        foreach ($market['section'] ?? [] as $section) {
-                            $status = 'ACTIVE';
-                            if (isset($section['gstatus']) && $section['gstatus'] != '') {
-                                $status = $section['gstatus'];
-                            }
-                            
-                            $matchOdds['runners'][] = [
-                                'selectionId' => $section['sid'] ?? $section['nat'] ?? 0,
-                                'name' => $section['nat'] ?? 'Unknown',
-                                'status' => $status,
-                                'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
-                                'price2' => isset($section['b2']) ? floatval($section['b2']) : null,
-                                'price3' => isset($section['b3']) ? floatval($section['b3']) : null,
-                                'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
-                                'size2' => isset($section['bs2']) ? floatval($section['bs2']) : null,
-                                'size3' => isset($section['bs3']) ? floatval($section['bs3']) : null,
-                                'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
-                                'lay2' => isset($section['l2']) ? floatval($section['l2']) : null,
-                                'lay3' => isset($section['l3']) ? floatval($section['l3']) : null,
-                                'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null,
-                                'ls2' => isset($section['ls2']) ? floatval($section['ls2']) : null,
-                                'ls3' => isset($section['ls3']) ? floatval($section['ls3']) : null
-                            ];
-                        }
-                    } elseif ($gtype === 'session' || stripos($marketName, 'Bookmaker') !== false) {
-                        $bookmaker = [
-                            'marketId' => $market['mid'] ?? '',
-                            'marketName' => $marketName ?: 'Bookmaker',
-                            'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
-                            'runners' => []
-                        ];
-                        
-                        foreach ($market['section'] ?? [] as $section) {
-                            $status = 'ACTIVE';
-                            if (isset($section['gstatus']) && $section['gstatus'] != '') {
-                                $status = $section['gstatus'];
-                            }
-                            
-                            $bookmaker['runners'][] = [
-                                'selectionId' => $section['sid'] ?? $section['nat'] ?? 0,
-                                'name' => $section['nat'] ?? 'Unknown',
-                                'status' => $status,
-                                'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
-                                'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
-                                'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
-                                'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null
-                            ];
-                        }
-                    }
-                }
-            }
+            $markets = $data['data'] ?? [];
             
-            if (isset($data['t2']) && is_array($data['t2'])) {
-                foreach ($data['t2'] as $market) {
-                    $marketName = $market['mname'] ?? 'Fancy';
-                    $fancyMarket = [
+            foreach ($markets as $market) {
+                $marketName = $market['mname'] ?? '';
+                $gtype = $market['gtype'] ?? '';
+                $marketStatus = $market['status'] ?? 'SUSPENDED';
+                
+                if ($gtype === 'match' && ($marketName === 'MATCH_ODDS' || stripos($marketName, 'Match Odds') !== false)) {
+                    $isInPlay = isset($market['iplay']) ? (bool)$market['iplay'] : false;
+                    $matchOdds = [
                         'marketId' => $market['mid'] ?? '',
-                        'marketName' => $marketName,
-                        'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
+                        'marketName' => $marketName ?: 'Match Odds',
+                        'status' => $marketStatus,
+                        'inPlay' => $isInPlay,
                         'runners' => []
                     ];
                     
                     foreach ($market['section'] ?? [] as $section) {
-                        $status = 'ACTIVE';
-                        if (isset($section['gstatus']) && $section['gstatus'] != '') {
-                            $status = $section['gstatus'];
+                        $status = $section['gstatus'] ?? 'ACTIVE';
+                        $odds = $section['odds'] ?? [];
+                        
+                        $back1 = null; $back2 = null; $back3 = null;
+                        $lay1 = null; $lay2 = null; $lay3 = null;
+                        $bs1 = null; $bs2 = null; $bs3 = null;
+                        $ls1 = null; $ls2 = null; $ls3 = null;
+                        
+                        foreach ($odds as $odd) {
+                            $oname = $odd['oname'] ?? '';
+                            $price = $odd['odds'] ?? 0;
+                            $size = $odd['size'] ?? 0;
+                            
+                            if ($oname === 'back1') { $back1 = $price; $bs1 = $size; }
+                            elseif ($oname === 'back2') { $back2 = $price; $bs2 = $size; }
+                            elseif ($oname === 'back3') { $back3 = $price; $bs3 = $size; }
+                            elseif ($oname === 'lay1') { $lay1 = $price; $ls1 = $size; }
+                            elseif ($oname === 'lay2') { $lay2 = $price; $ls2 = $size; }
+                            elseif ($oname === 'lay3') { $lay3 = $price; $ls3 = $size; }
+                        }
+                        
+                        $matchOdds['runners'][] = [
+                            'selectionId' => $section['sid'] ?? 0,
+                            'name' => $section['nat'] ?? 'Unknown',
+                            'status' => $status,
+                            'price1' => $back1,
+                            'price2' => $back2,
+                            'price3' => $back3,
+                            'size1' => $bs1,
+                            'size2' => $bs2,
+                            'size3' => $bs3,
+                            'lay1' => $lay1,
+                            'lay2' => $lay2,
+                            'lay3' => $lay3,
+                            'ls1' => $ls1,
+                            'ls2' => $ls2,
+                            'ls3' => $ls3
+                        ];
+                    }
+                } elseif ($gtype === 'match1' || stripos($marketName, 'Bookmaker') !== false) {
+                    $bookmaker = [
+                        'marketId' => $market['mid'] ?? '',
+                        'marketName' => $marketName ?: 'Bookmaker',
+                        'status' => $marketStatus,
+                        'runners' => []
+                    ];
+                    
+                    foreach ($market['section'] ?? [] as $section) {
+                        $status = $section['gstatus'] ?? 'ACTIVE';
+                        $odds = $section['odds'] ?? [];
+                        
+                        $back1 = null; $lay1 = null; $bs1 = null; $ls1 = null;
+                        
+                        foreach ($odds as $odd) {
+                            $oname = $odd['oname'] ?? '';
+                            if ($oname === 'back1') { $back1 = $odd['odds'] ?? 0; $bs1 = $odd['size'] ?? 0; }
+                            elseif ($oname === 'lay1') { $lay1 = $odd['odds'] ?? 0; $ls1 = $odd['size'] ?? 0; }
+                        }
+                        
+                        $bookmaker['runners'][] = [
+                            'selectionId' => $section['sid'] ?? 0,
+                            'name' => $section['nat'] ?? 'Unknown',
+                            'status' => $status,
+                            'price1' => $back1,
+                            'size1' => $bs1,
+                            'lay1' => $lay1,
+                            'ls1' => $ls1
+                        ];
+                    }
+                } elseif ($gtype === 'session' || $gtype === 'fancy' || stripos($marketName, 'Fancy') !== false) {
+                    $fancyMarket = [
+                        'marketId' => $market['mid'] ?? '',
+                        'marketName' => $marketName,
+                        'status' => $marketStatus,
+                        'runners' => []
+                    ];
+                    
+                    foreach ($market['section'] ?? [] as $section) {
+                        $status = $section['gstatus'] ?? 'ACTIVE';
+                        $odds = $section['odds'] ?? [];
+                        
+                        $back1 = null; $lay1 = null; $bs1 = null; $ls1 = null;
+                        
+                        foreach ($odds as $odd) {
+                            $oname = $odd['oname'] ?? '';
+                            if ($oname === 'back1') { $back1 = $odd['odds'] ?? 0; $bs1 = $odd['size'] ?? 0; }
+                            elseif ($oname === 'lay1') { $lay1 = $odd['odds'] ?? 0; $ls1 = $odd['size'] ?? 0; }
                         }
                         
                         $fancyMarket['runners'][] = [
                             'selectionId' => $section['sid'] ?? 0,
                             'name' => $section['nat'] ?? $marketName,
                             'status' => $status,
-                            'price1' => isset($section['b1']) ? floatval($section['b1']) : null,
-                            'size1' => isset($section['bs1']) ? floatval($section['bs1']) : null,
-                            'lay1' => isset($section['l1']) ? floatval($section['l1']) : null,
-                            'ls1' => isset($section['ls1']) ? floatval($section['ls1']) : null
+                            'price1' => $back1,
+                            'size1' => $bs1,
+                            'lay1' => $lay1,
+                            'ls1' => $ls1
                         ];
                     }
                     
                     $fancy[] = $fancyMarket;
                 }
+                
+                $allFancy[] = [
+                    'marketId' => $market['mid'] ?? '',
+                    'marketName' => $marketName,
+                    'gtype' => $gtype,
+                    'status' => $marketStatus
+                ];
             }
             
             if (isset($data['t3']) && is_array($data['t3'])) {
