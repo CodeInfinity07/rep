@@ -68,8 +68,13 @@ class SportsDataController extends Controller
             65 => 'Greyhound Racing'
         ];
         
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        
         $query = DB::table('matches')
             ->where('sport_id', $sportId)
+            ->where('scheduled_time', '>=', $today . ' 00:00:00')
+            ->where('scheduled_time', '<', $tomorrow . ' 00:00:00')
             ->orderByRaw('is_inplay DESC, scheduled_time ASC');
         
         if ($limit) {
@@ -142,8 +147,13 @@ class SportsDataController extends Controller
             65 => 'Greyhound Racing'
         ];
         
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        
         $query = DB::table('racing_events')
             ->where('sport_id', $sportId)
+            ->where('scheduled_datetime', '>=', $today . ' 00:00:00')
+            ->where('scheduled_datetime', '<', $tomorrow . ' 00:00:00')
             ->orderBy('scheduled_datetime', 'asc');
         
         if ($limit) {
