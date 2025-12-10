@@ -1,0 +1,1654 @@
+{
+  "success": true,
+  "matchOdds": {
+    "marketId": 4886823263639,
+    "marketName": "MATCH_ODDS",
+    "status": "OPEN",
+    "inPlay": true,
+    "runners": [
+      {
+        "selectionId": 87640,
+        "name": "Kathmandu Gurkhas",
+        "status": "ACTIVE",
+        "price1": 6.6,
+        "price2": 6.4,
+        "price3": 6.2,
+        "size1": 100.23,
+        "size2": 279.78,
+        "size3": 78.32,
+        "lay1": 7,
+        "lay2": 7.2,
+        "lay3": 7.4,
+        "ls1": 28.56,
+        "ls2": 1.35,
+        "ls3": 139.09
+      },
+      {
+        "selectionId": 643201,
+        "name": "Lumbini Lions",
+        "status": "ACTIVE",
+        "price1": 1.17,
+        "price2": 1.16,
+        "price3": 1.15,
+        "size1": 165.09,
+        "size2": 895.34,
+        "size3": 2068.54,
+        "lay1": 1.18,
+        "lay2": 1.19,
+        "lay3": 1.2,
+        "ls1": 2070.76,
+        "ls2": 408.1,
+        "ls3": 418.16
+      }
+    ]
+  },
+  "bookmaker": {
+    "marketId": 8567052611156,
+    "marketName": "Tied Match",
+    "status": "SUSPENDED",
+    "runners": [
+      {
+        "selectionId": 1,
+        "name": "YES",
+        "status": "SUSPENDED",
+        "price1": 0,
+        "size1": 0,
+        "lay1": 0,
+        "ls1": 0
+      },
+      {
+        "selectionId": 2,
+        "name": "NO",
+        "status": "ACTIVE",
+        "price1": 2,
+        "size1": 200000,
+        "lay1": 5,
+        "ls1": 200000
+      }
+    ]
+  },
+  "fancy": {
+    "marketId": 53926040633,
+    "marketName": "Normal",
+    "status": "OPEN",
+    "runners": [
+      {
+        "selectionId": 11,
+        "name": "15 over runs LL",
+        "status": "",
+        "price1": 84,
+        "size1": 100,
+        "lay1": 82,
+        "ls1": 100
+      },
+      {
+        "selectionId": 144,
+        "name": "15 over run bhav LL 2",
+        "status": "Ball Running",
+        "price1": 0,
+        "size1": 0,
+        "lay1": 0,
+        "ls1": 0
+      },
+      {
+        "selectionId": 90,
+        "name": "11 over run LL",
+        "status": "Ball Running",
+        "price1": 0,
+        "size1": 0,
+        "lay1": 0,
+        "ls1": 0
+      },
+      {
+        "selectionId": 91,
+        "name": "12 over run LL",
+        "status": "",
+        "price1": 62,
+        "size1": 90,
+        "lay1": 62,
+        "ls1": 110
+      }
+    ]
+  },
+  "allFancy": [
+    {
+      "marketId": 53926040633,
+      "marketName": "Normal",
+      "status": "OPEN",
+      "runners": [
+        {
+          "selectionId": 11,
+          "name": "15 over runs LL",
+          "status": "",
+          "price1": 84,
+          "size1": 100,
+          "lay1": 82,
+          "ls1": 100
+        },
+        {
+          "selectionId": 144,
+          "name": "15 over run bhav LL 2",
+          "status": "Ball Running",
+          "price1": 0,
+          "size1": 0,
+          "lay1": 0,
+          "ls1": 0
+        },
+        {
+          "selectionId": 90,
+          "name": "11 over run LL",
+          "status": "Ball Running",
+          "price1": 0,
+          "size1": 0,
+          "lay1": 0,
+          "ls1": 0
+        },
+        {
+          "selectionId": 91,
+          "name": "12 over run LL",
+          "status": "",
+          "price1": 62,
+          "size1": 90,
+          "lay1": 62,
+          "ls1": 110
+        }
+      ]
+    },
+    {
+      "marketId": 669373356676,
+      "marketName": "Over By Over",
+      "status": "OPEN",
+      "runners": [
+        {
+          "selectionId": 130,
+          "name": "Only 12 over run LL",
+          "status": "",
+          "price1": 7,
+          "size1": 85,
+          "lay1": 7,
+          "ls1": 115
+        }
+      ]
+    }
+  ],
+  "scores": [],
+  "inPlay": true,
+  "raw": {
+    "success": true,
+    "msg": "Success",
+    "status": 200,
+    "data": [
+      {
+        "gmid": 642821860,
+        "mid": 4886823263639,
+        "pmid": null,
+        "mname": "MATCH_ODDS",
+        "rem": "",
+        "gtype": "match",
+        "status": "OPEN",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 1,
+        "sno": 1,
+        "dtype": 4,
+        "ocnt": 6,
+        "m": 0,
+        "max": 2000,
+        "min": 0,
+        "biplay": true,
+        "umaxbof": 1,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 4,
+        "company": null,
+        "section": [
+          {
+            "sid": 87640,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "ACTIVE",
+            "nat": "Kathmandu Gurkhas",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 6.2,
+                "otype": "back",
+                "oname": "back3",
+                "tno": 2,
+                "size": 78.32
+              },
+              {
+                "psid": 0,
+                "odds": 6.4,
+                "otype": "back",
+                "oname": "back2",
+                "tno": 1,
+                "size": 279.78
+              },
+              {
+                "psid": 0,
+                "odds": 6.6,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100.23
+              },
+              {
+                "psid": 0,
+                "odds": 7,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 28.56
+              },
+              {
+                "psid": 0,
+                "odds": 7.2,
+                "otype": "lay",
+                "oname": "lay2",
+                "tno": 1,
+                "size": 1.35
+              },
+              {
+                "psid": 0,
+                "odds": 7.4,
+                "otype": "lay",
+                "oname": "lay3",
+                "tno": 2,
+                "size": 139.09
+              }
+            ]
+          },
+          {
+            "sid": 643201,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "ACTIVE",
+            "nat": "Lumbini Lions",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 1.15,
+                "otype": "back",
+                "oname": "back3",
+                "tno": 2,
+                "size": 2068.54
+              },
+              {
+                "psid": 0,
+                "odds": 1.16,
+                "otype": "back",
+                "oname": "back2",
+                "tno": 1,
+                "size": 895.34
+              },
+              {
+                "psid": 0,
+                "odds": 1.17,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 165.09
+              },
+              {
+                "psid": 0,
+                "odds": 1.18,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 2070.76
+              },
+              {
+                "psid": 0,
+                "odds": 1.19,
+                "otype": "lay",
+                "oname": "lay2",
+                "tno": 1,
+                "size": 408.1
+              },
+              {
+                "psid": 0,
+                "odds": 1.2,
+                "otype": "lay",
+                "oname": "lay3",
+                "tno": 2,
+                "size": 418.16
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 5453098626532,
+        "pmid": null,
+        "mname": "Bookmaker",
+        "rem": "Mogambo and Doli Dana Casino Newly Launch In Our Exchange",
+        "gtype": "match1",
+        "status": "SUSPENDED",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 0,
+        "sno": 2,
+        "dtype": 4,
+        "ocnt": 6,
+        "m": 0,
+        "max": 200000,
+        "min": 100,
+        "biplay": true,
+        "umaxbof": 0,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 0,
+        "company": null,
+        "section": [
+          {
+            "sid": 1,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "ACTIVE",
+            "nat": "Kathmandu Gurkhas",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back3",
+                "tno": 2,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back2",
+                "tno": 1,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 555,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 20000
+              },
+              {
+                "psid": 0,
+                "odds": 625,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 20000
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay2",
+                "tno": 1,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay3",
+                "tno": 2,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 2,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "ACTIVE",
+            "nat": "Lumbini Lions",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back3",
+                "tno": 2,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back2",
+                "tno": 1,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 16,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 200000
+              },
+              {
+                "psid": 0,
+                "odds": 18,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 200000
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay2",
+                "tno": 1,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay3",
+                "tno": 2,
+                "size": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 8567052611156,
+        "pmid": null,
+        "mname": "Tied Match",
+        "rem": "UEFA Champions League Football — Early Bets Started On Our Exchange!",
+        "gtype": "match1",
+        "status": "SUSPENDED",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 0,
+        "sno": 2.1,
+        "dtype": 2,
+        "ocnt": 2,
+        "m": 0,
+        "max": 200000,
+        "min": 100,
+        "biplay": true,
+        "umaxbof": 0,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 0,
+        "company": null,
+        "section": [
+          {
+            "sid": 1,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "SUSPENDED",
+            "nat": "YES",
+            "gscode": 0,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 2,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "ACTIVE",
+            "nat": "NO",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 2,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 200000
+              },
+              {
+                "psid": 0,
+                "odds": 5,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 200000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 53926040633,
+        "pmid": null,
+        "mname": "Normal",
+        "rem": "",
+        "gtype": "fancy",
+        "status": "OPEN",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 0,
+        "sno": 3,
+        "dtype": 6,
+        "ocnt": 6,
+        "m": 0,
+        "max": 0,
+        "min": 0,
+        "biplay": true,
+        "umaxbof": 0,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 0,
+        "company": null,
+        "section": [
+          {
+            "sid": 11,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "",
+            "nat": "15 over runs LL",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 1,
+            "ikm": 2,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 84,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              },
+              {
+                "psid": 0,
+                "odds": 82,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 144,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "Ball Running",
+            "nat": "15 over run bhav LL 2",
+            "gscode": 0,
+            "max": 25000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 90,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "Ball Running",
+            "nat": "11 over run LL",
+            "gscode": 0,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 91,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "",
+            "nat": "12 over run LL",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 62,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 90
+              },
+              {
+                "psid": 0,
+                "odds": 62,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 110
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 669373356676,
+        "pmid": null,
+        "mname": "Over By Over",
+        "rem": "",
+        "gtype": "fancy",
+        "status": "OPEN",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 0,
+        "sno": 3.1,
+        "dtype": 6,
+        "ocnt": 6,
+        "m": 0,
+        "max": 0,
+        "min": 0,
+        "biplay": true,
+        "umaxbof": 0,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 0,
+        "company": null,
+        "section": [
+          {
+            "sid": 130,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "",
+            "nat": "Only 12 over run LL",
+            "gscode": 1,
+            "max": 25000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 7,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 85
+              },
+              {
+                "psid": 0,
+                "odds": 7,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 115
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 757526442235,
+        "pmid": null,
+        "mname": "oddeven",
+        "rem": "",
+        "gtype": "oddeven",
+        "status": "OPEN",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 0,
+        "sno": 4.1,
+        "dtype": 8,
+        "ocnt": 2,
+        "m": 0,
+        "max": 0,
+        "min": 0,
+        "biplay": true,
+        "umaxbof": 0,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 0,
+        "company": null,
+        "section": [
+          {
+            "sid": 2545,
+            "psid": 0,
+            "sno": 4,
+            "psrno": 4,
+            "gstatus": "",
+            "nat": "12 over run odd even LL",
+            "gscode": 1,
+            "max": 50000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 500000
+              },
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 500000
+              }
+            ]
+          },
+          {
+            "sid": 2546,
+            "psid": 0,
+            "sno": 4,
+            "psrno": 4,
+            "gstatus": "",
+            "nat": "13 over run odd even LL",
+            "gscode": 1,
+            "max": 50000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 500000
+              },
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 500000
+              }
+            ]
+          },
+          {
+            "sid": 2547,
+            "psid": 0,
+            "sno": 4,
+            "psrno": 4,
+            "gstatus": "",
+            "nat": "14 over run odd even LL",
+            "gscode": 1,
+            "max": 50000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 500000
+              },
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 500000
+              }
+            ]
+          },
+          {
+            "sid": 2548,
+            "psid": 0,
+            "sno": 4,
+            "psrno": 4,
+            "gstatus": "",
+            "nat": "15 over run odd even LL",
+            "gscode": 1,
+            "max": 50000,
+            "min": 100,
+            "rem": "",
+            "br": true,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 500000
+              },
+              {
+                "psid": 0,
+                "odds": 1.95,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 500000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 502222982064,
+        "pmid": null,
+        "mname": "2ND INN 15 OVER KG VS LL",
+        "rem": "",
+        "gtype": "cricketcasino",
+        "status": "OPEN",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 0,
+        "sno": 4.799999999999997,
+        "dtype": 9,
+        "ocnt": 2,
+        "m": 0,
+        "max": 0,
+        "min": 0,
+        "biplay": true,
+        "umaxbof": 0,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 0,
+        "company": null,
+        "section": [
+          {
+            "sid": 1,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "",
+            "nat": "0 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 2,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "",
+            "nat": "1 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 3,
+            "psid": 0,
+            "sno": 3,
+            "psrno": 3,
+            "gstatus": "",
+            "nat": "2 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 4,
+            "psid": 0,
+            "sno": 4,
+            "psrno": 4,
+            "gstatus": "",
+            "nat": "3 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 5,
+            "psid": 0,
+            "sno": 5,
+            "psrno": 5,
+            "gstatus": "",
+            "nat": "4 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 6,
+            "psid": 0,
+            "sno": 6,
+            "psrno": 6,
+            "gstatus": "",
+            "nat": "5 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 7,
+            "psid": 0,
+            "sno": 7,
+            "psrno": 7,
+            "gstatus": "",
+            "nat": "6 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 8,
+            "psid": 0,
+            "sno": 8,
+            "psrno": 8,
+            "gstatus": "",
+            "nat": "7 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 9,
+            "psid": 0,
+            "sno": 9,
+            "psrno": 9,
+            "gstatus": "",
+            "nat": "8 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          },
+          {
+            "sid": 10,
+            "psid": 0,
+            "sno": 10,
+            "psrno": 10,
+            "gstatus": "",
+            "nat": "9 Number",
+            "gscode": 1,
+            "max": 100000,
+            "min": 100,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 9.5,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 100
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "gmid": 642821860,
+        "mid": 5245726218752,
+        "pmid": null,
+        "mname": "TIED_MATCH",
+        "rem": "",
+        "gtype": "match",
+        "status": "OPEN",
+        "rc": 2,
+        "visible": false,
+        "pid": 0,
+        "gscode": 1,
+        "maxb": 1,
+        "sno": 7.001,
+        "dtype": 4,
+        "ocnt": 6,
+        "m": 0,
+        "max": 0,
+        "min": 0,
+        "biplay": true,
+        "umaxbof": 1,
+        "boplay": true,
+        "iplay": true,
+        "btcnt": 4,
+        "company": null,
+        "section": [
+          {
+            "sid": 721980,
+            "psid": 0,
+            "sno": 1,
+            "psrno": 1,
+            "gstatus": "ACTIVE",
+            "nat": "Yes",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 21,
+                "otype": "back",
+                "oname": "back3",
+                "tno": 2,
+                "size": 2.55
+              },
+              {
+                "psid": 0,
+                "odds": 26,
+                "otype": "back",
+                "oname": "back2",
+                "tno": 1,
+                "size": 2.25
+              },
+              {
+                "psid": 0,
+                "odds": 34,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 14.46
+              },
+              {
+                "psid": 0,
+                "odds": 100,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 1.19
+              },
+              {
+                "psid": 0,
+                "odds": 110,
+                "otype": "lay",
+                "oname": "lay2",
+                "tno": 1,
+                "size": 3.83
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "lay",
+                "oname": "lay3",
+                "tno": 2,
+                "size": 0
+              }
+            ]
+          },
+          {
+            "sid": 494811,
+            "psid": 0,
+            "sno": 2,
+            "psrno": 2,
+            "gstatus": "ACTIVE",
+            "nat": "No",
+            "gscode": 1,
+            "max": 0,
+            "min": 0,
+            "rem": "",
+            "br": false,
+            "rname": null,
+            "jname": null,
+            "tname": null,
+            "hage": 0,
+            "himg": null,
+            "adfa": 0,
+            "rdt": null,
+            "cno": null,
+            "sdraw": null,
+            "ik": 0,
+            "ikm": 0,
+            "odds": [
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back3",
+                "tno": 2,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 0,
+                "otype": "back",
+                "oname": "back2",
+                "tno": 1,
+                "size": 0
+              },
+              {
+                "psid": 0,
+                "odds": 1.01,
+                "otype": "back",
+                "oname": "back1",
+                "tno": 0,
+                "size": 534.63
+              },
+              {
+                "psid": 0,
+                "odds": 1.03,
+                "otype": "lay",
+                "oname": "lay1",
+                "tno": 0,
+                "size": 477.37
+              },
+              {
+                "psid": 0,
+                "odds": 1.04,
+                "otype": "lay",
+                "oname": "lay2",
+                "tno": 1,
+                "size": 56.22
+              },
+              {
+                "psid": 0,
+                "odds": 1.05,
+                "otype": "lay",
+                "oname": "lay3",
+                "tno": 2,
+                "size": 51
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "lastUpdatedaAt": "2025-12-10T18:13:54.921Z"
+  }
+}

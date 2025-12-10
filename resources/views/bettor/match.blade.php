@@ -2721,68 +2721,81 @@
         }
         
         function updateFancySection(fancy) {
-            const fancyMarketId = fancy.marketId;
-            const fancyName = fancy.marketName;
+            const fancySection = document.getElementById('fancy-section');
+            if (!fancySection) return;
+            
+            let fancyRunnersContainer = fancySection.querySelector('.market-runners');
+            if (!fancyRunnersContainer) {
+                fancyRunnersContainer = document.createElement('div');
+                fancyRunnersContainer.className = 'market-runners';
+                fancyRunnersContainer.id = 'fancy-runners-container';
+                fancySection.appendChild(fancyRunnersContainer);
+            }
+            
             const runners = fancy.runners || [];
             
-            runners.forEach(runner => {
-                const marketDiv = document.querySelector('#market-' + fancyMarketId) || document.querySelector('[data-market-id="' + fancyMarketId + '"]');
-                if (!marketDiv) return;
+            runners.forEach((runner, index) => {
+                const runnerId = runner.selectionId || index;
+                let runnerDiv = fancyRunnersContainer.querySelector('#fancy-runner-' + runnerId);
                 
-                const runnerDiv = marketDiv.querySelector('.runner-runner');
-                if (!runnerDiv) return;
+                if (!runnerDiv) {
+                    runnerDiv = document.createElement('div');
+                    runnerDiv.id = 'fancy-runner-' + runnerId;
+                    runnerDiv.className = 'runner-runner';
+                    runnerDiv.innerHTML = `
+                        <span class="selector ml-2" style="display: none;"></span>
+                        <img class="ml-2" style="display: none;">
+                        <h3 class="runner-name">
+                            <div class="runner-info">
+                                <span class="clippable runner-display-name">
+                                    <h4 class="clippable-spacer">${runner.name || 'Fancy'}</h4>
+                                </span>
+                            </div>
+                        </h3>
+                        <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
+                            <span class="price-odd">-</span>
+                            <span class="price-amount"></span>
+                        </a>
+                        <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
+                            <span class="price-odd">-</span>
+                            <span class="price-amount"></span>
+                        </a>
+                    `;
+                    fancyRunnersContainer.appendChild(runnerDiv);
+                }
                 
-                // Update runner name display
                 const nameEl = runnerDiv.querySelector('.clippable-spacer');
-                if (nameEl && runner.name && nameEl.textContent.trim() !== runner.name) {
+                if (nameEl && runner.name) {
                     nameEl.textContent = runner.name;
                 }
                 
                 const status = runner.status;
                 const disabledDiv = runnerDiv.querySelector('.runner-disabled');
+                const priceButtons = runnerDiv.querySelectorAll('.price-price');
                 
-                if (status === 'SUSPENDED' || !runner.price1) {
-                    // Show SUSPENDED
+                if (status === 'SUSPENDED' || status === 'Ball Running' || (!runner.price1 && !runner.lay1)) {
+                    priceButtons.forEach(btn => btn.style.display = 'none');
                     if (!disabledDiv) {
-                        const priceButtons = runnerDiv.querySelectorAll('.price-price');
-                        priceButtons.forEach(btn => btn.style.display = 'none');
                         const wrapper = document.createElement('div');
-                        wrapper.innerHTML = '<div><div class="runner-disabled">SUSPENDED</div></div>';
+                        wrapper.innerHTML = '<div class="runner-disabled">' + (status || 'SUSPENDED') + '</div>';
                         runnerDiv.appendChild(wrapper.firstChild);
+                    } else {
+                        disabledDiv.textContent = status || 'SUSPENDED';
                     }
                 } else {
-                    // Remove SUSPENDED and update prices
                     if (disabledDiv) {
-                        disabledDiv.parentElement?.remove();
+                        disabledDiv.remove();
                     }
+                    priceButtons.forEach(btn => btn.style.display = '');
                     
-                    let priceButtons = runnerDiv.querySelectorAll('.price-price');
-                    if (priceButtons.length === 0) {
-                        const runnerNameEl = runnerDiv.querySelector('.runner-name');
-                        if (runnerNameEl) {
-                            const priceHtml = `
-                                <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);">
-                                    <span class="price-odd">${runner.price1 || '-'}</span>
-                                    <span class="price-amount">${formatAmount(runner.size1)}</span>
-                                </a>
-                                <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);">
-                                    <span class="price-odd">${runner.lay1 || '-'}</span>
-                                    <span class="price-amount">${formatAmount(runner.ls1)}</span>
-                                </a>
-                            `;
-                            runnerNameEl.insertAdjacentHTML('afterend', priceHtml);
-                        }
-                    } else {
-                        priceButtons.forEach(btn => btn.style.display = '');
-                        const backBtn = runnerDiv.querySelector('.price-back');
-                        const layBtn = runnerDiv.querySelector('.price-lay');
-                        
-                        if (backBtn && runner.price1) {
-                            updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'fancy-back-' + fancyMarketId);
-                        }
-                        if (layBtn && runner.lay1) {
-                            updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + fancyMarketId);
-                        }
+                    const backBtn = runnerDiv.querySelector('.price-back');
+                    const layBtn = runnerDiv.querySelector('.price-lay');
+                    
+                    if (backBtn) {
+                        updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'fancy-back-' + runnerId);
+                    }
+                    if (layBtn) {
+                        updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + runnerId);
                     }
                 }
             });
