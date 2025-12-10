@@ -947,4 +947,62 @@ class MatchController extends Controller
             return response('Error fetching score', 500);
         }
     }
+    
+    public function getMatchDetailsFromDb(Request $request, $gmid)
+    {
+        if (!\Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        try {
+            $match = \DB::table('matches')
+                ->where('gmid', $gmid)
+                ->first();
+            
+            if (!$match) {
+                return response()->json(['error' => 'Match not found'], 404);
+            }
+            
+            $todayStart = now()->startOfDay();
+            $todayEnd = now()->endOfDay();
+            
+            $relatedMatches = \DB::table('matches')
+                ->where('sport_id', $match->sport_id)
+                ->where('gmid', '!=', $gmid)
+                ->where('is_inplay', false)
+                ->whereBetween('scheduled_time', [$todayStart, $todayEnd])
+                ->orderBy('scheduled_time', 'asc')
+                ->limit(10)
+                ->get();
+            
+            $scheduledTime = $match->scheduled_time ? strtotime($match->scheduled_time) * 1000 : null;
+            
+            return response()->json([
+                'success' => true,
+                'match' => [
+                    'gmid' => $match->gmid,
+                    'matchName' => $match->match_name,
+                    'competitionName' => $match->competition_name,
+                    'isInplay' => (bool)$match->is_inplay,
+                    'isLive' => (bool)$match->is_live,
+                    'scheduledTime' => $scheduledTime,
+                    'scheduledTimeFormatted' => $match->scheduled_time ? date('H:i', strtotime($match->scheduled_time)) : null,
+                    'status' => $match->match_status,
+                    'sportId' => $match->sport_id
+                ],
+                'relatedMatches' => $relatedMatches->map(function($m) {
+                    return [
+                        'gmid' => $m->gmid,
+                        'matchName' => $m->match_name,
+                        'scheduledTime' => $m->scheduled_time ? date('H:i', strtotime($m->scheduled_time)) : null,
+                        'isInplay' => (bool)$m->is_inplay
+                    ];
+                })
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('Match details from DB error: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

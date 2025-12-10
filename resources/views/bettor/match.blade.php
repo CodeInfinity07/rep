@@ -1468,27 +1468,7 @@
                                 Close
                             </button></td> <td colspan="2"><div class="btn btn-primary ld-over mt-2" style="cursor: pointer;"><b>Submit</b> <div class="ld ld-ball ld-flip"></div></div> <span> / -</span></td></tr> <tr style="display: none;"><td colspan="4" class="alert-danger pr-5"></td></tr></tbody></table></div></div></div></div> <div class="bets"><strong>
         Open Bets (0)
-        <img src="/img/reconnecting.gif" alt="dc" class="rounded disconnected" style="display: none;"> <!----> <!----></strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th> <th></th></tr></thead> <tbody></tbody></table></div></div> <div class="bets"><strong>Matched Bets (0)</strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th></tr></thead> <tbody></tbody></table></div></div> <div style="margin-top: 7px;"><strong class="RM_In_Markets" style="display: block; background: rgb(43, 47, 53); color: rgb(255, 255, 255); padding: 10px;">Related Events</strong> <div><table class="table compact" style="margin-bottom: 0px;"><tbody><tr id="m_1_250636959" onclick="window.location='/Common/Market?id=1.250636959';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">8:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
-                                            2025-11-22T03:30:00.0000000Z
-                                        </span></div></td> <td><div>
-                                    India v South Africa
-                                </div></td></tr> <tr id="m_1_250776463" onclick="window.location='/Common/Market?id=1.250776463';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">14:50</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
-                                            2025-11-22T09:50:00.0000000Z
-                                        </span></div></td> <td><div>
-                                    Perth Scorchers W v Adelaide Strikers W
-                                </div></td></tr> <tr id="m_1_250836685" onclick="window.location='/Common/Market?id=1.250836685';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">16:30</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
-                                            2025-11-22T11:30:00.0000000Z
-                                        </span></div></td> <td><div>
-                                    Aspin Stallions v Vista Riders
-                                </div></td></tr> <tr id="m_1_250777438" onclick="window.location='/Common/Market?id=1.250777438';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">18:00</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
-                                            2025-11-22T13:00:00.0000000Z
-                                        </span></div></td> <td><div>
-                                    Pakistan v Sri Lanka
-                                </div></td></tr> <tr id="m_1_250840894" onclick="window.location='/Common/Market?id=1.250840894';" class="relatedtr" style="cursor: pointer;"><td class="sport-date" style="font-size: 14px; padding: 0px 20px;"><div><span class="day">Today</span> <span class="market-time">18:45</span> <span data-format="H:mm" data-target="time" class="d-none utctime">
-                                            2025-11-22T13:45:00.0000000Z
-                                        </span></div></td> <td><div>
-                                    Northern Warriors v Deccan Gladiators
-                                </div></td></tr></tbody></table></div></div></div></div></div></div> <div id="fancyPosition" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title"></h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="fancypos-body" class="modal-body"><table class="table"><tbody><tr><th>Score</th> <th>Position</th></tr> </tbody></table></div> <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button></div></div></div></div> <div id="modalRules" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title">Market Rules</h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="rules-box" class="modal-body"></div></div></div></div></div></div>
+        <img src="/img/reconnecting.gif" alt="dc" class="rounded disconnected" style="display: none;"> <!----> <!----></strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th> <th></th></tr></thead> <tbody></tbody></table></div></div> <div class="bets"><strong>Matched Bets (0)</strong> <div class="betting-table"><table class="table"><thead><tr><th>Runner</th> <th>Price</th> <th>Size</th></tr></thead> <tbody></tbody></table></div></div> <div style="margin-top: 7px;"><strong class="RM_In_Markets" style="display: block; background: rgb(43, 47, 53); color: rgb(255, 255, 255); padding: 10px;">Related Events</strong> <div><table class="table compact" style="margin-bottom: 0px;"><tbody id="related-events-tbody"><tr><td colspan="2" style="text-align: center; padding: 10px;">Loading related matches...</td></tr></tbody></table></div></div></div></div></div></div> <div id="fancyPosition" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title"></h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="fancypos-body" class="modal-body"><table class="table"><tbody><tr><th>Score</th> <th>Position</th></tr> </tbody></table></div> <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button></div></div></div></div> <div id="modalRules" tabindex="-1" role="dialog" aria-labelledby="fancyPosition" aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 id="exampleModalLabel" class="modal-title">Market Rules</h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div id="rules-box" class="modal-body"></div></div></div></div></div></div>
 
 
                 </div>
@@ -2997,6 +2977,74 @@
         
         // Initial time update
         updateTimeDisplays();
+        
+        // Fetch match details from MySQL every 10 seconds
+        function fetchMatchDetailsFromDb() {
+            if (!gmid) return;
+            
+            fetch('/api/match-details/' + gmid)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.match) {
+                        const match = data.match;
+                        
+                        // Update match name
+                        const eventTitle = document.querySelector('.event-title');
+                        if (eventTitle && match.matchName) {
+                            eventTitle.textContent = match.matchName;
+                        }
+                        
+                        // Update inPlay/Upcoming status
+                        const statusSpan = document.querySelector('.green-upper-text');
+                        if (statusSpan) {
+                            statusSpan.textContent = match.isInplay ? 'InPlay' : 'Upcoming';
+                        }
+                        
+                        // Update scheduled time from MySQL
+                        if (match.scheduledTime) {
+                            marketStartTimeISO = new Date(match.scheduledTime).toISOString();
+                            updateTimeDisplays();
+                        }
+                        
+                        // Update isInPlay variable
+                        isInPlay = match.isInplay;
+                    }
+                    
+                    // Update related matches
+                    if (data.relatedMatches && data.relatedMatches.length > 0) {
+                        updateRelatedMatches(data.relatedMatches);
+                    } else {
+                        const tbody = document.getElementById('related-events-tbody');
+                        if (tbody) {
+                            tbody.innerHTML = '<tr><td colspan="2" style="text-align: center; padding: 10px;">No other matches today</td></tr>';
+                        }
+                    }
+                })
+                .catch(error => console.log('Match details fetch error:', error));
+        }
+        
+        function updateRelatedMatches(matches) {
+            const tbody = document.getElementById('related-events-tbody');
+            if (!tbody) return;
+            
+            let html = '';
+            matches.forEach(match => {
+                html += `<tr onclick="window.location='/cricket/${match.gmid}';" class="relatedtr" style="cursor: pointer;">
+                    <td class="sport-date" style="font-size: 14px; padding: 0px 20px;">
+                        <div><span class="day">Today</span> <span class="market-time">${match.scheduledTime || '--:--'}</span></div>
+                    </td>
+                    <td><div>${match.matchName}</div></td>
+                </tr>`;
+            });
+            
+            tbody.innerHTML = html;
+        }
+        
+        // Initial fetch
+        fetchMatchDetailsFromDb();
+        
+        // Poll every 10 seconds
+        setInterval(fetchMatchDetailsFromDb, 10000);
         
         // TV and Score Card toggle functions
         function SHOWTV() {

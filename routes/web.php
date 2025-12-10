@@ -117,6 +117,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/cricketid/matches', [App\Http\Controllers\MatchController::class, 'getCricketIdMatchListApi']);
     Route::get('/api/cricketid/odds/{gmid}', [App\Http\Controllers\MatchController::class, 'getCricketIdOddsApi']);
     Route::get('/api/cricketid/score', [App\Http\Controllers\MatchController::class, 'getCricketIdScoreProxy']);
+    Route::get('/api/match-details/{gmid}', [App\Http\Controllers\MatchController::class, 'getMatchDetailsFromDb']);
 });
 
 Route::get('/result', function () {
