@@ -3,275 +3,214 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
 class SportsDataController extends Controller
 {
-    private $apiUrl = 'http://89.116.20.218:8085/api/home';
+    private $sportIds = [
+        'cricket' => 4,
+        'soccer' => 1,
+        'tennis' => 2,
+        'horse_racing' => 10,
+        'greyhound_racing' => 65
+    ];
     
     public function getSportsData()
     {
         try {
-            $apiKey = $_SERVER['SCORESWIFT_API_KEY'] ?? $_ENV['SCORESWIFT_API_KEY'] ?? getenv('SCORESWIFT_API_KEY') ?? env('SCORESWIFT_API_KEY');
+            $cacheKey = 'sports_data_mysql';
+            $cacheDuration = now()->addSeconds(5);
             
-            if (!$apiKey) {
-                return response()->json([
-                    'error' => 'API key not found. Please ensure SCORESWIFT_API_KEY is properly configured in the workflow environment.'
-                ], 500);
-            }
-            
-            $cacheKey = 'sports_data';
-            $cacheDuration = now()->addSeconds(30);
-            
-            $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey) {
-                $response = Http::withHeaders([
-                    'X-ScoreSwift-Key' => $apiKey
-                ])->timeout(10)->get($this->apiUrl);
-                
-                if ($response->successful()) {
-                    return $response->json();
-                }
-                
-                return null;
+            $data = Cache::remember($cacheKey, $cacheDuration, function () {
+                return [
+                    'cricket' => $this->getMatchesBySport($this->sportIds['cricket'], 5),
+                    'soccer' => $this->getMatchesBySport($this->sportIds['soccer'], 5),
+                    'tennis' => $this->getMatchesBySport($this->sportIds['tennis'], 5)
+                ];
             });
             
-            if (!$data) {
-                return response()->json(['error' => 'Failed to fetch sports data'], 500);
-            }
-            
-            $categorized = $this->categorizeSports($data);
-            
-            return response()->json($categorized);
+            return response()->json($data);
             
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error fetching data: ' . $e->getMessage()], 500);
         }
     }
     
-    private function categorizeSports($data)
-    {
-        $cricket = [];
-        $soccer = [];
-        $tennis = [];
-        
-        foreach ($data as $sportCategory) {
-            if (!isset($sportCategory['markets']) || empty($sportCategory['markets'])) {
-                continue;
-            }
-            
-            $sportName = strtolower($sportCategory['name'] ?? '');
-            
-            foreach ($sportCategory['markets'] as $market) {
-                $processedMarket = [
-                    'marketId' => $market['marketId'] ?? '',
-                    'marketName' => $market['marketName'] ?? '',
-                    'status' => $market['status'] ?? 'UNKNOWN',
-                    'inplay' => $market['inplay'] ?? false,
-                    'startTime' => $market['marketStartTime'] ?? null,
-                    'runners' => $this->processRunners($market['runners'] ?? []),
-                    'totalMatched' => $this->calculateTotalMatched($market['runners'] ?? [])
-                ];
-                
-                if ($sportName === 'cricket') {
-                    $cricket[] = $processedMarket;
-                } elseif ($sportName === 'soccer') {
-                    $soccer[] = $processedMarket;
-                } elseif ($sportName === 'tennis') {
-                    $tennis[] = $processedMarket;
-                }
-            }
-        }
-        
-        return [
-            'cricket' => array_slice($cricket, 0, 5),
-            'soccer' => array_slice($soccer, 0, 5),
-            'tennis' => array_slice($tennis, 0, 5)
-        ];
-    }
-    
     public function getCricketMatches()
     {
         try {
-            $apiKey = $_SERVER['SCORESWIFT_API_KEY'] ?? $_ENV['SCORESWIFT_API_KEY'] ?? getenv('SCORESWIFT_API_KEY') ?? env('SCORESWIFT_API_KEY');
+            $cacheKey = 'all_matches_mysql';
+            $cacheDuration = now()->addSeconds(5);
             
-            if (!$apiKey) {
-                return response()->json(['error' => 'API key not configured'], 500);
-            }
-            
-            $cacheKey = 'all_matches';
-            $cacheDuration = now()->addSeconds(30);
-            
-            $data = Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey) {
-                $response = Http::withHeaders([
-                    'X-ScoreSwift-Key' => $apiKey
-                ])->timeout(10)->get($this->apiUrl);
-                
-                if ($response->successful()) {
-                    return $response->json();
-                }
-                
-                return null;
+            $data = Cache::remember($cacheKey, $cacheDuration, function () {
+                return [
+                    'cricket' => $this->getMatchesBySport($this->sportIds['cricket']),
+                    'soccer' => $this->getMatchesBySport($this->sportIds['soccer']),
+                    'tennis' => $this->getMatchesBySport($this->sportIds['tennis'])
+                ];
             });
             
-            if (!$data) {
-                return response()->json(['error' => 'Failed to fetch matches'], 500);
-            }
-            
-            $cricket = [];
-            $soccer = [];
-            $tennis = [];
-            
-            foreach ($data as $sportCategory) {
-                if (!isset($sportCategory['markets']) || empty($sportCategory['markets'])) {
-                    continue;
-                }
-                
-                $sportName = strtolower($sportCategory['name'] ?? '');
-                
-                foreach ($sportCategory['markets'] as $market) {
-                    $marketId = $market['marketId'] ?? '';
-                    $isInplay = $market['inplay'] ?? false;
-                    
-                    $runners = [];
-                    $totalMatched = 0;
-                    
-                    if ($isInplay && $marketId) {
-                        $marketDetails = $this->getMarketDetails($apiKey, $marketId);
-                        $oddsData = $this->getMarketOdds($apiKey, $marketId);
-                        
-                        $runnerNames = [];
-                        if ($marketDetails && isset($marketDetails['runners'])) {
-                            foreach ($marketDetails['runners'] as $runner) {
-                                $selId = $runner['selectionId'] ?? null;
-                                if ($selId) {
-                                    $runnerNames[$selId] = $runner['runnerName'] ?? '';
-                                }
-                            }
-                        }
-                        
-                        if ($oddsData) {
-                            foreach ($oddsData['runners'] ?? [] as $runner) {
-                                $selectionId = $runner['selectionId'] ?? null;
-                                $runners[] = [
-                                    'name' => $runnerNames[$selectionId] ?? '',
-                                    'back' => $runner['ex']['availableToBack'][0]['price'] ?? 0,
-                                    'backSize' => $runner['ex']['availableToBack'][0]['size'] ?? 0,
-                                    'lay' => $runner['ex']['availableToLay'][0]['price'] ?? 0,
-                                    'laySize' => $runner['ex']['availableToLay'][0]['size'] ?? 0,
-                                ];
-                            }
-                            $totalMatched = $oddsData['totalMatched'] ?? 0;
-                        }
-                    }
-                    
-                    $matchData = [
-                        'marketId' => $marketId,
-                        'marketName' => $market['marketName'] ?? '',
-                        'status' => $market['status'] ?? 'UNKNOWN',
-                        'inplay' => $isInplay,
-                        'startTime' => $market['marketStartTime'] ?? null,
-                        'sport' => ucfirst($sportName),
-                        'runners' => $runners,
-                        'totalMatched' => $totalMatched
-                    ];
-                    
-                    if ($sportName === 'cricket') {
-                        $cricket[] = $matchData;
-                    } elseif ($sportName === 'soccer') {
-                        $soccer[] = $matchData;
-                    } elseif ($sportName === 'tennis') {
-                        $tennis[] = $matchData;
-                    }
-                }
-            }
-            
-            return response()->json([
-                'cricket' => $cricket,
-                'soccer' => $soccer,
-                'tennis' => $tennis
-            ]);
+            return response()->json($data);
             
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
     
-    private function processRunners($runners)
+    private function getMatchesBySport($sportId, $limit = null)
     {
-        $processed = [];
-        foreach ($runners as $runner) {
-            $processed[] = [
-                'name' => $runner['runnerName'] ?? 'Unknown',
-                'selectionId' => $runner['selectionId'] ?? 0,
-                'back' => $runner['back'][0]['price'] ?? '',
-                'lay' => $runner['lay'][0]['price'] ?? '',
-                'totalMatched' => $runner['totalMatched'] ?? 0
+        $sportNames = [
+            4 => 'Cricket',
+            1 => 'Soccer',
+            2 => 'Tennis',
+            10 => 'Horse Racing',
+            65 => 'Greyhound Racing'
+        ];
+        
+        $query = DB::table('matches')
+            ->where('sport_id', $sportId)
+            ->orderByRaw('is_inplay DESC, scheduled_time ASC');
+        
+        if ($limit) {
+            $query->limit($limit);
+        }
+        
+        $matches = $query->get();
+        
+        $result = [];
+        
+        foreach ($matches as $match) {
+            $odds = DB::table('match_odds')
+                ->where('gmid', $match->gmid)
+                ->orderBy('section_number')
+                ->get();
+            
+            $runners = [];
+            foreach ($odds as $odd) {
+                $runners[] = [
+                    'name' => $odd->selection_name,
+                    'back' => (float) $odd->back_odds,
+                    'backSize' => (float) $odd->back_size,
+                    'lay' => (float) $odd->lay_odds,
+                    'laySize' => (float) $odd->lay_size
+                ];
+            }
+            
+            $totalMatched = 0;
+            foreach ($runners as $runner) {
+                $totalMatched += ($runner['backSize'] + $runner['laySize']);
+            }
+            
+            $result[] = [
+                'marketId' => (string) $match->gmid,
+                'marketName' => $match->match_name,
+                'status' => $match->match_status ?? 'OPEN',
+                'inplay' => (bool) $match->is_inplay,
+                'startTime' => $match->scheduled_time ? date('c', strtotime($match->scheduled_time)) : null,
+                'sport' => $sportNames[$sportId] ?? 'Unknown',
+                'runners' => $runners,
+                'totalMatched' => round($totalMatched, 2)
             ];
         }
-        return $processed;
+        
+        return $result;
     }
     
-    private function calculateTotalMatched($runners)
-    {
-        $total = 0;
-        foreach ($runners as $runner) {
-            $total += $runner['totalMatched'] ?? 0;
-        }
-        return $total;
-    }
-    
-    private function getMarketDetails($apiKey, $marketId)
+    public function getAllSportsMatches()
     {
         try {
-            $cacheKey = 'market_details_' . $marketId;
-            $cacheDuration = now()->addSeconds(30);
+            $data = [
+                'cricket' => $this->getMatchesBySport($this->sportIds['cricket']),
+                'soccer' => $this->getMatchesBySport($this->sportIds['soccer']),
+                'tennis' => $this->getMatchesBySport($this->sportIds['tennis']),
+                'horse_racing' => $this->getRacingEvents($this->sportIds['horse_racing']),
+                'greyhound_racing' => $this->getRacingEvents($this->sportIds['greyhound_racing'])
+            ];
             
-            return Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey, $marketId) {
-                $url = 'http://89.116.20.218:8085/api/GetMarketDetails';
-                $response = Http::withHeaders([
-                    'X-ScoreSwift-Key' => $apiKey
-                ])->timeout(10)->get($url, [
-                    'market_id' => $marketId
-                ]);
-                
-                if ($response->successful()) {
-                    return $response->json();
-                }
-                
-                return null;
-            });
+            return response()->json($data);
+            
         } catch (\Exception $e) {
-            return null;
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
     
-    private function getMarketOdds($apiKey, $marketId)
+    private function getRacingEvents($sportId, $limit = null)
+    {
+        $sportNames = [
+            10 => 'Horse Racing',
+            65 => 'Greyhound Racing'
+        ];
+        
+        $query = DB::table('racing_events')
+            ->where('sport_id', $sportId)
+            ->orderBy('scheduled_datetime', 'asc');
+        
+        if ($limit) {
+            $query->limit($limit);
+        }
+        
+        $events = $query->get();
+        
+        $result = [];
+        
+        foreach ($events as $event) {
+            $result[] = [
+                'marketId' => (string) $event->gmid,
+                'marketName' => $event->venue_name,
+                'status' => 'OPEN',
+                'inplay' => false,
+                'startTime' => $event->scheduled_datetime ? date('c', strtotime($event->scheduled_datetime)) : null,
+                'sport' => $sportNames[$sportId] ?? 'Racing',
+                'runners' => [],
+                'totalMatched' => 0
+            ];
+        }
+        
+        return $result;
+    }
+    
+    public function getMatchDetails($gmid)
     {
         try {
-            $cacheKey = 'market_odds_' . $marketId;
-            $cacheDuration = now()->addSeconds(5);
+            $match = DB::table('matches')->where('gmid', $gmid)->first();
             
-            return Cache::remember($cacheKey, $cacheDuration, function () use ($apiKey, $marketId) {
-                $url = 'http://89.116.20.218:8085/api/GetMarketOdds';
-                $response = Http::withHeaders([
-                    'X-ScoreSwift-Key' => $apiKey
-                ])->timeout(10)->get($url, [
-                    'market_id' => $marketId
-                ]);
-                
-                if ($response->successful()) {
-                    $data = $response->json();
-                    if (is_array($data) && !empty($data)) {
-                        return $data[0];
-                    }
-                }
-                
-                return null;
-            });
+            if (!$match) {
+                return response()->json(['error' => 'Match not found'], 404);
+            }
+            
+            $odds = DB::table('match_odds')
+                ->where('gmid', $gmid)
+                ->orderBy('section_number')
+                ->get();
+            
+            $runners = [];
+            foreach ($odds as $odd) {
+                $runners[] = [
+                    'selectionId' => $odd->sid,
+                    'name' => $odd->selection_name,
+                    'back' => (float) $odd->back_odds,
+                    'backSize' => (float) $odd->back_size,
+                    'lay' => (float) $odd->lay_odds,
+                    'laySize' => (float) $odd->lay_size,
+                    'status' => $odd->status
+                ];
+            }
+            
+            return response()->json([
+                'gmid' => $match->gmid,
+                'matchName' => $match->match_name,
+                'competitionName' => $match->competition_name,
+                'status' => $match->match_status,
+                'inplay' => (bool) $match->is_inplay,
+                'startTime' => $match->scheduled_time,
+                'hasBookmaker' => (bool) $match->has_bookmaker,
+                'hasFancy' => (bool) $match->has_fancy,
+                'runners' => $runners
+            ]);
+            
         } catch (\Exception $e) {
-            return null;
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    
 }

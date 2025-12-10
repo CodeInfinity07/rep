@@ -1,0 +1,365 @@
+{
+    "cricket": [
+        {
+            "marketId": "1.251452423",
+            "marketName": "Kathmandu Gurkhas v Lumbini Lions",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T10:15:00Z",
+            "sport": "Cricket",
+            "runners": [
+                {
+                    "name": "Kathmandu Gurkhas",
+                    "back": 8.6,
+                    "backSize": 10764.7,
+                    "lay": 9.4,
+                    "laySize": 8442.51
+                },
+                {
+                    "name": "Lumbini Lions",
+                    "back": 1.12,
+                    "backSize": 70856.76,
+                    "lay": 1.13,
+                    "laySize": 81926.03
+                }
+            ],
+            "totalMatched": 4543360.22
+        },
+        {
+            "marketId": "1.251474821",
+            "marketName": "Gulf Giants v Sharjah Warriors",
+            "status": "OPEN",
+            "inplay": false,
+            "startTime": "2025-12-10T14:30:00Z",
+            "sport": "Cricket",
+            "runners": [],
+            "totalMatched": 0
+        },
+        {
+            "marketId": "1.251459198",
+            "marketName": "South Africa W v Ireland W",
+            "status": "OPEN",
+            "inplay": false,
+            "startTime": "2025-12-10T16:00:00Z",
+            "sport": "Cricket",
+            "runners": [],
+            "totalMatched": 0
+        },
+        {
+            "marketId": "1.251520840",
+            "marketName": "Afghan Tigers v Phoenix Riders",
+            "status": "OPEN",
+            "inplay": false,
+            "startTime": "2025-12-10T17:00:00Z",
+            "sport": "Cricket",
+            "runners": [],
+            "totalMatched": 0
+        },
+        {
+            "marketId": "1.251406395",
+            "marketName": "New Zealand v West Indies",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T22:00:00Z",
+            "sport": "Cricket",
+            "runners": [
+                {
+                    "name": "New Zealand",
+                    "back": 1.08,
+                    "backSize": 27208.2,
+                    "lay": 1.09,
+                    "laySize": 37234.83
+                },
+                {
+                    "name": "West Indies",
+                    "back": 18.5,
+                    "backSize": 200.33,
+                    "lay": 19.5,
+                    "laySize": 117.47
+                },
+                {
+                    "name": "The Draw",
+                    "back": 34,
+                    "backSize": 52.97,
+                    "lay": 36,
+                    "laySize": 33.18
+                }
+            ],
+            "totalMatched": 4386207.62
+        }
+    ],
+    "soccer": [
+        {
+            "marketId": "1.251528575",
+            "marketName": "UE Santa Coloma v FC Ranger's",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T10:00:00Z",
+            "sport": "Soccer",
+            "runners": [
+                {
+                    "name": "UE Santa Coloma",
+                    "back": 1.01,
+                    "backSize": 1595.47,
+                    "lay": 1.03,
+                    "laySize": 413.98
+                },
+                {
+                    "name": "FC Ranger's",
+                    "back": 1000,
+                    "backSize": 8.83,
+                    "lay": 0,
+                    "laySize": 0
+                },
+                {
+                    "name": "The Draw",
+                    "back": 34,
+                    "backSize": 14.54,
+                    "lay": 120,
+                    "laySize": 13.53
+                }
+            ],
+            "totalMatched": 7961.87
+        },
+        {
+            "marketId": "1.251528227",
+            "marketName": "Baku Sporting v FK Sahdag Qusar",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T10:30:00Z",
+            "sport": "Soccer",
+            "runners": [
+                {
+                    "name": "Baku Sporting",
+                    "back": 1.64,
+                    "backSize": 11.06,
+                    "lay": 1.67,
+                    "laySize": 7.23
+                },
+                {
+                    "name": "FK Sahdag Qusar",
+                    "back": 8,
+                    "backSize": 2,
+                    "lay": 8.6,
+                    "laySize": 1.92
+                },
+                {
+                    "name": "The Draw",
+                    "back": 3.6,
+                    "backSize": 2,
+                    "lay": 3.65,
+                    "laySize": 67.88
+                }
+            ],
+            "totalMatched": 4747.78
+        },
+        {
+            "marketId": "1.251520421",
+            "marketName": "Chainat Hornbill v Songkla FC",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T11:00:00Z",
+            "sport": "Soccer",
+            "runners": [
+                {
+                    "name": "Chainat Hornbill",
+                    "back": 2.16,
+                    "backSize": 16,
+                    "lay": 2.22,
+                    "laySize": 79.01
+                },
+                {
+                    "name": "Songkla FC",
+                    "back": 5.3,
+                    "backSize": 35.6,
+                    "lay": 5.8,
+                    "laySize": 7.53
+                },
+                {
+                    "name": "The Draw",
+                    "back": 2.72,
+                    "backSize": 43.97,
+                    "lay": 2.86,
+                    "laySize": 6.59
+                }
+            ],
+            "totalMatched": 2849.77
+        },
+        {
+            "marketId": "1.251519809",
+            "marketName": "Villarreal U19 v FC Copenhagen U19",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T11:00:00Z",
+            "sport": "Soccer",
+            "runners": [
+                {
+                    "name": "Villarreal U19",
+                    "back": 1.45,
+                    "backSize": 1,
+                    "lay": 1.48,
+                    "laySize": 72.87
+                },
+                {
+                    "name": "FC Copenhagen U19",
+                    "back": 8.6,
+                    "backSize": 14.07,
+                    "lay": 9.2,
+                    "laySize": 12.02
+                },
+                {
+                    "name": "The Draw",
+                    "back": 4.7,
+                    "backSize": 2,
+                    "lay": 5,
+                    "laySize": 9.32
+                }
+            ],
+            "totalMatched": 6616.27
+        },
+        {
+            "marketId": "1.251519917",
+            "marketName": "SL Benfica Lisbon U19 v Napoli U19",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T11:00:00Z",
+            "sport": "Soccer",
+            "runners": [
+                {
+                    "name": "SL Benfica Lisbon U19",
+                    "back": 1.12,
+                    "backSize": 446.14,
+                    "lay": 1.13,
+                    "laySize": 272.45
+                },
+                {
+                    "name": "Napoli U19",
+                    "back": 44,
+                    "backSize": 9.65,
+                    "lay": 46,
+                    "laySize": 5.26
+                },
+                {
+                    "name": "The Draw",
+                    "back": 11,
+                    "backSize": 23.58,
+                    "lay": 11.5,
+                    "laySize": 3.33
+                }
+            ],
+            "totalMatched": 8446.67
+        }
+    ],
+    "tennis": [
+        {
+            "marketId": "1.251534059",
+            "marketName": "Sandra Samir v Yara Bartashevich",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T09:28:18Z",
+            "sport": "Tennis",
+            "runners": [
+                {
+                    "name": "Sandra Samir",
+                    "back": 1.18,
+                    "backSize": 371.57,
+                    "lay": 1.26,
+                    "laySize": 38.89
+                },
+                {
+                    "name": "Yara Bartashevich",
+                    "back": 4.9,
+                    "backSize": 10,
+                    "lay": 6.6,
+                    "laySize": 66.43
+                }
+            ],
+            "totalMatched": 39274.3
+        },
+        {
+            "marketId": "1.251534058",
+            "marketName": "Tara Wuerth v Weronika Ewald",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T09:52:30Z",
+            "sport": "Tennis",
+            "runners": [
+                {
+                    "name": "Tara Wuerth",
+                    "back": 2.2,
+                    "backSize": 3.04,
+                    "lay": 2.36,
+                    "laySize": 30.03
+                },
+                {
+                    "name": "Weronika Ewald",
+                    "back": 1.74,
+                    "backSize": 40.73,
+                    "lay": 1.82,
+                    "laySize": 3.68
+                }
+            ],
+            "totalMatched": 13812.59
+        },
+        {
+            "marketId": "1.251534051",
+            "marketName": "Aya El Sayed v Polina Kuharenko",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T10:27:20Z",
+            "sport": "Tennis",
+            "runners": [
+                {
+                    "name": "Aya El Sayed",
+                    "back": 15,
+                    "backSize": 15.04,
+                    "lay": 18,
+                    "laySize": 20.64
+                },
+                {
+                    "name": "Polina Kuharenko",
+                    "back": 1.06,
+                    "backSize": 350.45,
+                    "lay": 1.07,
+                    "laySize": 210.78
+                }
+            ],
+            "totalMatched": 5172.03
+        },
+        {
+            "marketId": "1.251534053",
+            "marketName": "Giuliana Bestetti v Caroline Werner",
+            "status": "OPEN",
+            "inplay": false,
+            "startTime": "2025-12-10T10:28:18Z",
+            "sport": "Tennis",
+            "runners": [],
+            "totalMatched": 0
+        },
+        {
+            "marketId": "1.251416847",
+            "marketName": "Tama Korpatsch v Ruzic",
+            "status": "OPEN",
+            "inplay": true,
+            "startTime": "2025-12-10T10:30:00Z",
+            "sport": "Tennis",
+            "runners": [
+                {
+                    "name": "Tamara Korpatsch",
+                    "back": 2.72,
+                    "backSize": 2.18,
+                    "lay": 2.76,
+                    "laySize": 72.2
+                },
+                {
+                    "name": "Antonia Ruzic",
+                    "back": 1.57,
+                    "backSize": 126.93,
+                    "lay": 1.58,
+                    "laySize": 3.75
+                }
+            ],
+            "totalMatched": 486073.04
+        }
+    ]
+}
