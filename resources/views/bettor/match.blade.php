@@ -3447,7 +3447,7 @@
             submitBtn.style.pointerEvents = 'none';
             
             var betData = {
-                market_id: marketId,
+                market_id: currentMarketId || marketId,
                 event_id: eventId,
                 event_name: document.querySelector('.event-title')?.textContent || 'Match',
                 market_name: currentMarketName || 'Match Odds',
