@@ -142,8 +142,8 @@ class BettorController extends Controller
             )
             ->first();
         
-        // Get filter parameters
-        $from = $request->input('From', now()->subDays(7)->startOfDay()->toIso8601String());
+        // Get filter parameters - default: 30 days ago to today
+        $from = $request->input('From', now()->subDays(30)->startOfDay()->toIso8601String());
         $to = $request->input('To', now()->endOfDay()->toIso8601String());
         
         // Get profit/loss data from results table grouped by market_type

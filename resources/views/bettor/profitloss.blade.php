@@ -821,73 +821,73 @@
                                             <div class="row" style="text-align-last:justify;">
                                                 <div class="col-12 col-md-5">
                                                     <div class="form-group">
-                                                        <div class="input-group date" id="ReportFrom"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#ReportFrom" id="DisplayFrom">
-                                                            <div class="input-group-append" data-target="#ReportFrom"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i></div>
-                                                            </div>
-                                                        </div>
-                                                        <span class="market-time d-none">8/25/2025 10:07 AM</span>
-                                                        <span class="d-none utctime" data-nofirst="0"
-                                                            data-format="M/D/YYYY h:mm A">
-                                                            2025-08-25T05:07:23.0000000Z
-                                                        </span>
-                                                        <input type="hidden" name="From" id="From"
-                                                            value="2025-08-25T05:07:23.0000000Z">
+                                                        <label class="mr-2">From:</label>
+                                                        <input type="date" class="form-control" id="DisplayFrom" style="max-width: 200px;">
+                                                        <input type="hidden" name="From" id="From">
                                                     </div>
                                                 </div>
 
                                                 <strong style="margin:auto">&nbsp;-&nbsp;</strong>
                                                 <div class="col-12 col-md-5">
                                                     <div class="form-group">
-                                                        <div class="input-group date" id="ReportTo"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#ReportTo" id="DisplayTo">
-                                                            <div class="input-group-append" data-target="#ReportTo"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i></div>
-                                                            </div>
-                                                        </div>
-                                                        <span class="market-time d-none">11/25/2025 11:59 PM</span>
-                                                        <span class="d-none utctime" data-nofirst="0"
-                                                            data-format="M/D/YYYY h:mm A">
-                                                            2025-11-25T18:59:00.0000000Z
-                                                        </span>
-                                                        <input type="hidden" name="To" id="To"
-                                                            value="2025-11-25T18:59:00.0000000Z">
+                                                        <label class="mr-2">To:</label>
+                                                        <input type="date" class="form-control" id="DisplayTo" style="max-width: 200px;">
+                                                        <input type="hidden" name="To" id="To">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group editsbmtbtn">
                                                     <label class="mx-1"> </label>
-                                                    <button class="btn btn-primary" type="submit"
-                                                        onclick="return updateDates();">
+                                                    <button class="btn btn-primary" type="submit" onclick="return updateDates();">
                                                         <strong>Submit</strong>
                                                     </button>
                                                 </div>
-                                                <input type="hidden" data-val="true"
-                                                    data-val-required="The ClientId field is required." id="ClientId"
-                                                    name="ClientId" value="5325466">
-                                                <input type="hidden" data-val="true"
-                                                    data-val-required="The EventTypeId field is required."
-                                                    id="EventTypeId" name="EventTypeId" value="0">
-                                                <input type="hidden" data-val="true"
-                                                    data-val-required="The IsFirstVisit field is required."
-                                                    id="IsFirstVisit" name="IsFirstVisit" value="False">
-                                            </div>
-                                            <div class="row col-12">
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var today = new Date();
+                                var thirtyDaysAgo = new Date();
+                                thirtyDaysAgo.setDate(today.getDate() - 30);
+                                
+                                var fromInput = document.getElementById('DisplayFrom');
+                                var toInput = document.getElementById('DisplayTo');
+                                var fromHidden = document.getElementById('From');
+                                var toHidden = document.getElementById('To');
+                                
+                                fromInput.value = thirtyDaysAgo.toISOString().split('T')[0];
+                                toInput.value = today.toISOString().split('T')[0];
+                                
+                                fromHidden.value = thirtyDaysAgo.toISOString();
+                                toHidden.value = today.toISOString();
+                            });
+                            
+                            function updateDates() {
+                                var fromInput = document.getElementById('DisplayFrom');
+                                var toInput = document.getElementById('DisplayTo');
+                                var fromHidden = document.getElementById('From');
+                                var toHidden = document.getElementById('To');
+                                
+                                if (fromInput.value) {
+                                    var fromDate = new Date(fromInput.value);
+                                    fromDate.setHours(0, 0, 0, 0);
+                                    fromHidden.value = fromDate.toISOString();
+                                }
+                                
+                                if (toInput.value) {
+                                    var toDate = new Date(toInput.value);
+                                    toDate.setHours(23, 59, 59, 999);
+                                    toHidden.value = toDate.toISOString();
+                                }
+                                
+                                return true;
+                            }
+                        </script>
 
                     </div>
                     <div class="table-wrap">
