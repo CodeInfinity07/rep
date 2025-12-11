@@ -17,7 +17,9 @@ class Bet extends Model
         'selection_id',
         'sport_type',
         'bet_type',
+        'market_type',
         'odds',
+        'size',
         'stake',
         'liability',
         'profit',
@@ -31,6 +33,7 @@ class Bet extends Model
 
     protected $casts = [
         'odds' => 'decimal:2',
+        'size' => 'decimal:2',
         'stake' => 'decimal:2',
         'liability' => 'decimal:2',
         'profit' => 'decimal:2',

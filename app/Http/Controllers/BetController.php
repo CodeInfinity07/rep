@@ -22,7 +22,9 @@ class BetController extends Controller
             'selection_name' => 'required|string',
             'selection_id' => 'required|string',
             'bet_type' => 'required|in:back,lay',
-            'odds' => 'required|numeric|min:1.01',
+            'market_type' => 'nullable|string',
+            'odds' => 'required|numeric|min:0.01',
+            'size' => 'nullable|numeric|min:0',
             'stake' => 'required|numeric|min:1',
             'sport_type' => 'nullable|string',
         ]);
@@ -45,15 +47,14 @@ class BetController extends Controller
 
         $stake = floatval($request->stake);
         $odds = floatval($request->odds);
+        $size = floatval($request->size ?? 100);
         $betType = $request->bet_type;
+        $marketType = strtolower($request->market_type ?? 'match_odds');
 
-        if ($betType === 'back') {
-            $liability = $stake;
-            $potentialProfit = $stake * ($odds - 1);
-        } else {
-            $liability = $stake * ($odds - 1);
-            $potentialProfit = $stake;
-        }
+        // Calculate profit and liability based on market type
+        $calculation = $this->calculateProfitLiability($marketType, $betType, $stake, $odds, $size);
+        $liability = $calculation['liability'];
+        $potentialProfit = $calculation['profit'];
 
         $userBalance = floatval($user->balance ?? 0);
         if ($userBalance < $liability) {
@@ -87,7 +88,9 @@ class BetController extends Controller
                 'selection_id' => $request->selection_id,
                 'sport_type' => $sportType,
                 'bet_type' => $betType,
+                'market_type' => $marketType,
                 'odds' => $odds,
+                'size' => $size,
                 'stake' => $stake,
                 'liability' => $liability,
                 'profit' => $potentialProfit,
@@ -266,5 +269,59 @@ class BetController extends Controller
                 'message' => 'Failed to cancel bet. Please try again.'
             ], 500);
         }
+    }
+
+    /**
+     * Calculate profit and liability based on market type
+     * 
+     * Market Types:
+     * - match_odds, oddeven, tied_match, decimal: Decimal odds (profit = stake × (odds - 1))
+     * - bookmaker: Points/rate per 100 (profit = stake × (odds / 100))
+     * - line, over by over, ball by ball: 1:1 payout (profit = stake)
+     * - fancy, normal, meter, khado, fancy1: Session with size as rate (profit = stake × (size / 100))
+     */
+    private function calculateProfitLiability(string $marketType, string $betType, float $stake, float $odds, float $size = 100): array
+    {
+        $profit = 0;
+        $liability = 0;
+        $marketTypeLower = strtolower($marketType);
+
+        if ($marketTypeLower === 'bookmaker') {
+            // Bookmaker: odds are in points (e.g., 42 means 42% profit)
+            if ($betType === 'back') {
+                $profit = $stake * ($odds / 100);
+                $liability = $stake;
+            } else {
+                $profit = $stake;
+                $liability = $stake * ($odds / 100);
+            }
+        } elseif ($marketTypeLower === 'line' || str_contains($marketTypeLower, 'line') || str_contains($marketTypeLower, 'over by over') || str_contains($marketTypeLower, 'ball by ball')) {
+            // Line markets: 1:1 payout (profit = stake)
+            $profit = $stake;
+            $liability = $stake;
+        } elseif (in_array($marketTypeLower, ['fancy', 'normal', 'meter', 'khado', 'fancy1'])) {
+            // Fancy/Session markets: size is the rate
+            if ($betType === 'back') {
+                $profit = $stake * ($size / 100);
+                $liability = $stake;
+            } else {
+                $profit = $stake;
+                $liability = $stake * ($size / 100);
+            }
+        } else {
+            // Match Odds, Odd Even, Tied Match: standard decimal odds
+            if ($betType === 'back') {
+                $profit = $stake * ($odds - 1);
+                $liability = $stake;
+            } else {
+                $profit = $stake;
+                $liability = $stake * ($odds - 1);
+            }
+        }
+
+        return [
+            'profit' => round($profit, 2),
+            'liability' => round($liability, 2),
+        ];
     }
 }
