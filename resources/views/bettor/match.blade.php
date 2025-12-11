@@ -2927,6 +2927,7 @@
                         runnerDiv.className = 'runner-runner';
                         runnerDiv.setAttribute('data-market-id', marketId);
                         runnerDiv.setAttribute('data-market-name', market.marketName || 'fancy');
+                        runnerDiv.setAttribute('data-gtype', market.gtype || market.marketName || 'FANCY');
                         runnerDiv.setAttribute('data-size', runner.size1 || 100);
                         runnerDiv.setAttribute('data-lay-size', runner.ls1 || 100);
                         runnerDiv.innerHTML = `<span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">${runner.name || 'Fancy'}</h4></span></div></h3> <a class="price-price price-back" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-back" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-lay mr-4" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a>`;
@@ -3602,22 +3603,21 @@
                         // Get size from data attribute if available
                         size = parseFloat(runnerDiv.getAttribute('data-size')) || 100;
                         
-                        // Detect market type from parent section or data attribute
-                        var marketName = (runnerDiv.getAttribute('data-market-name') || '').toLowerCase();
+                        // Get gtype from data attribute (this is what gets saved to results table)
+                        var gtype = runnerDiv.getAttribute('data-gtype') || '';
                         var displayMarketName = runnerDiv.getAttribute('data-market-name') || 'Match Odds';
                         
-                        if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
-                            marketType = 'bookmaker';
+                        // Use gtype directly if available, otherwise detect from element
+                        if (gtype) {
+                            marketType = gtype; // Use exact gtype from API
+                        } else if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
+                            marketType = 'BOOKMAKER';
                             displayMarketName = 'Bookmaker';
-                        } else if (marketName === 'oddeven' || marketName === 'tied_match') {
-                            marketType = 'decimal'; // Use decimal odds calculation
-                        } else if (marketName.includes('line') || marketName.includes('over by over') || marketName.includes('ball by ball')) {
-                            marketType = 'line'; // Line market: 1:1 payout
-                        } else if (marketName === 'meter' || marketName === 'khado' || marketName === 'normal' || marketName === 'fancy1') {
-                            marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
-                            marketType = 'fancy';
+                            marketType = 'FANCY';
                             displayMarketName = displayMarketName || 'Fancy';
+                        } else {
+                            marketType = 'MATCH_ODDS';
                         }
                     }
                     
@@ -3651,22 +3651,21 @@
                         // Get size from data attribute if available (use lay size for lay bets)
                         size = parseFloat(runnerDiv.getAttribute('data-lay-size')) || parseFloat(runnerDiv.getAttribute('data-size')) || 100;
                         
-                        // Detect market type from parent section or data attribute
-                        var marketName = (runnerDiv.getAttribute('data-market-name') || '').toLowerCase();
+                        // Get gtype from data attribute (this is what gets saved to results table)
+                        var gtype = runnerDiv.getAttribute('data-gtype') || '';
                         var displayMarketName = runnerDiv.getAttribute('data-market-name') || 'Match Odds';
                         
-                        if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
-                            marketType = 'bookmaker';
+                        // Use gtype directly if available, otherwise detect from element
+                        if (gtype) {
+                            marketType = gtype; // Use exact gtype from API
+                        } else if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
+                            marketType = 'BOOKMAKER';
                             displayMarketName = 'Bookmaker';
-                        } else if (marketName === 'oddeven' || marketName === 'tied_match') {
-                            marketType = 'decimal'; // Use decimal odds calculation
-                        } else if (marketName.includes('line') || marketName.includes('over by over') || marketName.includes('ball by ball')) {
-                            marketType = 'line'; // Line market: 1:1 payout
-                        } else if (marketName === 'meter' || marketName === 'khado' || marketName === 'normal' || marketName === 'fancy1') {
-                            marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
-                            marketType = 'fancy';
+                            marketType = 'FANCY';
                             displayMarketName = displayMarketName || 'Fancy';
+                        } else {
+                            marketType = 'MATCH_ODDS';
                         }
                     }
                     
