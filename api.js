@@ -193,51 +193,58 @@ async function fetchSportDetails(sportId) {
 function parseDatetime(dateStr) {
     if (!dateStr) return null;
     try {
-        // Format: "12/11/2025 11:30:00 PM" (India time UTC+5:30)
+        // Format: "12/11/2025 7:00:00 PM" (India time UTC+5:30)
         // We need to subtract 30 minutes to get Pakistan time (UTC+5:00)
         
         // Try to parse as MM/DD/YYYY HH:MM:SS AM/PM format
         const parts = dateStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2}):(\d{2})\s*(AM|PM)?/i);
         
         if (!parts) {
-            // Fallback: try standard parsing but still subtract 30 minutes
-            const date = new Date(dateStr);
-            if (isNaN(date.getTime())) return null;
-            date.setMinutes(date.getMinutes() - 30);
-            const pad = (n) => n.toString().padStart(2, '0');
-            return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+            return null; // Can't parse, return null
         }
         
         let [, month, day, year, hours, minutes, seconds, ampm] = parts;
-        hours = parseInt(hours);
-        minutes = parseInt(minutes);
-        seconds = parseInt(seconds);
+        let h = parseInt(hours);
+        let m = parseInt(minutes);
+        let s = parseInt(seconds);
+        let d = parseInt(day);
+        let mo = parseInt(month);
+        let y = parseInt(year);
         
         // Convert 12-hour to 24-hour format
         if (ampm) {
-            if (ampm.toUpperCase() === 'PM' && hours !== 12) {
-                hours += 12;
-            } else if (ampm.toUpperCase() === 'AM' && hours === 12) {
-                hours = 0;
+            if (ampm.toUpperCase() === 'PM' && h !== 12) {
+                h += 12;
+            } else if (ampm.toUpperCase() === 'AM' && h === 12) {
+                h = 0;
             }
         }
         
-        // Create a date object with the India time values
-        const indiaDate = new Date(
-            parseInt(year),
-            parseInt(month) - 1,
-            parseInt(day),
-            hours,
-            minutes,
-            seconds
-        );
+        // Subtract 30 minutes using pure arithmetic (no Date object timezone issues)
+        m -= 30;
+        if (m < 0) {
+            m += 60;
+            h -= 1;
+        }
+        if (h < 0) {
+            h += 24;
+            d -= 1;
+        }
+        // Handle day underflow (simplified - assumes no month boundary crossing issues for typical sports schedules)
+        if (d < 1) {
+            mo -= 1;
+            if (mo < 1) {
+                mo = 12;
+                y -= 1;
+            }
+            // Get days in previous month
+            const daysInMonth = [31, (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            d = daysInMonth[mo - 1];
+        }
         
-        // Subtract 30 minutes to convert from India (UTC+5:30) to Pakistan (UTC+5:00)
-        indiaDate.setMinutes(indiaDate.getMinutes() - 30);
-        
-        // Format as MySQL datetime (local Pakistan time, no timezone suffix)
+        // Format as MySQL datetime
         const pad = (n) => n.toString().padStart(2, '0');
-        return `${indiaDate.getFullYear()}-${pad(indiaDate.getMonth() + 1)}-${pad(indiaDate.getDate())} ${pad(indiaDate.getHours())}:${pad(indiaDate.getMinutes())}:${pad(indiaDate.getSeconds())}`;
+        return `${y}-${pad(mo)}-${pad(d)} ${pad(h)}:${pad(m)}:${pad(s)}`;
     } catch (error) {
         console.error('Error parsing datetime:', dateStr, error.message);
         return null;
