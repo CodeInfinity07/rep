@@ -2935,7 +2935,13 @@
                     let disabledDiv = runnerDiv.querySelector('.runner-disabled');
                     const priceButtons = runnerDiv.querySelectorAll('.price-price');
                     
-                    if (status === 'SUSPENDED' || status === 'Ball Running' || (!runner.price1 && !runner.lay1)) {
+                    // Check if status is suspended/ball running OR if both prices are missing/zero
+                    const hasSuspendedStatus = status === 'SUSPENDED' || status === 'Ball Running';
+                    const hasBackPrice = runner.price1 !== null && runner.price1 !== undefined && runner.price1 > 0;
+                    const hasLayPrice = runner.lay1 !== null && runner.lay1 !== undefined && runner.lay1 > 0;
+                    const hasAnyPrice = hasBackPrice || hasLayPrice;
+                    
+                    if (hasSuspendedStatus || !hasAnyPrice) {
                         priceButtons.forEach(btn => btn.style.display = 'none');
                         if (!disabledDiv) {
                             const wrapper = document.createElement('div');
@@ -2954,10 +2960,16 @@
                         const layBtn = runnerDiv.querySelector('.price-lay.mb-show');
                         
                         if (backBtn) {
-                            updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'allfancy-back-' + marketId + '-' + runnerId);
+                            // Show back price, or '-' if not available
+                            const backPrice = hasBackPrice ? runner.price1 : '-';
+                            const backSize = hasBackPrice ? runner.size1 : '';
+                            updatePriceWithFlash(backBtn, backPrice, backSize, true, 'allfancy-back-' + marketId + '-' + runnerId);
                         }
                         if (layBtn) {
-                            updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'allfancy-lay-' + marketId + '-' + runnerId);
+                            // Show lay price, or '-' if not available
+                            const layPrice = hasLayPrice ? runner.lay1 : '-';
+                            const laySize = hasLayPrice ? runner.ls1 : '';
+                            updatePriceWithFlash(layBtn, layPrice, laySize, false, 'allfancy-lay-' + marketId + '-' + runnerId);
                         }
                     }
                 });
