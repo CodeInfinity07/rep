@@ -894,22 +894,84 @@
                         <div class="">
                             <div class="card">
                                 <div class="card-header">
-                                    <i class="fa fa-align-justify"></i> Sports ProfitLoss <b> (HAFIZ6969) </b>
+                                    <i class="fa fa-align-justify"></i> Sports ProfitLoss <b> ({{ strtoupper($username) }}) </b>
                                 </div>
                                 <div class="card-body">
-                                    <ul class="nav nav-pills">
+                                    <ul class="nav nav-pills" id="categoryPills">
+                                        @foreach($categories as $index => $category)
+                                        <li class="nav-item">
+                                            <a class="nav-link {{ $index === 0 ? 'active' : '' }}" 
+                                               href="javascript:void(0);" 
+                                               data-category="{{ $category->market_type }}"
+                                               onclick="showCategory('{{ $category->market_type }}', this)">
+                                                {{ ucfirst($category->market_type) }} 
+                                                (<span class="{{ $category->total_pl >= 0 ? 'text-success' : 'text-danger' }}">{{ number_format($category->total_pl, 0) }}</span>)
+                                            </a>
+                                        </li>
+                                        @endforeach
                                     </ul>
-
+                                    <h5 class="totalAmount">
+                                        Total Amount = <span class="{{ $grandTotal >= 0 ? 'text-success' : 'text-danger' }}">{{ number_format($grandTotal, 0) }}</span>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    @foreach($categories as $index => $category)
+                    <div class="row category-details" id="details-{{ $category->market_type }}" style="{{ $index === 0 ? '' : 'display: none;' }}">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fa fa-align-justify"></i>
+                                    Account Ledger - {{ ucfirst($category->market_type) }}
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>{{ ucfirst($category->market_type) }}</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(isset($categoryDetails[$category->market_type]))
+                                                @foreach($categoryDetails[$category->market_type] as $detail)
+                                                <tr>
+                                                    <td>
+                                                        <span class="market-time">{{ \Carbon\Carbon::parse($detail->settled_at)->format('m/d/Y h:i:s a') }}</span>
+                                                    </td>
+                                                    <td>
+                                                        {{ $detail->event_name }} {{ $detail->market_name }}
+                                                    </td>
+                                                    <td class="{{ $detail->profit_loss >= 0 ? 'text-success' : 'text-danger' }}">
+                                                        {{ number_format($detail->profit_loss, 0) }}
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    
                     <script>
-                        function popup_report(vid, aid) {
-                            var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
-                            newwindow = window.open(url, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
-                            if (window.focus) { newwindow.focus() }
-                            return false;
+                        function showCategory(categoryType, element) {
+                            document.querySelectorAll('.category-details').forEach(function(el) {
+                                el.style.display = 'none';
+                            });
+                            document.querySelectorAll('#categoryPills .nav-link').forEach(function(el) {
+                                el.classList.remove('active');
+                            });
+                            var detailsEl = document.getElementById('details-' + categoryType);
+                            if (detailsEl) {
+                                detailsEl.style.display = 'block';
+                            }
+                            element.classList.add('active');
                         }
                     </script>
                 </div>

@@ -1,0 +1,215 @@
+<div class="content-wrap body">
+                    <link rel="stylesheet" href="/css/all.css">
+<style>
+    .totalAmount {
+        float: right;
+        margin-top: -30px;
+    }
+    @media screen and (max-width: 635px) {
+        .totalAmount {
+            float: right;
+            margin-top:10px;
+        }
+    }
+</style>
+<div class="table-wrap">
+    
+<style>
+    .datee {
+        background-color: white;
+    }
+    @media screen and (max-width: 635px) {
+        .editsbmtbtn {
+            margin: auto;
+            margin-right: 15px;
+        }
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+                Report Filter
+            </div>
+            <div class="card-body">
+                <form id="ReportFilterForm" class="form-inline" method="get">
+                    <div class="row" style="text-align-last:justify;">
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <div class="input-group date" id="ReportFrom" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom">
+                                    <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <span class="market-time d-none">12/11/2025 12:00 AM</span>
+                                <span class="d-none utctime" data-nofirst="0" data-format="M/D/YYYY h:mm A">
+                                    2025-12-10T19:00:00.0000000Z
+                                </span>
+                                <input type="hidden" name="From" id="From" value="2025-12-10T19:00:00.0000000Z">
+                            </div>
+                        </div>
+
+                        <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo">
+                                    <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <span class="market-time d-none">12/11/2025 11:59 PM</span>
+                                <span class="d-none utctime" data-nofirst="0" data-format="M/D/YYYY h:mm A">
+                                    2025-12-11T18:59:00.0000000Z
+                                </span>
+                                <input type="hidden" name="To" id="To" value="2025-12-11T18:59:00.0000000Z">
+                            </div>
+                        </div>
+
+                        <div class="form-group editsbmtbtn">
+                            <label class="mx-1"> </label>
+                            <button class="btn btn-primary" type="submit" onclick="return updateDates();">
+                                <strong>Submit</strong>
+                            </button>
+                        </div>
+                        <input type="hidden" data-val="true" data-val-required="The ClientId field is required." id="ClientId" name="ClientId" value="5344765">
+                        <input type="hidden" data-val="true" data-val-required="The EventTypeId field is required." id="EventTypeId" name="EventTypeId" value="3">
+                        <input type="hidden" data-val="true" data-val-required="The IsFirstVisit field is required." id="IsFirstVisit" name="IsFirstVisit" value="False">
+                    </div>
+                    <div class="row col-12">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="table-wrap">
+    <div class="">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Sports ProfitLoss <b> (AKBARR2222) </b>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link Report-EventTypeId-new-frontPL" data-id="3" href="">
+                                Fancy (2,920)
+                            </a>
+                        </li>
+                </ul>
+
+                    <h5 class="totalAmount">
+                        Total Amount =  2,920
+                    </h5>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i>
+                    Account Ledger
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+Fancy                                </th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                    <td>
+                                        
+<span class="market-time">12/11/2025 01:57:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-12-11T08:57:00.0000000Z
+</span>
+
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="/Customer/Statements?VID=393699122&amp;AID=5891630" onclick="return popup_report(393699122, 5891630);">
+                                            Sydney Sixers W v Perth Scorchers W 1st Innings 10 Overs Line 
+                                        </a>
+                                    </td>
+                                    <td>990</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        
+<span class="market-time">12/11/2025 02:21:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-12-11T09:21:00.0000000Z
+</span>
+
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="/Customer/Statements?VID=393709311&amp;AID=5891630" onclick="return popup_report(393709311, 5891630);">
+                                            Sydney Sixers W v Perth Scorchers W 1st Innings 15 Overs Line 
+                                        </a>
+                                    </td>
+                                    <td>1,980</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        
+<span class="market-time">12/11/2025 02:42:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-12-11T09:42:00.0000000Z
+</span>
+
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="/Customer/Statements?VID=393717317&amp;AID=5891630" onclick="return popup_report(393717317, 5891630);">
+                                            Sydney Sixers W v Perth Scorchers W 1st Innings 20 Overs Line 
+                                        </a>
+                                    </td>
+                                    <td>4,950</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        
+<span class="market-time">12/11/2025 03:20:00 pm</span>
+<span class="d-none utctime" data-format="M/D/YYYY hh:mm:ss a" data-target="time">
+    2025-12-11T10:20:00.0000000Z
+</span>
+
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="/Customer/Statements?VID=393732978&amp;AID=5891630" onclick="return popup_report(393732978, 5891630);">
+                                            Sydney Sixers W v Perth Scorchers W 2nd Innings 6 Overs Line 
+                                        </a>
+                                    </td>
+                                    <td>-5,000</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function popup_report(vid, aid) {
+        var url = "/Customer/Statements?VID=" + vid + "&AID=" + aid;
+        newwindow = window.open(url, "Market Repo", 'height=500,width=700,titlebar=0,menubar=0');
+        if (window.focus) { newwindow.focus() }
+        return false;
+    }
+</script>
+                </div>

@@ -143,39 +143,41 @@ class BettorController extends Controller
             ->first();
         
         // Get filter parameters
-        $from = $request->input('From', now()->subMonths(3)->startOfDay()->toIso8601String());
+        $from = $request->input('From', now()->subDays(7)->startOfDay()->toIso8601String());
         $to = $request->input('To', now()->endOfDay()->toIso8601String());
         
-        // Get profit/loss data grouped by market (since event_type_id doesn't exist)
-        $profitLossData = DB::table('bets')
+        // Get profit/loss data from results table grouped by market_type
+        $categories = DB::table('results')
             ->where('user_id', $user->id)
-            ->whereIn('status', ['won', 'lost', 'settled'])
-            ->where('created_at', '>=', $from)
-            ->where('created_at', '<=', $to)
+            ->where('settled', 1)
+            ->where('settled_at', '>=', $from)
+            ->where('settled_at', '<=', $to)
             ->select(
-                'market_name',
-                DB::raw('SUM(CASE WHEN status = "won" THEN profit ELSE 0 END) as total_won'),
-                DB::raw('SUM(CASE WHEN status = "lost" THEN -stake ELSE 0 END) as total_lost'),
-                DB::raw('SUM(profit) as net_profit'),
+                'market_type',
+                DB::raw('COALESCE(SUM(profit_loss), 0) as total_pl'),
                 DB::raw('COUNT(*) as total_bets')
             )
-            ->groupBy('market_name')
-            ->orderBy('net_profit', 'desc')
+            ->groupBy('market_type')
+            ->orderBy('total_pl', 'desc')
             ->get();
         
-        // Calculate overall totals
-        $overallStats = DB::table('bets')
-            ->where('user_id', $user->id)
-            ->whereIn('status', ['won', 'lost', 'settled'])
-            ->where('created_at', '>=', $from)
-            ->where('created_at', '<=', $to)
-            ->select(
-                DB::raw('SUM(CASE WHEN status = "won" THEN profit ELSE 0 END) as total_won'),
-                DB::raw('SUM(CASE WHEN status = "lost" THEN stake ELSE 0 END) as total_lost'),
-                DB::raw('COALESCE(SUM(profit), 0) as net_profit'),
-                DB::raw('COUNT(*) as total_bets')
-            )
-            ->first();
+        // Get detailed results for each category
+        $categoryDetails = [];
+        foreach ($categories as $cat) {
+            $details = DB::table('results')
+                ->where('user_id', $user->id)
+                ->where('settled', 1)
+                ->where('market_type', $cat->market_type)
+                ->where('settled_at', '>=', $from)
+                ->where('settled_at', '<=', $to)
+                ->select('event_name', 'market_name', 'profit_loss', 'settled_at')
+                ->orderBy('settled_at', 'desc')
+                ->get();
+            $categoryDetails[$cat->market_type] = $details;
+        }
+        
+        // Calculate grand total
+        $grandTotal = $categories->sum('total_pl');
         
         $data = [
             'username' => $user->username,
@@ -183,8 +185,9 @@ class BettorController extends Controller
             'balance' => $user->balance ?? 0,
             'liable' => $activeBetsData->total_liability ?? 0,
             'active_bets' => $activeBetsData->count ?? 0,
-            'profitLossData' => $profitLossData,
-            'overallStats' => $overallStats,
+            'categories' => $categories,
+            'categoryDetails' => $categoryDetails,
+            'grandTotal' => $grandTotal,
             'filters' => [
                 'from' => $from,
                 'to' => $to,
