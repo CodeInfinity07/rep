@@ -1198,9 +1198,9 @@
     var marketStartTimeISO = '{{ $marketStartTime ?? '' }}';
     var isInPlay = {{ ($inPlay ?? false) ? 'true' : 'false' }};
     var scoreCardUrl = '{{ $scoreCardUrl ?? "" }}';
-</script> <div class="scrollmenu" style="display: none;"><a id="Alltab" class="tablink btn btn-primary">
+</script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary active" style="cursor: pointer;">
                                 ALL
-                            </a> <!----> <a id="BMtab" href="#" onclick="MarketTab('BM')" class="tablink btn btn-primary" style="display: none;">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="MarketTab('Fancy2')" class="tablink btn btn-primary" style="display: none;">Fancy-2</a> <a id="Figuretab" href="#" onclick="MarketTab('Figure')" class="tablink btn btn-primary" style="display: none;">Figure</a> <a id="OddFiguretab" href="#" onclick="MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
+                            </a> <!----> <a id="BMtab" href="#" onclick="return MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="return MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <a id="OddFiguretab" href="#" onclick="return MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="return MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
 
 <div class="table-box-header" id="scoreboard-header" style="display: none;"><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
                                                     Ball Running...
@@ -2896,6 +2896,7 @@
                     section = document.createElement('div');
                     section.id = 'fancy-section-' + marketId;
                     section.className = 'tb-content';
+                    section.setAttribute('data-gtype', market.gtype || '');
                     section.innerHTML = `
                         <div class="market-titlebar">
                             <p class="market-name">
@@ -3281,6 +3282,95 @@
             document.getElementById('btnTV').classList.remove('active');
             document.getElementById('btnScore').classList.add('active');
         }
+        
+        // Market Tab filtering function
+        var currentTab = 'All';
+        
+        function MarketTab(tabName) {
+            currentTab = tabName;
+            
+            // Update active tab styling
+            document.querySelectorAll('.tablink').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            
+            var activeTabId = tabName + 'tab';
+            if (tabName === 'All') activeTabId = 'Alltab';
+            var activeTab = document.getElementById(activeTabId);
+            if (activeTab) activeTab.classList.add('active');
+            
+            // Get all fancy sections in the all-fancy-container
+            var fancySections = document.querySelectorAll('#all-fancy-container .tb-content');
+            var bookmakerSection = document.getElementById('bookmaker-section');
+            var matchOddsSection = document.querySelector('#All .tb-content:first-of-type');
+            
+            if (tabName === 'All') {
+                // Show all sections
+                fancySections.forEach(function(section) {
+                    section.style.display = 'block';
+                });
+                if (bookmakerSection) bookmakerSection.style.display = 'block';
+                if (matchOddsSection) matchOddsSection.style.display = 'block';
+            } else if (tabName === 'BM') {
+                // Show only bookmaker
+                fancySections.forEach(function(section) {
+                    section.style.display = 'none';
+                });
+                if (bookmakerSection) bookmakerSection.style.display = 'block';
+                if (matchOddsSection) matchOddsSection.style.display = 'none';
+            } else if (tabName === 'Fancy2') {
+                // Show fancy2, normal markets
+                fancySections.forEach(function(section) {
+                    var gtype = section.getAttribute('data-gtype') || '';
+                    if (gtype === 'fancy2' || gtype === 'normal' || gtype === 'fancy1') {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                if (bookmakerSection) bookmakerSection.style.display = 'none';
+                if (matchOddsSection) matchOddsSection.style.display = 'none';
+            } else if (tabName === 'OddFigure') {
+                // Show oddeven markets
+                fancySections.forEach(function(section) {
+                    var gtype = section.getAttribute('data-gtype') || '';
+                    if (gtype === 'oddeven' || gtype.toLowerCase().includes('oddeven')) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                if (bookmakerSection) bookmakerSection.style.display = 'none';
+                if (matchOddsSection) matchOddsSection.style.display = 'none';
+            } else if (tabName === 'Other') {
+                // Show other markets (khado, meter, tied_match, line, etc.)
+                fancySections.forEach(function(section) {
+                    var gtype = section.getAttribute('data-gtype') || '';
+                    var gtypeLower = gtype.toLowerCase();
+                    if (gtypeLower !== 'fancy2' && gtypeLower !== 'normal' && gtypeLower !== 'fancy1' && 
+                        gtypeLower !== 'oddeven' && gtypeLower !== 'match' && gtypeLower !== 'match1') {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                if (bookmakerSection) bookmakerSection.style.display = 'none';
+                if (matchOddsSection) matchOddsSection.style.display = 'none';
+            }
+            
+            return false; // Prevent default link behavior
+        }
+        
+        // Initialize All tab click handler
+        document.addEventListener('DOMContentLoaded', function() {
+            var allTab = document.getElementById('Alltab');
+            if (allTab) {
+                allTab.addEventListener('click', function() {
+                    MarketTab('All');
+                });
+                allTab.classList.add('active');
+            }
+        });
         
         // Bet Slip Variables
         var currentBetType = 'back'; // 'back' or 'lay'
