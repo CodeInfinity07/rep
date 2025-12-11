@@ -3290,15 +3290,17 @@
         // Open bet slip when clicking on odds
         var currentMarketType = 'match_odds';
         var currentMarketId = '';
+        var currentMarketName = 'Match Odds';
         var currentSize = 100; // Rate for fancy/session markets
         
-        function openBetSlip(runnerName, runnerId, odds, betType, marketType, marketId, size) {
+        function openBetSlip(runnerName, runnerId, odds, betType, marketType, marketId, size, marketName) {
             currentRunnerName = runnerName;
             currentRunnerId = runnerId;
             currentOdds = parseFloat(odds);
             currentBetType = betType;
             currentMarketType = marketType || 'match_odds';
             currentMarketId = marketId || '';
+            currentMarketName = marketName || 'Match Odds';
             currentSize = parseFloat(size) || 100;
             
             // Update bet slip display
@@ -3448,11 +3450,13 @@
                 market_id: marketId,
                 event_id: eventId,
                 event_name: document.querySelector('.event-title')?.textContent || 'Match',
-                market_name: 'Match Odds',
+                market_name: currentMarketName || 'Match Odds',
                 selection_name: currentRunnerName,
                 selection_id: currentRunnerId,
                 bet_type: currentBetType,
+                market_type: currentMarketType || 'match_odds',
                 odds: odds,
+                size: currentSize || 100,
                 stake: stake,
                 sport_type: 'cricket'
             };
@@ -3600,9 +3604,11 @@
                         
                         // Detect market type from parent section or data attribute
                         var marketName = (runnerDiv.getAttribute('data-market-name') || '').toLowerCase();
+                        var displayMarketName = runnerDiv.getAttribute('data-market-name') || 'Match Odds';
                         
                         if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
                             marketType = 'bookmaker';
+                            displayMarketName = 'Bookmaker';
                         } else if (marketName === 'oddeven' || marketName === 'tied_match') {
                             marketType = 'decimal'; // Use decimal odds calculation
                         } else if (marketName.includes('line') || marketName.includes('over by over') || marketName.includes('ball by ball')) {
@@ -3611,10 +3617,11 @@
                             marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
                             marketType = 'fancy';
+                            displayMarketName = displayMarketName || 'Fancy';
                         }
                     }
                     
-                    openBetSlip(runnerName, runnerId, odds, 'back', marketType, marketId, size);
+                    openBetSlip(runnerName, runnerId, odds, 'back', marketType, marketId, size, displayMarketName);
                 });
             });
             
@@ -3646,9 +3653,11 @@
                         
                         // Detect market type from parent section or data attribute
                         var marketName = (runnerDiv.getAttribute('data-market-name') || '').toLowerCase();
+                        var displayMarketName = runnerDiv.getAttribute('data-market-name') || 'Match Odds';
                         
                         if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
                             marketType = 'bookmaker';
+                            displayMarketName = 'Bookmaker';
                         } else if (marketName === 'oddeven' || marketName === 'tied_match') {
                             marketType = 'decimal'; // Use decimal odds calculation
                         } else if (marketName.includes('line') || marketName.includes('over by over') || marketName.includes('ball by ball')) {
@@ -3657,10 +3666,11 @@
                             marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
                             marketType = 'fancy';
+                            displayMarketName = displayMarketName || 'Fancy';
                         }
                     }
                     
-                    openBetSlip(runnerName, runnerId, odds, 'lay', marketType, marketId, size);
+                    openBetSlip(runnerName, runnerId, odds, 'lay', marketType, marketId, size, displayMarketName);
                 });
             });
         }
