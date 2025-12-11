@@ -1200,7 +1200,7 @@
     var scoreCardUrl = '{{ $scoreCardUrl ?? "" }}';
 </script> <div class="scrollmenu"><a id="Alltab" class="tablink btn btn-primary active" style="cursor: pointer;">
                                 ALL
-                            </a> <!----> <a id="BMtab" href="#" onclick="return MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancy2tab" href="#" onclick="return MarketTab('Fancy2')" class="tablink btn btn-primary">Fancy-2</a> <a id="OddFiguretab" href="#" onclick="return MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="return MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
+                            </a> <!----> <a id="BMtab" href="#" onclick="return MarketTab('BM')" class="tablink btn btn-primary">Bookmaker</a> <!----> <a id="Fancytab" href="#" onclick="return MarketTab('Fancy')" class="tablink btn btn-primary">Fancy</a> <a id="OddFiguretab" href="#" onclick="return MarketTab('OddFigure')" class="tablink btn btn-primary">Even-Odd</a> <a id="Othertab" href="#" onclick="return MarketTab('Other')" class="tablink btn btn-primary">Others</a> </div></div>
 
 <div class="table-box-header" id="scoreboard-header" style="display: none;"><div class="row no-gutters"><div class="col-md"><div class="tb-top-text"><p></p><div id="scoreboard-display"><span id="team1-name">--</span> <span class="medium-black" id="team1-score">0/0 (0)</span> <span class="runrate" id="team1-crr">CRR: 0.00</span></div> <span class="green-upper-text" style="margin-top: -8px;"><div class="row"><div id="commentry-text">
                                                     Ball Running...
@@ -2541,21 +2541,21 @@
                     // Handle All Fancy sections - show each market type with its name as heading
                     const allFancy = data.allFancy || [];
                     const fancyContainer = document.getElementById('all-fancy-container');
-                    const fancy2Tab = document.getElementById('Fancy2tab');
+                    const fancyTab = document.getElementById('Fancytab');
                     
                     if (allFancy.length > 0 && fancyContainer) {
-                        if (fancy2Tab) fancy2Tab.style.display = '';
+                        if (fancyTab) fancyTab.style.display = '';
                         updateAllFancySections(allFancy, fancyContainer);
                     } else {
                         // Fallback to single fancy if allFancy not available
                         const fancySection = document.getElementById('fancy-section');
                         if (fancy && fancy.runners && fancy.runners.length > 0) {
                             if (fancySection) fancySection.style.display = '';
-                            if (fancy2Tab) fancy2Tab.style.display = '';
+                            if (fancyTab) fancyTab.style.display = '';
                             updateFancySection(fancy);
                         } else {
                             if (fancySection) fancySection.style.display = 'none';
-                            if (fancy2Tab) fancy2Tab.style.display = 'none';
+                            if (fancyTab) fancyTab.style.display = 'none';
                         }
                     }
                     
@@ -3312,16 +3312,16 @@
                 if (bookmakerSection) bookmakerSection.style.display = 'block';
                 if (matchOddsSection) matchOddsSection.style.display = 'block';
             } else if (tabName === 'BM') {
-                // Show only bookmaker
+                // Show only bookmaker - hide everything else
                 fancySections.forEach(function(section) {
                     section.style.display = 'none';
                 });
                 if (bookmakerSection) bookmakerSection.style.display = 'block';
                 if (matchOddsSection) matchOddsSection.style.display = 'none';
-            } else if (tabName === 'Fancy2') {
-                // Show fancy2, normal markets
+            } else if (tabName === 'Fancy') {
+                // Show only fancy markets (fancy1, fancy2, normal) - hide bookmaker and match odds
                 fancySections.forEach(function(section) {
-                    var gtype = section.getAttribute('data-gtype') || '';
+                    var gtype = (section.getAttribute('data-gtype') || '').toLowerCase();
                     if (gtype === 'fancy2' || gtype === 'normal' || gtype === 'fancy1') {
                         section.style.display = 'block';
                     } else {
@@ -3331,10 +3331,10 @@
                 if (bookmakerSection) bookmakerSection.style.display = 'none';
                 if (matchOddsSection) matchOddsSection.style.display = 'none';
             } else if (tabName === 'OddFigure') {
-                // Show oddeven markets
+                // Show only oddeven markets - hide everything else
                 fancySections.forEach(function(section) {
-                    var gtype = section.getAttribute('data-gtype') || '';
-                    if (gtype === 'oddeven' || gtype.toLowerCase().includes('oddeven')) {
+                    var gtype = (section.getAttribute('data-gtype') || '').toLowerCase();
+                    if (gtype === 'oddeven') {
                         section.style.display = 'block';
                     } else {
                         section.style.display = 'none';
@@ -3343,12 +3343,11 @@
                 if (bookmakerSection) bookmakerSection.style.display = 'none';
                 if (matchOddsSection) matchOddsSection.style.display = 'none';
             } else if (tabName === 'Other') {
-                // Show other markets (khado, meter, tied_match, line, etc.)
+                // Show other markets (khado, meter, tied_match, line, etc.) - hide bookmaker, match odds, fancy, oddeven
                 fancySections.forEach(function(section) {
-                    var gtype = section.getAttribute('data-gtype') || '';
-                    var gtypeLower = gtype.toLowerCase();
-                    if (gtypeLower !== 'fancy2' && gtypeLower !== 'normal' && gtypeLower !== 'fancy1' && 
-                        gtypeLower !== 'oddeven' && gtypeLower !== 'match' && gtypeLower !== 'match1') {
+                    var gtype = (section.getAttribute('data-gtype') || '').toLowerCase();
+                    // Hide fancy, normal, oddeven - show everything else
+                    if (gtype !== 'fancy2' && gtype !== 'normal' && gtype !== 'fancy1' && gtype !== 'oddeven') {
                         section.style.display = 'block';
                     } else {
                         section.style.display = 'none';
