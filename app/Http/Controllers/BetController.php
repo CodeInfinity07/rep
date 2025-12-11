@@ -80,9 +80,15 @@ class BetController extends Controller
         try {
             DB::beginTransaction();
 
+            // Generate random 8-digit market ID for API and tracking
+            $apiMarketId = (string) rand(10000000, 99999999);
+            
+            // Use original market_type from request for API (preserve exact casing)
+            $originalMarketType = $request->market_type ?? 'MATCH_ODDS';
+
             $bet = Bet::create([
                 'user_id' => $user->id,
-                'market_id' => $request->market_id,
+                'market_id' => $apiMarketId,
                 'event_id' => $request->event_id,
                 'event_name' => $request->event_name,
                 'market_name' => $request->market_name,
@@ -113,20 +119,14 @@ class BetController extends Controller
                 'balance' => $newBalance,
                 'type' => 'bet',
             ]);
-
-            // Generate random 8-digit market ID for API
-            $apiMarketId = rand(10000000, 99999999);
             
-            // Use original market_type from request for API (preserve exact casing)
-            $originalMarketType = $request->market_type ?? 'MATCH_ODDS';
-            
-            // Save to results table for result tracking
+            // Save to results table for result tracking (same market_id)
             $result = Result::create([
                 'bet_id' => $bet->id,
                 'user_id' => $user->id,
                 'event_id' => $request->event_id,
                 'event_name' => $request->event_name,
-                'market_id' => (string) $apiMarketId,
+                'market_id' => $apiMarketId,
                 'market_name' => $request->market_name,
                 'market_type' => $originalMarketType,
                 'selection_name' => $request->selection_name,
