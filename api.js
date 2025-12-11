@@ -193,14 +193,56 @@ function parseDatetime(dateStr) {
     if (!dateStr) return null;
     try {
         // Format: "12/10/2025 8:00:00 PM" (India time UTC+5:30)
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return null;
+        // Parse the date string manually since JavaScript parses it as local time
         
-        // Convert from India (UTC+5:30) to Pakistan (UTC+5:00) - subtract 30 minutes
-        date.setMinutes(date.getMinutes() - 30);
+        // Try to parse as MM/DD/YYYY HH:MM:SS AM/PM format
+        const parts = dateStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2}):(\d{2})\s*(AM|PM)?/i);
         
-        return date.toISOString().slice(0, 19).replace('T', ' ');
+        if (!parts) {
+            // Fallback: try standard parsing
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return null;
+            return date.toISOString().slice(0, 19).replace('T', ' ');
+        }
+        
+        let [, month, day, year, hours, minutes, seconds, ampm] = parts;
+        hours = parseInt(hours);
+        
+        // Convert 12-hour to 24-hour format
+        if (ampm) {
+            if (ampm.toUpperCase() === 'PM' && hours !== 12) {
+                hours += 12;
+            } else if (ampm.toUpperCase() === 'AM' && hours === 12) {
+                hours = 0;
+            }
+        }
+        
+        // Create date in UTC, then adjust for India timezone (UTC+5:30)
+        // Input is India time, so we subtract 5:30 to get UTC
+        const indiaOffsetMinutes = 5 * 60 + 30; // 330 minutes
+        
+        // Create date as if it were UTC
+        const utcDate = new Date(Date.UTC(
+            parseInt(year),
+            parseInt(month) - 1,
+            parseInt(day),
+            hours,
+            parseInt(minutes),
+            parseInt(seconds)
+        ));
+        
+        // Subtract India offset to convert India time to UTC
+        utcDate.setMinutes(utcDate.getMinutes() - indiaOffsetMinutes);
+        
+        // Add Pakistan offset (UTC+5:00 = 300 minutes) to get Pakistan time
+        const pakistanOffsetMinutes = 5 * 60; // 300 minutes
+        utcDate.setMinutes(utcDate.getMinutes() + pakistanOffsetMinutes);
+        
+        // Format as MySQL datetime
+        const pad = (n) => n.toString().padStart(2, '0');
+        return `${utcDate.getUTCFullYear()}-${pad(utcDate.getUTCMonth() + 1)}-${pad(utcDate.getUTCDate())} ${pad(utcDate.getUTCHours())}:${pad(utcDate.getUTCMinutes())}:${pad(utcDate.getUTCSeconds())}`;
     } catch (error) {
+        console.error('Error parsing datetime:', dateStr, error.message);
         return null;
     }
 }

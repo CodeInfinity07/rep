@@ -1,0 +1,565 @@
+ {
+            "marketId": 598346835149,
+            "marketName": "fancy1",
+            "status": "OPEN",
+            "runners": [
+                {
+                    "selectionId": 2501,
+                    "name": "IND Will Win the Toss(IND vs SA)adv",
+                    "status": "",
+                    "price1": 1.98,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2502,
+                    "name": "SA Will Win the Toss(IND vs SA)adv",
+                    "status": "",
+                    "price1": 1.98,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2504,
+                    "name": "Maiden Over to be Bowled(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2505,
+                    "name": "Hatrick wkts to be Taken By Bowler(IND vs\u00a0SA)adv",
+                    "status": "",
+                    "price1": 26,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2506,
+                    "name": "Six Sixes in an Over(IND vs SA)adv",
+                    "status": "",
+                    "price1": 101,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2507,
+                    "name": "Six Fours in an Over(IND vs SA)adv",
+                    "status": "",
+                    "price1": 36,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2508,
+                    "name": "Player to Take 5 Wickets(IND vs SA)adv",
+                    "status": "",
+                    "price1": 11,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2509,
+                    "name": "Player to Take 6 Wickets(IND vs SA)adv",
+                    "status": "",
+                    "price1": 16,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2510,
+                    "name": "Player to Take 7 Wickets(IND vs SA)adv",
+                    "status": "",
+                    "price1": 26,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2511,
+                    "name": "Match to be Tied(IND vs SA)adv",
+                    "status": "",
+                    "price1": 21,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2512,
+                    "name": "Match 1st Ball Wickets(IND vs SA)adv",
+                    "status": "",
+                    "price1": 21,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2513,
+                    "name": "Match 1st Ball Four(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2514,
+                    "name": "Match 1st Ball Six(IND vs SA)adv",
+                    "status": "",
+                    "price1": 31,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2558,
+                    "name": "Top Batsman IND Abhishek Sharma(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2559,
+                    "name": "Top Batsman IND S Yadav(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2560,
+                    "name": "Top Batsman IND S Gill(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2561,
+                    "name": "Top Batsman IND S Samson(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2562,
+                    "name": "Top Batsman IND T Varma(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2563,
+                    "name": "Top Batsman IND H Pandya(IND vs SA)adv",
+                    "status": "",
+                    "price1": 7.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2564,
+                    "name": "Top Batsman IND Axar Patel(IND vs SA)adv",
+                    "status": "",
+                    "price1": 11,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2565,
+                    "name": "Top Batsman IND S Dube(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2566,
+                    "name": "Top Batsman IND W Sundar(IND vs SA)adv",
+                    "status": "",
+                    "price1": 14,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2567,
+                    "name": "Top Batsman IND Jitesh Sharma(IND vs SA)adv",
+                    "status": "",
+                    "price1": 18,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2568,
+                    "name": "Top Batsman SA Q de Kock(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2569,
+                    "name": "Top Batsman SA A Markram(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2570,
+                    "name": "Top Batsman SA R Hendricks(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2571,
+                    "name": "Top Batsman SA D Brevis(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2572,
+                    "name": "Top Batsman SA T Stubbs(IND vs SA)adv",
+                    "status": "",
+                    "price1": 4.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2573,
+                    "name": "Top Batsman SA D Miller(IND vs SA)adv",
+                    "status": "",
+                    "price1": 5.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2574,
+                    "name": "Top Batsman SA D Ferreira(IND vs SA)adv",
+                    "status": "",
+                    "price1": 7,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2575,
+                    "name": "Top Batsman SA M Jansen(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2576,
+                    "name": "Top Batsman SA G Linde(IND vs SA)adv",
+                    "status": "",
+                    "price1": 18,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2577,
+                    "name": "Top Batsman SA C Bosch(IND vs SA)adv",
+                    "status": "",
+                    "price1": 18,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2578,
+                    "name": "Man of the Match IND Abhishek Sharma(IND vs SA)adv",
+                    "status": "",
+                    "price1": 7.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2579,
+                    "name": "Man of the Match IND S Yadav(IND vs SA)adv",
+                    "status": "",
+                    "price1": 8,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2580,
+                    "name": "Man of the Match IND S Gill(IND vs SA)adv",
+                    "status": "",
+                    "price1": 8.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2581,
+                    "name": "Man of the Match IND J Bumrah(IND vs SA)adv",
+                    "status": "",
+                    "price1": 9,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2582,
+                    "name": "Man of the Match IND V Chakaravarthy(IND vs SA)adv",
+                    "status": "",
+                    "price1": 9,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2583,
+                    "name": "Man of the Match IND H Pandya(IND vs SA)adv",
+                    "status": "",
+                    "price1": 10,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2584,
+                    "name": "Man of the Match IND S Dube(IND vs SA)adv",
+                    "status": "",
+                    "price1": 11,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2585,
+                    "name": "Man of the Match IND A Patel(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2586,
+                    "name": "Man of the Match IND S Samson(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2587,
+                    "name": "Man of the Match IND Arshdeep Singh(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2588,
+                    "name": "Man of the Match IND T Varma(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2589,
+                    "name": "Man of the Match SA Q de Kock(IND vs SA)adv",
+                    "status": "",
+                    "price1": 9,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2590,
+                    "name": "Man of the Match SA A Markram(IND vs SA)adv",
+                    "status": "",
+                    "price1": 10,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2591,
+                    "name": "Man of the Match SA T Stubbs(IND vs SA)adv",
+                    "status": "",
+                    "price1": 10,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2592,
+                    "name": "Man of the Match SA D Brevis(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2593,
+                    "name": "Man of the Match SA R Hendricks(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2594,
+                    "name": "Man of the Match SA M Jansen(IND vs SA)adv",
+                    "status": "",
+                    "price1": 13,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2595,
+                    "name": "Man of the Match SA D Miller(IND vs SA)adv",
+                    "status": "",
+                    "price1": 14,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2596,
+                    "name": "Man of the Match SA A Nortje(IND vs SA)adv",
+                    "status": "",
+                    "price1": 16,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2597,
+                    "name": "Man of the Match SA C Bosch(IND vs SA)adv",
+                    "status": "",
+                    "price1": 18,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2598,
+                    "name": "Man of the Match SA D Ferreira(IND vs SA)adv",
+                    "status": "",
+                    "price1": 18,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2599,
+                    "name": "Man of the Match SA K Maharaj(IND vs SA)adv",
+                    "status": "",
+                    "price1": 18,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2515,
+                    "name": "50 Run By S Gill(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.25,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2516,
+                    "name": "50 Run By A Sharma(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.25,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2517,
+                    "name": "50 Run By Q de Kock(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2518,
+                    "name": "50 Run By A Markram(IND vs SA)adv",
+                    "status": "",
+                    "price1": 3.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2519,
+                    "name": "Direction of 1st Boundary Off Side in 1st INN adv",
+                    "status": "",
+                    "price1": 1.7,
+                    "size1": 500000,
+                    "lay1": 1.9,
+                    "ls1": 500000
+                },
+                {
+                    "selectionId": 2520,
+                    "name": "6 to be Hit by Batsman in 1st Over of 1st INN adv",
+                    "status": "",
+                    "price1": 2.5,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                },
+                {
+                    "selectionId": 2521,
+                    "name": "No ball to be Bowled in 1st Over 1st INN adv",
+                    "status": "",
+                    "price1": 12,
+                    "size1": 500000,
+                    "lay1": 0,
+                    "ls1": 0
+                }
+            ]
+        },
