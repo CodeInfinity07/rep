@@ -88,6 +88,8 @@ Route::middleware(['auth', 'restrictBettors'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cricket/{gmid}', [App\Http\Controllers\MatchController::class, 'showCricketIdMatch']);
+    Route::get('/soccer/{gmid}', [App\Http\Controllers\MatchController::class, 'showSoccerMatch']);
+    Route::get('/tennis/{gmid}', [App\Http\Controllers\MatchController::class, 'showTennisMatch']);
     Route::get('/match/{gmid}', [App\Http\Controllers\MatchController::class, 'showCricketIdMatch']);
     Route::get('/Common/Dashboard', function () {
         return redirect('/');

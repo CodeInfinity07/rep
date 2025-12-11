@@ -4445,7 +4445,7 @@
                             <td colspan="2">
                                 <div class="teams">
                                     <strong class="team-1">
-                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        <a href="/soccer/${match.marketId}">${match.marketName}</a>
                                     </strong>
                                 </div>
                             </td>
@@ -4512,7 +4512,7 @@
                             <td colspan="2">
                                 <div class="teams">
                                     <strong class="team-1">
-                                        <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                        <a href="/tennis/${match.marketId}">${match.marketName}</a>
                                     </strong>
                                 </div>
                             </td>
@@ -4649,7 +4649,7 @@
                                 <td colspan="2">
                                     <div class="teams">
                                         <strong class="team-1">
-                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                            <a href="/tennis/${match.marketId}">${match.marketName}</a>
                                         </strong>
                                     </div>
                                 </td>
@@ -4719,7 +4719,7 @@
                                 <td colspan="2">
                                     <div class="teams">
                                         <strong class="team-1">
-                                            <a href="/cricket/${match.marketId}">${match.marketName}</a>
+                                            <a href="/soccer/${match.marketId}">${match.marketName}</a>
                                         </strong>
                                     </div>
                                 </td>

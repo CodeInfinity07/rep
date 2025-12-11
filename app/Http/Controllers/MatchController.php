@@ -150,6 +150,18 @@ class MatchController extends Controller
         }
     }
     
+    public function showSoccerMatch($gmid, Request $request)
+    {
+        $request->merge(['sid' => 1]);
+        return $this->showCricketIdMatch($gmid, $request);
+    }
+    
+    public function showTennisMatch($gmid, Request $request)
+    {
+        $request->merge(['sid' => 2]);
+        return $this->showCricketIdMatch($gmid, $request);
+    }
+    
     public function showCricketIdMatch($gmid, Request $request)
     {
         if (!\Auth::check()) {
