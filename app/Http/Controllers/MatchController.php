@@ -1040,22 +1040,23 @@ class MatchController extends Controller
         }
         
         try {
-            $sportId = $request->input('sport_id', 4);
+            $user = \Auth::user();
             $fromDate = $request->input('from_date');
             $toDate = $request->input('to_date');
             
-            $query = \DB::table('match_results')
-                ->where('sport_id', $sportId);
+            $query = \DB::table('results')
+                ->where('user_id', $user->id)
+                ->where('settled', 1);
             
             if ($fromDate) {
-                $query->where('result_date', '>=', $fromDate);
+                $query->where('settled_at', '>=', $fromDate);
             }
             
             if ($toDate) {
-                $query->where('result_date', '<=', $toDate);
+                $query->where('settled_at', '<=', $toDate . ' 23:59:59');
             }
             
-            $results = $query->orderBy('result_date', 'desc')
+            $results = $query->orderBy('settled_at', 'desc')
                 ->limit(100)
                 ->get();
             
@@ -1064,11 +1065,17 @@ class MatchController extends Controller
                 'data' => $results->map(function($r) {
                     return [
                         'id' => $r->id,
-                        'gmid' => $r->gmid,
-                        'matchName' => $r->match_name,
+                        'gmid' => $r->event_id,
+                        'matchName' => $r->event_name,
                         'marketName' => $r->market_name,
-                        'resultDate' => date('Y-m-d H:i', strtotime($r->result_date)),
-                        'winner' => $r->winner
+                        'marketType' => $r->market_type,
+                        'selectionName' => $r->selection_name,
+                        'odds' => $r->odds,
+                        'stake' => $r->stake,
+                        'result' => $r->result,
+                        'profitLoss' => $r->profit_loss,
+                        'resultDate' => $r->settled_at ? date('Y-m-d H:i', strtotime($r->settled_at)) : null,
+                        'placedAt' => $r->placed_at ? date('Y-m-d H:i', strtotime($r->placed_at)) : null
                     ];
                 })
             ]);

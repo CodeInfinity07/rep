@@ -878,30 +878,19 @@
                                                 role="grid" aria-describedby="example_info" style="width: 100%;">
                                                 <thead>
                                                     <tr role="row">
-                                                        <th style="width: 0.5px;" class="sorting" tabindex="0"
-                                                            aria-controls="example" rowspan="1" colspan="1"
-                                                            aria-label=": activate to sort column ascending"></th>
-                                                        <th class="sorting" tabindex="0" aria-controls="example"
-                                                            rowspan="1" colspan="1" style="width: 260.5px;"
-                                                            aria-label="Match name: activate to sort column ascending">
-                                                            Match name</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="example"
-                                                            rowspan="1" colspan="1" style="width: 281.5px;"
-                                                            aria-label="Market Name: activate to sort column ascending">
-                                                            Market Name</th>
-                                                        <th class="sorting_desc" tabindex="0" aria-controls="example"
-                                                            rowspan="1" colspan="1" style="width: 133.5px;"
-                                                            aria-label="Date: activate to sort column ascending"
-                                                            aria-sort="descending">Date</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="example"
-                                                            rowspan="1" colspan="1" style="width: 41.5px;"
-                                                            aria-label="Result: activate to sort column ascending">
-                                                            Result</th>
+                                                        <th style="width: 30px;" class="sorting" tabindex="0">#</th>
+                                                        <th class="sorting" tabindex="0" style="width: 180px;">Match</th>
+                                                        <th class="sorting" tabindex="0" style="width: 150px;">Market</th>
+                                                        <th class="sorting" tabindex="0" style="width: 100px;">Selection</th>
+                                                        <th class="sorting" tabindex="0" style="width: 80px;">Stake</th>
+                                                        <th class="sorting" tabindex="0" style="width: 60px;">Result</th>
+                                                        <th class="sorting" tabindex="0" style="width: 80px;">P/L</th>
+                                                        <th class="sorting_desc" tabindex="0" style="width: 120px;">Date</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="results-tbody">
                                                     <tr>
-                                                        <td colspan="5" style="text-align: center; padding: 20px;">Loading results...</td>
+                                                        <td colspan="8" style="text-align: center; padding: 20px;">Loading results...</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1899,17 +1888,21 @@
                     
                     function fetchResults() {
                         document.getElementById('results-tbody').innerHTML = 
-                            '<tr><td colspan="5" style="text-align: center; padding: 20px;">Loading results...</td></tr>';
+                            '<tr><td colspan="8" style="text-align: center; padding: 20px;">Loading results...</td></tr>';
                         
                         fromDate = document.getElementById('From') ? document.getElementById('From').value : null;
                         toDate = document.getElementById('To') ? document.getElementById('To').value : null;
                         
-                        var url = '/api/results?sport_id=' + currentSportId;
+                        var url = '/api/results';
+                        var params = [];
                         if (fromDate) {
-                            url += '&from_date=' + encodeURIComponent(fromDate);
+                            params.push('from_date=' + encodeURIComponent(fromDate));
                         }
                         if (toDate) {
-                            url += '&to_date=' + encodeURIComponent(toDate);
+                            params.push('to_date=' + encodeURIComponent(toDate));
+                        }
+                        if (params.length > 0) {
+                            url += '?' + params.join('&');
                         }
                         
                         fetch(url)
@@ -1920,14 +1913,14 @@
                                     updateResultsInfo(data.data.length);
                                 } else {
                                     document.getElementById('results-tbody').innerHTML = 
-                                        '<tr><td colspan="5" style="text-align: center; padding: 20px;">No results found</td></tr>';
+                                        '<tr><td colspan="8" style="text-align: center; padding: 20px;">No results found</td></tr>';
                                     updateResultsInfo(0);
                                 }
                             })
                             .catch(error => {
                                 console.log('Results fetch error:', error);
                                 document.getElementById('results-tbody').innerHTML = 
-                                    '<tr><td colspan="5" style="text-align: center; padding: 20px;">Error loading results</td></tr>';
+                                    '<tr><td colspan="8" style="text-align: center; padding: 20px;">Error loading results</td></tr>';
                             });
                     }
                     
@@ -1936,19 +1929,24 @@
                         if (!tbody) return;
                         
                         if (results.length === 0) {
-                            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No results found for selected filters</td></tr>';
+                            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No results found for selected filters</td></tr>';
                             return;
                         }
                         
                         var html = '';
                         results.forEach(function(r, index) {
                             var rowClass = index % 2 === 0 ? 'even' : 'odd';
+                            var plClass = parseFloat(r.profitLoss) >= 0 ? 'text-success' : 'text-danger';
+                            var plPrefix = parseFloat(r.profitLoss) >= 0 ? '+' : '';
                             html += '<tr role="row" class="' + rowClass + '">' +
                                 '<td class="dtr-control" tabindex="0">' + (index + 1) + '</td>' +
-                                '<td>' + r.matchName + '</td>' +
-                                '<td>' + r.marketName + '</td>' +
-                                '<td class="sorting_1">' + r.resultDate + '</td>' +
-                                '<td>' + r.winner + '</td>' +
+                                '<td>' + (r.matchName || '-') + '</td>' +
+                                '<td>' + (r.marketName || '-') + '</td>' +
+                                '<td>' + (r.selectionName || '-') + '</td>' +
+                                '<td>' + (r.stake || 0) + '</td>' +
+                                '<td>' + (r.result || '-') + '</td>' +
+                                '<td class="' + plClass + '">' + plPrefix + (r.profitLoss || 0) + '</td>' +
+                                '<td class="sorting_1">' + (r.resultDate || '-') + '</td>' +
                             '</tr>';
                         });
                         
