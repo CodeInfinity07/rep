@@ -844,6 +844,7 @@ class MatchController extends Controller
                     $fancyMarket = [
                         'marketId' => $market['mid'] ?? '',
                         'marketName' => $marketName,
+                        'gtype' => $gtype,
                         'status' => $marketStatus,
                         'runners' => []
                     ];
@@ -885,9 +886,11 @@ class MatchController extends Controller
             if (isset($data['t3']) && is_array($data['t3'])) {
                 foreach ($data['t3'] as $market) {
                     $marketName = $market['mname'] ?? 'Fancy';
+                    $marketGtype = $market['gtype'] ?? 'fancy';
                     $fancyMarket = [
                         'marketId' => $market['mid'] ?? '',
                         'marketName' => $marketName,
+                        'gtype' => $marketGtype,
                         'status' => isset($market['status']) && $market['status'] == 1 ? 'OPEN' : 'SUSPENDED',
                         'runners' => []
                     ];
