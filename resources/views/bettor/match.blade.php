@@ -2869,10 +2869,19 @@
                 const marketId = market.marketId || 'fancy-' + marketIndex;
                 // Map market names to display names
                 let marketName = market.marketName || 'Fancy';
-                if (marketName === 'Normal' || marketName === 'normal') {
+                const marketNameLower = marketName.toLowerCase();
+                if (marketNameLower === 'normal') {
                     marketName = 'Fancy 2';
-                } else if (marketName === 'fancy1' || marketName === 'Fancy1') {
+                } else if (marketNameLower === 'fancy1') {
                     marketName = 'Fancy 1';
+                } else if (marketNameLower === 'oddeven') {
+                    marketName = 'Odd Even';
+                } else if (marketNameLower === 'khado') {
+                    marketName = 'Khado';
+                } else if (marketNameLower === 'meter') {
+                    marketName = 'Meter';
+                } else if (marketNameLower === 'tied_match') {
+                    marketName = 'Tied Match';
                 }
                 const runners = market.runners || [];
                 

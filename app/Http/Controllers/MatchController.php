@@ -828,7 +828,8 @@ class MatchController extends Controller
                             'ls1' => $ls1
                         ];
                     }
-                } elseif ($gtype === 'session' || $gtype === 'fancy' || stripos($marketName, 'Fancy') !== false) {
+                } else {
+                    // Capture all other market types (session, fancy, oddeven, meter, khado, tied_match, etc.)
                     $fancyMarket = [
                         'marketId' => $market['mid'] ?? '',
                         'marketName' => $marketName,
