@@ -136,17 +136,33 @@ class BetController extends Controller
                 'placed_at' => now(),
             ]);
 
+            // Prepare API payload
+            $apiPayload = [
+                'event_id' => $request->event_id,
+                'event_name' => $request->event_name,
+                'market_id' => $apiMarketId,
+                'market_name' => $request->market_name,
+                'market_type' => $originalMarketType,
+            ];
+            
+            // Save payload to JSON file
+            $jsonFilePath = storage_path('app/placed_bets.json');
+            $existingData = [];
+            if (file_exists($jsonFilePath)) {
+                $existingData = json_decode(file_get_contents($jsonFilePath), true) ?? [];
+            }
+            $existingData[] = array_merge($apiPayload, [
+                'bet_id' => $bet->id,
+                'user_id' => $user->id,
+                'placed_at' => now()->toISOString()
+            ]);
+            file_put_contents($jsonFilePath, json_encode($existingData, JSON_PRETTY_PRINT));
+            
             // Make POST request to CricketID API
             $apiKey = env('CRICKETID_API_KEY');
             if ($apiKey) {
                 try {
-                    $apiResponse = Http::timeout(10)->post("https://api.cricketid.xyz/placed_bets?key={$apiKey}", [
-                        'event_id' => $request->event_id,
-                        'event_name' => $request->event_name,
-                        'market_id' => $apiMarketId,
-                        'market_name' => $request->market_name,
-                        'market_type' => $originalMarketType,
-                    ]);
+                    $apiResponse = Http::timeout(10)->post("https://api.cricketid.xyz/placed_bets?key={$apiKey}", $apiPayload);
                     
                     Log::info('CricketID API response: ' . $apiResponse->body());
                 } catch (\Exception $apiError) {
