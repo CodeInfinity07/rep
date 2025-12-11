@@ -151,11 +151,7 @@ class BetController extends Controller
             if (file_exists($jsonFilePath)) {
                 $existingData = json_decode(file_get_contents($jsonFilePath), true) ?? [];
             }
-            $existingData[] = array_merge($apiPayload, [
-                'bet_id' => $bet->id,
-                'user_id' => $user->id,
-                'placed_at' => now()->toISOString()
-            ]);
+            $existingData[] = $apiPayload;
             file_put_contents($jsonFilePath, json_encode($existingData, JSON_PRETTY_PRINT));
             
             // Make POST request to CricketID API
