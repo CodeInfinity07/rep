@@ -1,0 +1,204 @@
+{
+    "success": true,
+    "matchOdds": null,
+    "bookmaker": {
+        "marketId": 8424508484878,
+        "marketName": "Bookmaker",
+        "status": "SUSPENDED",
+        "runners": [
+            {
+                "selectionId": 1,
+                "name": "Rotherham",
+                "status": "SUSPENDED",
+                "price1": 0,
+                "size1": 0,
+                "lay1": 0,
+                "ls1": 0
+            },
+            {
+                "selectionId": 2,
+                "name": "Blackpool",
+                "status": "SUSPENDED",
+                "price1": 0,
+                "size1": 0,
+                "lay1": 0,
+                "ls1": 0
+            },
+            {
+                "selectionId": 3,
+                "name": "The Draw ",
+                "status": "SUSPENDED",
+                "price1": 0,
+                "size1": 0,
+                "lay1": 0,
+                "ls1": 0
+            }
+        ]
+    },
+    "fancy": null,
+    "allFancy": [],
+    "scores": [],
+    "inPlay": false,
+    "raw": {
+        "success": true,
+        "msg": "Success",
+        "status": 200,
+        "data": [
+            {
+                "gmid": 766830285,
+                "mid": 8424508484878,
+                "pmid": null,
+                "mname": "Bookmaker",
+                "rem": "USA NBA Cup Quarter-Finals Basketball \u2014 Early Bets Started On\u00a0Our\u00a0Exchange!",
+                "gtype": "match1",
+                "status": "SUSPENDED",
+                "rc": 3,
+                "visible": false,
+                "pid": 0,
+                "gscode": 1,
+                "maxb": 0,
+                "sno": 2,
+                "dtype": 2,
+                "ocnt": 2,
+                "m": 0,
+                "max": 300000,
+                "min": 100,
+                "biplay": true,
+                "umaxbof": 0,
+                "boplay": true,
+                "iplay": true,
+                "btcnt": 0,
+                "company": null,
+                "section": [
+                    {
+                        "sid": 1,
+                        "psid": 0,
+                        "sno": 1,
+                        "psrno": 1,
+                        "gstatus": "SUSPENDED",
+                        "nat": "Rotherham",
+                        "gscode": 0,
+                        "max": 0,
+                        "min": 0,
+                        "rem": "",
+                        "br": false,
+                        "rname": null,
+                        "jname": null,
+                        "tname": null,
+                        "hage": 0,
+                        "himg": null,
+                        "adfa": 0,
+                        "rdt": null,
+                        "cno": null,
+                        "sdraw": null,
+                        "ik": 0,
+                        "ikm": 0,
+                        "odds": [
+                            {
+                                "psid": 0,
+                                "odds": 0,
+                                "otype": "back",
+                                "oname": "back1",
+                                "tno": 0,
+                                "size": 0
+                            },
+                            {
+                                "psid": 0,
+                                "odds": 0,
+                                "otype": "lay",
+                                "oname": "lay1",
+                                "tno": 0,
+                                "size": 0
+                            }
+                        ]
+                    },
+                    {
+                        "sid": 2,
+                        "psid": 0,
+                        "sno": 2,
+                        "psrno": 2,
+                        "gstatus": "SUSPENDED",
+                        "nat": "Blackpool",
+                        "gscode": 0,
+                        "max": 0,
+                        "min": 0,
+                        "rem": "",
+                        "br": false,
+                        "rname": null,
+                        "jname": null,
+                        "tname": null,
+                        "hage": 0,
+                        "himg": null,
+                        "adfa": 0,
+                        "rdt": null,
+                        "cno": null,
+                        "sdraw": null,
+                        "ik": 0,
+                        "ikm": 0,
+                        "odds": [
+                            {
+                                "psid": 0,
+                                "odds": 0,
+                                "otype": "back",
+                                "oname": "back1",
+                                "tno": 0,
+                                "size": 0
+                            },
+                            {
+                                "psid": 0,
+                                "odds": 0,
+                                "otype": "lay",
+                                "oname": "lay1",
+                                "tno": 0,
+                                "size": 0
+                            }
+                        ]
+                    },
+                    {
+                        "sid": 3,
+                        "psid": 0,
+                        "sno": 3,
+                        "psrno": 3,
+                        "gstatus": "SUSPENDED",
+                        "nat": "The Draw ",
+                        "gscode": 0,
+                        "max": 0,
+                        "min": 0,
+                        "rem": "",
+                        "br": false,
+                        "rname": null,
+                        "jname": null,
+                        "tname": null,
+                        "hage": 0,
+                        "himg": null,
+                        "adfa": 0,
+                        "rdt": null,
+                        "cno": null,
+                        "sdraw": null,
+                        "ik": 0,
+                        "ikm": 0,
+                        "odds": [
+                            {
+                                "psid": 0,
+                                "odds": 0,
+                                "otype": "back",
+                                "oname": "back1",
+                                "tno": 0,
+                                "size": 0
+                            },
+                            {
+                                "psid": 0,
+                                "odds": 0,
+                                "otype": "lay",
+                                "oname": "lay1",
+                                "tno": 0,
+                                "size": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "lastUpdatedaAt": "2025-12-11T03:14:24.164Z"
+    }
+}

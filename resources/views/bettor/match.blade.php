@@ -2499,28 +2499,24 @@
                         });
                     }
                     
-                    // Only process bookmaker/fancy if in play
-                    if (!isInPlayFromApi) {
-                        // Not in play - ensure sections stay hidden
-                        const bookmakerSection = document.getElementById('bookmaker-section');
-                        const bmTab = document.getElementById('BMtab');
-                        const fancySection = document.getElementById('fancy-section');
-                        const fancy2Tab = document.getElementById('Fancy2tab');
-                        
-                        if (bookmakerSection) bookmakerSection.style.display = 'none';
-                        if (bmTab) bmTab.style.display = 'none';
-                        if (fancySection) fancySection.style.display = 'none';
-                        if (fancy2Tab) fancy2Tab.style.display = 'none';
-                        return; // Exit early, don't process bookmaker/fancy
-                    }
-                    
-                    // Handle Bookmaker section visibility (only when in play)
+                    // Handle Bookmaker section visibility - show if data exists (even when suspended or not in play)
                     const bookmakerSection = document.getElementById('bookmaker-section');
                     const bmTab = document.getElementById('BMtab');
                     if (bookmaker && bookmaker.runners && bookmaker.runners.length > 0) {
                         if (bookmakerSection) bookmakerSection.style.display = '';
                         if (bmTab) bmTab.style.display = '';
+                        
+                        // Dynamically create or update bookmaker runners
+                        const bookmakerRunnersContainer = document.getElementById('bookmaker-runners');
                         bookmaker.runners.forEach(runner => {
+                            let runnerDiv = document.getElementById('runner-' + runner.selectionId + '-bm');
+                            
+                            if (!runnerDiv && bookmakerRunnersContainer) {
+                                // Create runner element dynamically
+                                runnerDiv = createBookmakerRunnerElement(runner, bookmaker.marketId);
+                                bookmakerRunnersContainer.appendChild(runnerDiv);
+                            }
+                            
                             updateRunnerPrices(runner, 'bookmaker', bookmaker.marketId);
                             updateRunnerName(runner.selectionId, runner.name, 'bm');
                         });
@@ -2529,10 +2525,10 @@
                         if (bmTab) bmTab.style.display = 'none';
                     }
                     
-                    // Handle Fancy section visibility (only when in play)
+                    // Handle Fancy section visibility - only show when in play and has data
                     const fancySection = document.getElementById('fancy-section');
                     const fancy2Tab = document.getElementById('Fancy2tab');
-                    if (fancy && fancy.runners && fancy.runners.length > 0) {
+                    if (isInPlayFromApi && fancy && fancy.runners && fancy.runners.length > 0) {
                         if (fancySection) fancySection.style.display = '';
                         if (fancy2Tab) fancy2Tab.style.display = '';
                         updateFancySection(fancy);
@@ -2566,6 +2562,42 @@
                 if (tvDiv) tvDiv.style.display = 'none';
                 if (liveDiv) liveDiv.style.display = 'none';
             }
+        }
+        
+        function createBookmakerRunnerElement(runner, marketId) {
+            const div = document.createElement('div');
+            div.id = 'runner-' + runner.selectionId + '-bm';
+            div.className = 'runner-runner';
+            div.setAttribute('data-market-id', marketId);
+            
+            const status = runner.status;
+            const isSuspended = status === 'SUSPENDED' || !runner.price1;
+            
+            div.innerHTML = `
+                <span class="selector ml-2" style="display: none;"></span>
+                <img class="ml-2" style="display: none;">
+                <h3 class="runner-name">
+                    <div class="runner-info">
+                        <span class="clippable runner-display-name">
+                            <h4 class="clippable-spacer">${runner.name || 'Runner'}</h4>
+                        </span>
+                    </div>
+                    <div class="runner-position">
+                        <span><span class="position-minus"><strong></strong></span></span>
+                        <span class="ml-1" style="font-weight: normal;"></span>
+                    </div>
+                </h3>
+                ${isSuspended ? '<div><div class="runner-disabled">SUSPENDED</div></div>' : `
+                    <a id="B3-${runner.selectionId}-${marketId}" role="button" class="price-price price-back"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a id="B2-${runner.selectionId}-${marketId}" class="price-price price-back"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a id="B1-${runner.selectionId}-${marketId}" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a id="L1-${runner.selectionId}-${marketId}" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a class="price-price price-lay"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a class="price-price price-lay mr-4"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                `}
+            `;
+            
+            return div;
         }
         
         function updateRunnerName(selectionId, name, suffix) {
