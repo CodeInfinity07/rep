@@ -87,18 +87,26 @@ function calculateProfitLoss(bet, finalResult) {
     const betType = bet.bet_type;
     const selectionName = bet.selection_name || '';
     const marketType = (bet.market_type || '').toLowerCase();
+    const resultNum = parseFloat(finalResult);
     
     let won = false;
     
     if (marketType === 'match' || marketType === 'match1' || marketType === 'match_odds') {
         won = selectionName.toLowerCase() === finalResult.toLowerCase();
     } else if (marketType === 'oddeven') {
-        const resultNum = parseInt(finalResult);
-        const isOdd = resultNum % 2 !== 0;
+        const isOdd = parseInt(finalResult) % 2 !== 0;
         won = (selectionName.toLowerCase() === 'odd' && isOdd) || 
               (selectionName.toLowerCase() === 'even' && !isOdd);
+    } else if (marketType === 'line' || marketType.includes('line') || marketType === 'over_by_over' || marketType === 'ball_by_ball') {
+        // For Line markets: odds IS the line value to compare against
+        // BACK wins if result >= line, LAY wins if result < line
+        if (betType === 'back') {
+            won = resultNum >= odds;
+        } else {
+            won = resultNum < odds;
+        }
     } else {
-        const resultNum = parseFloat(finalResult);
+        // Fancy/Session markets - try to parse selection as number
         const selectionNum = parseFloat(selectionName.replace(/[^\d.-]/g, ''));
         
         if (!isNaN(resultNum) && !isNaN(selectionNum)) {
@@ -118,8 +126,8 @@ function calculateProfitLoss(bet, finalResult) {
                 profitLoss = stake * (odds - 1);
             } else if (marketType === 'match1') {
                 profitLoss = stake * (odds / 100);
-            } else if (marketType === 'line' || marketType === 'over_by_over' || marketType === 'ball_by_ball') {
-                profitLoss = stake;
+            } else if (marketType === 'line' || marketType.includes('line') || marketType === 'over_by_over' || marketType === 'ball_by_ball') {
+                profitLoss = stake; // 1:1 payout for line markets
             } else {
                 const size = parseFloat(bet.size) || 100;
                 profitLoss = stake * (size / 100);
@@ -128,21 +136,24 @@ function calculateProfitLoss(bet, finalResult) {
             profitLoss = -stake;
         }
     } else {
+        // LAY bets
         if (won) {
-            profitLoss = stake;
+            profitLoss = stake; // LAY wins = keep the stake
         } else {
             if (marketType === 'match' || marketType === 'match_odds' || marketType === 'oddeven' || marketType === 'tied_match') {
                 profitLoss = -(stake * (odds - 1));
             } else if (marketType === 'match1') {
                 profitLoss = -(stake * (odds / 100));
-            } else if (marketType === 'line' || marketType === 'over_by_over' || marketType === 'ball_by_ball') {
-                profitLoss = -stake;
+            } else if (marketType === 'line' || marketType.includes('line') || marketType === 'over_by_over' || marketType === 'ball_by_ball') {
+                profitLoss = -stake; // 1:1 loss for line markets
             } else {
                 const size = parseFloat(bet.size) || 100;
                 profitLoss = -(stake * (size / 100));
             }
         }
     }
+    
+    console.log(`  Calculating: ${betType} bet, market=${marketType}, odds/line=${odds}, result=${resultNum}, won=${won}, P/L=${profitLoss}`);
     
     return Math.round(profitLoss * 100) / 100;
 }
