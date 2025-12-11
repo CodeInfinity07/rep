@@ -24,14 +24,23 @@ async function getUnsettledEventIds(connection) {
     return rows.map(row => row.event_id);
 }
 
-async function fetchDeclaredResults() {
-    try {
-        const response = await axios.get(API_URL);
-        return response.data || [];
-    } catch (error) {
-        console.error('Error fetching results from API:', error.message);
-        return [];
+async function fetchDeclaredResults(eventIds) {
+    let allResults = [];
+    
+    for (const eventId of eventIds) {
+        try {
+            const response = await axios.post(API_URL, {
+                event_id: eventId
+            });
+            const results = response.data || [];
+            console.log(`  Event ${eventId}: ${results.length} result(s)`);
+            allResults = allResults.concat(results);
+        } catch (error) {
+            console.error(`Error fetching results for event ${eventId}:`, error.message);
+        }
     }
+    
+    return allResults;
 }
 
 async function settleMatchingBets(connection, declaredResults) {
@@ -170,8 +179,8 @@ async function run() {
         console.log('Event IDs:', unsettledEventIds.join(', '));
         
         console.log('Fetching declared results from API...');
-        const declaredResults = await fetchDeclaredResults();
-        console.log(`Received ${declaredResults.length} result(s) from API`);
+        const declaredResults = await fetchDeclaredResults(unsettledEventIds);
+        console.log(`Received ${declaredResults.length} total result(s) from API`);
         
         const relevantResults = declaredResults.filter(r => 
             r.is_declared && !r.is_roleback && unsettledEventIds.includes(r.event_id)
