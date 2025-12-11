@@ -2481,20 +2481,26 @@
                     handleInPlayVisibility(isInPlayFromApi);
                     
                     // Update Match Odds section (marketBooks[0]) - always update prices
-                    if (matchOdds && matchOdds.runners) {
-                        // Get all runner divs for fallback matching
-                        const matchOddsRunnerDivs = document.querySelectorAll('#All .market-runners:first-of-type .runner-runner');
+                    if (matchOdds && matchOdds.runners && matchOdds.runners.length > 0) {
+                        // Get the match odds runners container
+                        const matchOddsContainer = document.querySelector('#All .market-runners:first-of-type');
+                        const matchOddsRunnerDivs = matchOddsContainer ? matchOddsContainer.querySelectorAll('.runner-runner') : [];
                         
                         matchOdds.runners.forEach((runner, index) => {
-                            // Try ID-based matching first (for legacy API and CricketID)
+                            // Try ID-based matching first
                             let runnerDiv = document.getElementById('runner-' + runner.selectionId);
                             
                             if (runnerDiv) {
                                 // Found by ID - use original updateRunnerPrices function
                                 updateRunnerPrices(runner, 'match-odds');
-                            } else if (useCricketIdApi && matchOddsRunnerDivs[index]) {
-                                // Fallback to index matching only for CricketID when ID not found
+                            } else if (matchOddsRunnerDivs[index]) {
+                                // Fallback to index matching when ID not found
                                 updateRunnerPricesDirect(matchOddsRunnerDivs[index], runner, 'match-odds-' + index);
+                            } else if (matchOddsContainer) {
+                                // Create runner element dynamically if it doesn't exist
+                                const newRunnerDiv = createMatchOddsRunnerElement(runner);
+                                matchOddsContainer.appendChild(newRunnerDiv);
+                                updateRunnerPricesDirect(newRunnerDiv, runner, 'match-odds-' + index);
                             }
                         });
                     }
@@ -2562,6 +2568,41 @@
                 if (tvDiv) tvDiv.style.display = 'none';
                 if (liveDiv) liveDiv.style.display = 'none';
             }
+        }
+        
+        function createMatchOddsRunnerElement(runner) {
+            const div = document.createElement('div');
+            div.id = 'runner-' + runner.selectionId;
+            div.className = 'runner-runner';
+            
+            const status = runner.status;
+            const isSuspended = status === 'SUSPENDED' || !runner.price1;
+            
+            div.innerHTML = `
+                <span class="selector ml-2" style="display: none;"></span>
+                <img src="" class="ml-2">
+                <h3 class="runner-name">
+                    <div class="runner-info">
+                        <span class="clippable runner-display-name">
+                            <h4 class="clippable-spacer">${runner.name || 'Runner'}</h4>
+                        </span>
+                    </div>
+                    <div class="runner-position">
+                        <span><span class="position-minus"><strong></strong></span></span>
+                        <span class="ml-1" style="font-weight: normal;"></span>
+                    </div>
+                </h3>
+                ${isSuspended ? '<div><div class="runner-disabled">SUSPENDED</div></div>' : `
+                    <a id="B3-${runner.selectionId}" role="button" class="price-price price-back"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a id="B2-${runner.selectionId}" class="price-price price-back"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a id="B1-${runner.selectionId}" class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a id="L1-${runner.selectionId}" class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a class="price-price price-lay"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                    <a class="price-price price-lay mr-4"><span class="price-odd">-</span><span class="price-amount"></span></a>
+                `}
+            `;
+            
+            return div;
         }
         
         function createBookmakerRunnerElement(runner, marketId) {
