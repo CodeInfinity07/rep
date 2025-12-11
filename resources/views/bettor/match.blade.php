@@ -2514,6 +2514,13 @@
                         
                         // Dynamically create or update bookmaker runners
                         const bookmakerRunnersContainer = document.getElementById('bookmaker-runners');
+                        
+                        // Clear placeholder/suspended rows from initial page load (only once)
+                        if (bookmakerRunnersContainer && !bookmakerRunnersContainer.dataset.initialized) {
+                            bookmakerRunnersContainer.innerHTML = '';
+                            bookmakerRunnersContainer.dataset.initialized = 'true';
+                        }
+                        
                         bookmaker.runners.forEach(runner => {
                             let runnerDiv = document.getElementById('runner-' + runner.selectionId + '-bm');
                             
