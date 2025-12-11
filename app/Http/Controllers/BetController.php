@@ -141,7 +141,7 @@ class BetController extends Controller
                 'event_id' => $request->event_id,
                 'event_name' => $request->event_name,
                 'market_id' => $apiMarketId,
-                'market_name' => $request->market_name,
+                'market_name' => $request->selection_name,
                 'market_type' => $originalMarketType,
             ];
             
