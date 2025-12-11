@@ -179,7 +179,18 @@ class MatchController extends Controller
             $eventName = $matchDetails['ename'] ?? $matchDetails['name'] ?? 'Match ' . $gmid;
             $eventId = $matchDetails['eid'] ?? $gmid;
             $gtv = $matchDetails['gtv'] ?? null;
-            $marketStartTime = $matchDetails['stime'] ?? null;
+            
+            // Convert stime from India (UTC+5:30) to Pakistan (UTC+5:00) - subtract 30 minutes
+            $marketStartTime = null;
+            if (!empty($matchDetails['stime'])) {
+                try {
+                    $indiaTime = \Carbon\Carbon::parse($matchDetails['stime'], 'Asia/Kolkata');
+                    $pakistanTime = $indiaTime->setTimezone('Asia/Karachi');
+                    $marketStartTime = $pakistanTime->format('m/d/Y g:i:s A');
+                } catch (\Exception $e) {
+                    $marketStartTime = $matchDetails['stime'];
+                }
+            }
             
             $inPlay = false;
             $runners = [];
