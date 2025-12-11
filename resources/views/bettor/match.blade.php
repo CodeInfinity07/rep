@@ -1277,7 +1277,7 @@
         <div id="runner-{{ $runnerId }}-bm" class="runner-runner"><span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">{{ $runnerName }}</h4></span></div></h3> <div><div class="runner-disabled">SUSPENDED</div></div></div>
     @endforeach
 @endif
-</div></div> <!----> <div class="tb-content" id="fancy-section" style="display: none;"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
+</div></div> <!----> <div id="all-fancy-container"></div> <!----> <div class="tb-content" id="fancy-section" style="display: none;"><div class="market-titlebar"><p class="market-name"><span class="market-name-badge"><i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i> <span>Fancy 2 </span> <span style="text-transform: initial;">
                     (MaxBet: 20K)
                 </span></span> <span class="rules-badge"><i class="fa fa-info-circle"></i></span></p> <div class="market-overarround"><span></span><strong>Back</strong></div> <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div></div>
 @php
@@ -2538,16 +2538,25 @@
                         if (bmTab) bmTab.style.display = 'none';
                     }
                     
-                    // Handle Fancy section visibility - show if data exists (even when not in play)
-                    const fancySection = document.getElementById('fancy-section');
+                    // Handle All Fancy sections - show each market type with its name as heading
+                    const allFancy = data.allFancy || [];
+                    const fancyContainer = document.getElementById('all-fancy-container');
                     const fancy2Tab = document.getElementById('Fancy2tab');
-                    if (fancy && fancy.runners && fancy.runners.length > 0) {
-                        if (fancySection) fancySection.style.display = '';
+                    
+                    if (allFancy.length > 0 && fancyContainer) {
                         if (fancy2Tab) fancy2Tab.style.display = '';
-                        updateFancySection(fancy);
+                        updateAllFancySections(allFancy, fancyContainer);
                     } else {
-                        if (fancySection) fancySection.style.display = 'none';
-                        if (fancy2Tab) fancy2Tab.style.display = 'none';
+                        // Fallback to single fancy if allFancy not available
+                        const fancySection = document.getElementById('fancy-section');
+                        if (fancy && fancy.runners && fancy.runners.length > 0) {
+                            if (fancySection) fancySection.style.display = '';
+                            if (fancy2Tab) fancy2Tab.style.display = '';
+                            updateFancySection(fancy);
+                        } else {
+                            if (fancySection) fancySection.style.display = 'none';
+                            if (fancy2Tab) fancy2Tab.style.display = 'none';
+                        }
                     }
                 })
                 .catch(error => console.log('Odds fetch error:', error));
@@ -2846,6 +2855,97 @@
                         updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'fancy-lay-' + runnerId);
                     }
                 }
+            });
+        }
+        
+        function updateAllFancySections(allFancy, container) {
+            // Clear container on first initialization
+            if (!container.dataset.initialized) {
+                container.innerHTML = '';
+                container.dataset.initialized = 'true';
+            }
+            
+            allFancy.forEach((market, marketIndex) => {
+                const marketId = market.marketId || 'fancy-' + marketIndex;
+                const marketName = market.marketName || 'Fancy';
+                const runners = market.runners || [];
+                
+                if (runners.length === 0) return;
+                
+                // Check if section exists, create if not
+                let section = document.getElementById('fancy-section-' + marketId);
+                if (!section) {
+                    section = document.createElement('div');
+                    section.id = 'fancy-section-' + marketId;
+                    section.className = 'tb-content';
+                    section.innerHTML = `
+                        <div class="market-titlebar">
+                            <p class="market-name">
+                                <span class="market-name-badge">
+                                    <i class="market-name-icon"><img src="/img/time.png" style="filter: invert(100%); margin-top: -8px; margin-left: -1px;"></i>
+                                    <span>${marketName} </span>
+                                    <span style="text-transform: initial;">(MaxBet: 20K)</span>
+                                </span>
+                                <span class="rules-badge"><i class="fa fa-info-circle"></i></span>
+                            </p>
+                            <div class="market-overarround"><span></span><strong>Back</strong></div>
+                            <div class="market-overarround market-overarround-lay"><strong>Lay</strong></div>
+                        </div>
+                        <div class="market-runners" id="fancy-runners-${marketId}"></div>
+                    `;
+                    container.appendChild(section);
+                }
+                
+                const runnersContainer = document.getElementById('fancy-runners-' + marketId);
+                if (!runnersContainer) return;
+                
+                runners.forEach((runner, runnerIndex) => {
+                    const runnerId = runner.selectionId || (marketId + '-' + runnerIndex);
+                    let runnerDiv = document.getElementById('fancy-runner-' + marketId + '-' + runnerId);
+                    
+                    if (!runnerDiv) {
+                        runnerDiv = document.createElement('div');
+                        runnerDiv.id = 'fancy-runner-' + marketId + '-' + runnerId;
+                        runnerDiv.className = 'runner-runner';
+                        runnerDiv.innerHTML = `<span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">${runner.name || 'Fancy'}</h4></span></div></h3> <a class="price-price price-back" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-back" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-lay mr-4" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a>`;
+                        runnersContainer.appendChild(runnerDiv);
+                    }
+                    
+                    const nameEl = runnerDiv.querySelector('.clippable-spacer');
+                    if (nameEl && runner.name) {
+                        nameEl.textContent = runner.name;
+                    }
+                    
+                    const status = runner.status;
+                    let disabledDiv = runnerDiv.querySelector('.runner-disabled');
+                    const priceButtons = runnerDiv.querySelectorAll('.price-price');
+                    
+                    if (status === 'SUSPENDED' || status === 'Ball Running' || (!runner.price1 && !runner.lay1)) {
+                        priceButtons.forEach(btn => btn.style.display = 'none');
+                        if (!disabledDiv) {
+                            const wrapper = document.createElement('div');
+                            wrapper.innerHTML = '<div><div class="runner-disabled">' + (status || 'SUSPENDED') + '</div></div>';
+                            runnerDiv.appendChild(wrapper.firstChild);
+                        } else {
+                            disabledDiv.textContent = status || 'SUSPENDED';
+                        }
+                    } else {
+                        if (disabledDiv) {
+                            disabledDiv.parentElement?.remove() || disabledDiv.remove();
+                        }
+                        priceButtons.forEach(btn => btn.style.display = '');
+                        
+                        const backBtn = runnerDiv.querySelector('.price-back.mb-show');
+                        const layBtn = runnerDiv.querySelector('.price-lay.mb-show');
+                        
+                        if (backBtn) {
+                            updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'allfancy-back-' + marketId + '-' + runnerId);
+                        }
+                        if (layBtn) {
+                            updatePriceWithFlash(layBtn, runner.lay1, runner.ls1, false, 'allfancy-lay-' + marketId + '-' + runnerId);
+                        }
+                    }
+                });
             });
         }
         
