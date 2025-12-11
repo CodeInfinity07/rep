@@ -810,10 +810,14 @@
                         </style>
 
                         @php
-                            $thirtyDaysAgo = now()->subDays(30)->format('Y-m-d');
-                            $today = now()->format('Y-m-d');
-                            $fromValue = request('From') ? \Carbon\Carbon::parse(request('From'))->format('Y-m-d') : $thirtyDaysAgo;
-                            $toValue = request('To') ? \Carbon\Carbon::parse(request('To'))->format('Y-m-d') : $today;
+                            $thirtyDaysAgo = now()->subDays(30)->startOfDay();
+                            $today = now()->endOfDay();
+                            $fromDate = request('From') ? \Carbon\Carbon::parse(request('From')) : $thirtyDaysAgo;
+                            $toDate = request('To') ? \Carbon\Carbon::parse(request('To')) : $today;
+                            $fromDisplay = $fromDate->format('n/j/Y g:i A');
+                            $toDisplay = $toDate->format('n/j/Y g:i A');
+                            $fromIso = $fromDate->toIso8601String();
+                            $toIso = $toDate->toIso8601String();
                         @endphp
                         <div class="row">
                             <div class="col-md-12">
@@ -827,30 +831,32 @@
                                             <div class="row" style="text-align-last:justify;">
                                                 <div class="col-12 col-md-5">
                                                     <div class="form-group">
-                                                        <div class="input-group">
-                                                            <input type="date" class="form-control" name="From" id="FromDate" value="{{ $fromValue }}">
-                                                            <div class="input-group-append">
+                                                        <div class="input-group date" id="ReportFrom" data-target-input="nearest">
+                                                            <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom" value="{{ $fromDisplay }}">
+                                                            <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
                                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                             </div>
                                                         </div>
+                                                        <input type="hidden" name="From" id="From" value="{{ $fromIso }}">
                                                     </div>
                                                 </div>
 
                                                 <strong style="margin:auto">&nbsp;-&nbsp;</strong>
                                                 <div class="col-12 col-md-5">
                                                     <div class="form-group">
-                                                        <div class="input-group">
-                                                            <input type="date" class="form-control" name="To" id="ToDate" value="{{ $toValue }}">
-                                                            <div class="input-group-append">
+                                                        <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                                            <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo" value="{{ $toDisplay }}">
+                                                            <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
                                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                             </div>
                                                         </div>
+                                                        <input type="hidden" name="To" id="To" value="{{ $toIso }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group editsbmtbtn">
                                                     <label class="mx-1"> </label>
-                                                    <button class="btn btn-primary" type="submit">
+                                                    <button class="btn btn-primary" type="submit" onclick="return updateDates();">
                                                         <strong>Submit</strong>
                                                     </button>
                                                 </div>
@@ -860,6 +866,32 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <script>
+                            $(document).ready(function() {
+                                if (typeof $.fn.datetimepicker !== 'undefined') {
+                                    $('#ReportFrom').datetimepicker({
+                                        format: 'M/D/YYYY h:mm A'
+                                    });
+                                    $('#ReportTo').datetimepicker({
+                                        format: 'M/D/YYYY h:mm A'
+                                    });
+                                }
+                            });
+                            
+                            function updateDates() {
+                                var fromPicker = $('#ReportFrom').data('datetimepicker');
+                                var toPicker = $('#ReportTo').data('datetimepicker');
+                                
+                                if (fromPicker && fromPicker.date()) {
+                                    $('#From').val(fromPicker.date().toISOString());
+                                }
+                                if (toPicker && toPicker.date()) {
+                                    $('#To').val(toPicker.date().toISOString());
+                                }
+                                return true;
+                            }
+                        </script>
 
                     </div>
                     <div class="table-wrap">
