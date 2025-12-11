@@ -2867,7 +2867,13 @@
             
             allFancy.forEach((market, marketIndex) => {
                 const marketId = market.marketId || 'fancy-' + marketIndex;
-                const marketName = market.marketName || 'Fancy';
+                // Map market names to display names
+                let marketName = market.marketName || 'Fancy';
+                if (marketName === 'Normal' || marketName === 'normal') {
+                    marketName = 'Fancy 2';
+                } else if (marketName === 'fancy1' || marketName === 'Fancy1') {
+                    marketName = 'Fancy 1';
+                }
                 const runners = market.runners || [];
                 
                 if (runners.length === 0) return;
