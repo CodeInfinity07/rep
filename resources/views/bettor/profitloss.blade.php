@@ -809,6 +809,12 @@
                             }
                         </style>
 
+                        @php
+                            $thirtyDaysAgo = now()->subDays(30)->format('Y-m-d');
+                            $today = now()->format('Y-m-d');
+                            $fromValue = request('From') ? \Carbon\Carbon::parse(request('From'))->format('Y-m-d') : $thirtyDaysAgo;
+                            $toValue = request('To') ? \Carbon\Carbon::parse(request('To'))->format('Y-m-d') : $today;
+                        @endphp
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -817,44 +823,34 @@
                                         Report Filter
                                     </div>
                                     <div class="card-body">
-                                        <form id="ReportFilterForm" class="form-inline" method="get">
+                                        <form id="ReportFilterForm" class="form-inline" method="get" action="/Customer/ProfitLoss">
                                             <div class="row" style="text-align-last:justify;">
                                                 <div class="col-12 col-md-5">
                                                     <div class="form-group">
-                                                        <div class="input-group date" id="ReportFrom"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#ReportFrom" id="DisplayFrom">
-                                                            <div class="input-group-append" data-target="#ReportFrom"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i></div>
+                                                        <div class="input-group">
+                                                            <input type="date" class="form-control" name="From" id="FromDate" value="{{ $fromValue }}">
+                                                            <div class="input-group-append">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                             </div>
                                                         </div>
-                                                        <input type="hidden" name="From" id="From">
                                                     </div>
                                                 </div>
 
                                                 <strong style="margin:auto">&nbsp;-&nbsp;</strong>
                                                 <div class="col-12 col-md-5">
                                                     <div class="form-group">
-                                                        <div class="input-group date" id="ReportTo"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#ReportTo" id="DisplayTo">
-                                                            <div class="input-group-append" data-target="#ReportTo"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i></div>
+                                                        <div class="input-group">
+                                                            <input type="date" class="form-control" name="To" id="ToDate" value="{{ $toValue }}">
+                                                            <div class="input-group-append">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                             </div>
                                                         </div>
-                                                        <input type="hidden" name="To" id="To">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group editsbmtbtn">
                                                     <label class="mx-1"> </label>
-                                                    <button class="btn btn-primary" type="button" id="submitDateFilter">
+                                                    <button class="btn btn-primary" type="submit">
                                                         <strong>Submit</strong>
                                                     </button>
                                                 </div>
@@ -864,55 +860,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <script>
-                            $(document).ready(function() {
-                                var today = moment().endOf('day');
-                                var thirtyDaysAgo = moment().subtract(30, 'days').startOf('day');
-                                
-                                var urlParams = new URLSearchParams(window.location.search);
-                                var fromParam = urlParams.get('From');
-                                var toParam = urlParams.get('To');
-                                
-                                var fromDate = fromParam ? moment(fromParam) : thirtyDaysAgo;
-                                var toDate = toParam ? moment(toParam) : today;
-                                
-                                $('#DisplayFrom').val(fromDate.format('M/D/YYYY h:mm A'));
-                                $('#DisplayTo').val(toDate.format('M/D/YYYY h:mm A'));
-                                $('#From').val(fromDate.toISOString());
-                                $('#To').val(toDate.toISOString());
-                                
-                                if (typeof $.fn.datetimepicker !== 'undefined') {
-                                    $('#ReportFrom').datetimepicker({
-                                        format: 'M/D/YYYY h:mm A',
-                                        defaultDate: fromDate
-                                    });
-                                    
-                                    $('#ReportTo').datetimepicker({
-                                        format: 'M/D/YYYY h:mm A',
-                                        defaultDate: toDate
-                                    });
-                                    
-                                    $('#ReportFrom').on('change.datetimepicker', function(e) {
-                                        if (e.date) {
-                                            $('#From').val(e.date.toISOString());
-                                        }
-                                    });
-                                    
-                                    $('#ReportTo').on('change.datetimepicker', function(e) {
-                                        if (e.date) {
-                                            $('#To').val(e.date.toISOString());
-                                        }
-                                    });
-                                }
-                                
-                                $('#submitDateFilter').on('click', function() {
-                                    var from = $('#From').val();
-                                    var to = $('#To').val();
-                                    window.location.href = '/Customer/ProfitLoss?From=' + encodeURIComponent(from) + '&To=' + encodeURIComponent(to);
-                                });
-                            });
-                        </script>
 
                     </div>
                     <div class="table-wrap">
