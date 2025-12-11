@@ -2558,6 +2558,9 @@
                             if (fancy2Tab) fancy2Tab.style.display = 'none';
                         }
                     }
+                    
+                    // Reattach click handlers after dynamic elements are created/updated
+                    attachOddsClickHandlers();
                 })
                 .catch(error => console.log('Odds fetch error:', error));
         }
@@ -3277,11 +3280,16 @@
         var currentOdds = 0;
         
         // Open bet slip when clicking on odds
-        function openBetSlip(runnerName, runnerId, odds, betType) {
+        var currentMarketType = 'match_odds';
+        var currentMarketId = '';
+        
+        function openBetSlip(runnerName, runnerId, odds, betType, marketType, marketId) {
             currentRunnerName = runnerName;
             currentRunnerId = runnerId;
             currentOdds = parseFloat(odds);
             currentBetType = betType;
+            currentMarketType = marketType || 'match_odds';
+            currentMarketId = marketId || '';
             
             // Update bet slip display
             document.getElementById('betRunnerName').textContent = runnerName;
@@ -3513,9 +3521,10 @@
         });
         
         function attachOddsClickHandlers() {
-            // Back odds (price-back class)
-            document.querySelectorAll('.price-back').forEach(function(el) {
+            // Back odds (price-back class) - skip elements already with handlers
+            document.querySelectorAll('.price-back:not([data-click-attached])').forEach(function(el) {
                 el.style.cursor = 'pointer';
+                el.setAttribute('data-click-attached', 'true');
                 el.addEventListener('click', function() {
                     var oddsEl = this.querySelector('.price-odd');
                     var odds = oddsEl ? oddsEl.textContent.trim() : '-';
@@ -3525,20 +3534,32 @@
                     var runnerDiv = this.closest('.runner-runner');
                     var runnerName = 'Unknown';
                     var runnerId = '';
+                    var marketType = 'match_odds';
+                    var marketId = '';
                     
                     if (runnerDiv) {
                         var nameEl = runnerDiv.querySelector('.runner-display-name h4');
                         if (nameEl) runnerName = nameEl.textContent.trim();
-                        runnerId = runnerDiv.id.replace('runner-', '');
+                        runnerId = runnerDiv.id.replace('runner-', '').replace('-bm', '').replace('-fancy', '');
+                        
+                        // Detect market type from parent section or element ID
+                        if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
+                            marketType = 'bookmaker';
+                            marketId = runnerDiv.getAttribute('data-market-id') || '';
+                        } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
+                            marketType = 'fancy';
+                            marketId = runnerDiv.getAttribute('data-market-id') || '';
+                        }
                     }
                     
-                    openBetSlip(runnerName, runnerId, odds, 'back');
+                    openBetSlip(runnerName, runnerId, odds, 'back', marketType, marketId);
                 });
             });
             
-            // Lay odds (price-lay class)
-            document.querySelectorAll('.price-lay').forEach(function(el) {
+            // Lay odds (price-lay class) - skip elements already with handlers
+            document.querySelectorAll('.price-lay:not([data-click-attached])').forEach(function(el) {
                 el.style.cursor = 'pointer';
+                el.setAttribute('data-click-attached', 'true');
                 el.addEventListener('click', function() {
                     var oddsEl = this.querySelector('.price-odd');
                     var odds = oddsEl ? oddsEl.textContent.trim() : '-';
@@ -3548,14 +3569,25 @@
                     var runnerDiv = this.closest('.runner-runner');
                     var runnerName = 'Unknown';
                     var runnerId = '';
+                    var marketType = 'match_odds';
+                    var marketId = '';
                     
                     if (runnerDiv) {
                         var nameEl = runnerDiv.querySelector('.runner-display-name h4');
                         if (nameEl) runnerName = nameEl.textContent.trim();
-                        runnerId = runnerDiv.id.replace('runner-', '');
+                        runnerId = runnerDiv.id.replace('runner-', '').replace('-bm', '').replace('-fancy', '');
+                        
+                        // Detect market type from parent section or element ID
+                        if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
+                            marketType = 'bookmaker';
+                            marketId = runnerDiv.getAttribute('data-market-id') || '';
+                        } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
+                            marketType = 'fancy';
+                            marketId = runnerDiv.getAttribute('data-market-id') || '';
+                        }
                     }
                     
-                    openBetSlip(runnerName, runnerId, odds, 'lay');
+                    openBetSlip(runnerName, runnerId, odds, 'lay', marketType, marketId);
                 });
             });
         }
