@@ -799,47 +799,19 @@
 
                                         <div class="row col-12">
                                             <div class="col-6 col-md-3">
-                                                <div class="input-group datee date" id="ReportFrom"
-                                                    data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input"
-                                                        data-target="#ReportFrom" id="DisplayFrom">
-                                                    <div class="input-group-append" data-target="#ReportFrom"
-                                                        data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <span class="market-time d-none">11/21/2025 5:00 AM</span>
-                                                <span class="d-none utctime" data-format="M/D/YYYY h:mm A">
-                                                    2025-11-21T00:00:00.0000000Z
-                                                </span>
-                                                <input type="hidden" name="From" id="From"
-                                                    value="2025-11-21T00:00:00.0000000Z">
+                                                <label>From Date:</label>
+                                                <input type="date" class="form-control" id="From" name="From" onchange="fetchResults()">
                                             </div>
 
-                                            <strong>&nbsp;-&nbsp;</strong>
+                                            <strong style="align-self: center; margin-top: 20px;">&nbsp;-&nbsp;</strong>
                                             <div class="col-6 col-md-3">
-                                                <div class="input-group date datee" id="ReportTo"
-                                                    data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input"
-                                                        data-target="#ReportTo" id="DisplayTo">
-                                                    <div class="input-group-append" data-target="#ReportTo"
-                                                        data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <span class="market-time d-none">11/26/2025 4:59 AM</span>
-                                                <span class="d-none utctime" data-format="M/D/YYYY h:mm A">
-                                                    2025-11-25T23:59:00.0000000Z
-                                                </span>
-                                                <input type="hidden" name="To" id="To"
-                                                    value="2025-11-25T23:59:00.0000000Z">
+                                                <label>To Date:</label>
+                                                <input type="date" class="form-control" id="To" name="To" onchange="fetchResults()">
                                             </div>
-
-                                            <input type="hidden" data-val="true"
-                                                data-val-required="The IsFirstVisit field is required."
-                                                id="IsFirstVisit" name="IsFirstVisit" value="False">
+                                            
+                                            <div class="col-6 col-md-2" style="align-self: flex-end;">
+                                                <button type="button" class="btn btn-primary" onclick="fetchResults()">Search</button>
+                                            </div>
                                         </div>
 
                                         <br>
@@ -1971,6 +1943,19 @@
                             currentSportId = parseInt(sportIdParam);
                         }
                         updateActiveButton();
+                        
+                        // Set default dates: 7 days ago to today
+                        var today = new Date();
+                        var sevenDaysAgo = new Date();
+                        sevenDaysAgo.setDate(today.getDate() - 7);
+                        
+                        var formatDate = function(d) {
+                            return d.toISOString().split('T')[0];
+                        };
+                        
+                        document.getElementById('From').value = formatDate(sevenDaysAgo);
+                        document.getElementById('To').value = formatDate(today);
+                        
                         fetchResults();
                     });
                 </script>
