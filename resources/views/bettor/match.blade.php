@@ -2531,10 +2531,10 @@
                         if (bmTab) bmTab.style.display = 'none';
                     }
                     
-                    // Handle Fancy section visibility - only show when in play and has data
+                    // Handle Fancy section visibility - show if data exists (even when not in play)
                     const fancySection = document.getElementById('fancy-section');
                     const fancy2Tab = document.getElementById('Fancy2tab');
-                    if (isInPlayFromApi && fancy && fancy.runners && fancy.runners.length > 0) {
+                    if (fancy && fancy.runners && fancy.runners.length > 0) {
                         if (fancySection) fancySection.style.display = '';
                         if (fancy2Tab) fancy2Tab.style.display = '';
                         updateFancySection(fancy);
