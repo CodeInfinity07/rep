@@ -851,6 +851,13 @@
                                                         <input type="hidden" name="To" id="To">
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group editsbmtbtn">
+                                                    <label class="mx-1"> </label>
+                                                    <button class="btn btn-primary" type="button" id="submitDateFilter">
+                                                        <strong>Submit</strong>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -889,23 +896,21 @@
                                     $('#ReportFrom').on('change.datetimepicker', function(e) {
                                         if (e.date) {
                                             $('#From').val(e.date.toISOString());
-                                            loadProfitLossData();
                                         }
                                     });
                                     
                                     $('#ReportTo').on('change.datetimepicker', function(e) {
                                         if (e.date) {
                                             $('#To').val(e.date.toISOString());
-                                            loadProfitLossData();
                                         }
                                     });
                                 }
                                 
-                                function loadProfitLossData() {
+                                $('#submitDateFilter').on('click', function() {
                                     var from = $('#From').val();
                                     var to = $('#To').val();
                                     window.location.href = '/Customer/ProfitLoss?From=' + encodeURIComponent(from) + '&To=' + encodeURIComponent(to);
-                                }
+                                });
                             });
                         </script>
 
