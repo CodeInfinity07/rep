@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Bet;
 use App\Models\User;
+use App\Models\Result;
 use App\Models\LedgerEntry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class BetController extends Controller
@@ -111,6 +113,46 @@ class BetController extends Controller
                 'balance' => $newBalance,
                 'type' => 'bet',
             ]);
+
+            // Generate random 8-digit market ID for API
+            $apiMarketId = rand(10000000, 99999999);
+            
+            // Use original market_type from request for API (preserve exact casing)
+            $originalMarketType = $request->market_type ?? 'MATCH_ODDS';
+            
+            // Save to results table for result tracking
+            $result = Result::create([
+                'bet_id' => $bet->id,
+                'user_id' => $user->id,
+                'event_id' => $request->event_id,
+                'event_name' => $request->event_name,
+                'market_id' => (string) $apiMarketId,
+                'market_name' => $request->market_name,
+                'market_type' => $originalMarketType,
+                'selection_name' => $request->selection_name,
+                'odds' => $odds,
+                'stake' => $stake,
+                'settled' => 0,
+                'placed_at' => now(),
+            ]);
+
+            // Make POST request to CricketID API
+            $apiKey = env('CRICKETID_API_KEY');
+            if ($apiKey) {
+                try {
+                    $apiResponse = Http::timeout(10)->post("https://api.cricketid.xyz/placed_bets?key={$apiKey}", [
+                        'event_id' => $request->event_id,
+                        'event_name' => $request->event_name,
+                        'market_id' => $apiMarketId,
+                        'market_name' => $request->market_name,
+                        'market_type' => $originalMarketType,
+                    ]);
+                    
+                    Log::info('CricketID API response: ' . $apiResponse->body());
+                } catch (\Exception $apiError) {
+                    Log::warning('CricketID API call failed: ' . $apiError->getMessage());
+                }
+            }
 
             DB::commit();
 
