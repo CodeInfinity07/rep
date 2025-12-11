@@ -59,6 +59,28 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        .collapsible-section .table thead {
+            cursor: pointer;
+        }
+        .collapsible-section .table thead tr th.sport {
+            position: relative;
+        }
+        .collapsible-section .table thead tr th.sport::after {
+            content: '\25BC';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+        .collapsible-section.collapsed .table thead tr th.sport::after {
+            transform: translateY(-50%) rotate(-90deg);
+        }
+        .collapsible-section.collapsed .table tbody {
+            display: none;
+        }
     </style>
 
     <script>
@@ -2071,7 +2093,7 @@
 
 
                                                     <div class="tabcontent active" style="">
-                                                        <div class="high_lights">
+                                                        <div class="high_lights collapsible-section" id="inplay-cricket-section" onclick="toggleSection(this)">
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -2121,7 +2143,7 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <div class="high_lights">
+                                                        <div class="high_lights collapsible-section collapsed" id="inplay-football-section" onclick="toggleSection(this)">
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -2186,7 +2208,7 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <div class="high_lights">
+                                                        <div class="high_lights collapsible-section collapsed" id="inplay-tennis-section" onclick="toggleSection(this)">
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -4302,6 +4324,10 @@
 
         function ReLogin() {
             document.getElementById('logout-form').submit();
+        }
+
+        function toggleSection(section) {
+            section.classList.toggle('collapsed');
         }
 
         function formatOdds(value) {
