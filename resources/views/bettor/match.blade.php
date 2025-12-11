@@ -3389,6 +3389,15 @@
                     profit = stake;
                     liability = stake * (odds / 100);
                 }
+            } else if (marketTypeLower === 'line' || marketTypeLower.includes('line') || marketTypeLower.includes('over by over') || marketTypeLower.includes('ball by ball')) {
+                // Line markets: 1:1 payout (profit = stake)
+                if (currentBetType === 'back') {
+                    profit = stake;
+                    liability = stake;
+                } else {
+                    profit = stake;
+                    liability = stake;
+                }
             } else if (marketTypeLower === 'fancy' || marketTypeLower === 'meter' || marketTypeLower === 'khado' || marketTypeLower === 'normal' || marketTypeLower === 'fancy1') {
                 // Fancy/Session markets: odds are scores, size is the rate
                 // YES (back) = profit at rate, NO (lay) = liability at rate
@@ -3596,6 +3605,8 @@
                             marketType = 'bookmaker';
                         } else if (marketName === 'oddeven' || marketName === 'tied_match') {
                             marketType = 'decimal'; // Use decimal odds calculation
+                        } else if (marketName.includes('line') || marketName.includes('over by over') || marketName.includes('ball by ball')) {
+                            marketType = 'line'; // Line market: 1:1 payout
                         } else if (marketName === 'meter' || marketName === 'khado' || marketName === 'normal' || marketName === 'fancy1') {
                             marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
@@ -3640,6 +3651,8 @@
                             marketType = 'bookmaker';
                         } else if (marketName === 'oddeven' || marketName === 'tied_match') {
                             marketType = 'decimal'; // Use decimal odds calculation
+                        } else if (marketName.includes('line') || marketName.includes('over by over') || marketName.includes('ball by ball')) {
+                            marketType = 'line'; // Line market: 1:1 payout
                         } else if (marketName === 'meter' || marketName === 'khado' || marketName === 'normal' || marketName === 'fancy1') {
                             marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
