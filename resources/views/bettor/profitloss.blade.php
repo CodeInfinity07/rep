@@ -860,38 +860,51 @@
                         
                         <script>
                             $(document).ready(function() {
-                                var today = moment();
-                                var thirtyDaysAgo = moment().subtract(30, 'days');
+                                var today = moment().endOf('day');
+                                var thirtyDaysAgo = moment().subtract(30, 'days').startOf('day');
                                 
-                                $('#ReportFrom').datetimepicker({
-                                    format: 'M/D/YYYY h:mm A',
-                                    defaultDate: thirtyDaysAgo
-                                });
+                                var urlParams = new URLSearchParams(window.location.search);
+                                var fromParam = urlParams.get('From');
+                                var toParam = urlParams.get('To');
                                 
-                                $('#ReportTo').datetimepicker({
-                                    format: 'M/D/YYYY h:mm A',
-                                    defaultDate: today
-                                });
+                                var fromDate = fromParam ? moment(fromParam) : thirtyDaysAgo;
+                                var toDate = toParam ? moment(toParam) : today;
                                 
-                                $('#From').val(thirtyDaysAgo.toISOString());
-                                $('#To').val(today.toISOString());
+                                $('#DisplayFrom').val(fromDate.format('M/D/YYYY h:mm A'));
+                                $('#DisplayTo').val(toDate.format('M/D/YYYY h:mm A'));
+                                $('#From').val(fromDate.toISOString());
+                                $('#To').val(toDate.toISOString());
                                 
-                                $('#ReportFrom').on('change.datetimepicker', function(e) {
-                                    if (e.date) {
-                                        $('#From').val(e.date.toISOString());
-                                        submitForm();
-                                    }
-                                });
+                                if (typeof $.fn.datetimepicker !== 'undefined') {
+                                    $('#ReportFrom').datetimepicker({
+                                        format: 'M/D/YYYY h:mm A',
+                                        defaultDate: fromDate
+                                    });
+                                    
+                                    $('#ReportTo').datetimepicker({
+                                        format: 'M/D/YYYY h:mm A',
+                                        defaultDate: toDate
+                                    });
+                                    
+                                    $('#ReportFrom').on('change.datetimepicker', function(e) {
+                                        if (e.date) {
+                                            $('#From').val(e.date.toISOString());
+                                            loadProfitLossData();
+                                        }
+                                    });
+                                    
+                                    $('#ReportTo').on('change.datetimepicker', function(e) {
+                                        if (e.date) {
+                                            $('#To').val(e.date.toISOString());
+                                            loadProfitLossData();
+                                        }
+                                    });
+                                }
                                 
-                                $('#ReportTo').on('change.datetimepicker', function(e) {
-                                    if (e.date) {
-                                        $('#To').val(e.date.toISOString());
-                                        submitForm();
-                                    }
-                                });
-                                
-                                function submitForm() {
-                                    $('#ReportFilterForm').submit();
+                                function loadProfitLossData() {
+                                    var from = $('#From').val();
+                                    var to = $('#To').val();
+                                    window.location.href = '/Customer/ProfitLoss?From=' + encodeURIComponent(from) + '&To=' + encodeURIComponent(to);
                                 }
                             });
                         </script>
