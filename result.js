@@ -29,9 +29,8 @@ async function fetchDeclaredResults(eventIds) {
     
     for (const eventId of eventIds) {
         try {
-            const response = await axios.post(API_URL, {
-                event_id: eventId
-            });
+            const url = `${API_URL}&event_id=${eventId}`;
+            const response = await axios.get(url);
             const results = response.data || [];
             console.log(`  Event ${eventId}: ${results.length} result(s)`);
             allResults = allResults.concat(results);
