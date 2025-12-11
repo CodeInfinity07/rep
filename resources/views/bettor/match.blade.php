@@ -2925,8 +2925,16 @@
                         runnerDiv = document.createElement('div');
                         runnerDiv.id = 'fancy-runner-' + marketId + '-' + runnerId;
                         runnerDiv.className = 'runner-runner';
+                        runnerDiv.setAttribute('data-market-id', marketId);
+                        runnerDiv.setAttribute('data-market-name', market.marketName || 'fancy');
+                        runnerDiv.setAttribute('data-size', runner.size1 || 100);
+                        runnerDiv.setAttribute('data-lay-size', runner.ls1 || 100);
                         runnerDiv.innerHTML = `<span class="selector ml-2" style="display: none;"></span> <img class="ml-2" style="display: none;"> <h3 class="runner-name"><div class="runner-info"><span class="clippable runner-display-name"><h4 class="clippable-spacer">${runner.name || 'Fancy'}</h4></span></div></h3> <a class="price-price price-back" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-back" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-back mb-show" style="background-color: rgb(141, 210, 240);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay ml-4 mb-show" style="background-color: rgb(254, 175, 178);"><span class="price-odd">-</span> <span class="price-amount"></span></a> <a class="price-price price-lay" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a> <a class="price-price price-lay mr-4" style="visibility: hidden;"><span class="price-odd">-</span><span class="price-amount"></span></a>`;
                         runnersContainer.appendChild(runnerDiv);
+                    } else {
+                        // Update data attributes for existing runner
+                        runnerDiv.setAttribute('data-size', runner.size1 || 100);
+                        runnerDiv.setAttribute('data-lay-size', runner.ls1 || 100);
                     }
                     
                     const nameEl = runnerDiv.querySelector('.clippable-spacer');
@@ -3282,14 +3290,16 @@
         // Open bet slip when clicking on odds
         var currentMarketType = 'match_odds';
         var currentMarketId = '';
+        var currentSize = 100; // Rate for fancy/session markets
         
-        function openBetSlip(runnerName, runnerId, odds, betType, marketType, marketId) {
+        function openBetSlip(runnerName, runnerId, odds, betType, marketType, marketId, size) {
             currentRunnerName = runnerName;
             currentRunnerId = runnerId;
             currentOdds = parseFloat(odds);
             currentBetType = betType;
             currentMarketType = marketType || 'match_odds';
             currentMarketId = marketId || '';
+            currentSize = parseFloat(size) || 100;
             
             // Update bet slip display
             document.getElementById('betRunnerName').textContent = runnerName;
@@ -3361,12 +3371,44 @@
             var profit = 0;
             var liability = 0;
             
-            if (currentBetType === 'back') {
-                profit = stake * (odds - 1);
-                liability = stake;
+            // Different calculation based on market type
+            // Match Odds, Odd Even, Tied Match: decimal odds (profit = stake * (odds - 1))
+            // Bookmaker: points/rate per 100 (profit = stake * (odds / 100))
+            // Fancy, Meter, Khado: session with size as rate (profit = stake * (size / 100))
+            
+            // Normalize market type to lowercase for comparison
+            var marketTypeLower = (currentMarketType || '').toLowerCase();
+            
+            if (marketTypeLower === 'bookmaker') {
+                // Bookmaker: odds are in points (e.g., 42 means 42% profit)
+                if (currentBetType === 'back') {
+                    profit = stake * (odds / 100);
+                    liability = stake;
+                } else {
+                    // Lay: you win stake, you lose stake * (odds/100)
+                    profit = stake;
+                    liability = stake * (odds / 100);
+                }
+            } else if (marketTypeLower === 'fancy' || marketTypeLower === 'meter' || marketTypeLower === 'khado' || marketTypeLower === 'normal' || marketTypeLower === 'fancy1') {
+                // Fancy/Session markets: odds are scores, size is the rate
+                // YES (back) = profit at rate, NO (lay) = liability at rate
+                if (currentBetType === 'back') {
+                    profit = stake * (currentSize / 100);
+                    liability = stake;
+                } else {
+                    // Lay: you win stake, you lose stake * (size/100)
+                    profit = stake;
+                    liability = stake * (currentSize / 100);
+                }
             } else {
-                profit = stake;
-                liability = stake * (odds - 1);
+                // Match Odds, Odd Even, Tied Match: standard decimal odds
+                if (currentBetType === 'back') {
+                    profit = stake * (odds - 1);
+                    liability = stake;
+                } else {
+                    profit = stake;
+                    liability = stake * (odds - 1);
+                }
             }
             
             document.getElementById('betProfitDisplay').textContent = 
@@ -3536,23 +3578,32 @@
                     var runnerId = '';
                     var marketType = 'match_odds';
                     var marketId = '';
+                    var size = 100;
                     
                     if (runnerDiv) {
                         var nameEl = runnerDiv.querySelector('.runner-display-name h4');
                         if (nameEl) runnerName = nameEl.textContent.trim();
                         runnerId = runnerDiv.id.replace('runner-', '').replace('-bm', '').replace('-fancy', '');
+                        marketId = runnerDiv.getAttribute('data-market-id') || '';
                         
-                        // Detect market type from parent section or element ID
+                        // Get size from data attribute if available
+                        size = parseFloat(runnerDiv.getAttribute('data-size')) || 100;
+                        
+                        // Detect market type from parent section or data attribute
+                        var marketName = (runnerDiv.getAttribute('data-market-name') || '').toLowerCase();
+                        
                         if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
                             marketType = 'bookmaker';
-                            marketId = runnerDiv.getAttribute('data-market-id') || '';
+                        } else if (marketName === 'oddeven' || marketName === 'tied_match') {
+                            marketType = 'decimal'; // Use decimal odds calculation
+                        } else if (marketName === 'meter' || marketName === 'khado' || marketName === 'normal' || marketName === 'fancy1') {
+                            marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
                             marketType = 'fancy';
-                            marketId = runnerDiv.getAttribute('data-market-id') || '';
                         }
                     }
                     
-                    openBetSlip(runnerName, runnerId, odds, 'back', marketType, marketId);
+                    openBetSlip(runnerName, runnerId, odds, 'back', marketType, marketId, size);
                 });
             });
             
@@ -3571,23 +3622,32 @@
                     var runnerId = '';
                     var marketType = 'match_odds';
                     var marketId = '';
+                    var size = 100;
                     
                     if (runnerDiv) {
                         var nameEl = runnerDiv.querySelector('.runner-display-name h4');
                         if (nameEl) runnerName = nameEl.textContent.trim();
                         runnerId = runnerDiv.id.replace('runner-', '').replace('-bm', '').replace('-fancy', '');
+                        marketId = runnerDiv.getAttribute('data-market-id') || '';
                         
-                        // Detect market type from parent section or element ID
+                        // Get size from data attribute if available (use lay size for lay bets)
+                        size = parseFloat(runnerDiv.getAttribute('data-lay-size')) || parseFloat(runnerDiv.getAttribute('data-size')) || 100;
+                        
+                        // Detect market type from parent section or data attribute
+                        var marketName = (runnerDiv.getAttribute('data-market-name') || '').toLowerCase();
+                        
                         if (runnerDiv.id.includes('-bm') || runnerDiv.closest('#bookmaker-section')) {
                             marketType = 'bookmaker';
-                            marketId = runnerDiv.getAttribute('data-market-id') || '';
+                        } else if (marketName === 'oddeven' || marketName === 'tied_match') {
+                            marketType = 'decimal'; // Use decimal odds calculation
+                        } else if (marketName === 'meter' || marketName === 'khado' || marketName === 'normal' || marketName === 'fancy1') {
+                            marketType = marketName; // Fancy/session type
                         } else if (runnerDiv.id.includes('-fancy') || runnerDiv.closest('[id^="fancy-section"]') || runnerDiv.closest('#all-fancy-container')) {
                             marketType = 'fancy';
-                            marketId = runnerDiv.getAttribute('data-market-id') || '';
                         }
                     }
                     
-                    openBetSlip(runnerName, runnerId, odds, 'lay', marketType, marketId);
+                    openBetSlip(runnerName, runnerId, odds, 'lay', marketType, marketId, size);
                 });
             });
         }
