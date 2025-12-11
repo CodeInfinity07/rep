@@ -2827,8 +2827,10 @@
                     }
                     priceButtons.forEach(btn => btn.style.display = '');
                     
-                    const backBtn = runnerDiv.querySelector('.price-back');
-                    const layBtn = runnerDiv.querySelector('.price-lay');
+                    // Get the visible back button (3rd .price-back with mb-show class)
+                    const backBtn = runnerDiv.querySelector('.price-back.mb-show');
+                    // Get the visible lay button (1st .price-lay with mb-show class)
+                    const layBtn = runnerDiv.querySelector('.price-lay.mb-show');
                     
                     if (backBtn) {
                         updatePriceWithFlash(backBtn, runner.price1, runner.size1, true, 'fancy-back-' + runnerId);
