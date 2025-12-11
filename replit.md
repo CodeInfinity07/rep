@@ -100,3 +100,57 @@ section[].ls1/ls2/ls3 - Lay sizes
 - API key stored in `CRICKETID_API_KEY` secret
 - Score endpoint uses server-side proxy to hide API key from client
 - Never expose API key in frontend JavaScript
+
+### Bet Placement Integration
+When a bet is placed:
+1. Random 8-digit market_id is generated for tracking
+2. Data is saved to `results` table with `settled=0`
+3. POST request is made to `/placed_bets` endpoint
+
+**POST /placed_bets Payload:**
+```json
+{
+  "event_id": "<gmid>",
+  "event_name": "<match name>",
+  "market_id": "<random 8-digit>",
+  "market_name": "<bet name>",
+  "market_type": "<FANCY|MATCH_ODDS|etc>"
+}
+```
+
+## Market-Type Specific Calculations (December 2024)
+
+| Market Type | Profit Formula | Use Case |
+|-------------|----------------|----------|
+| Match Odds | `stake × (odds - 1)` | Standard decimal odds |
+| Odd Even | `stake × (odds - 1)` | Decimal odds |
+| Tied Match | `stake × (odds - 1)` | Decimal odds |
+| Bookmaker | `stake × (odds / 100)` | Points per 100 |
+| Line | `stake` (1:1) | Line markets |
+| Over By Over | `stake` (1:1) | Over-by-over |
+| Ball By Ball | `stake` (1:1) | Ball-by-ball |
+| Fancy/Normal | `stake × (size / 100)` | Session markets |
+| Meter | `stake × (size / 100)` | Session markets |
+| Khado | `stake × (size / 100)` | Session markets |
+
+## Results Table (December 2024)
+
+Tracks all placed bets for result reconciliation:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| bet_id | FK | Reference to bets table |
+| user_id | FK | Reference to users table |
+| event_id | string | Game Match ID (gmid) |
+| event_name | string | Match name |
+| market_id | string | Random 8-digit ID for API |
+| market_name | string | Bet/market name |
+| market_type | string | FANCY, MATCH_ODDS, etc |
+| selection_name | string | Runner name |
+| odds | decimal | Bet odds |
+| stake | decimal | Bet stake |
+| result | string | Result value (null until settled) |
+| profit_loss | decimal | Actual P/L (null until settled) |
+| settled | tinyint | 0=unsettled, 1=settled |
+| placed_at | timestamp | When bet was placed |
+| settled_at | timestamp | When result was settled |
