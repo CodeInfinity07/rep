@@ -11,6 +11,12 @@ sed -i '/^DB_USERNAME=/d' .env 2>/dev/null || true
 sed -i '/^DB_PASSWORD=/d' .env 2>/dev/null || true
 sed -i '/^SCORESWIFT_API_KEY=/d' .env 2>/dev/null || true
 sed -i '/^CACHE_STORE=/d' .env 2>/dev/null || true
+sed -i '/^APP_KEY=/d' .env 2>/dev/null || true
+
+# Add APP_KEY for encryption
+if [ ! -z "$APP_KEY" ]; then
+    echo "APP_KEY=${APP_KEY}" >> .env
+fi
 
 # Add MySQL database configuration
 if [ ! -z "$DB_HOST" ]; then
