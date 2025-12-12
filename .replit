@@ -1,4 +1,4 @@
-modules = ["web", "php-8.2", "nodejs-20", "bash", "postgresql-16"]
+modules = ["web", "php-8.2", "nodejs-20", "bash"]
 [agent]
 expertMode = true
 
