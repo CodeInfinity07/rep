@@ -180,12 +180,12 @@ class MatchController extends Controller
             $eventId = $matchDetails['eid'] ?? $gmid;
             $gtv = $matchDetails['gtv'] ?? null;
             
-            // Convert stime from India (UTC+5:30) to Pakistan (UTC+5:00) - subtract 30 minutes
+            // Convert time and add 30 minutes for Pakistan display
             $marketStartTime = null;
             if (!empty($matchDetails['stime'])) {
                 try {
-                    $indiaTime = \Carbon\Carbon::parse($matchDetails['stime'], 'Asia/Kolkata');
-                    $pakistanTime = $indiaTime->setTimezone('Asia/Karachi');
+                    $time = \Carbon\Carbon::parse($matchDetails['stime']);
+                    $pakistanTime = $time->addMinutes(30);
                     $marketStartTime = $pakistanTime->format('m/d/Y g:i:s A');
                 } catch (\Exception $e) {
                     $marketStartTime = $matchDetails['stime'];
