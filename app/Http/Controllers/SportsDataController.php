@@ -59,11 +59,11 @@ class SportsDataController extends Controller
         }
     }
     
-    private function convertIstToPakistan($dateTimeString)
+    private function convertToPakistan($dateTimeString)
     {
         if (!$dateTimeString) return null;
-        $istTime = Carbon::parse($dateTimeString, 'Asia/Kolkata');
-        return $istTime->setTimezone('Asia/Karachi')->toIso8601String();
+        $time = Carbon::parse($dateTimeString);
+        return $time->addMinutes(30)->toIso8601String();
     }
     
     private function getMatchesBySport($sportId, $limit = null)
@@ -122,7 +122,7 @@ class SportsDataController extends Controller
                 'marketName' => $match->match_name,
                 'status' => $match->match_status ?? 'OPEN',
                 'inplay' => (bool) $match->is_inplay,
-                'startTime' => $this->convertIstToPakistan($match->scheduled_time),
+                'startTime' => $this->convertToPakistan($match->scheduled_time),
                 'sport' => $sportNames[$sportId] ?? 'Unknown',
                 'runners' => $runners,
                 'totalMatched' => round($totalMatched, 2)
@@ -182,7 +182,7 @@ class SportsDataController extends Controller
                 'marketName' => $event->venue_name,
                 'status' => 'OPEN',
                 'inplay' => false,
-                'startTime' => $this->convertIstToPakistan($event->scheduled_datetime),
+                'startTime' => $this->convertToPakistan($event->scheduled_datetime),
                 'sport' => $sportNames[$sportId] ?? 'Racing',
                 'runners' => [],
                 'totalMatched' => 0
@@ -225,7 +225,7 @@ class SportsDataController extends Controller
                 'competitionName' => $match->competition_name,
                 'status' => $match->match_status,
                 'inplay' => (bool) $match->is_inplay,
-                'startTime' => $this->convertIstToPakistan($match->scheduled_time),
+                'startTime' => $this->convertToPakistan($match->scheduled_time),
                 'hasBookmaker' => (bool) $match->has_bookmaker,
                 'hasFancy' => (bool) $match->has_fancy,
                 'runners' => $runners
