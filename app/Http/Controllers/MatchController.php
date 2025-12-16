@@ -180,11 +180,12 @@ class MatchController extends Controller
             $eventId = $matchDetails['eid'] ?? $gmid;
             $gtv = $matchDetails['gtv'] ?? null;
             
-            // Display time as-is (already stored in Pakistan time)
+            // Add 30 minutes to API time for Pakistan display
             $marketStartTime = null;
             if (!empty($matchDetails['stime'])) {
                 try {
                     $time = \Carbon\Carbon::parse($matchDetails['stime']);
+                    $time->addMinutes(30);
                     $marketStartTime = $time->format('m/d/Y g:i:s A');
                 } catch (\Exception $e) {
                     $marketStartTime = $matchDetails['stime'];
