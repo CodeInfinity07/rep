@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class SportsDataController extends Controller
 {
@@ -58,6 +59,13 @@ class SportsDataController extends Controller
         }
     }
     
+    private function convertIstToPakistan($dateTimeString)
+    {
+        if (!$dateTimeString) return null;
+        $istTime = Carbon::parse($dateTimeString, 'Asia/Kolkata');
+        return $istTime->setTimezone('Asia/Karachi')->toIso8601String();
+    }
+    
     private function getMatchesBySport($sportId, $limit = null)
     {
         $sportNames = [
@@ -68,13 +76,15 @@ class SportsDataController extends Controller
             65 => 'Greyhound Racing'
         ];
         
-        $today = date('Y-m-d');
-        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        $todayPakistan = Carbon::now('Asia/Karachi')->startOfDay();
+        $tomorrowPakistan = $todayPakistan->copy()->addDay();
+        $todayIst = $todayPakistan->copy()->setTimezone('Asia/Kolkata')->format('Y-m-d');
+        $tomorrowIst = $tomorrowPakistan->copy()->setTimezone('Asia/Kolkata')->format('Y-m-d');
         
         $query = DB::table('matches')
             ->where('sport_id', $sportId)
-            ->where('scheduled_time', '>=', $today . ' 00:00:00')
-            ->where('scheduled_time', '<', $tomorrow . ' 00:00:00')
+            ->where('scheduled_time', '>=', $todayIst . ' 00:00:00')
+            ->where('scheduled_time', '<', $tomorrowIst . ' 23:59:59')
             ->orderByRaw('is_inplay DESC, scheduled_time ASC');
         
         if ($limit) {
@@ -112,7 +122,7 @@ class SportsDataController extends Controller
                 'marketName' => $match->match_name,
                 'status' => $match->match_status ?? 'OPEN',
                 'inplay' => (bool) $match->is_inplay,
-                'startTime' => $match->scheduled_time ? date('c', strtotime($match->scheduled_time)) : null,
+                'startTime' => $this->convertIstToPakistan($match->scheduled_time),
                 'sport' => $sportNames[$sportId] ?? 'Unknown',
                 'runners' => $runners,
                 'totalMatched' => round($totalMatched, 2)
@@ -147,13 +157,15 @@ class SportsDataController extends Controller
             65 => 'Greyhound Racing'
         ];
         
-        $today = date('Y-m-d');
-        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        $todayPakistan = Carbon::now('Asia/Karachi')->startOfDay();
+        $tomorrowPakistan = $todayPakistan->copy()->addDay();
+        $todayIst = $todayPakistan->copy()->setTimezone('Asia/Kolkata')->format('Y-m-d');
+        $tomorrowIst = $tomorrowPakistan->copy()->setTimezone('Asia/Kolkata')->format('Y-m-d');
         
         $query = DB::table('racing_events')
             ->where('sport_id', $sportId)
-            ->where('scheduled_datetime', '>=', $today . ' 00:00:00')
-            ->where('scheduled_datetime', '<', $tomorrow . ' 00:00:00')
+            ->where('scheduled_datetime', '>=', $todayIst . ' 00:00:00')
+            ->where('scheduled_datetime', '<', $tomorrowIst . ' 23:59:59')
             ->orderBy('scheduled_datetime', 'asc');
         
         if ($limit) {
@@ -170,7 +182,7 @@ class SportsDataController extends Controller
                 'marketName' => $event->venue_name,
                 'status' => 'OPEN',
                 'inplay' => false,
-                'startTime' => $event->scheduled_datetime ? date('c', strtotime($event->scheduled_datetime)) : null,
+                'startTime' => $this->convertIstToPakistan($event->scheduled_datetime),
                 'sport' => $sportNames[$sportId] ?? 'Racing',
                 'runners' => [],
                 'totalMatched' => 0
@@ -213,7 +225,7 @@ class SportsDataController extends Controller
                 'competitionName' => $match->competition_name,
                 'status' => $match->match_status,
                 'inplay' => (bool) $match->is_inplay,
-                'startTime' => $match->scheduled_time,
+                'startTime' => $this->convertIstToPakistan($match->scheduled_time),
                 'hasBookmaker' => (bool) $match->has_bookmaker,
                 'hasFancy' => (bool) $match->has_fancy,
                 'runners' => $runners
