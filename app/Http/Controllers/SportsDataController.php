@@ -63,7 +63,7 @@ class SportsDataController extends Controller
     {
         if (!$dateTimeString) return null;
         $time = Carbon::parse($dateTimeString);
-        return $time->addMinutes(30)->toIso8601String();
+        return $time->toIso8601String();
     }
     
     private function getMatchesBySport($sportId, $limit = null)
