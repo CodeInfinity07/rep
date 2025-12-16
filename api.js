@@ -188,13 +188,13 @@ async function fetchSportDetails(sportId) {
     }
 }
 
-// Parse datetime string to MySQL format (convert from India time to Pakistan time)
-// India is UTC+5:30, Pakistan is UTC+5:00, so Pakistan is 30 minutes behind India
+// Parse datetime string to MySQL format (convert to Pakistan time)
+// Add 30 minutes to get correct Pakistan display time
 function parseDatetime(dateStr) {
     if (!dateStr) return null;
     try {
-        // Format: "12/11/2025 7:00:00 PM" (India time UTC+5:30)
-        // We need to subtract 30 minutes to get Pakistan time (UTC+5:00)
+        // Format: "12/11/2025 7:00:00 PM"
+        // We need to add 30 minutes to get correct Pakistan time
         
         // Try to parse as MM/DD/YYYY HH:MM:SS AM/PM format
         const parts = dateStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2}):(\d{2})\s*(AM|PM)?/i);
@@ -220,26 +220,25 @@ function parseDatetime(dateStr) {
             }
         }
         
-        // Subtract 30 minutes using pure arithmetic (no Date object timezone issues)
-        m -= 30;
-        if (m < 0) {
-            m += 60;
-            h -= 1;
+        // Add 30 minutes using pure arithmetic
+        m += 30;
+        if (m >= 60) {
+            m -= 60;
+            h += 1;
         }
-        if (h < 0) {
-            h += 24;
-            d -= 1;
+        if (h >= 24) {
+            h -= 24;
+            d += 1;
         }
-        // Handle day underflow (simplified - assumes no month boundary crossing issues for typical sports schedules)
-        if (d < 1) {
-            mo -= 1;
-            if (mo < 1) {
-                mo = 12;
-                y -= 1;
+        // Handle day overflow
+        const daysInMonth = [31, (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (d > daysInMonth[mo - 1]) {
+            d = 1;
+            mo += 1;
+            if (mo > 12) {
+                mo = 1;
+                y += 1;
             }
-            // Get days in previous month
-            const daysInMonth = [31, (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-            d = daysInMonth[mo - 1];
         }
         
         // Format as MySQL datetime
