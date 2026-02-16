@@ -147,7 +147,7 @@ async function createTables() {
 // Fetch tree data from API
 async function fetchSportsData() {
     try {
-        const response = await axios.get('https://130.250.191.174:3009/tree?key=90asdhnladmnfdkljlaskjdnasmndlaksdjlas', {
+        const response = await axios.get('http://130.250.191.174:3009/tree?key=90asdhnladmnfdkljlaskjdnasmndlaksdjlas', {
             timeout: 10000,
             headers: {
                 'User-Agent': 'Mozilla/5.0',
@@ -169,7 +169,7 @@ async function fetchSportsData() {
 // Fetch detailed match data for a specific sport from esid endpoint
 async function fetchSportDetails(sportId) {
     try {
-        const response = await axios.get(`https://130.250.191.174:3009/esid?sid=${sportId}&key=90asdhnladmnfdkljlaskjdnasmndlaksdjlas`, {
+        const response = await axios.get(`http://130.250.191.174:3009/esid?sid=${sportId}&key=90asdhnladmnfdkljlaskjdnasmndlaksdjlas`, {
             timeout: 15000,
             headers: {
                 'User-Agent': 'Mozilla/5.0',

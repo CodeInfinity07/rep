@@ -10,7 +10,7 @@ class MatchController extends Controller
 {
     private $baseUrl = 'http://89.116.20.218:8085/api';
     private $pricesApiUrl = 'https://prices9.mgs11.com/api/Markets/Data';
-    private $cricketIdApiUrl = 'https://130.250.191.174:3009';
+    private $cricketIdApiUrl = 'http://130.250.191.174:3009';
     
     private function getCricketIdApiKey()
     {
