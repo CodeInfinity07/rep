@@ -158,7 +158,7 @@ class BetController extends Controller
             $apiKey = env('CRICKETID_API_KEY');
             if ($apiKey) {
                 try {
-                    $apiResponse = Http::timeout(10)->post("https://api.cricketid.xyz/placed_bets?key={$apiKey}", $apiPayload);
+                    $apiResponse = Http::timeout(10)->post("https://130.250.191.174:3009/placed_bets?key={$apiKey}", $apiPayload);
                     
                     Log::info('CricketID API response: ' . $apiResponse->body());
                 } catch (\Exception $apiError) {

@@ -46,7 +46,7 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 
 ## CricketID API Integration (December 2024)
 
-**API Base URL:** `https://api.cricketid.xyz`
+**API Base URL:** `https://130.250.191.174:3009`
 **Authentication:** API key passed as `key` query parameter
 **IP Whitelisting:** Required - production server IP must be registered with CricketID
 

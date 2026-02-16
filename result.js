@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const CRICKETID_API_KEY = process.env.CRICKETID_API_KEY || 'dijbfuwd719e12rqhfbjdqdnkqnd11';
-const API_URL = `https://api.cricketid.xyz/get_placed_bets?key=${CRICKETID_API_KEY}`;
+const CRICKETID_API_KEY = process.env.CRICKETID_API_KEY || '90asdhnladmnfdkljlaskjdnasmndlaksdjlas';
+const API_URL = `https://130.250.191.174:3009/get_placed_bets?key=${CRICKETID_API_KEY}`;
 
 async function getDbConnection() {
     return await mysql.createConnection({
