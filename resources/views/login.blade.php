@@ -9,17 +9,9 @@
     <meta name="author" content="BETGURU">
     <title>BETGURU Login</title>
     <link rel="shortcut icon" href="/img/favicon/BetPro.ico">
-    <link rel="stylesheet" type="text/css" href="/css/v3/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/fonts/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/vendor/animsition/css/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/v3/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="/dist/site.css">
     <link rel="stylesheet" type="text/css" href="/css/v3/css/util.css">
     <link rel="stylesheet" type="text/css" href="/css/v3/css/main.css">
-    <link href="/css/BetPro-login-style.css?11700" rel="stylesheet">
     <style>
         .bffooter {
             width: 135px;
@@ -35,7 +27,7 @@
 </head>
 <body>
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('/img/bg-diamonds2.png');">
+        <div class="container-login100" style="background-image: url('/img/bg-diamonds.png');">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" method="POST" action="/login">
                     @csrf
