@@ -851,18 +851,22 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th style="width: 30px;" class="sorting" tabindex="0">#</th>
-                                                        <th class="sorting" tabindex="0" style="width: 180px;">Match</th>
-                                                        <th class="sorting" tabindex="0" style="width: 150px;">Market</th>
-                                                        <th class="sorting" tabindex="0" style="width: 100px;">Selection</th>
-                                                        <th class="sorting" tabindex="0" style="width: 80px;">Stake</th>
+                                                        <th class="sorting" tabindex="0" style="width: 150px;">Match</th>
+                                                        <th class="sorting" tabindex="0" style="width: 120px;">Market</th>
+                                                        <th class="sorting" tabindex="0" style="width: 90px;">Selection</th>
+                                                        <th class="sorting" tabindex="0" style="width: 60px;">Type</th>
+                                                        <th class="sorting" tabindex="0" style="width: 60px;">Odds</th>
+                                                        <th class="sorting" tabindex="0" style="width: 70px;">Stake</th>
+                                                        <th class="sorting" tabindex="0" style="width: 70px;">Size</th>
                                                         <th class="sorting" tabindex="0" style="width: 60px;">Result</th>
                                                         <th class="sorting" tabindex="0" style="width: 80px;">P/L</th>
-                                                        <th class="sorting_desc" tabindex="0" style="width: 120px;">Date</th>
+                                                        <th class="sorting" tabindex="0" style="width: 100px;">Placed</th>
+                                                        <th class="sorting_desc" tabindex="0" style="width: 100px;">Settled</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="results-tbody">
                                                     <tr>
-                                                        <td colspan="8" style="text-align: center; padding: 20px;">Loading results...</td>
+                                                        <td colspan="12" style="text-align: center; padding: 20px;">Loading results...</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1860,7 +1864,7 @@
                     
                     function fetchResults() {
                         document.getElementById('results-tbody').innerHTML = 
-                            '<tr><td colspan="8" style="text-align: center; padding: 20px;">Loading results...</td></tr>';
+                            '<tr><td colspan="12" style="text-align: center; padding: 20px;">Loading results...</td></tr>';
                         
                         fromDate = document.getElementById('From') ? document.getElementById('From').value : null;
                         toDate = document.getElementById('To') ? document.getElementById('To').value : null;
@@ -1885,14 +1889,14 @@
                                     updateResultsInfo(data.data.length);
                                 } else {
                                     document.getElementById('results-tbody').innerHTML = 
-                                        '<tr><td colspan="8" style="text-align: center; padding: 20px;">No results found</td></tr>';
+                                        '<tr><td colspan="12" style="text-align: center; padding: 20px;">No results found</td></tr>';
                                     updateResultsInfo(0);
                                 }
                             })
                             .catch(error => {
                                 console.log('Results fetch error:', error);
                                 document.getElementById('results-tbody').innerHTML = 
-                                    '<tr><td colspan="8" style="text-align: center; padding: 20px;">Error loading results</td></tr>';
+                                    '<tr><td colspan="12" style="text-align: center; padding: 20px;">Error loading results</td></tr>';
                             });
                     }
                     
@@ -1901,7 +1905,7 @@
                         if (!tbody) return;
                         
                         if (results.length === 0) {
-                            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No results found for selected filters</td></tr>';
+                            tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 20px;">No results found for selected filters</td></tr>';
                             return;
                         }
                         
@@ -1910,14 +1914,20 @@
                             var rowClass = index % 2 === 0 ? 'even' : 'odd';
                             var plClass = parseFloat(r.profitLoss) >= 0 ? 'text-success' : 'text-danger';
                             var plPrefix = parseFloat(r.profitLoss) >= 0 ? '+' : '';
+                            var betTypeClass = r.betType === 'back' ? 'text-primary' : (r.betType === 'lay' ? 'text-warning' : '');
+                            var betTypeLabel = r.betType ? r.betType.charAt(0).toUpperCase() + r.betType.slice(1) : '-';
                             html += '<tr role="row" class="' + rowClass + '">' +
                                 '<td class="dtr-control" tabindex="0">' + (index + 1) + '</td>' +
                                 '<td>' + (r.matchName || '-') + '</td>' +
                                 '<td>' + (r.marketName || '-') + '</td>' +
                                 '<td>' + (r.selectionName || '-') + '</td>' +
+                                '<td class="' + betTypeClass + '"><strong>' + betTypeLabel + '</strong></td>' +
+                                '<td>' + (r.odds || '-') + '</td>' +
                                 '<td>' + (r.stake || 0) + '</td>' +
+                                '<td>' + (r.size || '-') + '</td>' +
                                 '<td>' + (r.result || '-') + '</td>' +
-                                '<td class="' + plClass + '">' + plPrefix + (r.profitLoss || 0) + '</td>' +
+                                '<td class="' + plClass + '"><strong>' + plPrefix + (r.profitLoss || 0) + '</strong></td>' +
+                                '<td>' + (r.placedAt || '-') + '</td>' +
                                 '<td class="sorting_1">' + (r.resultDate || '-') + '</td>' +
                             '</tr>';
                         });

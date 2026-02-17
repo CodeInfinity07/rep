@@ -1045,18 +1045,20 @@ class MatchController extends Controller
             $toDate = $request->input('to_date');
             
             $query = \DB::table('results')
-                ->where('user_id', $user->id)
-                ->where('settled', 1);
+                ->join('bets', 'results.bet_id', '=', 'bets.id')
+                ->select('results.*', 'bets.bet_type', 'bets.size')
+                ->where('results.user_id', $user->id)
+                ->where('results.settled', 1);
             
             if ($fromDate) {
-                $query->where('settled_at', '>=', $fromDate);
+                $query->where('results.settled_at', '>=', $fromDate);
             }
             
             if ($toDate) {
-                $query->where('settled_at', '<=', $toDate . ' 23:59:59');
+                $query->where('results.settled_at', '<=', $toDate . ' 23:59:59');
             }
             
-            $results = $query->orderBy('settled_at', 'desc')
+            $results = $query->orderBy('results.settled_at', 'desc')
                 ->limit(100)
                 ->get();
             
@@ -1070,8 +1072,10 @@ class MatchController extends Controller
                         'marketName' => $r->market_name,
                         'marketType' => $r->market_type,
                         'selectionName' => $r->selection_name,
+                        'betType' => $r->bet_type ?? '-',
                         'odds' => $r->odds,
                         'stake' => $r->stake,
+                        'size' => $r->size ?? null,
                         'result' => $r->result,
                         'profitLoss' => $r->profit_loss,
                         'resultDate' => $r->settled_at ? date('Y-m-d H:i', strtotime($r->settled_at)) : null,
