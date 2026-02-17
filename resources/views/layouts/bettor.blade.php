@@ -178,7 +178,7 @@
             
             if (cricketMenu && cricketMatches.length > 0) {
                 const cricketItems = cricketMatches.slice(0, 10).map(match => 
-                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    `<li class="nav-item"><a class="nav-link" href="/cricket/${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
                 ).join('');
                 cricketMenu.innerHTML = `
                     <li><a href="/cricket"><strong>All Cricket</strong></a></li>
@@ -195,7 +195,7 @@
             
             if (soccerMenu && soccerMatches.length > 0) {
                 const soccerItems = soccerMatches.slice(0, 10).map(match => 
-                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    `<li class="nav-item"><a class="nav-link" href="/cricket/${match.marketId || ''}?sid=1">${match.marketName || 'Match'}</a></li>`
                 ).join('');
                 soccerMenu.innerHTML = `
                     <li><a href="/soccer"><strong>All Soccer</strong></a></li>
@@ -212,7 +212,7 @@
             
             if (tennisMenu && tennisMatches.length > 0) {
                 const tennisItems = tennisMatches.slice(0, 10).map(match => 
-                    `<li class="nav-item"><a class="nav-link" href="/Common/market/?id=${match.marketId || ''}">${match.marketName || 'Match'}</a></li>`
+                    `<li class="nav-item"><a class="nav-link" href="/cricket/${match.marketId || ''}?sid=2">${match.marketName || 'Match'}</a></li>`
                 ).join('');
                 tennisMenu.innerHTML = `
                     <li><a href="/tennis"><strong>All Tennis</strong></a></li>
