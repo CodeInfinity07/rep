@@ -137,12 +137,16 @@ class BetController extends Controller
             ]);
 
             // Prepare API payload
+            $apiKey = env('CRICKETID_API_KEY');
             $apiPayload = [
-                'event_id' => $request->event_id,
+                'event_id' => (int) $request->event_id,
                 'event_name' => $request->event_name,
-                'market_id' => $apiMarketId,
+                'market_id' => (int) $apiMarketId,
                 'market_name' => $request->selection_name,
                 'market_type' => $originalMarketType,
+                'client_ref' => 'betpro_' . $bet->id . '_' . time(),
+                'api_key' => $apiKey ?? '',
+                'sport_id' => (string) ($request->sport_id ?? '4'),
             ];
             
             // Save payload to JSON file
@@ -154,16 +158,13 @@ class BetController extends Controller
             $existingData[] = $apiPayload;
             file_put_contents($jsonFilePath, json_encode($existingData, JSON_PRETTY_PRINT));
             
-            // Make POST request to CricketID API
-            $apiKey = env('CRICKETID_API_KEY');
-            if ($apiKey) {
-                try {
-                    $apiResponse = Http::timeout(10)->post("http://130.250.191.174:3009/placed_bets?key={$apiKey}", $apiPayload);
-                    
-                    Log::info('CricketID API response: ' . $apiResponse->body());
-                } catch (\Exception $apiError) {
-                    Log::warning('CricketID API call failed: ' . $apiError->getMessage());
-                }
+            // Make POST request to bet-incoming API
+            try {
+                $apiResponse = Http::timeout(10)->post("https://dia-results.cricketid.xyz/api/bet-incoming", $apiPayload);
+                
+                Log::info('Bet incoming API response: ' . $apiResponse->body());
+            } catch (\Exception $apiError) {
+                Log::warning('Bet incoming API call failed: ' . $apiError->getMessage());
             }
 
             DB::commit();
