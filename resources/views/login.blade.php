@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="text-left p-t-10 p-b-10">
-                        <label style="color: #999;">
+                        <label style="color: #fff;">
                             <input type="checkbox" name="remember" value="1"> Remember Me
                         </label>
                     </div>
