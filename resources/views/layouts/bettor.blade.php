@@ -115,6 +115,7 @@
                 </div>
             </div>
 
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
             <div class="col-md-9 col-lg-10">
                 <div class="top-bar">
                     <div class="container-fluid">
@@ -228,11 +229,14 @@
             }
         }
 
-        // Menu toggle
         $(document).ready(function() {
             $('.nav-toggle').click(function() {
-                $('#sidebar').toggleClass('menu-collapsed');
-                $('body').toggleClass('menu-collapsed');
+                $('#sidebar').toggleClass('menu-open');
+                $('#sidebarOverlay').toggleClass('active');
+            });
+            $('#sidebarOverlay').click(function() {
+                $('#sidebar').removeClass('menu-open');
+                $('#sidebarOverlay').removeClass('active');
             });
         });
     </script>
