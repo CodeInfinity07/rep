@@ -35,10 +35,16 @@ async function fetchResultForBet(bet) {
         };
 
         console.log(`  Fetching result for client_ref=${bet.client_ref}, market_id=${bet.market_id}`);
+        console.log(`  Request payload:`, JSON.stringify(payload));
         const response = await axios.post(RESULT_API_URL, payload, { timeout: 10000 });
+        console.log(`  Server response (status ${response.status}):`, JSON.stringify(response.data));
         return response.data;
     } catch (error) {
-        console.error(`  Error fetching result for client_ref=${bet.client_ref}:`, error.message);
+        if (error.response) {
+            console.error(`  Server error (status ${error.response.status}):`, JSON.stringify(error.response.data));
+        } else {
+            console.error(`  Error fetching result for client_ref=${bet.client_ref}:`, error.message);
+        }
         return null;
     }
 }
