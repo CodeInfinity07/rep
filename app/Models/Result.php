@@ -15,6 +15,7 @@ class Result extends Model
         'market_id',
         'market_name',
         'market_type',
+        'client_ref',
         'selection_name',
         'odds',
         'stake',

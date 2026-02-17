@@ -120,6 +120,9 @@ class BetController extends Controller
                 'type' => 'bet',
             ]);
             
+            // Generate client_ref for tracking
+            $clientRef = 'betpro_' . $bet->id . '_' . time();
+
             // Save to results table for result tracking (same market_id)
             $result = Result::create([
                 'bet_id' => $bet->id,
@@ -129,6 +132,7 @@ class BetController extends Controller
                 'market_id' => $apiMarketId,
                 'market_name' => $request->market_name,
                 'market_type' => $originalMarketType,
+                'client_ref' => $clientRef,
                 'selection_name' => $request->selection_name,
                 'odds' => $odds,
                 'stake' => $stake,
@@ -144,7 +148,7 @@ class BetController extends Controller
                 'market_id' => (int) $apiMarketId,
                 'market_name' => $request->selection_name,
                 'market_type' => $originalMarketType,
-                'client_ref' => 'betpro_' . $bet->id . '_' . time(),
+                'client_ref' => $clientRef,
                 'api_key' => $apiKey ?? '',
                 'sport_id' => (string) ($request->sport_id ?? '4'),
             ];
