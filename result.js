@@ -160,9 +160,11 @@ async function updateUserBalance(connection, userId, profitLoss) {
     );
 }
 
+const CHECK_INTERVAL_MS = 2 * 60 * 1000;
+
 async function run() {
     console.log('='.repeat(60));
-    console.log(`Result Settlement Started: ${new Date().toISOString()}`);
+    console.log(`Result Settlement Check: ${new Date().toISOString()}`);
     console.log('='.repeat(60));
 
     let connection;
@@ -192,8 +194,19 @@ async function run() {
     }
 
     console.log('='.repeat(60));
-    console.log(`Result Settlement Completed: ${new Date().toISOString()}`);
+    console.log(`Result Settlement Check Completed: ${new Date().toISOString()}`);
     console.log('='.repeat(60));
 }
 
-run();
+async function startLoop() {
+    console.log('Result Settlement Service started');
+    console.log(`Checking every ${CHECK_INTERVAL_MS / 1000} seconds`);
+
+    while (true) {
+        await run();
+        console.log(`\nNext check in ${CHECK_INTERVAL_MS / 1000} seconds...\n`);
+        await new Promise(resolve => setTimeout(resolve, CHECK_INTERVAL_MS));
+    }
+}
+
+startLoop();
