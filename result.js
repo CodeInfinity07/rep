@@ -29,7 +29,7 @@ async function fetchResultForBet(bet) {
             event_id: parseInt(bet.event_id),
             event_name: bet.event_name,
             market_id: parseInt(bet.market_id),
-            market_name: bet.market_name,
+            market_name: bet.selection_name,
             market_type: bet.market_type,
             client_ref: bet.client_ref,
         };
