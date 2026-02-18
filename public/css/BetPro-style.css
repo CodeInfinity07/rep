@@ -52,6 +52,16 @@ a {
     position: relative;
 }
 
+.main-page {
+    width: 100%;
+}
+
+.main-page > .row {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
 #sidebar {
     background: #1a1a2e;
     height: 100vh;
@@ -60,6 +70,14 @@ a {
     overflow-y: auto;
     transition: all 0.3s ease;
     z-index: 1000;
+    flex: 0 0 200px;
+    max-width: 200px;
+}
+
+.main-page > .row > .col-md-9,
+.main-page > .row > .col-lg-10 {
+    flex: 1;
+    max-width: calc(100% - 200px);
 }
 
 #sidebar .logo-bar {
@@ -115,12 +133,19 @@ a {
         display: inline-block;
     }
 
+    .main-page > .row {
+        flex-wrap: wrap;
+    }
+
     #sidebar {
         position: fixed;
         top: 0;
         left: -260px;
         width: 260px;
+        max-width: 260px;
+        flex: none;
         min-height: 100vh;
+        height: 100vh;
         overflow-y: auto;
         transition: left 0.3s ease;
     }
@@ -133,7 +158,8 @@ a {
         display: block;
     }
 
-    .col-md-9, .col-lg-10 {
+    .main-page > .row > .col-md-9,
+    .main-page > .row > .col-lg-10 {
         flex: 0 0 100%;
         max-width: 100%;
     }
