@@ -37,7 +37,7 @@
                     </a>
                 </div>
                 <div class="divider"></div>
-                <div class="sidebar-menu" style="height:100%;">
+                <div class="sidebar-menu">
                     <ul>
                         <ul class="nav">
                             <li style="width:100%;">
