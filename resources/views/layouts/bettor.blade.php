@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/img/sprites/css/sprite.css">
     <link rel="stylesheet" href="/dist/site.css?112100">
-    <link href="/css/BetPro-style.css?112100" rel="stylesheet">
+    <link href="/css/BetPro-style.css?021826" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>@yield('title', 'BetPro')</title>
@@ -28,6 +28,7 @@
 </head>
 
 <body class="bg-gray d-flex flex-column">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="main-page">
         <div class="row no-gutters">
             <div class="col-md-3 col-lg-2" id="sidebar">
@@ -115,7 +116,6 @@
                 </div>
             </div>
 
-            <div class="sidebar-overlay" id="sidebarOverlay"></div>
             <div class="col-md-9 col-lg-10">
                 <div class="top-bar">
                     <div class="container-fluid">

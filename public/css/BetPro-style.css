@@ -57,8 +57,8 @@ a {
 }
 
 .main-page > .row {
-    display: flex;
-    flex-wrap: nowrap;
+    display: flex !important;
+    flex-wrap: nowrap !important;
     width: 100%;
 }
 
@@ -70,14 +70,15 @@ a {
     overflow-y: auto;
     transition: all 0.3s ease;
     z-index: 1000;
-    flex: 0 0 200px;
-    max-width: 200px;
+    flex: 0 0 200px !important;
+    max-width: 200px !important;
+    min-width: 200px;
 }
 
 .main-page > .row > .col-md-9,
 .main-page > .row > .col-lg-10 {
-    flex: 1;
-    max-width: calc(100% - 200px);
+    flex: 1 1 0% !important;
+    max-width: calc(100% - 200px) !important;
 }
 
 #sidebar .logo-bar {
