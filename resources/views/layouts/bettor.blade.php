@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/img/sprites/css/sprite.css">
     <link rel="stylesheet" href="/dist/site.css?112100">
-    <link href="/css/BetPro-style.css?021826" rel="stylesheet">
+    <link href="/css/BetPro-style.css?112100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>@yield('title', 'BetPro')</title>
@@ -28,7 +28,6 @@
 </head>
 
 <body class="bg-gray d-flex flex-column">
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="main-page">
         <div class="row no-gutters">
             <div class="col-md-3 col-lg-2" id="sidebar">
@@ -38,7 +37,7 @@
                     </a>
                 </div>
                 <div class="divider"></div>
-                <div class="sidebar-menu">
+                <div class="sidebar-menu" style="height:100%;">
                     <ul>
                         <ul class="nav">
                             <li style="width:100%;">
@@ -229,14 +228,11 @@
             }
         }
 
+        // Menu toggle
         $(document).ready(function() {
             $('.nav-toggle').click(function() {
-                $('#sidebar').toggleClass('menu-open');
-                $('#sidebarOverlay').toggleClass('active');
-            });
-            $('#sidebarOverlay').click(function() {
-                $('#sidebar').removeClass('menu-open');
-                $('#sidebarOverlay').removeClass('active');
+                $('#sidebar').toggleClass('menu-collapsed');
+                $('body').toggleClass('menu-collapsed');
             });
         });
     </script>
