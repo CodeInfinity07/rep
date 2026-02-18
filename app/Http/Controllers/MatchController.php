@@ -78,9 +78,9 @@ class MatchController extends Controller
             $marketStartTime = $marketStartTimeRaw;
             if ($marketStartTimeRaw) {
                 try {
-                    $dt = new \DateTime($marketStartTimeRaw);
-                    $dt->modify('-30 minutes');
-                    $marketStartTime = $dt->format('Y-m-d\TH:i:s');
+                    $dt = new \DateTime($marketStartTimeRaw, new \DateTimeZone('Asia/Kolkata'));
+                    $dt->setTimezone(new \DateTimeZone('Asia/Karachi'));
+                    $marketStartTime = $dt->format('Y-m-d\TH:i:sP');
                 } catch (\Exception $e) {
                     $marketStartTime = $marketStartTimeRaw;
                 }
@@ -1012,7 +1012,13 @@ class MatchController extends Controller
                 ->limit(10)
                 ->get();
             
-            $scheduledTime = $match->scheduled_time ? strtotime($match->scheduled_time) * 1000 : null;
+            $scheduledTime = null;
+            $scheduledTimeFormatted = null;
+            if ($match->scheduled_time) {
+                $pktTime = new \DateTime($match->scheduled_time, new \DateTimeZone('Asia/Karachi'));
+                $scheduledTime = $pktTime->getTimestamp() * 1000;
+                $scheduledTimeFormatted = $pktTime->format('H:i');
+            }
             
             return response()->json([
                 'success' => true,
@@ -1023,7 +1029,7 @@ class MatchController extends Controller
                     'isInplay' => (bool)$match->is_inplay,
                     'isLive' => (bool)$match->is_live,
                     'scheduledTime' => $scheduledTime,
-                    'scheduledTimeFormatted' => $match->scheduled_time ? date('H:i', strtotime($match->scheduled_time)) : null,
+                    'scheduledTimeFormatted' => $scheduledTimeFormatted,
                     'status' => $match->match_status,
                     'sportId' => $match->sport_id
                 ],
@@ -1031,7 +1037,7 @@ class MatchController extends Controller
                     return [
                         'gmid' => $m->gmid,
                         'matchName' => $m->match_name,
-                        'scheduledTime' => $m->scheduled_time ? date('H:i', strtotime($m->scheduled_time)) : null,
+                        'scheduledTime' => $m->scheduled_time ? (new \DateTime($m->scheduled_time, new \DateTimeZone('Asia/Karachi')))->format('H:i') : null,
                         'isInplay' => (bool)$m->is_inplay
                     ];
                 })
