@@ -73,8 +73,18 @@ class MatchController extends Controller
             $eventName = $marketDetails['event']['name'] ?? $marketDetails['marketName'] ?? 'Match';
             $runners = $marketDetails['runners'] ?? [];
             
-            // Extract market start time and inPlay status
-            $marketStartTime = $marketDetails['marketStartTime'] ?? $marketDetails['event']['openDate'] ?? null;
+            // Extract market start time and convert from IST (UTC+5:30) to PKT (UTC+5:00)
+            $marketStartTimeRaw = $marketDetails['marketStartTime'] ?? $marketDetails['event']['openDate'] ?? null;
+            $marketStartTime = $marketStartTimeRaw;
+            if ($marketStartTimeRaw) {
+                try {
+                    $dt = new \DateTime($marketStartTimeRaw);
+                    $dt->modify('-30 minutes');
+                    $marketStartTime = $dt->format('Y-m-d\TH:i:s');
+                } catch (\Exception $e) {
+                    $marketStartTime = $marketStartTimeRaw;
+                }
+            }
             
             // Get odds for the main market (Match Odds)
             $mainMarketOdds = $marketsData[$marketId] ?? [];

@@ -220,25 +220,25 @@ function parseDatetime(dateStr) {
             }
         }
         
-        // Add 30 minutes using pure arithmetic
-        m += 30;
-        if (m >= 60) {
-            m -= 60;
-            h += 1;
+        // Subtract 30 minutes to convert IST (UTC+5:30) to PKT (UTC+5:00)
+        m -= 30;
+        if (m < 0) {
+            m += 60;
+            h -= 1;
         }
-        if (h >= 24) {
-            h -= 24;
-            d += 1;
+        if (h < 0) {
+            h += 24;
+            d -= 1;
         }
-        // Handle day overflow
-        const daysInMonth = [31, (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        if (d > daysInMonth[mo - 1]) {
-            d = 1;
-            mo += 1;
-            if (mo > 12) {
-                mo = 1;
-                y += 1;
+        // Handle day underflow
+        if (d < 1) {
+            mo -= 1;
+            if (mo < 1) {
+                mo = 12;
+                y -= 1;
             }
+            const daysInMonth = [31, (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            d = daysInMonth[mo - 1];
         }
         
         // Format as MySQL datetime
