@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Ledger - {{ strtoupper($user->username) }}</title>
-    <link rel="stylesheet" href="/css/coreui.min.css">
-    <link rel="stylesheet" href="/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+@extends('layouts.management')
+
+@section('title', 'Account Ledger - ' . strtoupper($user->username))
+
+@section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflareinsights.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
     <style>
         .datee {
             background-color: white;
@@ -23,109 +19,106 @@
             padding:5px;
         }
     </style>
-</head>
-<body class="app">
-    <div>
-        <main class="main">
-            <div class="container-fluid" style="padding:0px 15px;">
-                <div class="animated fadeIn">
-                    
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
+@endsection
+
+@section('content')
+    <div class="container-fluid" style="padding:0px 15px;">
+        <div class="animated fadeIn">
+            
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i>
+                            Report Filter
                         </div>
-                    @endif
-                    
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <i class="fa fa-align-justify"></i>
-                                    Report Filter
-                                </div>
-                                <div class="card-body">
-                                    <form id="ReportFilterForm" class="form-inline" method="get" action="/users/{{ $user->id }}/ledger">
-                                        <div class="row" style="text-align-last:justify;">
-                                            <div class="col-12 col-md-5">
-                                                <div class="form-group">
-                                                    <input type="date" class="form-control" name="from" value="{{ $from }}" required>
-                                                </div>
-                                            </div>
-
-                                            <strong style="margin:auto">&nbsp;-&nbsp;</strong>
-                                            
-                                            <div class="col-12 col-md-5">
-                                                <div class="form-group">
-                                                    <input type="date" class="form-control" name="to" value="{{ $to }}" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group editsbmtbtn">
-                                                <label class="mx-1"> </label>
-                                                <button class="btn btn-primary" type="submit">
-                                                    <strong>Submit</strong>
-                                                </button>
-                                            </div>
+                        <div class="card-body">
+                            <form id="ReportFilterForm" class="form-inline" method="get" action="/users/{{ $user->id }}/ledger">
+                                <div class="row" style="text-align-last:justify;">
+                                    <div class="col-12 col-md-5">
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" name="from" value="{{ $from }}" required>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <strong>{{ strtoupper($user->username) }}</strong> - Account Ledger
+                                    <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+                                    
+                                    <div class="col-12 col-md-5">
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" name="to" value="{{ $to }}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group editsbmtbtn">
+                                        <label class="mx-1"> </label>
+                                        <button class="btn btn-primary" type="submit">
+                                            <strong>Submit</strong>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <table id="tableLedger" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Date</th>
-                                                <th>Description</th>
-                                                <th>Debit/Credit</th>
-                                                <th>Balance</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>{{ \Carbon\Carbon::parse($from)->format('m/d/Y h:i:s A') }}</td>
-                                                <td>Opening Balance</td>
-                                                <td>0</td>
-                                                <td>{{ number_format($openingBalance, 0) }}</td>
-                                            </tr>
-                                            @foreach($entries as $index => $entry)
-                                            <tr>
-                                                <td>{{ $index + 2 }}</td>
-                                                <td>{{ $entry->created_at->format('m/d/Y h:i:s A') }}</td>
-                                                <td>{{ $entry->description }}</td>
-                                                <td>{{ $entry->amount > 0 ? number_format($entry->amount, 0) : number_format($entry->amount, 0) }}</td>
-                                                <td>{{ number_format($entry->balance, 0) }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/coreui.min.js"></script>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>{{ strtoupper($user->username) }}</strong> - Account Ledger
+                        </div>
+                        <div class="card-body">
+                            <table id="tableLedger" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Debit/Credit</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{ \Carbon\Carbon::parse($from)->format('m/d/Y h:i:s A') }}</td>
+                                        <td>Opening Balance</td>
+                                        <td>0</td>
+                                        <td>{{ number_format($openingBalance, 0) }}</td>
+                                    </tr>
+                                    @foreach($entries as $index => $entry)
+                                    <tr>
+                                        <td>{{ $index + 2 }}</td>
+                                        <td>{{ $entry->created_at->format('m/d/Y h:i:s A') }}</td>
+                                        <td>{{ $entry->description }}</td>
+                                        <td>{{ $entry->amount > 0 ? number_format($entry->amount, 0) : number_format($entry->amount, 0) }}</td>
+                                        <td>{{ number_format($entry->balance, 0) }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
@@ -167,5 +160,4 @@
             });
         });
     </script>
-</body>
-</html>
+@endsection
