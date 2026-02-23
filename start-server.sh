@@ -12,6 +12,7 @@ sed -i '/^DB_PASSWORD=/d' .env 2>/dev/null || true
 sed -i '/^SCORESWIFT_API_KEY=/d' .env 2>/dev/null || true
 sed -i '/^CACHE_STORE=/d' .env 2>/dev/null || true
 sed -i '/^APP_KEY=/d' .env 2>/dev/null || true
+sed -i '/^SESSION_DRIVER=/d' .env 2>/dev/null || true
 
 # Add APP_KEY for encryption
 if [ ! -z "$APP_KEY" ]; then
@@ -28,8 +29,9 @@ if [ ! -z "$DB_HOST" ]; then
     echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
 fi
 
-# Use file-based cache for better performance
+# Use file-based cache and session for better performance
 echo "CACHE_STORE=file" >> .env
+echo "SESSION_DRIVER=file" >> .env
 
 # Add API key
 if [ ! -z "$SCORESWIFT_API_KEY" ]; then
