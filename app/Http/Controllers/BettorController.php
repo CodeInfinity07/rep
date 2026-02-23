@@ -22,12 +22,15 @@ class BettorController extends Controller
             )
             ->first();
         
+        $casinoGames = \App\Http\Controllers\CasinoController::fetchGames();
+
         $data = [
             'username' => $user->username,
             'credit' => $user->credit_remaining ?? 0,
             'balance' => $user->balance ?? 0,
             'liable' => $activeBetsData->total_liability ?? 0,
             'active_bets' => $activeBetsData->count ?? 0,
+            'casinoGames' => $casinoGames,
         ];
         
         return view('bettor.index', $data);

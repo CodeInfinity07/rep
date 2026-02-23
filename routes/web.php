@@ -108,6 +108,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/api/bets/{betId}/cancel', [App\Http\Controllers\BetController::class, 'cancelBet']);
 });
 
+Route::get('/api/casino-games', [App\Http\Controllers\CasinoController::class, 'getGames']);
+
 // Public API routes (accessible without authentication)
 Route::get('/api/cricket-matches', [App\Http\Controllers\SportsDataController::class, 'getCricketMatches']);
 Route::get('/api/match-odds/{marketId}', [App\Http\Controllers\MatchController::class, 'getOddsApi']);
