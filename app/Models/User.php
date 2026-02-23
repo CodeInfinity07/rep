@@ -99,7 +99,7 @@ class User extends Authenticatable
     {
         return match($this->type) {
             'owner' => ['admin', 'bettor'],
-            'admin' => ['supermaster', 'bettor'],
+            'admin' => ['supermaster'],
             'supermaster' => ['master', 'bettor'],
             'master' => ['bettor'],
             'bettor' => [],
