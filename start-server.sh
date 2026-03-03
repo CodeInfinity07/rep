@@ -1,43 +1,83 @@
 #!/bin/bash
+set -e
 
-# Inject environment secrets into .env for Laravel to access
+# Build .env from environment variables (never hardcode secrets)
+cat > .env << EOF
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=${APP_KEY}
+APP_DEBUG=true
+APP_URL=http://localhost
 
-# Remove existing database and API configs
-sed -i '/^DB_CONNECTION=/d' .env 2>/dev/null || true
-sed -i '/^DB_HOST=/d' .env 2>/dev/null || true
-sed -i '/^DB_PORT=/d' .env 2>/dev/null || true
-sed -i '/^DB_DATABASE=/d' .env 2>/dev/null || true
-sed -i '/^DB_USERNAME=/d' .env 2>/dev/null || true
-sed -i '/^DB_PASSWORD=/d' .env 2>/dev/null || true
-sed -i '/^SCORESWIFT_API_KEY=/d' .env 2>/dev/null || true
-sed -i '/^CACHE_STORE=/d' .env 2>/dev/null || true
-sed -i '/^APP_KEY=/d' .env 2>/dev/null || true
-sed -i '/^SESSION_DRIVER=/d' .env 2>/dev/null || true
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=en_US
 
-# Add APP_KEY for encryption
-if [ ! -z "$APP_KEY" ]; then
-    echo "APP_KEY=${APP_KEY}" >> .env
+APP_MAINTENANCE_DRIVER=file
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=pgsql
+DB_HOST=${PGHOST}
+DB_PORT=${PGPORT}
+DB_DATABASE=${PGDATABASE}
+DB_USERNAME=${PGUSER}
+DB_PASSWORD=${PGPASSWORD}
+
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+
+CACHE_STORE=file
+
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="Laravel"
+
+VITE_APP_NAME="Laravel"
+
+MGS_API_TOKEN=${MGS_API_TOKEN}
+CRICKETID_API_KEY=${CRICKETID_API_KEY}
+EOF
+
+# Ensure storage and cache directories are writable
+mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache/data
+mkdir -p storage/logs bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+
+# Install PHP dependencies if not already installed
+if [ ! -d "vendor" ]; then
+    echo "Installing Composer dependencies..."
+    composer install --no-interaction --prefer-dist --optimize-autoloader
 fi
 
-# Add MySQL database configuration
-if [ ! -z "$DB_HOST" ]; then
-    echo "DB_CONNECTION=mysql" >> .env
-    echo "DB_HOST=${DB_HOST}" >> .env
-    echo "DB_PORT=${DB_PORT:-3306}" >> .env
-    echo "DB_DATABASE=${DB_DATABASE}" >> .env
-    echo "DB_USERNAME=${DB_USERNAME}" >> .env
-    echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
+# Install and build frontend assets if not already built
+if [ ! -d "node_modules" ]; then
+    echo "Installing Node dependencies..."
+    npm install
 fi
 
-# Use file-based cache and session for better performance
-echo "CACHE_STORE=file" >> .env
-echo "SESSION_DRIVER=file" >> .env
-
-# Add API key
-if [ ! -z "$SCORESWIFT_API_KEY" ]; then
-    echo "SCORESWIFT_API_KEY=${SCORESWIFT_API_KEY}" >> .env
+if [ ! -d "public/build" ]; then
+    echo "Building frontend assets..."
+    npm run build
 fi
 
 php artisan config:clear
 php artisan cache:clear
-php artisan serve --host=0.0.0.0 --port=5000
+
+# Run migrations
+php artisan migrate --force
+
+echo "Starting Laravel server on port 5000..."
+exec php artisan serve --host=0.0.0.0 --port=5000
