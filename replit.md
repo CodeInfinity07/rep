@@ -36,11 +36,11 @@ BETGURU is a Laravel 12.x MVC application utilizing PHP 8.2.
 **System Design Choices:**
 - **Laravel MVC:** Follows the Model-View-Controller pattern.
 - **Blade Templating:** Utilizes Blade for efficient frontend templating.
-- **MySQL Database:** Primary database for data storage.
-- **Environment Configuration:** Uses Replit Secrets for secure management of sensitive environment variables.
+- **PostgreSQL Database:** Replit's built-in PostgreSQL database for data storage.
+- **Environment Configuration:** Uses Replit Secrets for secure management of sensitive environment variables. Database credentials (PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD) are injected via the start-server.sh script into .env as DB_HOST, DB_PORT, etc.
 
 ## External Dependencies
-- **Database:** MySQL (bguru69 on remote server 94.72.106.77)
+- **Database:** Replit PostgreSQL (migrated from MySQL)
 - **Live Sports Data API:** ScoreSwift API (http://89.116.20.218:8085/api/home, /api/inplay, /api/GetMarketOdds, /api/GetMarketDetails) for live match data.
 - **Betting Prices and Orders API:** mgs11.com for prices and order management.
 
