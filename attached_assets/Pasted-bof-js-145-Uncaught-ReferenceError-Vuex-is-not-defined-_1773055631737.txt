@@ -1,0 +1,42 @@
+bof.js:145 Uncaught ReferenceError: Vuex is not defined
+    at bof.js:145:21
+(anonymous) @ bof.js:145Understand this error
+api/users/news?marketId=:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+api/users/funds:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+report:306 Uncaught ReferenceError: updateDates is not defined
+    at HTMLButtonElement.onclick (report:306:114)Understand this error
+ReportViewer.js:80 Uncaught ReferenceError: localDateToUtc is not defined
+    at ReportViewer.fetchMainReport (ReportViewer.js:80:19)
+    at HTMLButtonElement.<anonymous> (report:342:20)
+    at HTMLButtonElement.dispatch (site.min.js:14:66742)
+    at a.handle (site.min.js:14:64761)Understand this error
+api/users/funds:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+api/users/news?marketId=:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+report:306 Uncaught ReferenceError: updateDates is not defined
+    at HTMLButtonElement.onclick (report:306:114)Understand this error
+ReportViewer.js:80 Uncaught ReferenceError: localDateToUtc is not defined
+    at ReportViewer.fetchMainReport (ReportViewer.js:80:19)
+    at HTMLButtonElement.<anonymous> (report:342:20)
+    at HTMLButtonElement.dispatch (site.min.js:14:66742)
+    at a.handle (site.min.js:14:64761)Understand this error
+report:306 Uncaught ReferenceError: updateDates is not defined
+    at HTMLButtonElement.onclick (report:306:114)Understand this error
+ReportViewer.js:80 Uncaught ReferenceError: localDateToUtc is not defined
+    at ReportViewer.fetchMainReport (ReportViewer.js:80:19)
+    at HTMLButtonElement.<anonymous> (report:342:20)
+    at HTMLButtonElement.dispatch (site.min.js:14:66742)
+    at a.handle (site.min.js:14:64761)Understand this error
+report:306 Uncaught ReferenceError: updateDates is not defined
+    at HTMLButtonElement.onclick (report:306:114)Understand this error
+ReportViewer.js:80 Uncaught ReferenceError: localDateToUtc is not defined
+    at ReportViewer.fetchMainReport (ReportViewer.js:80:19)
+    at HTMLButtonElement.<anonymous> (report:342:20)
+    at HTMLButtonElement.dispatch (site.min.js:14:66742)
+    at a.handle (site.min.js:14:64761)Understand this error
+report:306 Uncaught ReferenceError: updateDates is not defined
+    at HTMLButtonElement.onclick (report:306:114)Understand this error
+ReportViewer.js:80 Uncaught ReferenceError: localDateToUtc is not defined
+    at ReportViewer.fetchMainReport (ReportViewer.js:80:19)
+    at HTMLButtonElement.<anonymous> (report:342:20)
+    at HTMLButtonElement.dispatch (site.min.js:14:66742)
+    at a.handle (site.min.js:14:64761)

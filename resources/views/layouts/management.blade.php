@@ -224,6 +224,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@5.0.11/dist/browser/signalr.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.min.js"></script>
+    <script src="/js/src/client-locales.js"></script>
     
     @yield('scripts')
     
