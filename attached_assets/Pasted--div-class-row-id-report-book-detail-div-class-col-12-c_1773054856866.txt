@@ -1,0 +1,52 @@
+<div class="row" id="report-book-detail"><div class="col-12 col-md-6">
+
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-align-justify"></i>
+        <strong>Rajoka5566</strong>
+        <div class="form-group pull-right">
+            <input type="checkbox" onclick="toggleZeroAccounts()" class="">
+            Hide Zero Amounts
+        </div>
+        <div class=""><b> <span id="DateFromNew"></span>-<span id="DateToNew"></span></b></div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <div id="tblReport_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="tblReport" class="table table-responsive-sm table-bordered table-striped table-sm compact dataTable no-footer" role="grid">
+                    <thead>
+                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="tblReport" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 84.2812px;">Name</th><th class="sorting" tabindex="0" aria-controls="tblReport" rowspan="1" colspan="1" aria-label="Amount: activate to sort column ascending" style="width: 111.469px;">Amount</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr class="odd"><td valign="top" colspan="2" class="dataTables_empty">No data available in table</td></tr></tbody>
+                </table></div></div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"></div></div></div>
+            </div>
+            <div class="col-6">
+                <div id="tblReport2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="tblReport2" class="table table-responsive-sm table-bordered table-striped table-sm compact dataTable no-footer" role="grid">
+                    <thead>
+                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="tblReport2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 84.2812px;">Name</th><th class="sorting" tabindex="0" aria-controls="tblReport2" rowspan="1" colspan="1" aria-label="Amount: activate to sort column ascending" style="width: 111.469px;">Amount</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr class="odd"><td valign="top" colspan="2" class="dataTables_empty">No data available in table</td></tr></tbody>
+                </table></div></div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"></div></div></div>
+            </div>
+
+            <div class="col-6">
+                <table class="table table-sm dataTable" id="DataTables_Table_0">
+                    <tbody><tr class="bg-primary">
+                        <th>Total</th>
+                        <th>0</th>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="col-6">
+                <table class="table table-sm">
+                    <tbody><tr class="bg-danger">
+                        <th>Total</th>
+                        <th>0</th>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>
+</div></div><div class="col-12 col-md-6"><div class="col-12"></div><div class="col-12"></div></div></div>
