@@ -38,7 +38,7 @@
                 <a href="/Reports/FinalSheet" id="final-sheet" class="btn btn-outline-primary">
                     Final Sheet
                 </a>
-                <a href="/Accounts/Chart?MID=0" id="ledger" class="btn btn-outline-primary">
+                <a href="/users" id="ledger" class="btn btn-outline-primary">
                     Accounts
                 </a>
                 <a href="/Reports/Commission" id="commission" class="btn btn-outline-primary">
