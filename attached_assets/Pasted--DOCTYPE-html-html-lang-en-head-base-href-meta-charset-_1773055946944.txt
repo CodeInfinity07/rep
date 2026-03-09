@@ -1,0 +1,1079 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta name="google" content="notranslate" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Sports Trading Platform">
+    <meta name="keyword" content="sports trading, bet, betfair">
+    <title>Detail2 | BetPro</title>
+    <!-- Icons-->
+    <link rel="shortcut icon" href="/img/favicon/BetPro.ico">
+    <link rel="stylesheet" href="/css/all.css" />
+    <link href="/css/style.css?3900" rel="stylesheet" />
+    <link href="/css/site.min.css?3900" rel="stylesheet" />
+    <link href="/css/BetPro-style.css?3900" rel="stylesheet" />
+    <script>
+        var pricesUrl = "https://prices9.mgs11.com/api";
+        var ordersUrl = "https://orders.mgs11.com/api";
+        const SsocketUrl = "https://orders-ws2.mgs11.com/signalr";
+        const LiquidityRate = 35;
+        let dealerSck = 1;
+    </script>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="logo-bar">
+            <a href="/index">
+                <span class="green-logo-text d-sm-down-none">
+                    BetPro
+                </span>
+            </a>
+        </div>
+
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+
+<ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/index">Dashboard</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Accounts/Chart">Users</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/Reports/BookDetail">Reports</a>
+        </li>
+</ul>
+
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item px-2">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Rajoka5566 (SuperMaster) <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/Common/Profile">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" id="btn-logout" href="/Common/Logout">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+                    <strong>B:</strong> <span class="wallet-balance"> </span>
+                    <strong>Exp:</strong> <span class="wallet-exposure"></span>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                
+
+<ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">
+                <i class="nav-icon fas fa-tachometer-alt fa-inverse"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Accounts/Chart">
+                <i class="nav-icon fas fa-users fa-inverse"></i> Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Liables">
+                <i class="nav-icon fas fa-funnel-dollar fa-inverse"></i> Current Position
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Reports/BookDetail">
+                <i class="nav-icon fas fa-money-check fa-inverse"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/BetLocker">
+                <i class="nav-icon fas fa-unlock-alt fa-inverse"></i> Bet Lock
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/Games">
+                <i class="nav-icon fas fa-star fa-inverse"></i> Star Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/WorldCasino">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> World Casino
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Markets/ExGames">
+                <i class="nav-icon fas fa-globe fa-inverse"></i> BetFair Games
+            </a>
+        </li>
+
+
+
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/soccer.svg" alt="C">
+            Soccer
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254390770">
+Espanyol v Oviedo                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254186786">
+West Ham v Brentford                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254377213">
+Lazio v Sassuolo                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254723204">
+Tondela v Rio Ave                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254727582">
+Shelbourne v Shamrock Rovers                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254707042">
+Almeria v Leonesa                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254997450">
+Deportes Copiapo v Deportes Temuco                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/tennis.svg" alt="C">
+            Tennis
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/cricket.svg" alt="C">
+            Cricket
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254764729">
+Bangladesh v Pakistan                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/horse.svg" alt="C">
+            Horse Race
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939177">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:00:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939179">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:00:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939305">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:10:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939307">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:10:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939258">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:20:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939260">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:20:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939173">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:30:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939175">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:30:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939312">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:40:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939313">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:40:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939265">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:50:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939267">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T14:50:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939183">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:00:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939184">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:00:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939319">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:10:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939321">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:10:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939272">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:20:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939273">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:20:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939194">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:30:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939196">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:30:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939332">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:40:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939334">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:40:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Taunton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939279">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:50:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939281">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T15:50:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Stratford (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939189">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T16:00:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254939191">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T16:00:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Plumpton (GB) (PLACE)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <img src="/img/v2/greyhound-racing.svg" alt="C">
+            Greyhound
+        </a>
+
+        <ul class="nav-dropdown-items" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987715">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:27:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006711">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:27:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Romford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006606">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:34:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987641">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:35:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Q Straight (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006630">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:38:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Harlow (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254988417">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:39:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Maitland (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254984883">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:43:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Sandown Park (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006713">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:43:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Romford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254988088">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:44:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Gawler (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987720">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:47:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006608">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:52:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006632">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:54:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Harlow (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987646">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T11:57:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Q Straight (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006715">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:01:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Romford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987725">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:07:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006610">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:09:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Dunstall Park (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006634">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:12:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Harlow (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987651">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:15:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Q Straight (AU)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.255006717">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:18:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Romford (GB)
+                                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Markets/#!1.254987730">
+                                <span class="slidedate market-time">
+                                </span>
+                                <span class="d-none utctime" data-format="h:mm A">
+                                    2026-03-09T12:22:00.0000000Z
+                                </span>
+                                <span class='slidename'>
+                                    Mandurah (AU)
+                                </span>
+                        </a>
+                    </li>
+        </ul>
+    </li>
+</ul>
+            </nav>
+
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    
+<style>
+    @media screen and (max-width: 635px) {
+        .reportmenubuttons {
+            text-align: center;
+        }
+    }
+    
+</style>
+<div class="row">
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-filter"></i>
+                <strong>Report Type</strong>
+            </div>
+            <div class="card-body reportmenubuttons">
+                    <a href="/Reports/BookDetail"
+                       id="book-detail"
+                       class="btn btn-outline-primary">
+                        Book Detail
+                    </a>
+                    <a href="/Reports/Detail2"
+                       id="book-detail-2"
+                       class="btn btn-primary">
+                        Book Detail 2
+                    </a>
+                    <a href="/Reports/DailyPl"
+                       id="dailyPl"
+                       class="btn btn-outline-primary">
+                        Daily PL
+                    </a>
+                    <a href="/Reports/Daily"
+                       id="daily"
+                       class="btn btn-outline-primary">
+                        Daily Report
+                    </a>
+                    <a href="/Reports/FinalSheet"
+                       id="final-sheet"
+                       class="btn btn-outline-primary">
+                        Final Sheet
+                    </a>
+                    <a href="/Accounts/Chart?MID=0"
+                       id="ledger"
+                       class="btn btn-outline-primary">
+                        Accounts
+                    </a>
+                    <a href="/Reports/Commission"
+                       id="commission"
+                       class="btn btn-outline-primary">
+                        Commission Report
+                    </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-filter"></i>
+                <strong>Report Filter</strong>
+            </div>
+            <div class="card-body">
+                <form id="ReportFilterForm" class="form-inline" method="post">
+                    <div class="row" style="text-align-last:justify;">
+                        <div class="col-12 col-md-5">
+                            <div class="input-group date" id="ReportFrom" data-target-input="nearest">
+                                <input type="text"
+                                       class="form-control datetimepicker-input"
+                                       data-target="#ReportFrom"
+                                       id="DisplayFrom" />
+                                <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span class="market-time d-none"></span>
+                            <span class="d-none utctime" data-nofirst="1" data-format="M/D/YYYY h:mm A">
+                                2026-03-08T19:00:00.0000000Z
+                            </span>
+                            <input type="hidden" name="From" id="From" value="2026-03-08T19:00:00.0000000Z" />
+                        </div>
+
+                        <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+                        <div class="col-12 col-md-5">
+                            <div class="input-group date" id="ReportTo" data-target-input="nearest">
+                                <input type="text"
+                                       class="form-control datetimepicker-input"
+                                       data-target="#ReportTo"
+                                       id="DisplayTo" />
+                                <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span class="market-time d-none"></span>
+                            <span class="d-none utctime" data-nofirst="1" data-format="M/D/YYYY h:mm A">
+                                2026-03-09T18:59:59.0000000Z
+                            </span>
+                            <input type="hidden" name="To" id="To" value="2026-03-09T18:59:59.0000000Z" />
+                        </div>
+
+                        <div class="form-group" style="margin: auto;margin-top: 5px; margin-right:15px;">
+                            <button class="btn btn-sm btn-primary" type="submit" onclick="return updateDates();">
+                                <i class="fa fa-dot-circle-o"></i> Submit
+                            </button>
+                        </div>
+
+                        <input type="hidden" data-val="true" data-val-required="The CurrentAccountId field is required." id="CurrentAccountId" name="CurrentAccountId" value="0" />
+                        <input type="hidden" data-val="true" data-val-required="The ClientId field is required." id="ClientId" name="ClientId" value="0" />
+                        <input type="hidden" data-val="true" data-val-required="The EventTypeId field is required." id="EventTypeId" name="EventTypeId" value="0" />
+                        <input type="hidden" id="IsFirstVisit" value="True" />
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Oq1fAHJd9JPn1n03AHwR3WQF20I6RjLcBBM26DWr9XDoLn650IGu4gxtPeqDjqti94vE8ylHuCSmp5AWC-B23R7-admnnqt7rAJP_cBEyeCAe9EYmQT9pcIdKOoPLdr-3hHdTuOoyIyUSu5a601qNTGvIaKLVOtJuZKqJR52LeoO31w02l0CWZo9QoTSS3E0Q" /></form>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+<style media="screen">
+    .loader {
+        position: fixed;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        opacity: 0.6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader > img {
+        width: auto;
+        margin-bottom: 100px;
+        margin-top: 20%;
+        margin-left: 50%;
+    }
+
+    #loadinggif {
+        display: none;
+    }
+</style>
+
+<div class="loader" id="loadinggif">
+    <img src="/img/loadinggif.gif" />
+</div>
+
+<div class="row">
+    <div class="col-md-6 report-left">
+        <div id="sportreportdiv">
+            
+
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-align-justify"></i>
+        <strong>Rajoka5566</strong>
+    </div>
+    <div class="card-body">
+        <table class="table table-responsive-sm table-bordered table-striped table-sm" id="tblReport">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-primary">
+                    <th>Total</th>
+                    <th>0</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+        </div>
+    </div>
+    <div class="col-md-6 report-Right">
+        <div class="container" id="marketreportsdiv" style="display: block;">
+        </div>
+
+        <div class="container" id="marketreportsdivdt2" style="display: block;">
+        </div>
+
+    </div>
+</div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+     <div class="modal fade" id="modalMarketRules" tabindex="-1" role="dialog" aria-labelledby="modalMarketRules" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Market Rules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="market-rules-text" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+    <ul id="news-ticker-foot">
+        <li data-update="item1">Welcome to BetPro</li>
+    </ul>
+</footer>
+<!-- CoreUI and necessary plugins-->
+
+<script type="text/javascript" src="https://wurfl.io/wurfl.js"></script>
+<script src="/js/signalr/dist/browser/signalr.js"></script>
+
+
+    <script src="/js/vue.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.min.js"></script>
+    <script src="/js/site.min.js?3900"></script>
+    <script src="/js/bof.js?3900"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C1WVLP1K0K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('set', { 'user_id': 'Rajoka5566' });
+        gtag('config', 'G-C1WVLP1K0K');
+    </script>
+
+
+<script type="text/javascript" src="/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/js/src/client-locales.js?3900"></script>
+
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tblReport').DataTable({
+                "paging": false,
+                "info": false,
+                "searching": false,
+                "order": [[0, "asc"]],
+                dom: "<'row'<'col-sm-12'B>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                buttons: [
+                            {
+                                extend: 'print',
+                                text: '<i class=""> Print</i>',
+                                title: 'Rajoka5566  Detail',
+                                titleAttr: 'Copy'
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: '<i class=""> Excel</i>',
+                                title: 'Rajoka5566  Detail',
+                                titleAttr: 'Excel'
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: '<i class=""> PDF</i>',
+                                title: 'Rajoka5566  Detail',
+                                titleAttr: 'PDF'
+                            }
+                        ]
+            });
+        });
+
+
+        bindEventTypeLinks();
+        $("div.loader").hide();
+
+        function popup_report(id, Url) {
+            var url = Url + id;
+            newwindow = window.open(url, "Market Position", 'height=650,width=800');
+            if (window.focus) { newwindow.focus() }
+            return false;
+        }
+    </script>
+
+
+    <script>
+        const token = getCookie('wexscktoken');
+        const sess = getCookie('wex3authtoken');
+        const reft = getCookie('wex3reftoken');
+
+        $(document).ready(function () {
+            pollUserData();
+
+            pollRefreshToken();
+        });
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"412e616bee9c418bbf775c35ab07c6d0","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

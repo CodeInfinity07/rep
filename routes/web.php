@@ -57,6 +57,8 @@ Route::middleware(['auth', 'restrictBettors'])->group(function () {
     });
 
     Route::get('/report', [App\Http\Controllers\ReportController::class, 'index']);
+    Route::get('/report2', [App\Http\Controllers\ReportController::class, 'detail2']);
+    Route::get('/Reports/Detail2', function () { return redirect('/report2'); });
 
     Route::get('/lock', function () {
         return view('management.lock');

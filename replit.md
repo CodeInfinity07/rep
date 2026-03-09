@@ -133,6 +133,14 @@ When a bet is placed:
 | Meter | `stake × (size / 100)` | Session markets |
 | Khado | `stake × (size / 100)` | Session markets |
 
+## Report Pages
+
+### Book Detail (`/report`)
+Shows child users with their P&L amounts. Drill-down: User → Sports → Markets. Uses `ReportViewer.js` for AJAX loading with delegated event binding.
+
+### Book Detail 2 (`/report2`)
+Shows sports/event types with P&L for the current user. Drill-down: Sport → Events → Market Details. Uses custom AJAX with delegated event binding (bound once on document ready). DataTables with Print/Excel/PDF export buttons. Controller: `ReportController@detail2`. Blade: `management/report-detail2.blade.php`. Partials: `detail2-sports`, `detail2-markets`, `detail2-market-detail`.
+
 ## Results Table (December 2024)
 
 Tracks all placed bets for result reconciliation:

@@ -26,6 +26,22 @@ class ReportController extends Controller
         return view('management.report');
     }
 
+    public function detail2(Request $request)
+    {
+        $handler = $request->query('handler');
+
+        if ($handler) {
+            return match ($handler) {
+                'Detail2Sports' => $this->detail2Sports($request),
+                'Detail2Markets' => $this->detail2Markets($request),
+                'Detail2MarketDetail' => $this->detail2MarketDetail($request),
+                default => response('Unknown handler', 400),
+            };
+        }
+
+        return view('management.report-detail2');
+    }
+
     private function bookDetail(Request $request)
     {
         $user = Auth::user();
@@ -108,6 +124,67 @@ class ReportController extends Controller
         return view('management.partials.markets-reports', [
             'marketDetails' => $marketDetails,
             'sportName' => $sportName,
+        ]);
+    }
+
+    private function detail2Sports(Request $request)
+    {
+        $user = Auth::user();
+        $from = $this->parseDate($request->query('from'), now()->startOfDay());
+        $to = $this->parseDate($request->query('to'), now()->endOfDay());
+
+        $sportTotals = BookDetail::where('parent_id', $user->id)
+            ->whereBetween('report_date', [$from->toDateString(), $to->toDateString()])
+            ->selectRaw('sport_name, SUM(amount) as total_amount')
+            ->groupBy('sport_name')
+            ->get();
+
+        $total = $sportTotals->sum('total_amount');
+
+        return view('management.partials.detail2-sports', [
+            'username' => $user->username,
+            'sportTotals' => $sportTotals,
+            'total' => round($total, 2),
+        ]);
+    }
+
+    private function detail2Markets(Request $request)
+    {
+        $user = Auth::user();
+        $from = $this->parseDate($request->query('from'), now()->startOfDay());
+        $to = $this->parseDate($request->query('to'), now()->endOfDay());
+        $sportName = $request->query('id');
+
+        $events = BookDetail::where('parent_id', $user->id)
+            ->where('sport_name', $sportName)
+            ->whereBetween('report_date', [$from->toDateString(), $to->toDateString()])
+            ->selectRaw('event_name, SUM(amount) as total_amount')
+            ->groupBy('event_name')
+            ->get();
+
+        return view('management.partials.detail2-markets', [
+            'sportName' => $sportName,
+            'events' => $events,
+        ]);
+    }
+
+    private function detail2MarketDetail(Request $request)
+    {
+        $user = Auth::user();
+        $from = $this->parseDate($request->query('from'), now()->startOfDay());
+        $to = $this->parseDate($request->query('to'), now()->endOfDay());
+        $sportName = $request->query('id');
+        $eventName = $request->query('id2');
+
+        $marketDetails = BookDetail::where('parent_id', $user->id)
+            ->where('sport_name', $sportName)
+            ->where('event_name', $eventName)
+            ->whereBetween('report_date', [$from->toDateString(), $to->toDateString()])
+            ->get();
+
+        return view('management.partials.detail2-market-detail', [
+            'eventName' => $eventName,
+            'marketDetails' => $marketDetails,
         ]);
     }
 
