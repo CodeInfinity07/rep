@@ -1,48 +1,35 @@
 @extends('layouts.management')
 
-@section('title', 'Daily PL | BetPro')
+@section('title', 'Daily | BetPro')
 
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <style>
         @media screen and (max-width: 635px) {
-            .reportmenubuttons {
-                text-align: center;
-            }
-            .onecol6 {
-                padding: 0px;
-            }
-            .twocol6 {
-                padding-left: 4px;
-                padding-right: inherit;
-            }
+            .reportmenubuttons { text-align: center; }
+            .onecol6 { padding: 0px; }
+            .twocol6 { padding-left: 4px; padding-right: inherit; }
         }
 
         .loader {
             position: fixed;
             z-index: 99;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: #ffffff;
             opacity: 0.6;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .loader > img {
             width: auto;
             margin-bottom: 100px;
             margin-top: 20%;
             margin-left: 50%;
         }
-
-        #loadinggif {
-            display: none;
-        }
+        #loadinggif { display: none; }
     </style>
 @endsection
 
@@ -55,27 +42,13 @@
                 <strong>Report Type</strong>
             </div>
             <div class="card-body reportmenubuttons">
-                <a href="/report" id="book-detail" class="btn btn-outline-primary">
-                    Book Detail
-                </a>
-                <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">
-                    Book Detail 2
-                </a>
-                <a href="/report-daily-pl" id="dailyPl" class="btn btn-primary">
-                    Daily PL
-                </a>
-                <a href="/report-daily" id="daily" class="btn btn-outline-primary">
-                    Daily Report
-                </a>
-                <a href="/Reports/FinalSheet" id="final-sheet" class="btn btn-outline-primary">
-                    Final Sheet
-                </a>
-                <a href="/users" id="ledger" class="btn btn-outline-primary">
-                    Accounts
-                </a>
-                <a href="/Reports/Commission" id="commission" class="btn btn-outline-primary">
-                    Commission Report
-                </a>
+                <a href="/report" id="book-detail" class="btn btn-outline-primary">Book Detail</a>
+                <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">Book Detail 2</a>
+                <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">Daily PL</a>
+                <a href="/report-daily" id="daily" class="btn btn-primary">Daily Report</a>
+                <a href="/Reports/FinalSheet" id="final-sheet" class="btn btn-outline-primary">Final Sheet</a>
+                <a href="/users" id="ledger" class="btn btn-outline-primary">Accounts</a>
+                <a href="/Reports/Commission" id="commission" class="btn btn-outline-primary">Commission Report</a>
             </div>
         </div>
     </div>
@@ -94,10 +67,7 @@
                     <div class="row" style="text-align-last:justify;">
                         <div class="col-12 col-md-5">
                             <div class="input-group date" id="ReportFrom" data-target-input="nearest">
-                                <input type="text"
-                                       class="form-control datetimepicker-input"
-                                       data-target="#ReportFrom"
-                                       id="DisplayFrom" />
+                                <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom" />
                                 <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -110,12 +80,10 @@
                         </div>
 
                         <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+
                         <div class="col-12 col-md-5">
                             <div class="input-group date" id="ReportTo" data-target-input="nearest">
-                                <input type="text"
-                                       class="form-control datetimepicker-input"
-                                       data-target="#ReportTo"
-                                       id="DisplayTo" />
+                                <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo" />
                                 <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -158,27 +126,19 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-6 onecol6">
-                        <table class="table table-bordered stripe compact table-sm" id="example">
+                        <table class="table table-responsive-sm table-bordered stripe compact table-sm" id="example">
                             <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Amount</th>
-                                </tr>
+                                <tr><th>Name</th><th>Amount</th></tr>
                             </thead>
-                            <tbody id="positive-tbody">
-                            </tbody>
+                            <tbody id="positive-tbody"></tbody>
                         </table>
                     </div>
                     <div class="col-6 twocol6">
-                        <table class="table table-responsive-sm table-bordered stripe compact table-sm" id="example2">
+                        <table class="table table-responsive table-bordered stripe compact table-sm" id="example2">
                             <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Amount</th>
-                                </tr>
+                                <tr><th>Name</th><th>Amount</th></tr>
                             </thead>
-                            <tbody id="negative-tbody">
-                            </tbody>
+                            <tbody id="negative-tbody"></tbody>
                         </table>
                     </div>
 
@@ -190,7 +150,6 @@
                             </tr>
                         </table>
                     </div>
-
                     <div class="col-6 twocol6">
                         <table class="table table-sm">
                             <tr class="bg-danger">
@@ -216,50 +175,42 @@
     <script src="/js/site.min.js"></script>
     <script src="/js/bof.js"></script>
     <script src="/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script>
         function showLoader() { $("#loadinggif").show(); }
         function hideLoader() { $("#loadinggif").hide(); }
 
         function initTables() {
-            if ($.fn.DataTable.isDataTable('#example')) $('#example').DataTable().destroy();
+            if ($.fn.DataTable.isDataTable('#example'))  $('#example').DataTable().destroy();
             if ($.fn.DataTable.isDataTable('#example2')) $('#example2').DataTable().destroy();
-
             $('#example, #example2').DataTable({
-                "paging": false,
-                "info": false,
-                "searching": false,
-                "order": [[0, "asc"]]
+                "paging": false, "info": false, "searching": false, "order": [[0, "asc"]]
             });
         }
 
-        function fetchDailyPl() {
+        function fetchDailyReport() {
             showLoader();
             var from = localDateToUtc($("#DisplayFrom").val());
             var to   = localDateToUtc($("#DisplayTo").val());
 
             $.ajax({
                 type: 'GET',
-                url: '/report-daily-pl?handler=DailyPl',
+                url: '/report-daily?handler=DailyReport',
                 data: { from: from, to: to },
                 success: function (data) {
-                    var posTbody = '';
-                    var negTbody = '';
-
+                    var posTbody = '', negTbody = '';
                     $.each(data.positives, function (i, row) {
                         posTbody += '<tr><td><a href="#" data-id="' + row.id + '">' + row.name + '</a></td><td>' + row.amount + '</td></tr>';
                     });
                     $.each(data.negatives, function (i, row) {
                         negTbody += '<tr><td><a href="#" data-id="' + row.id + '">' + row.name + '</a></td><td>' + row.amount + '</td></tr>';
                     });
-
                     $('#positive-tbody').html(posTbody);
                     $('#negative-tbody').html(negTbody);
                     $('#total-positive').text(data.totalPositive);
                     $('#total-negative').text(data.totalNegative);
-
                     initTables();
                     $('#sportreportdivdr').empty();
                     $('#marketreportsdivdr').empty();
@@ -273,10 +224,9 @@
             showLoader();
             var from = localDateToUtc($("#DisplayFrom").val());
             var to   = localDateToUtc($("#DisplayTo").val());
-
             $.ajax({
                 type: 'GET',
-                url: '/report-daily-pl?handler=DailyPlSports',
+                url: '/report-daily?handler=DailyReportSports',
                 data: { from: from, to: to, id: userId },
                 success: function (result) {
                     $('#sportreportdivdr').html(result);
@@ -291,10 +241,9 @@
             showLoader();
             var from = localDateToUtc($("#DisplayFrom").val());
             var to   = localDateToUtc($("#DisplayTo").val());
-
             $.ajax({
                 type: 'GET',
-                url: '/report-daily-pl?handler=DailyPlMarkets',
+                url: '/report-daily?handler=DailyReportMarkets',
                 data: { from: from, to: to, id: userId, id2: sportName },
                 success: function (result) {
                     $('#marketreportsdivdr').html(result);
@@ -310,7 +259,7 @@
             $('#ReportFilterForm').on('submit', function (e) {
                 e.preventDefault();
                 updateDates();
-                fetchDailyPl();
+                fetchDailyReport();
             });
 
             $('#example, #example2').on('click', 'td > a', function (e) {
@@ -342,7 +291,6 @@
         const token = getCookie('wexscktoken');
         const sess  = getCookie('wex3authtoken');
         const reft  = getCookie('wex3reftoken');
-
         $(document).ready(function () {
             if (typeof pollUserData === 'function') pollUserData();
             if (typeof pollRefreshToken === 'function') pollRefreshToken();

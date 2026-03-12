@@ -58,7 +58,7 @@
                 <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">
                     Daily PL
                 </a>
-                <a href="/Reports/Daily" id="daily" class="btn btn-outline-primary">
+                <a href="/report-daily" id="daily" class="btn btn-outline-primary">
                     Daily Report
                 </a>
                 <a href="/Reports/FinalSheet" id="final-sheet" class="btn btn-outline-primary">
