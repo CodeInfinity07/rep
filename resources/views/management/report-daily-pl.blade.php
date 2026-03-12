@@ -67,7 +67,7 @@
                 <a href="/report-daily" id="daily" class="btn btn-outline-primary">
                     Daily Report
                 </a>
-                <a href="/Reports/FinalSheet" id="final-sheet" class="btn btn-outline-primary">
+                <a href="/report-final-sheet" id="final-sheet" class="btn btn-outline-primary">
                     Final Sheet
                 </a>
                 <a href="/users" id="ledger" class="btn btn-outline-primary">

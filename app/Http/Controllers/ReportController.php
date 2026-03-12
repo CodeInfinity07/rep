@@ -26,6 +26,39 @@ class ReportController extends Controller
         return view('management.report');
     }
 
+    public function finalSheet(Request $request)
+    {
+        if ($request->query('handler') === 'Report') {
+            $user = Auth::user();
+
+            $children = User::where('parent_id', $user->id)->get();
+
+            $amounts = BookDetail::where('parent_id', $user->id)
+                ->selectRaw('user_id, SUM(amount) as total_amount')
+                ->groupBy('user_id')
+                ->pluck('total_amount', 'user_id');
+
+            $entries = [];
+            foreach ($children as $child) {
+                $entries[] = [
+                    'name'   => $child->username,
+                    'amount' => round((float) $amounts->get($child->id, 0), 2),
+                ];
+            }
+
+            usort($entries, fn($a, $b) => strcmp($a['name'], $b['name']));
+            $total = round(array_sum(array_column($entries, 'amount')), 2);
+
+            return view('management.partials.final-sheet-report', [
+                'username' => $user->username,
+                'entries'  => $entries,
+                'total'    => $total,
+            ]);
+        }
+
+        return view('management.report-final-sheet');
+    }
+
     public function daily(Request $request)
     {
         $handler = $request->query('handler');

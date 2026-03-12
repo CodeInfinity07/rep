@@ -46,7 +46,7 @@
                 <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">Book Detail 2</a>
                 <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">Daily PL</a>
                 <a href="/report-daily" id="daily" class="btn btn-primary">Daily Report</a>
-                <a href="/Reports/FinalSheet" id="final-sheet" class="btn btn-outline-primary">Final Sheet</a>
+                <a href="/report-final-sheet" id="final-sheet" class="btn btn-outline-primary">Final Sheet</a>
                 <a href="/users" id="ledger" class="btn btn-outline-primary">Accounts</a>
                 <a href="/Reports/Commission" id="commission" class="btn btn-outline-primary">Commission Report</a>
             </div>
