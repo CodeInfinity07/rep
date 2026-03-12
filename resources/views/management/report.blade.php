@@ -29,7 +29,7 @@
                 <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">
                     Book Detail 2
                 </a>
-                <a href="/Reports/DailyPl" id="dailyPl" class="btn btn-outline-primary">
+                <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">
                     Daily PL
                 </a>
                 <a href="/Reports/Daily" id="daily" class="btn btn-outline-primary">

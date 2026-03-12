@@ -1,15 +1,21 @@
 @extends('layouts.management')
 
-@section('title', 'Detail2 | BetPro')
+@section('title', 'Daily PL | BetPro')
 
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
     <style>
         @media screen and (max-width: 635px) {
             .reportmenubuttons {
                 text-align: center;
+            }
+            .onecol6 {
+                padding: 0px;
+            }
+            .twocol6 {
+                padding-left: 4px;
+                padding-right: inherit;
             }
         }
 
@@ -52,10 +58,10 @@
                 <a href="/report" id="book-detail" class="btn btn-outline-primary">
                     Book Detail
                 </a>
-                <a href="/report2" id="book-detail-2" class="btn btn-primary">
+                <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">
                     Book Detail 2
                 </a>
-                <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">
+                <a href="/report-daily-pl" id="dailyPl" class="btn btn-primary">
                     Daily PL
                 </a>
                 <a href="/Reports/Daily" id="daily" class="btn btn-outline-primary">
@@ -143,15 +149,64 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6 report-left">
-        <div id="sportreportdiv">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+                <strong>Report</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 onecol6">
+                        <table class="table table-bordered stripe compact table-sm" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="positive-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6 twocol6">
+                        <table class="table table-responsive-sm table-bordered stripe compact table-sm" id="example2">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="negative-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-6 onecol6">
+                        <table class="table table-sm">
+                            <tr class="bg-primary">
+                                <th>Total</th>
+                                <th id="total-positive">0</th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-6 twocol6">
+                        <table class="table table-sm">
+                            <tr class="bg-danger">
+                                <th>Total</th>
+                                <th id="total-negative">0</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="col-md-6 report-Right">
-        <div class="container" id="marketreportsdiv" style="display: block;">
-        </div>
-        <div class="container" id="marketreportsdivdt2" style="display: block;">
-        </div>
+        <div id="sportreportdivdr" class="container"></div>
+        <div class="container" id="marketreportsdivdr"></div>
     </div>
 </div>
 @endsection
@@ -164,161 +219,129 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
     <script>
-        var username = @json(Auth::user()->username);
+        function showLoader() { $("#loadinggif").show(); }
+        function hideLoader() { $("#loadinggif").hide(); }
 
-        function showLoader() {
-            $("#loadinggif").show();
-        }
+        function initTables() {
+            if ($.fn.DataTable.isDataTable('#example')) $('#example').DataTable().destroy();
+            if ($.fn.DataTable.isDataTable('#example2')) $('#example2').DataTable().destroy();
 
-        function hideLoader() {
-            $("#loadinggif").hide();
-        }
-
-        function fetchSportReport() {
-            showLoader();
-            var from = localDateToUtc($("#DisplayFrom").val());
-            var to = localDateToUtc($("#DisplayTo").val());
-
-            $.ajax({
-                type: 'GET',
-                url: '/report2?handler=Detail2Sports',
-                data: { from: from, to: to },
-                success: function (result) {
-                    $("#sportreportdiv").html(result);
-                    initSportTable();
-                    $("#marketreportsdiv").empty();
-                    $("#marketreportsdivdt2").empty();
-                    hideLoader();
-                },
-                error: function () {
-                    hideLoader();
-                }
-            });
-        }
-
-        function initSportTable() {
-            if ($.fn.DataTable.isDataTable('#tblReport')) {
-                $('#tblReport').DataTable().destroy();
-            }
-            $('#tblReport').DataTable({
+            $('#example, #example2').DataTable({
                 "paging": false,
                 "info": false,
                 "searching": false,
-                "order": [[0, "asc"]],
-                dom: "<'row'<'col-sm-12'B>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-                buttons: [
-                    {
-                        extend: 'print',
-                        text: '<i class=""> Print</i>',
-                        title: username + '  Detail',
-                        titleAttr: 'Copy'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class=""> Excel</i>',
-                        title: username + '  Detail',
-                        titleAttr: 'Excel'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: '<i class=""> PDF</i>',
-                        title: username + '  Detail',
-                        titleAttr: 'PDF'
-                    }
-                ]
+                "order": [[0, "asc"]]
             });
         }
 
-        function bindEventTypeLinks() {
-            $("#sportreportdiv").on('click', 'td > a', function (e) {
-                e.preventDefault();
-                var eventTypeId = $(this).data('id');
-                if (eventTypeId === undefined || eventTypeId === null) return;
-
-                fetchMarketReport(eventTypeId);
-            });
-        }
-
-        function fetchMarketReport(eventTypeId) {
+        function fetchDailyPl() {
             showLoader();
             var from = localDateToUtc($("#DisplayFrom").val());
-            var to = localDateToUtc($("#DisplayTo").val());
+            var to   = localDateToUtc($("#DisplayTo").val());
 
             $.ajax({
                 type: 'GET',
-                url: '/report2?handler=Detail2Markets',
-                data: { from: from, to: to, id: eventTypeId },
-                success: function (result) {
-                    $("#marketreportsdiv").html(result);
-                    $("#marketreportsdivdt2").empty();
+                url: '/report-daily-pl?handler=DailyPl',
+                data: { from: from, to: to },
+                success: function (data) {
+                    var posTbody = '';
+                    var negTbody = '';
+
+                    $.each(data.positives, function (i, row) {
+                        posTbody += '<tr><td><a href="#" data-id="' + row.id + '">' + row.name + '</a></td><td>' + row.amount + '</td></tr>';
+                    });
+                    $.each(data.negatives, function (i, row) {
+                        negTbody += '<tr><td><a href="#" data-id="' + row.id + '">' + row.name + '</a></td><td>' + row.amount + '</td></tr>';
+                    });
+
+                    $('#positive-tbody').html(posTbody);
+                    $('#negative-tbody').html(negTbody);
+                    $('#total-positive').text(data.totalPositive);
+                    $('#total-negative').text(data.totalNegative);
+
+                    initTables();
+                    $('#sportreportdivdr').empty();
+                    $('#marketreportsdivdr').empty();
                     hideLoader();
                 },
-                error: function () {
-                    hideLoader();
-                }
+                error: function () { hideLoader(); }
             });
         }
 
-        function fetchMarketDetail(eventTypeId, marketName) {
+        function fetchSportsWiseDr(userId) {
             showLoader();
             var from = localDateToUtc($("#DisplayFrom").val());
-            var to = localDateToUtc($("#DisplayTo").val());
+            var to   = localDateToUtc($("#DisplayTo").val());
 
             $.ajax({
                 type: 'GET',
-                url: '/report2?handler=Detail2MarketDetail',
-                data: { from: from, to: to, id: eventTypeId, id2: marketName },
+                url: '/report-daily-pl?handler=DailyPlSports',
+                data: { from: from, to: to, id: userId },
                 success: function (result) {
-                    $("#marketreportsdivdt2").html(result);
+                    $('#sportreportdivdr').html(result);
+                    $('#marketreportsdivdr').empty();
                     hideLoader();
                 },
-                error: function () {
-                    hideLoader();
-                }
+                error: function () { hideLoader(); }
             });
         }
 
-        function popup_report(id, Url) {
-            var url = Url + id;
-            newwindow = window.open(url, "Market Position", 'height=650,width=800');
-            if (window.focus) { newwindow.focus() }
-            return false;
+        function fetchMarketsReportDr(userId, sportName) {
+            showLoader();
+            var from = localDateToUtc($("#DisplayFrom").val());
+            var to   = localDateToUtc($("#DisplayTo").val());
+
+            $.ajax({
+                type: 'GET',
+                url: '/report-daily-pl?handler=DailyPlMarkets',
+                data: { from: from, to: to, id: userId, id2: sportName },
+                success: function (result) {
+                    $('#marketreportsdivdr').html(result);
+                    hideLoader();
+                },
+                error: function () { hideLoader(); }
+            });
         }
 
         $(document).ready(function () {
-            $('#ReportFilterForm').on('submit', function(e) {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#ReportFilterForm').on('submit', function (e) {
                 e.preventDefault();
                 updateDates();
-                fetchSportReport();
+                fetchDailyPl();
             });
 
-            bindEventTypeLinks();
-
-            $("#marketreportsdiv").on('click', 'td > a', function (e) {
+            $('#example, #example2').on('click', 'td > a', function (e) {
                 e.preventDefault();
-                var marketName = $(this).data('id');
-                var eventTypeId = $(this).data('eventtype');
-                if (marketName === undefined || marketName === null) return;
+                var userId = $(this).data('id');
+                if (userId === undefined || userId === null) return;
+                fetchSportsWiseDr(userId);
+            });
 
-                fetchMarketDetail(eventTypeId, marketName);
+            $('#sportreportdivdr').on('click', 'td > a', function (e) {
+                e.preventDefault();
+                var sportName = $(this).data('id');
+                var userId    = $(this).data('userid');
+                if (sportName === undefined || sportName === null) return;
+                fetchMarketsReportDr(userId, sportName);
             });
 
             hideLoader();
         });
+
+        function popup_report(vid, aid) {
+            var url = "/Accounts/Statements?VID=" + vid + "&AID=" + aid;
+            newwindow = window.open(url, "Market Repo", 'height=500,width=700');
+            if (window.focus) { newwindow.focus() }
+            return false;
+        }
     </script>
     <script>
         const token = getCookie('wexscktoken');
-        const sess = getCookie('wex3authtoken');
-        const reft = getCookie('wex3reftoken');
+        const sess  = getCookie('wex3authtoken');
+        const reft  = getCookie('wex3reftoken');
 
         $(document).ready(function () {
             if (typeof pollUserData === 'function') pollUserData();

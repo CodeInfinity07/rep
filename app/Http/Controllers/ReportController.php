@@ -26,6 +26,22 @@ class ReportController extends Controller
         return view('management.report');
     }
 
+    public function dailyPl(Request $request)
+    {
+        $handler = $request->query('handler');
+
+        if ($handler) {
+            return match ($handler) {
+                'DailyPl'       => $this->dailyPlData($request),
+                'DailyPlSports' => $this->dailyPlSports($request),
+                'DailyPlMarkets'=> $this->dailyPlMarkets($request),
+                default         => response('Unknown handler', 400),
+            };
+        }
+
+        return view('management.report-daily-pl');
+    }
+
     public function detail2(Request $request)
     {
         $handler = $request->query('handler');
@@ -124,6 +140,83 @@ class ReportController extends Controller
         return view('management.partials.markets-reports', [
             'marketDetails' => $marketDetails,
             'sportName' => $sportName,
+        ]);
+    }
+
+    private function dailyPlData(Request $request)
+    {
+        $user = Auth::user();
+        $from = $this->parseDate($request->query('from'), now()->startOfDay());
+        $to   = $this->parseDate($request->query('to'), now()->endOfDay());
+
+        $children = User::where('parent_id', $user->id)->get();
+
+        $amounts = BookDetail::where('parent_id', $user->id)
+            ->whereBetween('report_date', [$from->toDateString(), $to->toDateString()])
+            ->selectRaw('user_id, SUM(amount) as total_amount')
+            ->groupBy('user_id')
+            ->pluck('total_amount', 'user_id');
+
+        $results = [];
+        foreach ($children as $child) {
+            $results[] = [
+                'id'     => $child->id,
+                'name'   => $child->username,
+                'amount' => round((float) $amounts->get($child->id, 0), 2),
+            ];
+        }
+
+        $positives = array_values(array_filter($results, fn($r) => $r['amount'] >= 0));
+        $negatives = array_values(array_filter($results, fn($r) => $r['amount'] < 0));
+
+        return response()->json([
+            'positives'     => $positives,
+            'negatives'     => $negatives,
+            'totalPositive' => round(array_sum(array_column($positives, 'amount')), 2),
+            'totalNegative' => round(array_sum(array_column($negatives, 'amount')), 2),
+        ]);
+    }
+
+    private function dailyPlSports(Request $request)
+    {
+        $user    = Auth::user();
+        $from    = $this->parseDate($request->query('from'), now()->startOfDay());
+        $to      = $this->parseDate($request->query('to'), now()->endOfDay());
+        $childId = $request->query('id');
+
+        $child = User::where('id', $childId)->where('parent_id', $user->id)->firstOrFail();
+
+        $sportTotals = BookDetail::where('user_id', $childId)
+            ->where('parent_id', $user->id)
+            ->whereBetween('report_date', [$from->toDateString(), $to->toDateString()])
+            ->selectRaw('sport_name, SUM(amount) as total_amount')
+            ->groupBy('sport_name')
+            ->get();
+
+        return view('management.partials.daily-pl-sports', [
+            'username'    => $child->username,
+            'userId'      => $child->id,
+            'sportTotals' => $sportTotals,
+        ]);
+    }
+
+    private function dailyPlMarkets(Request $request)
+    {
+        $user      = Auth::user();
+        $from      = $this->parseDate($request->query('from'), now()->startOfDay());
+        $to        = $this->parseDate($request->query('to'), now()->endOfDay());
+        $childId   = $request->query('id');
+        $sportName = $request->query('id2');
+
+        $marketDetails = BookDetail::where('user_id', $childId)
+            ->where('parent_id', $user->id)
+            ->where('sport_name', $sportName)
+            ->whereBetween('report_date', [$from->toDateString(), $to->toDateString()])
+            ->get();
+
+        return view('management.partials.daily-pl-markets', [
+            'sportName'     => $sportName,
+            'marketDetails' => $marketDetails,
         ]);
     }
 
