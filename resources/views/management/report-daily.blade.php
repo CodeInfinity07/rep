@@ -48,7 +48,7 @@
                 <a href="/report-daily" id="daily" class="btn btn-primary">Daily Report</a>
                 <a href="/report-final-sheet" id="final-sheet" class="btn btn-outline-primary">Final Sheet</a>
                 <a href="/users" id="ledger" class="btn btn-outline-primary">Accounts</a>
-                <a href="/Reports/Commission" id="commission" class="btn btn-outline-primary">Commission Report</a>
+                <a href="/report-commission" id="commission" class="btn btn-outline-primary">Commission Report</a>
             </div>
         </div>
     </div>

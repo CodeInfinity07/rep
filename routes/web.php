@@ -65,6 +65,8 @@ Route::middleware(['auth', 'restrictBettors'])->group(function () {
     Route::get('/Reports/Daily', function () { return redirect('/report-daily'); });
     Route::get('/report-final-sheet', [App\Http\Controllers\ReportController::class, 'finalSheet']);
     Route::get('/Reports/FinalSheet', function () { return redirect('/report-final-sheet'); });
+    Route::get('/report-commission', [App\Http\Controllers\ReportController::class, 'commission']);
+    Route::get('/Reports/Commission', function () { return redirect('/report-commission'); });
 
     Route::get('/lock', function () {
         return view('management.lock');

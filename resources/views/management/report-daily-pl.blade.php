@@ -73,7 +73,7 @@
                 <a href="/users" id="ledger" class="btn btn-outline-primary">
                     Accounts
                 </a>
-                <a href="/Reports/Commission" id="commission" class="btn btn-outline-primary">
+                <a href="/report-commission" id="commission" class="btn btn-outline-primary">
                     Commission Report
                 </a>
             </div>

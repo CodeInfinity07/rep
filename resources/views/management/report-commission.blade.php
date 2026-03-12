@@ -1,15 +1,13 @@
 @extends('layouts.management')
 
-@section('title', 'Reports')
+@section('title', 'Commission | BetPro')
 
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <style>
         @media screen and (max-width: 635px) {
-            .reportmenubuttons {
-                text-align: center;
-            }
+            .reportmenubuttons { text-align: center; }
         }
     </style>
 @endsection
@@ -23,27 +21,13 @@
                 <strong>Report Type</strong>
             </div>
             <div class="card-body reportmenubuttons">
-                <a href="/report" id="book-detail" class="btn btn-primary">
-                    Book Detail
-                </a>
-                <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">
-                    Book Detail 2
-                </a>
-                <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">
-                    Daily PL
-                </a>
-                <a href="/report-daily" id="daily" class="btn btn-outline-primary">
-                    Daily Report
-                </a>
-                <a href="/report-final-sheet" id="final-sheet" class="btn btn-outline-primary">
-                    Final Sheet
-                </a>
-                <a href="/users" id="ledger" class="btn btn-outline-primary">
-                    Accounts
-                </a>
-                <a href="/report-commission" id="commission" class="btn btn-outline-primary">
-                    Commission Report
-                </a>
+                <a href="/report" id="book-detail" class="btn btn-outline-primary">Book Detail</a>
+                <a href="/report2" id="book-detail-2" class="btn btn-outline-primary">Book Detail 2</a>
+                <a href="/report-daily-pl" id="dailyPl" class="btn btn-outline-primary">Daily PL</a>
+                <a href="/report-daily" id="daily" class="btn btn-outline-primary">Daily Report</a>
+                <a href="/report-final-sheet" id="final-sheet" class="btn btn-outline-primary">Final Sheet</a>
+                <a href="/users" id="ledger" class="btn btn-outline-primary">Accounts</a>
+                <a href="/report-commission" id="commission" class="btn btn-primary">Commission Report</a>
             </div>
         </div>
     </div>
@@ -62,10 +46,7 @@
                     <div class="row" style="text-align-last:justify;">
                         <div class="col-12 col-md-5">
                             <div class="input-group date" id="ReportFrom" data-target-input="nearest">
-                                <input type="text"
-                                       class="form-control datetimepicker-input"
-                                       data-target="#ReportFrom"
-                                       id="DisplayFrom" />
+                                <input type="text" class="form-control datetimepicker-input" data-target="#ReportFrom" id="DisplayFrom" />
                                 <div class="input-group-append" data-target="#ReportFrom" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -78,12 +59,10 @@
                         </div>
 
                         <strong style="margin:auto">&nbsp;-&nbsp;</strong>
+
                         <div class="col-12 col-md-5">
                             <div class="input-group date" id="ReportTo" data-target-input="nearest">
-                                <input type="text"
-                                       class="form-control datetimepicker-input"
-                                       data-target="#ReportTo"
-                                       id="DisplayTo" />
+                                <input type="text" class="form-control datetimepicker-input" data-target="#ReportTo" id="DisplayTo" />
                                 <div class="input-group-append" data-target="#ReportTo" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -112,7 +91,37 @@
     </div>
 </div>
 
-<div class="row" id="report-book-detail"></div>
+<div class="row" id="CommReport">
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+                <strong>Commission Report</strong>
+            </div>
+            <div class="card-body">
+                <div class="container message">
+                    <p>All Commission goes to As per share (Auto Commission)</p>
+                </div>
+                <table id="tblComReport" class="table table-responsive-sm table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="commission-tbody">
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-primary">
+                            <th>Total</th>
+                            <th colspan="2" id="commission-total">0</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
@@ -120,28 +129,60 @@
     <script src="/js/site.min.js"></script>
     <script src="/js/bof.js"></script>
     <script src="/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/ReportViewer.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script>
+        var commTable = null;
+
         $(document).ready(function () {
-            $('#ReportFilterForm button').click(function(e) {
-                e.preventDefault();
-                rv.fetchMainReport();
+            commTable = $('#tblComReport').DataTable({
+                "paging": false,
+                "info": false,
+                "searching": false,
+                "order": [[0, "asc"]]
             });
 
-            let rv = new ReportViewer("#report-book-detail", "/report", "BookDetail", "SportsWise", "MarketsReports");
+            $('#ReportFilterForm').on('submit', function (e) {
+                e.preventDefault();
+                updateDates();
+                fetchCommission();
+            });
         });
 
-        function popup_report() {
-            return true;
+        function fetchCommission() {
+            var from = localDateToUtc($("#DisplayFrom").val());
+            var to   = localDateToUtc($("#DisplayTo").val());
+
+            $.ajax({
+                type: 'GET',
+                url: '/report-commission?handler=Commission',
+                data: { from: from, to: to },
+                success: function (data) {
+                    commTable.destroy();
+
+                    var tbody = '';
+                    $.each(data.rows, function (i, row) {
+                        tbody += '<tr><td>' + row.name + '</td><td>' + row.commission + '</td></tr>';
+                    });
+                    $('#commission-tbody').html(tbody);
+                    $('#commission-total').text(data.total);
+
+                    commTable = $('#tblComReport').DataTable({
+                        "paging": false,
+                        "info": false,
+                        "searching": false,
+                        "order": [[0, "asc"]]
+                    });
+                },
+                error: function () {}
+            });
         }
     </script>
     <script>
         const token = getCookie('wexscktoken');
-        const sess = getCookie('wex3authtoken');
-        const reft = getCookie('wex3reftoken');
-
+        const sess  = getCookie('wex3authtoken');
+        const reft  = getCookie('wex3reftoken');
         $(document).ready(function () {
             if (typeof pollUserData === 'function') pollUserData();
             if (typeof pollRefreshToken === 'function') pollRefreshToken();

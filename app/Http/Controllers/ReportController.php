@@ -26,6 +26,44 @@ class ReportController extends Controller
         return view('management.report');
     }
 
+    public function commission(Request $request)
+    {
+        if ($request->query('handler') === 'Commission') {
+            $user = Auth::user();
+
+            $from = $request->query('from')
+                ? Carbon::parse($request->query('from'))->startOfDay()
+                : Carbon::now()->subDay()->startOfDay();
+            $to = $request->query('to')
+                ? Carbon::parse($request->query('to'))->endOfDay()
+                : Carbon::now()->endOfDay();
+
+            $children = User::where('parent_id', $user->id)->get();
+
+            $commissions = BookDetail::where('parent_id', $user->id)
+                ->whereBetween('created_at', [$from, $to])
+                ->selectRaw('user_id, SUM(commission_amount) as total_commission')
+                ->groupBy('user_id')
+                ->pluck('total_commission', 'user_id');
+
+            $rows = [];
+            foreach ($children as $child) {
+                $amt = round((float) $commissions->get($child->id, 0), 2);
+                $rows[] = [
+                    'name'       => $child->username,
+                    'commission' => $amt,
+                ];
+            }
+
+            usort($rows, fn($a, $b) => strcmp($a['name'], $b['name']));
+            $total = round(array_sum(array_column($rows, 'commission')), 2);
+
+            return response()->json(['rows' => $rows, 'total' => $total]);
+        }
+
+        return view('management.report-commission');
+    }
+
     public function finalSheet(Request $request)
     {
         if ($request->query('handler') === 'Report') {
